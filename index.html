@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camber Codebase Map — Deep Architecture</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; height: 100vh; overflow: hidden; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100vh; }
+  .sidebar { grid-row: 1/3; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; }
+  .canvas-area { position: relative; overflow: hidden; background: #0f1117; }
+  .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: #7c83a6; margin-bottom: 10px; }
+  h3 { font-size: 12px; color: #94a3b8; margin: 12px 0 6px; }
+  .preset-btn { display: block; width: 100%; padding: 7px 10px; margin-bottom: 4px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer; text-align: left; transition: all .15s; }
+  .preset-btn:hover { background: #252a40; border-color: #3b82f6; }
+  .preset-btn.active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
+  .layer-toggle { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; font-size: 12px; }
+  .layer-toggle input { accent-color: #3b82f6; }
+  .layer-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .conn-toggle { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; font-size: 12px; }
+  .conn-toggle input { accent-color: #3b82f6; }
+  .conn-line { width: 18px; height: 2px; display: inline-block; }
+  .comment-item { background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; padding: 8px; margin-bottom: 6px; font-size: 11px; }
+  .comment-label { color: #93c5fd; font-weight: 600; }
+  .comment-text { color: #94a3b8; margin-top: 3px; }
+  .comment-del { float: right; color: #ef4444; cursor: pointer; font-size: 10px; border: none; background: none; }
+  .zoom-controls { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
+  .zoom-btn { width: 30px; height: 30px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .zoom-btn:hover { background: #252a40; border-color: #3b82f6; }
+  svg { width: 100%; height: 100%; }
+  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
+  .node-rect:hover { stroke-width: 2.5; filter: brightness(1.15); }
+  .node-rect.commented { stroke-width: 2.5; }
+  .node-title { font-family: system-ui; font-size: 11px; font-weight: 600; fill: #1e293b; pointer-events: none; }
+  .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 8px; fill: #475569; pointer-events: none; }
+  .legend { position: absolute; bottom: 8px; left: 12px; background: #161822ee; border: 1px solid #2d3148; border-radius: 8px; padding: 10px 14px; font-size: 10px; z-index: 10; }
+  .legend-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+  .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
+  .prompt-strong { color: #93c5fd; font-weight: 600; }
+  .copy-btn { position: absolute; top: 8px; right: 16px; padding: 5px 14px; background: #3b82f6; border: none; border-radius: 6px; color: white; font-size: 11px; cursor: pointer; }
+  .copy-btn:hover { background: #2563eb; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: #000000aa; z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #1e2235; border: 1px solid #3b82f6; border-radius: 12px; padding: 20px; width: 420px; }
+  .modal h3 { color: #93c5fd; font-size: 14px; margin: 0 0 4px; }
+  .modal .path { font-family: monospace; font-size: 11px; color: #64748b; margin-bottom: 12px; }
+  .modal textarea { width: 100%; height: 80px; background: #0f1117; border: 1px solid #2d3148; border-radius: 6px; color: #e2e8f0; padding: 8px; font-size: 12px; resize: vertical; }
+  .modal-btns { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
+  .modal-btns button { padding: 6px 16px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; }
+  .modal-btns .save { background: #3b82f6; color: white; }
+  .modal-btns .cancel { background: #2d3148; color: #94a3b8; }
+  .info-panel { position: absolute; top: 12px; left: 12px; background: #161822ee; border: 1px solid #2d3148; border-radius: 8px; padding: 12px 16px; font-size: 10px; z-index: 10; max-width: 320px; display: none; }
+  .info-panel.show { display: block; }
+  .info-panel h4 { color: #93c5fd; font-size: 12px; margin-bottom: 4px; }
+  .info-panel p { color: #94a3b8; line-height: 1.5; }
+  .empty-comments { font-size: 11px; color: #475569; }
+  .row-label { font-family: system-ui; font-size: 9px; fill: #4a5568; letter-spacing: 1px; pointer-events: none; }
+  .search-box { width: 100%; padding: 6px 10px; background: #0f1117; border: 1px solid #2d3148; border-radius: 6px; color: #e2e8f0; font-size: 11px; margin-bottom: 10px; }
+  .search-box::placeholder { color: #475569; }
+  .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <div class="sidebar">
+    <h2>Camber Deep Architecture</h2>
+    <div class="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
+    <input class="search-box" id="search" type="text" placeholder="Search nodes..." oninput="filterNodes(this.value)">
+    <div id="presets"></div>
+    <h3>Layers</h3>
+    <div id="layer-toggles"></div>
+    <h3>Connections</h3>
+    <div id="conn-toggles"></div>
+    <h3>Comments (<span id="comment-count">0</span>)</h3>
+    <div id="comments-list"></div>
+  </div>
+
+  <div class="canvas-area" id="canvas-area">
+    <div class="zoom-controls">
+      <button class="zoom-btn" onclick="zoomIn()">+</button>
+      <button class="zoom-btn" onclick="zoomOut()">&minus;</button>
+      <button class="zoom-btn" onclick="zoomReset()" style="font-size:10px">1:1</button>
+    </div>
+    <div class="info-panel" id="info-panel">
+      <h4 id="info-title"></h4>
+      <p id="info-desc"></p>
+    </div>
+    <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker>
+        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
+        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ef4444"/></marker>
+        <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
+        <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6b7280"/></marker>
+        <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+      </defs>
+    </svg>
+    <div class="legend">
+      <div style="font-weight:600;margin-bottom:4px;color:#cbd5e1">Legend</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#93c5fd"></span> External Services</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#86efac"></span> Pipeline (Edge Functions)</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#c4b5fd"></span> Sub-modules &amp; RPCs</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#fca5a5"></span> Data Layer</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#fcd34d"></span> DevOps / Tooling</div>
+    </div>
+  </div>
+
+  <div class="prompt-area" style="position:relative">
+    <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+    <div class="prompt-text" id="prompt-output">Click components to add comments. Toggle layers and connections to explore the architecture.</div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h3 id="modal-title"></h3>
+    <div class="path" id="modal-path"></div>
+    <textarea id="modal-text" placeholder="Add your comment about this component..."></textarea>
+    <div class="modal-btns">
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+      <button class="save" onclick="saveComment()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────
+var LAYERS = {
+  external:  { label: 'External Services', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
+  pipeline:  { label: 'Pipeline (Edge Functions)', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
+  module:    { label: 'Sub-modules & RPCs', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
+  data:      { label: 'Data Layer', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
+  devops:    { label: 'DevOps / Tooling', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
+};
+
+var CONN_TYPES = {
+  'data-flow':  { label: 'Data Flow (blocking)', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
+  'fire-forget': { label: 'Fire & Forget', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
+  'tool-call':  { label: 'External API Call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
+  'event':      { label: 'Async / Event', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
+  'dependency': { label: 'Import / Dependency', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
+  'rpc':        { label: 'RPC / DB Function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
+};
+
+var ROW_LABELS = [
+  { text: 'EXTERNAL SERVICES', x: 10, y: 18 },
+  { text: 'INGESTION', x: 10, y: 108 },
+  { text: 'SEGMENTATION', x: 10, y: 198 },
+  { text: 'CONTEXT ASSEMBLY', x: 10, y: 288 },
+  { text: 'ATTRIBUTION ENGINE', x: 10, y: 378 },
+  { text: 'PERCEPTION + JOURNAL HOOKS', x: 10, y: 468 },
+  { text: 'ADMIN / UTILITY', x: 10, y: 558 },
+  { text: 'ALIAS + EMBEDDING', x: 10, y: 648 },
+  { text: 'DATABASE \u2014 CORE + SPANS', x: 10, y: 748 },
+  { text: 'DATABASE \u2014 JOURNAL + CONTEXT + ALIAS', x: 10, y: 838 },
+  { text: 'RPCs + TRIGGERS', x: 10, y: 928 },
+  { text: 'DEVOPS + CI/CD', x: 10, y: 1018 },
+];
+
+var nodes = [
+  // ── Row 0: External Services (y: 25) ──
+  { id: 'openphone',   label: 'OpenPhone',         subtitle: 'call source',              x: 50,  y: 25, w: 115, h: 40, layer: 'external',
+    desc: 'Cloud phone system. Fires call events to Zapier when calls complete. Provides: caller, callee, direction, recording_url, transcript, duration.' },
+  { id: 'zapier',      label: 'Zapier',            subtitle: 'webhook relay',            x: 190, y: 25, w: 115, h: 40, layer: 'external',
+    desc: 'Webhook automation. Receives call events from OpenPhone, triggers zapier-call-ingest. Headers: X-Zapier-Zap-ID, X-Zapier-Run-ID, X-Zapier-Timestamp, Idempotency-Key.' },
+  { id: 'deepgram',    label: 'Deepgram',          subtitle: 'Nova-2 ASR',               x: 330, y: 25, w: 130, h: 40, layer: 'external',
+    desc: 'Speech-to-text: Nova-2 model. Options: punctuate=true, diarize=true, smart_format=true. Dynamic vocabulary injection from transcription_vocab table. Used by transcribe-deepgram only (NOT main pipeline).' },
+  { id: 'openai',      label: 'OpenAI',            subtitle: 'GPT-4o-mini + embed-3',    x: 485, y: 25, w: 160, h: 40, layer: 'external',
+    desc: 'GPT-4o-mini: segment-llm (temp=0, max_tokens=2048). text-embedding-3-small (1536-dim): embed-facts + journal-embed-backfill. Auth: OPENAI_API_KEY env var.' },
+  { id: 'anthropic',   label: 'Anthropic',         subtitle: 'Haiku + Sonnet 4.5',       x: 670, y: 25, w: 170, h: 40, layer: 'external',
+    desc: 'Claude 3 Haiku (claude-3-haiku-20240307): ai-router, journal-extract, generate-summary, striking-detect, chain-detect, loop-closure. All at temp=0. Claude Sonnet 4.5 (claude-sonnet-4-5-20250929): journal-consolidate (deeper reasoning). Auth: ANTHROPIC_API_KEY.' },
+  { id: 'gmail-api',   label: 'Gmail API',         subtitle: '30-day lookback',          x: 865, y: 25, w: 130, h: 40, layer: 'external',
+    desc: 'Google Gmail API via OAuth. Used by gmail-context-lookup: 30-day lookback, 5-call budget per request, 1-hour DB cache in gmail_context_cache. Returns subject keywords, project mentions, dollar amounts. Fail-open design.' },
+  { id: 'github',      label: 'GitHub',            subtitle: 'CI/CD + repos',            x: 1020, y: 25, w: 115, h: 40, layer: 'external',
+    desc: 'Hosts camber-calls repo. GitHub Actions deploys Edge Functions to Supabase on push. Also hosts orbit repo (workspace orchestration).' },
+  { id: 'sb-auth',     label: 'Supabase Auth',     subtitle: 'JWT verification',         x: 1160, y: 25, w: 140, h: 40, layer: 'external',
+    desc: 'JWT-based authentication for user-facing functions. review-resolve uses verify_jwt=true. Validates via auth.getUser() + ALLOWED_EMAILS env var allowlist. All other functions use X-Edge-Secret (machine-to-machine).' },
+
+  // ── Row 1: Ingestion (y: 115) ──
+  { id: 'zapier-ingest', label: 'zapier-call-ingest', subtitle: '226 lines',             x: 50,  y: 115, w: 175, h: 48, layer: 'pipeline',
+    desc: 'Entry point. Auth: X-Edge-Secret (canonical) or X-Secret (legacy). Unwraps payload_json if nested. Stamps _zapier_ingest_meta. Retries downstream once on 401 after 500ms. Writes diagnostic_logs on failure only. Env: EDGE_SHARED_SECRET, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY.' },
+  { id: 'process-call', label: 'process-call',      subtitle: 'v4.3.7 \u00b7 1,177 lines', x: 280, y: 115, w: 180, h: 48, layer: 'pipeline',
+    desc: 'Full ingestion pipeline. Auth: X-Edge-Secret or JWT+ALLOWED_EMAILS. Sequence: idempotency check \u2192 event_audit STARTED \u2192 normalize payload \u2192 phone direction resolution \u2192 contact lookup (RPC: lookup_contact_by_phone) \u2192 6-source candidate project collection (project_contacts, affinity, interactions fallback, word-boundary transcript scan, RPC scan_transcript_for_projects, RPC expand_candidates_from_mentions) \u2192 junk-call prefilter \u2192 gate evaluation. Writes: idempotency_keys, event_audit, calls_raw, interactions, review_queue. Fires segment-call (fire-and-forget) if transcript\u226510 chars AND gate=PASS.' },
+  { id: 'transcribe',   label: 'transcribe-deepgram', subtitle: 'v5 \u00b7 318 lines',   x: 520, y: 115, w: 180, h: 48, layer: 'pipeline',
+    desc: 'STANDALONE \u2014 NOT in main pipeline chain. Transcribes audio via Deepgram Nova-2 with dynamic vocabulary from transcription_vocab table. Writes to transcripts_comparison table (A/B testing). Auth: X-Edge-Secret. Env: DEEPGRAM_API_KEY.' },
+  { id: 'pc-phone',     label: 'phone modules',     subtitle: 'phone_lookup + direction',  x: 760, y: 115, w: 170, h: 48, layer: 'module',
+    desc: 'process-call local modules. phone_lookup.ts (12 lines): normalizePhoneForLookup(). phone_direction.ts (76 lines): resolveCallPartyPhones() \u2014 determines owner vs other-party from direction + phone numbers.' },
+
+  // ── Row 2: Segmentation (y: 205) ──
+  { id: 'segment-call', label: 'segment-call',      subtitle: 'v2.5.3 \u00b7 934 lines',   x: 50,  y: 205, w: 160, h: 48, layer: 'pipeline',
+    desc: 'ORCHESTRATOR. Triggered by process-call (fire-and-forget). Fetches transcript from calls_raw if not provided. Checks for existing attributions (returns 409 if found \u2014 no re-segmentation without admin-reseed). Calls segment-llm for boundaries \u2192 upserts N conversation_spans \u2192 FOR EACH SPAN (sequential, not parallel): context-assembly (blocking) \u2192 ai-router (blocking) \u2192 striking-detect (f&f) + journal-extract (f&f, only if decision=assign). After ALL spans: generate-summary (f&f). Auth: X-Edge-Secret or JWT+ALLOWED_EMAILS.' },
+  { id: 'segment-llm',  label: 'segment-llm',       subtitle: 'v1.4.0 \u00b7 897 lines',   x: 260, y: 205, w: 155, h: 48, layer: 'pipeline',
+    desc: 'Pure computation \u2014 ZERO DB writes. GPT-4o-mini (temp=0, max_tokens=2048). Short fast-path: <min_segment_chars*2 = single span. Otherwise: LLM segmentation \u2192 7-step guardrail chain: clamp bounds, sort, make contiguous, enforce first=0/last=len, merge undersized, enforce max_segments, remove zero-length. Retry on long single-span. Deterministic fallback split (paragraph-based then fixed-size). Oversize guardrail: splits any segment >8000 chars. Anchor terms: PROJECT_ANCHOR_TERMS (woodberry, sparta, etc).' },
+  { id: 'shared',       label: '_shared/',           subtitle: '4 modules \u00b7 ~380 lines', x: 465, y: 205, w: 190, h: 48, layer: 'module',
+    desc: '_shared/auth.ts: requireEdgeSecret() \u2014 constant-time comparison of X-Edge-Secret + X-Source allowlist. authErrorResponse() helper. _shared/id_guard.ts: validateInteractionId() + validateSpanId() format checks. _shared/llm_json.ts: stripCodeFences, stripControlChars, removeTrailingCommas, removeJsonComments, fixUnescapedQuotes \u2014 multi-strategy JSON parse with 5 fallback attempts. _shared/junk_call_prefilter.ts: evaluateJunkCallPrefilter() \u2014 duration + transcript signal quality scoring.' },
+
+  // ── Row 3: Context Assembly (y: 295) ──
+  { id: 'ctx-assembly', label: 'context-assembly',  subtitle: 'v2.1.1 \u00b7 3,279 lines',  x: 50,  y: 295, w: 180, h: 48, layer: 'pipeline',
+    desc: 'LARGEST function. Triggered per-span by segment-call (blocking). Assembles LLM-ready context_package from span_id. 12-source candidate collection (floater contacts: up to 12 candidates, normal: 8). Sources: project_contacts, correspondent_project_affinity, interactions fallback, alias matching, trigram retrieval, FTS retrieval, journal claims, place mentions, geo proximity, email context, world model facts, homeowner override. RRF (Reciprocal Rank Fusion) scoring. Verb-driven place role tagging. Reads 20+ tables. Output: context_package{meta, span, contact, candidates, place_mentions, project_journal, email_context, email_lookup_meta, continuity_links}.' },
+  { id: 'gmail-ctx',    label: 'gmail-context-lookup', subtitle: 'v1.0.0 \u00b7 816 lines', x: 280, y: 295, w: 190, h: 48, layer: 'pipeline',
+    desc: 'Called synchronously by context-assembly (fail-open). Gmail API: 30-day lookback, 5-call budget, 1-hour DB cache in gmail_context_cache. Returns: email subject keywords, project mentions, dollar amounts mentioned. Provides WEAK corroboration evidence only. Auth: X-Edge-Secret.' },
+  { id: 'ctx-retrievers', label: 'Context Retrievers', subtitle: '6 modules \u00b7 2,025 lines', x: 520, y: 295, w: 200, h: 48, layer: 'module',
+    desc: 'context-assembly local modules. claim_crossref.ts (1,306 lines!) \u2014 cross-references journal claims against candidate projects. rrf_fusion.ts (112) \u2014 Reciprocal Rank Fusion scoring. rrf_types.ts (14) \u2014 shared types. trigram_retrieval.ts (262) \u2014 pg_trgm similarity search for fuzzy project name matching. fts_retrieval.ts (253) \u2014 full-text search retrieval. homeowner_override.ts (78) \u2014 deterministic homeowner assignment if unique homeowner found without contradictory anchors.' },
+
+  // ── Row 4: Attribution Engine (y: 385) ──
+  { id: 'ai-router',    label: 'ai-router',          subtitle: 'v1.15.0 \u00b7 1,822 lines', x: 50,  y: 385, w: 165, h: 48, layer: 'pipeline',
+    desc: 'Project attribution via Claude 3 Haiku (temp=0). Triggered per-span by segment-call (blocking, after context-assembly). Junk-call prefilter first. Then guardrail battery (6 modules). LLM inference: scores candidates, returns {project_id, confidence, decision, reasoning, anchors}. 3-band policy: \u22650.75=assign, 0.40\u20130.74 with guardrails=safe-low-assign, 0.25\u20130.40=review, <0.25=none. Respects attribution_lock (human > AI, monotonic). Writes: span_attributions (SSOT), review_queue, alias_suggestions. Also fires journal-extract (belt-and-suspenders for replay paths). Auth: X-Edge-Secret.' },
+  { id: 'guardrails',   label: 'Guardrail Battery',  subtitle: '8 modules \u00b7 1,417 lines', x: 260, y: 385, w: 195, h: 48, layer: 'module',
+    desc: 'ai-router local guardrail modules applied in sequence: id_guardrails.ts (208) \u2014 staff name exclusion, ID format checks. alias_guardrails.ts (217) \u2014 downgrade assign\u2192review if only common-word alias support. bizdev_guardrails.ts (123) \u2014 bizdev/prospect gate, requires commitment language for assign. bethany_winship_guardrail.ts (154) \u2014 named-person guardrail. homeowner_override_gate.ts (68) \u2014 deterministic homeowner assignment bypass. rrf_reranker.ts (191) \u2014 RRF-based candidate re-ranking. rrf_tier_guardrail.ts (124) \u2014 evidence tier classification (smoking_gun/strong/medium/weak). world_model_facts.ts (332) \u2014 project facts injection (feature-flagged: WORLD_MODEL_FACTS_ENABLED).' },
+  { id: 'review-resolve',label:'review-resolve',     subtitle: 'v3.1.0 \u00b7 203 lines',    x: 505, y: 385, w: 160, h: 48, layer: 'pipeline',
+    desc: 'Human-in-the-loop resolution. ONLY user-facing function (verify_jwt=true). Auth: Supabase JWT via auth.getUser(). Uses RPC resolve_review_item for single-transaction atomicity. Truth: human > AI (monotonic). Duplicate resolve = no-op. Writes via RPC: span_attributions (applied_project_id, attribution_lock=human), review_queue (status=resolved), override_log, scheduler_items, journal_claims (project_id backfill).' },
+  { id: 'review-triage', label: 'review-triage',     subtitle: 'review queue UI',           x: 715, y: 385, w: 150, h: 48, layer: 'pipeline',
+    desc: 'Review queue management endpoint. Actions: list (pending reviews), stats (queue pressure metrics), dismiss. Used by morning-digest and human review UI. Auth: X-Edge-Secret. Reads: review_queue, span_attributions, conversation_spans.' },
+
+  // ── Row 5: Perception + Journal Hooks (y: 475) ──
+  { id: 'gen-summary',  label: 'generate-summary',   subtitle: 'v1.0.2 \u00b7 682 lines',   x: 50,  y: 475, w: 175, h: 48, layer: 'pipeline',
+    desc: 'Claude 3 Haiku (configurable via GENERATE_SUMMARY_MODEL). Fired ONCE per interaction after ALL spans complete (fire-and-forget from segment-call). Reads: interactions, calls_raw (full transcript), projects, conversation_spans (all non-superseded), span_attributions (per-span decisions). Produces: human_summary (2\u20134 sentences) + follow_ups[] (title/action/owner/due_hint/priority/evidence_quote/span_index_hint). 3-tier parse: strict JSON \u2192 repairJson \u2192 regex. Writes: interactions.human_summary + interactions.ai_scheduler_json + has_scheduler_items + scheduler_item_count. Also: event_audit.' },
+  { id: 'striking',     label: 'striking-detect',    subtitle: 'v1.0.0 \u00b7 383 lines',   x: 270, y: 475, w: 160, h: 48, layer: 'pipeline',
+    desc: 'Claude 3 Haiku. Fire-and-forget per span (from segment-call). Separate perception channel \u2014 does NOT affect attribution. 8 signal types: decision_point, scope_change, financial_signal, relationship_tension, commitment, escalation, surprise, threshold. Scoring: 0\u20130.2 routine, 0.3\u20130.5 mild, 0.6\u20130.7 notable, 0.8\u20131.0 highly striking. Validates every signal quote appears literally in transcript (rejects fabricated quotes). Truncates transcript to 6000 chars. Writes: striking_signals (upsert on span_id+model_id+prompt_version).' },
+  { id: 'journal-ext',  label: 'journal-extract',    subtitle: 'v1.3.0 \u00b7 994 lines',   x: 475, y: 475, w: 170, h: 48, layer: 'pipeline',
+    desc: 'Claude 3 Haiku. Fire-and-forget per span (from segment-call, only when decision=assign). Also fired belt-and-suspenders from ai-router. Pre-flight: closed-project filter, idempotency (existing claims for span), JOURNAL_EXTRACT_SKIP_NON_ASSIGN_WRITES flag. Truncates to 8000 chars. Extracts: claim_type (10 types), epistemic_status (7 statuses), warrant_level, testimony_type, speaker_label, is_open_loop. Multi-strategy JSON parse with retry. RPC: resolve_speaker_contact, insert_journal_claims_dedup. Writes: journal_runs, journal_claims, journal_open_loops. Chains: journal-consolidate (f&f when claims_written>0).' },
+  { id: 'journal-cons', label: 'journal-consolidate', subtitle: 'v1.0.2 \u00b7 519 lines',  x: 690, y: 475, w: 185, h: 48, layer: 'pipeline',
+    desc: 'Claude Sonnet 4.5 (deeper reasoning). Triggered by journal-extract (fire-and-forget with run_id). Fetches new claims from run + existing active claims for project (up to 100). LLM classifies each new claim: new/supersedes/corroborates/conflicts vs existing knowledge. Writes: journal_claims (relationship + related_claim_id + warrant_level updates), journal_claim_conflicts.' },
+  { id: 'chain-detect', label: 'chain-detect',       subtitle: 'v1.0.0 \u00b7 493 lines',   x: 920, y: 475, w: 150, h: 48, layer: 'pipeline',
+    desc: 'Claude 3 Haiku. Detects temporal call chains \u2014 clusters of calls from same contact within a day. Assesses chain significance. Writes to call_chains table. Auth: X-Edge-Secret.' },
+  { id: 'loop-closure', label: 'loop-closure',       subtitle: 'v1.0.0 \u00b7 416 lines',   x: 1115, y: 475, w: 150, h: 48, layer: 'pipeline',
+    desc: 'Claude 3 Haiku. Post-extraction hook. Fetches open loops for a project from journal_open_loops. Asks LLM to match new transcript against open loops. Closes resolved loops (confidence\u22650.75) with evidence. Writes: journal_open_loops status updates.' },
+
+  // ── Row 6: Admin / Utility (y: 565) ──
+  { id: 'admin-reseed', label: 'admin-reseed',      subtitle: 'v1.8.0 \u00b7 1,718 lines',  x: 50,  y: 565, w: 165, h: 48, layer: 'pipeline',
+    desc: '2nd largest function. Re-chunks interaction spans (non-destructive). Modes: resegment_only, resegment_and_reroute, reseed_and_close_loop. Human lock carryforward by span_index. Reroute calls: segment-llm \u2192 context-assembly \u2192 ai-router \u2192 striking-detect + journal-extract with concurrency pool (REROUTE_CONCURRENCY). Close-loop: retries missing attributions, inserts fallback review rows, dismisses stale pending rows. Writes: conversation_spans (supersede old, insert new), span_attributions (carryforward), override_log, review_queue. Auth: X-Edge-Secret.' },
+  { id: 'shadow-replay',label: 'shadow-replay',     subtitle: 'v0.1.0 \u00b7 231 lines',    x: 265, y: 565, w: 155, h: 48, layer: 'pipeline',
+    desc: 'Creates shadow (test) replay. Takes production interaction_id, generates cll_SHADOW_* ID, replays through process-call with is_shadow=true. Used for A/B testing pipeline changes. Auth: X-Edge-Secret.' },
+  { id: 'gt-apply',     label: 'gt-apply',           subtitle: 'v1.0.0 \u00b7 359 lines',   x: 470, y: 565, w: 140, h: 48, layer: 'pipeline',
+    desc: 'Batch ground-truth correction. Called by Claude agent teams (DEV/DATA). Auth: X-Edge-Secret + source allowlist OR service_role key. Batch limit: 100 corrections. Per correction: RPC apply_gt_correction \u2192 span_attributions (applied_project_id, attribution_lock=human) + override_log. Hard rule: never downgrade human lock (monotonic trigger enforces). Fail closed.' },
+  { id: 'morning-digest',label:'morning-digest',    subtitle: 'v1.2.0 \u00b7 376 lines',    x: 660, y: 565, w: 165, h: 48, layer: 'pipeline',
+    desc: 'READ-ONLY daily digest. GET or POST. Returns 5 sections: (1) unresolved striking signals >0.7, (2) open loops by project, (3) review queue pressure (pending count, oldest pending age), (4) recent claims (last 24h), (5) pipeline health (event_audit error rate). Reads 11 tables. Writes nothing. Auth: X-Edge-Secret.' },
+
+  // ── Row 7: Alias + Embedding (y: 655) ──
+  { id: 'alias-scout',  label: 'alias-scout',       subtitle: 'v1.0.0 \u00b7 882 lines',    x: 50,  y: 655, w: 150, h: 48, layer: 'pipeline',
+    desc: 'Discovery job: finds and suggests new aliases from metadata, auto-only projects, transcript mining. Reads: projects, project_aliases, span_attributions, contacts, interactions. Writes: suggested_aliases table. Auth: X-Edge-Secret.' },
+  { id: 'alias-review', label: 'alias-review',      subtitle: 'v1.0.0 \u00b7 560 lines',    x: 245, y: 655, w: 145, h: 48, layer: 'pipeline',
+    desc: 'Review and approve/reject suggested aliases. Reads: suggested_aliases, v_project_alias_lookup, projects. On approval: writes project_aliases + updates suggested_aliases status. Auth: X-Edge-Secret.' },
+  { id: 'alias-hygiene',label: 'alias-hygiene',     subtitle: 'v1.0.0 \u00b7 442 lines',    x: 435, y: 655, w: 155, h: 48, layer: 'pipeline',
+    desc: 'Cleanup job: retire aliases for closed projects, expire stale suggestions, detect alias collisions across projects. Reads/writes: project_aliases, suggested_aliases. Auth: X-Edge-Secret.' },
+  { id: 'embed-facts',  label: 'embed-facts',       subtitle: 'v1.0.0 \u00b7 264 lines',    x: 635, y: 655, w: 145, h: 48, layer: 'pipeline',
+    desc: 'Embeds project_facts rows using OpenAI text-embedding-3-small (1536-dim). Powers semantic similarity search in context-assembly world model facts. Auth: X-Edge-Secret. Env: OPENAI_API_KEY.' },
+  { id: 'journal-embed',label: 'journal-embed-backfill', subtitle: 'v1.0.0 \u00b7 406 lines', x: 825, y: 655, w: 200, h: 48, layer: 'pipeline',
+    desc: 'Backfills journal_claims.search_text + journal_claims.embedding using OpenAI text-embedding-3-small. Enables semantic search across extracted journal claims. Auth: X-Edge-Secret.' },
+
+  // ── Row 8: Database \u2014 Core + Spans (y: 755) ──
+  { id: 'db-core',      label: 'Core Tables',        subtitle: 'interactions \u00b7 calls_raw \u00b7 contacts \u00b7 projects', x: 50, y: 755, w: 280, h: 48, layer: 'data',
+    desc: 'interactions: canonical call record (contact_id, contact_name, contact_phone, project_id, candidate_projects JSONB, human_summary, ai_scheduler_json, transcript_chars, is_shadow, event_at_utc). calls_raw: raw payload (interaction_id, transcript, recording_url, other_party_phone, owner_phone, direction, pipeline_version, raw_snapshot_json with top-5 candidates). contacts: phone\u2192person mapping. projects: name, status (active/warranty/estimating/closed), phase, address, city, client, project_kind. Also: idempotency_keys, diagnostic_logs.' },
+  { id: 'db-spans',     label: 'Span Tables',        subtitle: 'conversation_spans \u00b7 span_attributions', x: 375, y: 755, w: 250, h: 48, layer: 'data',
+    desc: 'conversation_spans: span_index, char_start, char_end, transcript_segment, word_count, segmenter_version, segment_reason, segment_metadata, segment_generation, is_superseded. Unique constraint: conversation_spans_active_unique (interaction_id, span_index) WHERE NOT is_superseded. span_attributions (SSOT): decision (assign/review/none), confidence, project_id, applied_project_id, reasoning, anchors[], attribution_lock (null/human), model_id, prompt_version, attribution_source, evidence_tier, needs_review. Upsert on: span_id+model_id+prompt_version.' },
+  { id: 'db-review',    label: 'Review / Override',   subtitle: 'review_queue \u00b7 override_log \u00b7 event_audit', x: 670, y: 755, w: 250, h: 48, layer: 'data',
+    desc: 'review_queue: status (pending/resolved/dismissed), reason_codes[], context_payload JSONB, span_id, interaction_id, resolved_by, resolution_action, resolution_notes. Upsert on span_id. override_log: entity_type, entity_key, field_name, from_value, to_value, reason, idempotency_key, effects_receipt JSONB. event_audit: pipeline stage tracking (STARTED/PASS/ERROR). scheduler_items: follow-up items from generate-summary. striking_signals: per-span striking scores + signal arrays. call_chains: temporal clustering.' },
+  { id: 'db-pipeline-aux', label: 'Pipeline Auxiliary', subtitle: 'idempotency \u00b7 event_audit \u00b7 striking \u00b7 chains', x: 965, y: 755, w: 270, h: 48, layer: 'data',
+    desc: 'idempotency_keys: prevents duplicate processing of same call. event_audit: stage-level tracing (function, status, duration_ms, error). striking_signals: span_id, striking_score 0-1, signals JSONB array, primary_signal_type, model_id, prompt_version, tokens_used, inference_ms. call_chains: interaction_id, contact_id, chain_significance. transcripts_comparison: A/B testing for transcribe-deepgram. repair_payloads: staging table for phone backfill repair harness.' },
+
+  // ── Row 9: Database \u2014 Journal + Context + Alias (y: 845) ──
+  { id: 'db-journal',   label: 'Journal Tables',     subtitle: 'claims \u00b7 runs \u00b7 loops \u00b7 conflicts', x: 50, y: 845, w: 260, h: 48, layer: 'data',
+    desc: 'journal_claims: claim_type (10 types), claim_text, epistemic_status (7 statuses), warrant_level (high/medium/low), testimony_type (direct/reported), speaker_label, source_span_id, project_id, confirmation_state, relationship (new/supersedes/corroborates/conflicts), related_claim_id, embedding (1536-dim), search_text. journal_runs: extract/consolidate audit trail. journal_open_loops: loop_type, description, project_id, status (open/closed), evidence. journal_claim_conflicts: contradicting claim pairs. journal_review_queue. Dedup via RPC insert_journal_claims_dedup.' },
+  { id: 'db-context',   label: 'Context Tables',     subtitle: 'fanout \u00b7 affinity \u00b7 geo \u00b7 email cache', x: 355, y: 845, w: 260, h: 48, layer: 'data',
+    desc: 'contact_fanout: fanout_class (anchored/semi_anchored/drifter/floater/unknown), effective_fanout (project count). correspondent_project_affinity: contact-project historical call frequency weights. project_contacts: direct assignment links (role: homeowner, contractor, etc). geo_places: local gazetteer (name, state, lat, lon, source). project_geo: project coordinates (geocode_source, precision). span_place_mentions: verb-driven role tagging (proximity/origin/destination) with trigger_verb. gmail_context_cache: 1-hour TTL email metadata cache. material_signal_config, material_budget_tiers, project_building_specs, transcription_vocab.' },
+  { id: 'db-alias',     label: 'Alias System',       subtitle: 'aliases \u00b7 suggestions \u00b7 v_alias_lookup', x: 660, y: 845, w: 265, h: 48, layer: 'data',
+    desc: 'project_aliases: confirmed alias terms per project (active flag added 20260216). suggested_aliases: pending suggestions from alias-scout (status: pending/approved/rejected). v_project_alias_lookup: materialized view joining aliases with projects for fast retrieval. project_attribution_blocklist: excluded terms. RPCs: alias-related operations in 20260216110000_create_alias_rpcs.sql.' },
+  { id: 'world-model',  label: 'World Model',        subtitle: 'project_facts + embeddings',  x: 970, y: 845, w: 170, h: 48, layer: 'data',
+    desc: 'project_facts: structured knowledge about projects. Feature-flagged via WORLD_MODEL_FACTS_ENABLED env var. Embedded by embed-facts (OpenAI 1536-dim). Used by ai-router world_model_facts.ts guardrail (332 lines) + context-assembly for grounded attribution evidence.' },
+  { id: 'storage',      label: 'Supabase Storage',   subtitle: 'audio files + assets',       x: 1185, y: 845, w: 155, h: 48, layer: 'data',
+    desc: 'Binary storage for call audio files, recording assets. Referenced by interactions + calls_raw recording_url. Audio used by transcribe-deepgram for re-transcription.' },
+
+  // ── Row 10: RPCs + Triggers (y: 935) ──
+  { id: 'rpc-resolve',  label: 'resolve_review_item', subtitle: 'RPC \u00b7 single-txn',    x: 50,  y: 935, w: 190, h: 42, layer: 'module',
+    desc: 'PostgreSQL RPC. Atomic single-transaction resolution: updates span_attributions (applied_project_id, attribution_lock=human, needs_review=false) + review_queue (status=resolved) + override_log + scheduler_items (project_id backfill) + journal_claims (project_id backfill, NULL-only). Called by review-resolve.' },
+  { id: 'rpc-gt',       label: 'apply_gt_correction', subtitle: 'RPC \u00b7 monotonic',     x: 290, y: 935, w: 190, h: 42, layer: 'module',
+    desc: 'PostgreSQL RPC. Applies ground-truth corrections: span_attributions (applied_project_id, attribution_lock=human) + override_log audit row. Respects monotonic lock trigger (never downgrades human). Called by gt-apply.' },
+  { id: 'rpc-journal',  label: 'insert_journal_claims_dedup', subtitle: 'RPC \u00b7 dedup', x: 530, y: 935, w: 230, h: 42, layer: 'module',
+    desc: 'PostgreSQL RPC. Deduplicates journal claim insertion. Also: resolve_speaker_contact (maps speaker labels to contact records). Called by journal-extract.' },
+  { id: 'rpc-contact',  label: 'Contact RPCs',       subtitle: 'lookup \u00b7 scan \u00b7 expand', x: 810, y: 935, w: 175, h: 42, layer: 'module',
+    desc: 'PostgreSQL RPCs used by process-call: lookup_contact_by_phone (phone\u2192contact resolution), scan_transcript_for_projects (fuzzy similarity scan using pg_trgm), expand_candidates_from_mentions (mentioned contacts\u2192projects expansion), update_contact_interaction_stats (best-effort stats update).' },
+  { id: 'trigger-lock', label: 'Monotonic Lock Trigger', subtitle: 'enforce_lock_monotonic', x: 1035, y: 935, w: 200, h: 42, layer: 'module',
+    desc: 'PostgreSQL trigger on span_attributions. Enforces truth hierarchy: human > AI > null. Prevents any UPDATE from downgrading attribution_lock from human to anything else. Created in 20260131134200_enforce_lock_monotonic.sql. Critical Stopline 2 enforcement.' },
+
+  // ── Row 11: DevOps + CI/CD (y: 1025) ──
+  { id: 'gh-actions',   label: 'GitHub Actions',     subtitle: '.github/workflows/',          x: 50,  y: 1025, w: 160, h: 42, layer: 'devops',
+    desc: 'CI/CD pipelines. Auto-deploys Edge Functions to Supabase on push. Runs tests, linting. Workflow files in .github/workflows/.' },
+  { id: 'tests',        label: 'Tests',              subtitle: '15+ *_test.ts + fixtures',    x: 250, y: 1025, w: 170, h: 42, layer: 'devops',
+    desc: 'Deno test runner. 15+ inline test files alongside functions: rrf_reranker_test.ts, rrf_tier_guardrail_test.ts, world_model_facts_test.ts, etc. tests/fixtures/gt_batch_v1_smoke.csv for GT batch testing. Segmentation regression: scripts/segmentation_regression_check.sh.' },
+  { id: 'smoke-test',   label: 'edge-smoke-test.sh', subtitle: 'auth gate + pass test',      x: 460, y: 1025, w: 180, h: 42, layer: 'devops',
+    desc: 'Post-deploy smoke test. Tests ALL 13 pipeline functions: (1) auth_gate: no secret \u2192 expect 401, (2) auth_pass: with EDGE_SHARED_SECRET \u2192 expect 200/400 + valid JSON. Color-coded PASS/FAIL/WARN output. Exit 1 on any failure. Requires: SUPABASE_URL, EDGE_SHARED_SECRET.' },
+  { id: 'claim-guard',  label: 'Claim Guard',        subtitle: 'claim_guard.sh + write scripts', x: 680, y: 1025, w: 195, h: 42, layer: 'devops',
+    desc: 'Write-mode governance. claim_guard.sh: shared preflight requiring ORIGIN_SESSION + CLAIM_RECEIPT (must begin with claim__) for all DB-writing scripts. migration_apply_guarded.sh: wraps supabase migration up/repair/db push with claim context artifacts. shadow_batch_replay.sh: batch replay with claim headers. Prevents accidental DB writes from unauthorized sessions.' },
+  { id: 'cc-scripts',   label: 'Pipeline Scripts',   subtitle: '50+ scripts/ (Python+Bash)',  x: 915, y: 1025, w: 175, h: 42, layer: 'devops',
+    desc: 'gt_batch_runner.py, admin_reseed_batch_backfill.py, shadow_batch_replay.sh, temporal_backtest_harness.sh, spotcheck_bruteforce.sh, replay_call.sh, segmentation_regression_check.sh. World model tooling. All write-mode scripts require claim_guard.sh preflight.' },
+  { id: 'migrations',   label: 'Migrations',         subtitle: '498 SQL (Dec 2025 \u2013 Feb 2026)', x: 1130, y: 1025, w: 195, h: 42, layer: 'devops',
+    desc: '498 SQL migration files. Key milestones: create_span_attributions (0130), geo_enrichment (0130), journal tables (0118), alias system (0216), stopline2 validation (0217), surface views (0214). Most recent: 20260217050000_fix_expand_candidates_status_filter. Includes tables, views, RPCs, indexes, constraints, triggers.' },
+];
+
+var connections = [
+  // ── External \u2192 Pipeline ──
+  { from: 'openphone',    to: 'zapier',         type: 'data-flow', label: 'call events' },
+  { from: 'zapier',       to: 'zapier-ingest',  type: 'data-flow', label: 'webhook POST' },
+  { from: 'deepgram',     to: 'transcribe',     type: 'tool-call', label: 'Nova-2 ASR' },
+  { from: 'openai',       to: 'segment-llm',    type: 'tool-call', label: 'GPT-4o-mini' },
+  { from: 'openai',       to: 'embed-facts',    type: 'tool-call', label: 'embed-3-sm' },
+  { from: 'openai',       to: 'journal-embed',  type: 'tool-call', label: 'embed-3-sm' },
+  { from: 'anthropic',    to: 'ai-router',      type: 'tool-call', label: 'Haiku' },
+  { from: 'anthropic',    to: 'gen-summary',    type: 'tool-call', label: 'Haiku' },
+  { from: 'anthropic',    to: 'journal-ext',    type: 'tool-call', label: 'Haiku' },
+  { from: 'anthropic',    to: 'journal-cons',   type: 'tool-call', label: 'Sonnet 4.5' },
+  { from: 'anthropic',    to: 'striking',       type: 'tool-call', label: 'Haiku' },
+  { from: 'anthropic',    to: 'chain-detect',   type: 'tool-call', label: 'Haiku' },
+  { from: 'anthropic',    to: 'loop-closure',   type: 'tool-call', label: 'Haiku' },
+  { from: 'gmail-api',    to: 'gmail-ctx',      type: 'tool-call', label: 'OAuth search' },
+  { from: 'github',       to: 'gh-actions',     type: 'event',     label: 'push trigger' },
+  { from: 'sb-auth',      to: 'review-resolve', type: 'tool-call', label: 'JWT verify' },
+
+  // ── Main pipeline chain (blocking) ──
+  { from: 'zapier-ingest', to: 'process-call',  type: 'data-flow', label: 'forward (blocking)' },
+  { from: 'process-call',  to: 'segment-call',  type: 'fire-forget', label: 'fire & forget' },
+  { from: 'segment-call',  to: 'segment-llm',   type: 'data-flow', label: 'get boundaries' },
+  { from: 'segment-call',  to: 'ctx-assembly',  type: 'data-flow', label: 'per span (blocking)' },
+  { from: 'ctx-assembly',  to: 'ai-router',     type: 'data-flow', label: 'context_package' },
+  { from: 'ctx-assembly',  to: 'gmail-ctx',     type: 'data-flow', label: 'email fetch (fail-open)' },
+
+  // ── Fire-and-forget hooks ──
+  { from: 'segment-call',  to: 'striking',      type: 'fire-forget', label: 'per span f&f' },
+  { from: 'segment-call',  to: 'journal-ext',   type: 'fire-forget', label: 'if assign, f&f' },
+  { from: 'segment-call',  to: 'gen-summary',   type: 'fire-forget', label: 'after all spans' },
+  { from: 'ai-router',     to: 'journal-ext',   type: 'fire-forget', label: 'belt & suspenders' },
+  { from: 'journal-ext',   to: 'journal-cons',  type: 'fire-forget', label: 'if claims>0' },
+  { from: 'ai-router',     to: 'review-triage', type: 'event',       label: 'queue if review' },
+
+  // ── Module dependencies ──
+  { from: 'shared',         to: 'process-call',  type: 'dependency', label: 'auth+id_guard' },
+  { from: 'shared',         to: 'segment-call',  type: 'dependency', label: '' },
+  { from: 'shared',         to: 'segment-llm',   type: 'dependency', label: 'llm_json' },
+  { from: 'shared',         to: 'ai-router',     type: 'dependency', label: 'auth+junk' },
+  { from: 'shared',         to: 'ctx-assembly',  type: 'dependency', label: 'auth' },
+  { from: 'shared',         to: 'journal-ext',   type: 'dependency', label: 'auth+llm_json' },
+  { from: 'shared',         to: 'gen-summary',   type: 'dependency', label: 'auth+llm_json' },
+  { from: 'shared',         to: 'gt-apply',      type: 'dependency', label: 'auth' },
+  { from: 'guardrails',     to: 'ai-router',     type: 'dependency', label: '8 guardrails' },
+  { from: 'ctx-retrievers', to: 'ctx-assembly',  type: 'dependency', label: '6 retrievers' },
+  { from: 'pc-phone',       to: 'process-call',  type: 'dependency', label: 'phone modules' },
+
+  // ── Admin chains ──
+  { from: 'admin-reseed',  to: 'segment-llm',    type: 'data-flow', label: 'reseg' },
+  { from: 'admin-reseed',  to: 'ctx-assembly',   type: 'data-flow', label: 'reroute' },
+  { from: 'admin-reseed',  to: 'ai-router',      type: 'data-flow', label: 'reroute' },
+  { from: 'admin-reseed',  to: 'striking',       type: 'fire-forget', label: 'redetect' },
+  { from: 'admin-reseed',  to: 'journal-ext',    type: 'fire-forget', label: 'reextract' },
+  { from: 'shadow-replay', to: 'process-call',   type: 'event',       label: 'shadow replay' },
+
+  // ── Pipeline \u2192 Data writes ──
+  { from: 'process-call',  to: 'db-core',        type: 'data-flow', label: 'upsert interactions+calls_raw' },
+  { from: 'process-call',  to: 'storage',        type: 'data-flow', label: 'audio ref' },
+  { from: 'process-call',  to: 'db-pipeline-aux',type: 'data-flow', label: 'idempotency+event_audit' },
+  { from: 'transcribe',    to: 'db-pipeline-aux',type: 'data-flow', label: 'transcripts_comparison' },
+  { from: 'segment-call',  to: 'db-spans',       type: 'data-flow', label: 'upsert spans' },
+  { from: 'ai-router',     to: 'db-spans',       type: 'data-flow', label: 'upsert attributions' },
+  { from: 'ai-router',     to: 'db-review',      type: 'data-flow', label: 'review_queue+alias_suggestions' },
+  { from: 'review-resolve',to: 'db-spans',       type: 'rpc',       label: 'via resolve_review_item' },
+  { from: 'review-resolve',to: 'db-review',      type: 'rpc',       label: 'resolve+override_log' },
+  { from: 'gen-summary',   to: 'db-core',        type: 'data-flow', label: 'human_summary+scheduler' },
+  { from: 'gen-summary',   to: 'db-review',      type: 'data-flow', label: 'event_audit' },
+  { from: 'striking',      to: 'db-pipeline-aux',type: 'data-flow', label: 'striking_signals' },
+  { from: 'journal-ext',   to: 'db-journal',     type: 'rpc',       label: 'claims+runs+loops' },
+  { from: 'journal-cons',  to: 'db-journal',     type: 'data-flow', label: 'relationships+conflicts' },
+  { from: 'chain-detect',  to: 'db-pipeline-aux',type: 'data-flow', label: 'call_chains' },
+  { from: 'loop-closure',  to: 'db-journal',     type: 'data-flow', label: 'close loops' },
+  { from: 'gt-apply',      to: 'db-spans',       type: 'rpc',       label: 'via apply_gt_correction' },
+  { from: 'gt-apply',      to: 'db-review',      type: 'data-flow', label: 'override_log' },
+  { from: 'admin-reseed',  to: 'db-spans',       type: 'data-flow', label: 'supersede+insert spans' },
+  { from: 'admin-reseed',  to: 'db-review',      type: 'data-flow', label: 'cleanup+override_log' },
+  { from: 'alias-scout',   to: 'db-alias',       type: 'data-flow', label: 'suggested_aliases' },
+  { from: 'alias-review',  to: 'db-alias',       type: 'data-flow', label: 'approve/reject' },
+  { from: 'alias-hygiene', to: 'db-alias',       type: 'data-flow', label: 'retire+expire' },
+  { from: 'embed-facts',   to: 'world-model',    type: 'data-flow', label: 'embeddings' },
+  { from: 'journal-embed', to: 'db-journal',     type: 'data-flow', label: 'claim embeddings' },
+  { from: 'gmail-ctx',     to: 'db-context',     type: 'data-flow', label: 'gmail_context_cache' },
+  { from: 'ctx-assembly',  to: 'db-context',     type: 'data-flow', label: 'span_place_mentions' },
+
+  // ── Data reads feeding pipeline ──
+  { from: 'world-model',   to: 'guardrails',     type: 'data-flow', label: 'project facts' },
+  { from: 'world-model',   to: 'ctx-retrievers', type: 'data-flow', label: 'fact embeddings' },
+  { from: 'db-alias',      to: 'ctx-retrievers', type: 'data-flow', label: 'alias lookup' },
+  { from: 'db-context',    to: 'ctx-retrievers', type: 'data-flow', label: 'fanout+affinity+geo' },
+  { from: 'db-journal',    to: 'ctx-retrievers', type: 'data-flow', label: 'claims+open_loops' },
+  { from: 'db-core',       to: 'process-call',   type: 'data-flow', label: 'contacts+projects' },
+  { from: 'db-core',       to: 'gen-summary',    type: 'data-flow', label: 'interactions+calls_raw' },
+
+  // ── RPC connections ──
+  { from: 'rpc-resolve',   to: 'db-spans',       type: 'rpc',       label: 'atomic update' },
+  { from: 'rpc-resolve',   to: 'db-review',      type: 'rpc',       label: 'atomic update' },
+  { from: 'review-resolve',to: 'rpc-resolve',    type: 'rpc',       label: 'call' },
+  { from: 'gt-apply',      to: 'rpc-gt',         type: 'rpc',       label: 'call' },
+  { from: 'rpc-gt',        to: 'db-spans',       type: 'rpc',       label: 'atomic update' },
+  { from: 'journal-ext',   to: 'rpc-journal',    type: 'rpc',       label: 'dedup insert' },
+  { from: 'process-call',  to: 'rpc-contact',    type: 'rpc',       label: '4 RPCs' },
+  { from: 'trigger-lock',  to: 'db-spans',       type: 'rpc',       label: 'enforces on UPDATE' },
+
+  // ── Schema governance ──
+  { from: 'migrations',    to: 'db-core',        type: 'dependency', label: 'schema' },
+  { from: 'migrations',    to: 'db-spans',       type: 'dependency', label: '' },
+  { from: 'migrations',    to: 'db-review',      type: 'dependency', label: '' },
+  { from: 'migrations',    to: 'db-journal',     type: 'dependency', label: '' },
+  { from: 'migrations',    to: 'db-alias',       type: 'dependency', label: '' },
+  { from: 'migrations',    to: 'db-context',     type: 'dependency', label: '' },
+
+  // ── DevOps ──
+  { from: 'gh-actions',    to: 'db-core',        type: 'event',     label: 'deploy EFs' },
+  { from: 'cc-scripts',    to: 'admin-reseed',   type: 'event',     label: 'batch' },
+  { from: 'cc-scripts',    to: 'gt-apply',       type: 'event',     label: 'batch' },
+  { from: 'cc-scripts',    to: 'shadow-replay',  type: 'event',     label: 'batch' },
+  { from: 'smoke-test',    to: 'zapier-ingest',  type: 'event',     label: 'test all 13' },
+  { from: 'claim-guard',   to: 'cc-scripts',     type: 'dependency', label: 'preflight' },
+  { from: 'tests',         to: 'guardrails',     type: 'event',     label: 'unit tests' },
+];
+
+var PRESETS = [
+  { id: 'full',       label: 'Full System',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
+  { id: 'pipeline',   label: 'Call Pipeline Chain',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
+  { id: 'chain',      label: 'Main Chain Only (Blocking)', layers: ['pipeline'],                                   conns: ['data-flow'] },
+  { id: 'attrib',     label: 'Attribution Deep Dive',    layers: ['pipeline','module','data'],                     conns: ['data-flow','rpc','dependency'] },
+  { id: 'journal',    label: 'Journal System',           layers: ['external','pipeline','data'],                   conns: ['data-flow','fire-forget','tool-call','rpc'] },
+  { id: 'llm',        label: 'LLM Engines Only',         layers: ['external','pipeline'],                          conns: ['tool-call'] },
+  { id: 'modules',    label: 'Sub-modules & RPCs',       layers: ['pipeline','module'],                            conns: ['dependency','rpc'] },
+  { id: 'data',       label: 'Data Flow Only',           layers: ['pipeline','data'],                              conns: ['data-flow','rpc'] },
+  { id: 'fire',       label: 'Fire & Forget Paths',      layers: ['pipeline'],                                     conns: ['fire-forget'] },
+  { id: 'devops',     label: 'DevOps + CI/CD',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
+];
+
+// ── STATE ──────────────────────────────────────────
+var state = {
+  preset: 'full',
+  layers: { external: true, pipeline: true, module: true, data: true, devops: true },
+  conns: {},
+  comments: [],
+  zoom: 0.65,
+  panX: 0, panY: 0,
+  searchFilter: '',
+};
+Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
+
+// ── DOM HELPERS ────────────────────────────────────
+function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+
+function createEl(tag, attrs, text) {
+  var el = document.createElement(tag);
+  if (attrs) Object.entries(attrs).forEach(function(pair) {
+    if (pair[0] === 'className') el.className = pair[1];
+    else el.setAttribute(pair[0], pair[1]);
+  });
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+function createSvgEl(tag, attrs, text) {
+  var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  if (attrs) Object.entries(attrs).forEach(function(pair) { el.setAttribute(pair[0], pair[1]); });
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+// ── SEARCH ──────────────────────────────────────────
+function filterNodes(query) {
+  state.searchFilter = query.toLowerCase().trim();
+  renderDiagram();
+}
+
+function isNodeVisible(n) {
+  if (!state.layers[n.layer]) return false;
+  if (state.searchFilter && n.label.toLowerCase().indexOf(state.searchFilter) < 0 &&
+      n.subtitle.toLowerCase().indexOf(state.searchFilter) < 0 &&
+      (n.desc || '').toLowerCase().indexOf(state.searchFilter) < 0) return false;
+  return true;
+}
+
+// ── RENDERING ──────────────────────────────────────
+function renderControls() {
+  var presetsEl = document.getElementById('presets');
+  clearChildren(presetsEl);
+  PRESETS.forEach(function(p) {
+    var btn = createEl('button', { className: 'preset-btn' + (state.preset===p.id?' active':'') }, p.label);
+    btn.addEventListener('click', function() { applyPreset(p.id); });
+    presetsEl.appendChild(btn);
+  });
+
+  var layerEl = document.getElementById('layer-toggles');
+  clearChildren(layerEl);
+  Object.entries(LAYERS).forEach(function(pair) {
+    var k = pair[0], v = pair[1];
+    var label = createEl('label', { className: 'layer-toggle' });
+    var cb = createEl('input', { type: 'checkbox' });
+    cb.checked = state.layers[k];
+    cb.addEventListener('change', function() { toggleLayer(k, this.checked); });
+    var dot = createEl('span', { className: 'layer-dot', style: 'background:' + v.dot });
+    label.appendChild(cb);
+    label.appendChild(dot);
+    label.appendChild(document.createTextNode(v.label));
+    layerEl.appendChild(label);
+  });
+
+  var connEl = document.getElementById('conn-toggles');
+  clearChildren(connEl);
+  Object.entries(CONN_TYPES).forEach(function(pair) {
+    var k = pair[0], v = pair[1];
+    var label = createEl('label', { className: 'conn-toggle' });
+    var cb = createEl('input', { type: 'checkbox' });
+    cb.checked = state.conns[k];
+    cb.addEventListener('change', function() { toggleConn(k, this.checked); });
+    var line = createEl('span', { className: 'conn-line', style: v.dash ? 'border-top:2px dashed '+v.color+';background:none' : 'background:'+v.color });
+    label.appendChild(cb);
+    label.appendChild(line);
+    label.appendChild(document.createTextNode(v.label));
+    connEl.appendChild(label);
+  });
+
+  var commEl = document.getElementById('comments-list');
+  clearChildren(commEl);
+  document.getElementById('comment-count').textContent = state.comments.length;
+  if (state.comments.length === 0) {
+    commEl.appendChild(createEl('div', { className: 'empty-comments' }, 'Click a component to comment'));
+  } else {
+    state.comments.forEach(function(c, i) {
+      var item = createEl('div', { className: 'comment-item' });
+      var del = createEl('button', { className: 'comment-del' }, 'x');
+      del.addEventListener('click', function() { deleteComment(i); });
+      var lbl = createEl('div', { className: 'comment-label' }, c.targetLabel);
+      var txt = createEl('div', { className: 'comment-text' }, c.text);
+      item.appendChild(del);
+      item.appendChild(lbl);
+      item.appendChild(txt);
+      commEl.appendChild(item);
+    });
+  }
+}
+
+function renderDiagram() {
+  var svg = document.getElementById('diagram');
+  var toRemove = [];
+  for (var i = 0; i < svg.children.length; i++) {
+    if (svg.children[i].tagName !== 'defs') toRemove.push(svg.children[i]);
+  }
+  toRemove.forEach(function(c) { svg.removeChild(c); });
+
+  var g = createSvgEl('g', { transform: 'translate('+state.panX+','+state.panY+') scale('+state.zoom+')' });
+
+  // Row labels
+  ROW_LABELS.forEach(function(rl) {
+    var anyVisible = nodes.some(function(n) {
+      return isNodeVisible(n) && Math.abs(n.y - (rl.y + 5)) < 65;
+    });
+    if (!anyVisible) return;
+    g.appendChild(createSvgEl('text', { class: 'row-label', x: rl.x, y: rl.y, 'text-anchor': 'start' }, rl.text));
+  });
+
+  var visibleNodes = nodes.filter(isNodeVisible);
+  var visibleIds = {};
+  visibleNodes.forEach(function(n) { visibleIds[n.id] = true; });
+
+  // Draw connections
+  connections.forEach(function(c) {
+    if (!state.conns[c.type]) return;
+    if (!visibleIds[c.from] || !visibleIds[c.to]) return;
+    var from = nodes.find(function(n) { return n.id === c.from; });
+    var to = nodes.find(function(n) { return n.id === c.to; });
+    var ct = CONN_TYPES[c.type];
+
+    var fx = from.x + from.w/2, fy = from.y + from.h;
+    var tx = to.x + to.w/2, ty = to.y;
+
+    var x1, y1, x2, y2;
+    if (fy <= ty) { x1=fx; y1=fy; x2=tx; y2=ty; }
+    else if (from.y >= to.y + to.h) { x1=fx; y1=from.y; x2=tx; y2=to.y+to.h; }
+    else {
+      x1 = from.x + from.w; y1 = from.y + from.h/2;
+      x2 = to.x; y2 = to.y + to.h/2;
+      if (x1 > x2) { x1 = from.x; x2 = to.x + to.w; }
+    }
+
+    var dy = Math.abs(y2-y1);
+    var cp = Math.max(30, dy * 0.4);
+    var mx = (x1+x2)/2, my = (y1+y2)/2;
+
+    var d;
+    if (Math.abs(y1 - y2) < 10) {
+      d = 'M'+x1+','+y1+' C'+(x1+40)+','+(y1-25)+' '+(x2-40)+','+(y2-25)+' '+x2+','+y2;
+    } else {
+      d = 'M'+x1+','+y1+' C'+x1+','+(y1+cp)+' '+x2+','+(y2-cp)+' '+x2+','+y2;
+    }
+
+    var path = createSvgEl('path', { d: d, fill: 'none', stroke: ct.color, 'stroke-width': '1.3', 'stroke-opacity': '0.45', 'marker-end': 'url(#'+ct.marker+')' });
+    if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
+    g.appendChild(path);
+
+    if (c.label) {
+      g.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '7', 'font-family': 'system-ui', opacity: '0.7' }, c.label));
+    }
+  });
+
+  // Draw nodes
+  visibleNodes.forEach(function(n) {
+    var layer = LAYERS[n.layer];
+    var hasComment = state.comments.some(function(c) { return c.target === n.id; });
+    var isSearchMatch = state.searchFilter && (n.label.toLowerCase().indexOf(state.searchFilter) >= 0);
+
+    var rect = createSvgEl('rect', {
+      class: 'node-rect' + (hasComment ? ' commented' : ''),
+      x: n.x, y: n.y, width: n.w, height: n.h,
+      fill: layer.color,
+      stroke: hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke),
+      'stroke-opacity': hasComment ? '1' : (isSearchMatch ? '1' : '0.6'),
+      'stroke-width': isSearchMatch ? '2.5' : '1.5'
+    });
+    rect.addEventListener('click', function() { openModal(n); });
+    rect.addEventListener('mouseenter', function() { showInfo(n); });
+    rect.addEventListener('mouseleave', hideInfo);
+    g.appendChild(rect);
+
+    var maxChars = Math.floor((n.w - 16) / 6.5);
+    var subtitleText = n.subtitle.length > maxChars ? n.subtitle.slice(0, maxChars-2)+'..' : n.subtitle;
+    g.appendChild(createSvgEl('text', { class: 'node-title', x: n.x + 8, y: n.y + 16 }, n.label));
+    g.appendChild(createSvgEl('text', { class: 'node-sub', x: n.x + 8, y: n.y + 29 }, subtitleText));
+
+    if (hasComment) {
+      var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
+      g.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#f59e0b' }));
+      g.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#1e293b', 'font-size': '7', 'font-weight': '700' }, String(count)));
+    }
+  });
+
+  svg.appendChild(g);
+}
+
+function showInfo(n) {
+  document.getElementById('info-title').textContent = n.label;
+  document.getElementById('info-desc').textContent = n.desc || '';
+  document.getElementById('info-panel').classList.add('show');
+}
+
+function hideInfo() { document.getElementById('info-panel').classList.remove('show'); }
+
+function updatePrompt() {
+  var el = document.getElementById('prompt-output');
+  clearChildren(el);
+  var visibleLayers = [];
+  Object.entries(state.layers).forEach(function(pair) { if (pair[1]) visibleLayers.push(LAYERS[pair[0]].label); });
+
+  if (state.comments.length === 0) {
+    el.textContent = 'Camber deep architecture \u2014 25 Edge Functions, 16 sub-modules, 10 RPCs, 39+ tables, 498 migrations.\nViewing: ' + visibleLayers.join(', ') + '.\n\nClick components to add comments. Comments become a copyable prompt.';
+    return;
+  }
+
+  var header = document.createTextNode('This is the Camber architecture (camber-calls repo), focusing on ' + visibleLayers.join(', ') + '.\n\nFeedback on specific components:\n\n');
+  el.appendChild(header);
+
+  state.comments.forEach(function(c) {
+    var strong = createEl('span', { className: 'prompt-strong' }, c.targetLabel);
+    el.appendChild(strong);
+    el.appendChild(document.createTextNode(' (' + c.targetFile + '):\n' + c.text + '\n\n'));
+  });
+}
+
+function updateAll() { renderControls(); renderDiagram(); updatePrompt(); }
+
+// ── INTERACTIONS ──────────────────────────────────
+function applyPreset(id) {
+  var p = PRESETS.find(function(pr) { return pr.id === id; });
+  state.preset = id;
+  Object.keys(state.layers).forEach(function(k) { state.layers[k] = p.layers.indexOf(k) >= 0; });
+  Object.keys(state.conns).forEach(function(k) { state.conns[k] = p.conns.indexOf(k) >= 0; });
+  updateAll();
+}
+
+function toggleLayer(k, v) { state.layers[k] = v; state.preset = ''; updateAll(); }
+function toggleConn(k, v)  { state.conns[k] = v; state.preset = ''; updateAll(); }
+
+function zoomIn()    { state.zoom = Math.min(2, state.zoom + 0.1); renderDiagram(); }
+function zoomOut()   { state.zoom = Math.max(0.25, state.zoom - 0.1); renderDiagram(); }
+function zoomReset() { state.zoom = 0.65; state.panX = 0; state.panY = 0; renderDiagram(); }
+
+var isPanning = false, panStartX = 0, panStartY = 0;
+var canvasArea = document.getElementById('canvas-area');
+canvasArea.addEventListener('mousedown', function(e) {
+  if (e.target.tagName === 'rect') return;
+  isPanning = true; panStartX = e.clientX - state.panX; panStartY = e.clientY - state.panY;
+});
+canvasArea.addEventListener('mousemove', function(e) {
+  if (!isPanning) return;
+  state.panX = e.clientX - panStartX; state.panY = e.clientY - panStartY;
+  renderDiagram();
+});
+canvasArea.addEventListener('mouseup', function() { isPanning = false; });
+canvasArea.addEventListener('mouseleave', function() { isPanning = false; });
+canvasArea.addEventListener('wheel', function(e) {
+  e.preventDefault();
+  var delta = e.deltaY > 0 ? -0.05 : 0.05;
+  state.zoom = Math.max(0.25, Math.min(2, state.zoom + delta));
+  renderDiagram();
+}, { passive: false });
+
+var modalNode = null;
+function openModal(n) {
+  modalNode = n;
+  document.getElementById('modal-title').textContent = n.label;
+  document.getElementById('modal-path').textContent = n.subtitle;
+  document.getElementById('modal-text').value = '';
+  document.getElementById('modal').classList.add('show');
+  setTimeout(function() { document.getElementById('modal-text').focus(); }, 50);
+}
+function closeModal() { document.getElementById('modal').classList.remove('show'); modalNode = null; }
+function saveComment() {
+  var text = document.getElementById('modal-text').value.trim();
+  if (!text) { closeModal(); return; }
+  state.comments.push({ id: Date.now(), target: modalNode.id, targetLabel: modalNode.label, targetFile: modalNode.subtitle, text: text });
+  closeModal(); updateAll();
+}
+function deleteComment(i) { state.comments.splice(i, 1); updateAll(); }
+
+function copyPrompt() {
+  var text = document.getElementById('prompt-output').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy Prompt'; }, 1500);
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Enter' && document.getElementById('modal').classList.contains('show') && e.metaKey) saveComment();
+});
+
+updateAll();
+</script>
+</body>
+</html>
