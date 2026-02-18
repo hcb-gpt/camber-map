@@ -60,9 +60,160 @@
   .search-box { width: 100%; padding: 6px 10px; background: #0f1117; border: 1px solid #2d3148; border-radius: 6px; color: #e2e8f0; font-size: 11px; margin-bottom: 10px; }
   .search-box::placeholder { color: #475569; }
   .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
+
+  /* ── Hamburger menu button (hidden on desktop) ── */
+  .hamburger {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 40;
+    width: 40px;
+    height: 40px;
+    background: #1e2235;
+    border: 1px solid #2d3148;
+    border-radius: 8px;
+    color: #cbd5e1;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Sidebar overlay (hidden by default) ── */
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 45;
+    display: none;
+  }
+  .sidebar-overlay.show {
+    display: block;
+  }
+
+  /* ── Tablet / small-desktop breakpoint ── */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      width: 85vw;
+      max-width: 320px;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .canvas-area {
+      width: 100%;
+      grid-row: 1;
+    }
+
+    .prompt-area {
+      grid-column: 1;
+      padding: 8px 12px;
+    }
+
+    .modal {
+      width: calc(100vw - 32px);
+    }
+
+    .info-panel {
+      left: 8px;
+      right: 8px;
+      max-width: none;
+      bottom: 60px;
+      top: auto;
+    }
+
+    .legend {
+      font-size: 9px;
+      padding: 6px 10px;
+    }
+
+    .zoom-controls {
+      top: 12px;
+      right: 12px;
+    }
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+    }
+  }
+
+  /* ── Phone breakpoint ── */
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    h3 {
+      font-size: 11px;
+    }
+    .preset-btn {
+      padding: 10px 10px;
+      min-height: 44px;
+      font-size: 12px;
+    }
+    .layer-toggle,
+    .conn-toggle {
+      min-height: 36px;
+      font-size: 11px;
+    }
+    .legend {
+      font-size: 8px;
+      padding: 5px 8px;
+    }
+    .legend-row {
+      gap: 4px;
+      margin: 2px 0;
+    }
+    .prompt-text {
+      font-size: 10px;
+    }
+    .comment-item {
+      font-size: 10px;
+    }
+    .search-box {
+      font-size: 12px;
+      padding: 8px 10px;
+      min-height: 44px;
+    }
+    .zoom-btn {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+    .stat-bar {
+      font-size: 9px;
+    }
+    .modal textarea {
+      font-size: 14px;
+    }
+    .modal-btns button {
+      padding: 10px 16px;
+      min-height: 44px;
+      font-size: 13px;
+    }
+  }
 </style>
 </head>
 <body>
+
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <div class="layout">
   <div class="sidebar">
@@ -473,6 +624,15 @@ function filterNodes(query) {
   renderDiagram();
 }
 
+function toggleSidebar() {
+  var sidebar = document.querySelector('.sidebar');
+  var overlay = document.getElementById('sidebar-overlay');
+  var btn = document.getElementById('hamburger');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+  btn.innerHTML = sidebar.classList.contains('open') ? '&#10005;' : '&#9776;';
+}
+
 function isNodeVisible(n) {
   if (!state.layers[n.layer]) return false;
   if (state.searchFilter && n.label.toLowerCase().indexOf(state.searchFilter) < 0 &&
@@ -487,7 +647,7 @@ function renderControls() {
   clearChildren(presetsEl);
   PRESETS.forEach(function(p) {
     var btn = createEl('button', { className: 'preset-btn' + (state.preset===p.id?' active':'') }, p.label);
-    btn.addEventListener('click', function() { applyPreset(p.id); });
+    btn.addEventListener('click', function() { applyPreset(p.id); if (window.innerWidth <= 768) toggleSidebar(); });
     presetsEl.appendChild(btn);
   });
 
@@ -705,6 +865,42 @@ canvasArea.addEventListener('wheel', function(e) {
   renderDiagram();
 }, { passive: false });
 
+// Touch pan and pinch-to-zoom
+var lastPinchDist = 0;
+canvasArea.addEventListener('touchstart', function(e) {
+  if (e.touches.length === 2) {
+    isPanning = false;
+    var dx = e.touches[0].clientX - e.touches[1].clientX;
+    var dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastPinchDist = Math.sqrt(dx * dx + dy * dy);
+  } else if (e.touches.length === 1 && e.target.tagName !== 'rect') {
+    isPanning = true;
+    panStartX = e.touches[0].clientX - state.panX;
+    panStartY = e.touches[0].clientY - state.panY;
+  }
+}, { passive: true });
+canvasArea.addEventListener('touchmove', function(e) {
+  e.preventDefault();
+  if (e.touches.length === 2) {
+    var dx = e.touches[0].clientX - e.touches[1].clientX;
+    var dy = e.touches[0].clientY - e.touches[1].clientY;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    if (lastPinchDist > 0) {
+      state.zoom = Math.max(0.25, Math.min(2, state.zoom * (dist / lastPinchDist)));
+      renderDiagram();
+    }
+    lastPinchDist = dist;
+  } else if (e.touches.length === 1 && isPanning) {
+    state.panX = e.touches[0].clientX - panStartX;
+    state.panY = e.touches[0].clientY - panStartY;
+    renderDiagram();
+  }
+}, { passive: false });
+canvasArea.addEventListener('touchend', function() {
+  isPanning = false;
+  lastPinchDist = 0;
+}, { passive: true });
+
 var modalNode = null;
 function openModal(n) {
   modalNode = n;
@@ -733,7 +929,10 @@ function copyPrompt() {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Escape') {
+    if (document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
+    closeModal();
+  }
   if (e.key === 'Enter' && document.getElementById('modal').classList.contains('show') && e.metaKey) saveComment();
 });
 
