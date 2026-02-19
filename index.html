@@ -1429,8 +1429,8 @@ async function sendChatMessage() {
   var text = input.value.trim();
   if (!text || chatStreaming) return;
 
-  var apiKey = localStorage.getItem('camber_map_openai_key');
-  if (!apiKey) { openChatSettings(); return; }
+  var apiKey = localStorage.getItem('camber_map_openai_key') || '__OPENAI_API_KEY__';
+  if (!apiKey || apiKey === '__OPENAI_API_KEY__') { openChatSettings(); return; }
 
   clearChatHighlights();
   addChatBubble('user', text);

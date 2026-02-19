@@ -40,6 +40,12 @@ jobs:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: node scripts/generate_all.mjs
 
+      - name: Inject API key into index.html
+        if: ${{ secrets.OPENAI_API_KEY != '' }}
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: sed -i "s|__OPENAI_API_KEY__|${OPENAI_KEY}|g" index.html
+
       - name: Commit generated outputs if changed
         run: |
           if git diff --quiet; then
@@ -48,6 +54,6 @@ jobs:
           fi
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add public/facts.json public/map.json public/map.md public/map.graphml
+          git add public/facts.json public/map.json public/map.md public/map.graphml index.html
           git commit -m "chore: update live camber map"
           git push
