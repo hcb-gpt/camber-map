@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-19T18:27:46Z",
-  "git_sha": "5e4b8a59e897a7aae30dc65c98772b429fc9d4a5",
+  "updated_at": "2026-02-19T18:34:10Z",
+  "git_sha": "0d390241302a44728f1d80810a84af3f8be611aa",
   "mode": "live",
   "nodes": [
     {
@@ -8150,6 +8150,72 @@
         "seen_count": "1",
         "last_evidence_event_id": "4657a699-1493-433d-bef9-773c7db439bf",
         "note": "smoke"
+      }
+    },
+    {
+      "from": "edge:zapier-call-ingest",
+      "to": "table:public.calls_raw",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "call ingestion pipeline"
+      }
+    },
+    {
+      "from": "edge:transcribe-deepgram",
+      "to": "table:public.transcripts_comparison",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "transcription output"
+      }
+    },
+    {
+      "from": "edge:segment-llm",
+      "to": "table:public.call_spans",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "segmentation output"
+      }
+    },
+    {
+      "from": "edge:ai-router",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "project attribution lookup"
+      }
+    },
+    {
+      "from": "edge:journal-extract",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "knowledge extraction output"
+      }
+    },
+    {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a",
+        "reason": "embedding generation"
       }
     }
   ],
