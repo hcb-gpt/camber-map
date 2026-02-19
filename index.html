@@ -6,15 +6,16 @@
 <title>Camber Codebase Map — Deep Architecture</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; height: 100vh; overflow: hidden; }
+  html { overflow: hidden; overscroll-behavior: none; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; height: 100vh; height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
   .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100vh; }
   .sidebar { grid-row: 1/3; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; }
-  .canvas-area { position: relative; overflow: hidden; background: #0f1117; }
+  .canvas-area { position: relative; overflow: hidden; background: #0f1117; touch-action: none; }
   .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; }
   h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: #7c83a6; margin-bottom: 10px; }
   h3 { font-size: 12px; color: #94a3b8; margin: 12px 0 6px; }
   .preset-btn { display: block; width: 100%; padding: 7px 10px; margin-bottom: 4px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer; text-align: left; transition: all .15s; }
-  .preset-btn:hover { background: #252a40; border-color: #3b82f6; }
+  .preset-btn:hover, .preset-btn:active { background: #252a40; border-color: #3b82f6; }
   .preset-btn.active { background: #1e3a5f; border-color: #3b82f6; color: #93c5fd; }
   .layer-toggle { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; font-size: 12px; }
   .layer-toggle input { accent-color: #3b82f6; }
@@ -25,15 +26,15 @@
   .comment-item { background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; padding: 8px; margin-bottom: 6px; font-size: 11px; }
   .comment-label { color: #93c5fd; font-weight: 600; }
   .comment-text { color: #94a3b8; margin-top: 3px; }
-  .comment-del { float: right; color: #ef4444; cursor: pointer; font-size: 10px; border: none; background: none; }
+  .comment-del { float: right; color: #ef4444; cursor: pointer; font-size: 10px; border: none; background: none; min-width: 28px; min-height: 28px; display: inline-flex; align-items: center; justify-content: center; }
   .comment-meta { color: #475569; font-size: 9px; margin-top: 2px; }
   .offline-banner { background: #3b1520; border: 1px solid #ef444466; border-radius: 6px; padding: 6px 10px; font-size: 10px; color: #fca5a5; margin-bottom: 8px; }
   .zoom-controls { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
   .zoom-btn { width: 30px; height: 30px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .zoom-btn:hover { background: #252a40; border-color: #3b82f6; }
-  svg { width: 100%; height: 100%; }
+  .zoom-btn:hover, .zoom-btn:active { background: #252a40; border-color: #3b82f6; }
+  svg { width: 100%; height: 100%; touch-action: none; }
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
-  .node-rect:hover { stroke-width: 2.5; filter: brightness(1.15); }
+  .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: system-ui; font-size: 11px; font-weight: 600; fill: #1e293b; pointer-events: none; }
   .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 8px; fill: #475569; pointer-events: none; }
@@ -42,7 +43,7 @@
   .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
   .prompt-strong { color: #93c5fd; font-weight: 600; }
   .copy-btn { position: absolute; top: 8px; right: 16px; padding: 5px 14px; background: #3b82f6; border: none; border-radius: 6px; color: white; font-size: 11px; cursor: pointer; }
-  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:hover, .copy-btn:active { background: #2563eb; }
   .modal-overlay { display: none; position: fixed; inset: 0; background: #000000aa; z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.show { display: flex; }
   .modal { background: #1e2235; border: 1px solid #3b82f6; border-radius: 12px; padding: 20px; width: 420px; }
@@ -68,12 +69,37 @@
     cursor: pointer;
     display: inline-block;
   }
-  .info-panel .info-comment-btn:hover { background: #2563eb; }
+  .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: #2563eb; }
   .empty-comments { font-size: 11px; color: #475569; }
   .row-label { font-family: system-ui; font-size: 9px; fill: #4a5568; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: 6px 10px; background: #0f1117; border: 1px solid #2d3148; border-radius: 6px; color: #e2e8f0; font-size: 11px; margin-bottom: 10px; }
   .search-box::placeholder { color: #475569; }
   .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
+
+  /* ── Touch interaction fixes ── */
+  button, .preset-btn, .zoom-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
+  .comment-del, .info-comment-btn, .layer-toggle, .conn-toggle, .hamburger,
+  input[type="checkbox"] {
+    touch-action: manipulation;
+  }
+  .info-panel .info-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: #2d3148;
+    border: none;
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+  .info-panel .info-close-btn:hover, .info-panel .info-close-btn:active { background: #3b4260; color: #e2e8f0; }
 
   /* ── Hamburger menu button (hidden on desktop) ── */
   .hamburger {
@@ -110,10 +136,16 @@
   @media (max-width: 768px) {
     .hamburger {
       display: flex;
+      top: calc(12px + env(safe-area-inset-top, 0px));
+      left: calc(12px + env(safe-area-inset-left, 0px));
     }
 
     .layout {
       grid-template-columns: 1fr;
+      grid-template-rows: 1fr 120px;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
     }
 
     .sidebar {
@@ -124,6 +156,8 @@
       transition: transform 0.3s ease;
       width: 85vw;
       max-width: 320px;
+      padding-top: calc(16px + env(safe-area-inset-top, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
     .sidebar.open {
       transform: translateX(0);
@@ -132,15 +166,34 @@
     .canvas-area {
       width: 100%;
       grid-row: 1;
+      overflow: hidden;
     }
 
     .prompt-area {
       grid-column: 1;
       padding: 8px 12px;
+      padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      overflow-y: auto;
     }
 
     .modal {
       width: calc(100vw - 32px);
+      max-width: 420px;
+      max-height: 80vh;
+      max-height: 80dvh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px;
+    }
+    .modal h3 { font-size: 15px; }
+    .modal textarea {
+      min-height: 80px;
+      font-size: 16px;
+    }
+    .modal-btns button {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
     }
 
     .info-panel {
@@ -151,11 +204,66 @@
       top: auto;
       max-height: 45vh;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .info-panel .info-comment-btn {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+    .info-panel .info-close-btn {
+      display: flex;
+    }
+    .info-panel h4 {
+      padding-right: 36px;
+    }
+
+    .hamburger {
+      width: 44px;
+      height: 44px;
+    }
+
+    .zoom-btn {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+
+    .layer-toggle,
+    .conn-toggle {
+      min-height: 44px;
+    }
+
+    .copy-btn {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+
+    .comment-del {
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 14px;
     }
 
     .legend {
       font-size: 9px;
       padding: 6px 10px;
+      max-height: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-height 0.3s ease;
+    }
+    .legend.expanded {
+      max-height: 200px;
+    }
+    .legend::after {
+      content: ' ▸';
+      color: #7c83a6;
+      font-size: 8px;
+    }
+    .legend.expanded::after {
+      content: ' ▾';
     }
 
     .zoom-controls {
@@ -185,7 +293,7 @@
     }
     .layer-toggle,
     .conn-toggle {
-      min-height: 36px;
+      min-height: 44px;
       font-size: 11px;
     }
     .legend {
@@ -223,6 +331,20 @@
       min-height: 44px;
       font-size: 13px;
     }
+    .layout {
+      grid-template-rows: 1fr 90px;
+    }
+    .sidebar {
+      width: 90vw;
+    }
+    .info-panel {
+      bottom: 50px;
+      max-height: 35vh;
+    }
+    .legend {
+      bottom: 4px;
+      left: 4px;
+    }
   }
 
   /* ── Chat Panel ── */
@@ -245,7 +367,7 @@
     justify-content: center;
     transition: all .2s;
   }
-  .chat-fab:hover { background: #2563eb; transform: scale(1.05); }
+  .chat-fab:hover, .chat-fab:active { background: #2563eb; transform: scale(1.05); }
   .chat-fab.hidden { display: none; }
 
   .chat-panel {
@@ -284,7 +406,7 @@
     border-radius: 4px;
     transition: color .15s;
   }
-  .chat-header-btn:hover { color: #e2e8f0; }
+  .chat-header-btn:hover, .chat-header-btn:active { color: #e2e8f0; }
 
   .chat-messages {
     flex: 1;
@@ -339,7 +461,7 @@
     cursor: pointer;
     font-size: 11px;
   }
-  .chat-api-prompt button:hover { border-color: #3b82f6; }
+  .chat-api-prompt button:hover, .chat-api-prompt button:active { border-color: #3b82f6; }
 
   .chat-input-area {
     display: flex;
@@ -374,7 +496,7 @@
     align-self: flex-end;
     white-space: nowrap;
   }
-  .chat-send:hover { background: #2563eb; }
+  .chat-send:hover, .chat-send:active { background: #2563eb; }
   .chat-send:disabled { background: #1e2235; color: #475569; cursor: default; }
 
   .chat-settings-overlay {
@@ -426,8 +548,85 @@
   }
 
   @media (max-width: 768px) {
-    .chat-panel { width: 100vw; }
-    .chat-fab { bottom: 16px; right: 16px; }
+    .chat-panel {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      border-left: none;
+    }
+    .chat-fab {
+      bottom: 16px;
+      right: 16px;
+      width: 56px;
+      height: 56px;
+      font-size: 24px;
+    }
+    .chat-header {
+      padding: 14px 16px;
+      min-height: 52px;
+    }
+    .chat-header-btn {
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-messages {
+      padding: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chat-msg {
+      max-width: 90%;
+      font-size: 14px;
+      padding: 12px 16px;
+    }
+    .chat-input-area {
+      padding: 10px 12px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      gap: 10px;
+    }
+    .chat-input {
+      font-size: 16px;
+      min-height: 44px;
+      padding: 10px 14px;
+    }
+    .chat-send {
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 10px;
+    }
+    .chat-settings {
+      width: calc(100vw - 32px);
+      max-width: 340px;
+      max-height: calc(100vh - 64px);
+      max-height: calc(100dvh - 64px);
+      overflow-y: auto;
+    }
+    .chat-settings input {
+      font-size: 16px;
+      min-height: 44px;
+    }
+    .chat-settings-btns button {
+      min-height: 44px;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    .chat-api-prompt button {
+      min-height: 44px;
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+  }
+
+  /* -- Body scroll lock when overlay is open -- */
+  body.overlay-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 </style>
 </head>
@@ -457,6 +656,7 @@
       <button class="zoom-btn" onclick="zoomReset()" style="font-size:10px">1:1</button>
     </div>
     <div class="info-panel" id="info-panel">
+      <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
       <h4 id="info-title"></h4>
       <p id="info-desc"></p>
     </div>
@@ -470,7 +670,7 @@
         <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
       </defs>
     </svg>
-    <div class="legend">
+    <div class="legend" id="legend" onclick="this.classList.toggle('expanded')">
       <div style="font-weight:600;margin-bottom:4px;color:#cbd5e1">Legend</div>
       <div class="legend-row"><span class="layer-dot" style="background:#93c5fd"></span> External Services</div>
       <div class="legend-row"><span class="layer-dot" style="background:#86efac"></span> Pipeline (Edge Functions)</div>
@@ -486,7 +686,7 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="modal">
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <h3 id="modal-title"></h3>
     <div class="path" id="modal-path"></div>
@@ -524,7 +724,7 @@
 </div>
 
 <!-- Chat Settings -->
-<div class="chat-settings-overlay" id="chat-settings-overlay">
+<div class="chat-settings-overlay" id="chat-settings-overlay" onclick="if(event.target===this)closeChatSettings()">
   <div class="chat-settings">
     <h3>Chat Settings</h3>
     <label for="chat-author">Author Name</label>
@@ -1146,9 +1346,38 @@ function applyPreset(id) {
 function toggleLayer(k, v) { state.layers[k] = v; state.preset = ''; updateAll(); }
 function toggleConn(k, v)  { state.conns[k] = v; state.preset = ''; updateAll(); }
 
-function zoomIn()    { state.zoom = Math.min(2, state.zoom + 0.1); renderDiagram(); }
-function zoomOut()   { state.zoom = Math.max(0.25, state.zoom - 0.1); renderDiagram(); }
-function zoomReset() { state.zoom = 0.65; state.panX = 0; state.panY = 0; renderDiagram(); }
+// Compute bounding box of all visible nodes
+function getDiagramBounds() {
+  var vis = nodes.filter(isNodeVisible);
+  if (vis.length === 0) return { x: 0, y: 0, w: 1400, h: 1100 };
+  var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  vis.forEach(function(n) {
+    if (n.x < minX) minX = n.x;
+    if (n.y < minY) minY = n.y;
+    if (n.x + n.w > maxX) maxX = n.x + n.w;
+    if (n.y + n.h > maxY) maxY = n.y + n.h;
+  });
+  return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
+}
+
+// Fit diagram to fill viewport with padding
+function fitToScreen() {
+  var canvas = document.getElementById('canvas-area');
+  var cw = canvas.clientWidth, ch = canvas.clientHeight;
+  if (cw === 0 || ch === 0) return;
+  var b = getDiagramBounds();
+  var pad = 30;
+  var zx = (cw - pad * 2) / b.w;
+  var zy = (ch - pad * 2) / b.h;
+  state.zoom = Math.max(0.15, Math.min(1.5, Math.min(zx, zy)));
+  state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
+  state.panY = (ch - b.h * state.zoom) / 2 - b.y * state.zoom;
+  renderDiagram();
+}
+
+function zoomIn()    { state.zoom = Math.min(3, state.zoom + 0.1); renderDiagram(); }
+function zoomOut()   { state.zoom = Math.max(0.15, state.zoom - 0.1); renderDiagram(); }
+function zoomReset() { fitToScreen(); }
 
 var isPanning = false, panStartX = 0, panStartY = 0;
 var canvasArea = document.getElementById('canvas-area');
@@ -1169,35 +1398,50 @@ canvasArea.addEventListener('click', function(e) {
 canvasArea.addEventListener('wheel', function(e) {
   e.preventDefault();
   var delta = e.deltaY > 0 ? -0.05 : 0.05;
-  state.zoom = Math.max(0.25, Math.min(2, state.zoom + delta));
+  state.zoom = Math.max(0.15, Math.min(3, state.zoom + delta));
   renderDiagram();
 }, { passive: false });
 
-// Touch pan and pinch-to-zoom
+// Touch: pinch-to-zoom (zooms toward pinch center) + single-finger pan
 var lastPinchDist = 0;
+var pinchCenterX = 0, pinchCenterY = 0;
 canvasArea.addEventListener('touchstart', function(e) {
   if (e.touches.length === 2) {
+    e.preventDefault();
     isPanning = false;
     var dx = e.touches[0].clientX - e.touches[1].clientX;
     var dy = e.touches[0].clientY - e.touches[1].clientY;
     lastPinchDist = Math.sqrt(dx * dx + dy * dy);
-  } else if (e.touches.length === 1 && e.target.tagName !== 'rect') {
+    pinchCenterX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    pinchCenterY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+  } else if (e.touches.length === 1) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'rect') return;
     isPanning = true;
     panStartX = e.touches[0].clientX - state.panX;
     panStartY = e.touches[0].clientY - state.panY;
   }
-}, { passive: true });
+}, { passive: false });
 canvasArea.addEventListener('touchmove', function(e) {
   e.preventDefault();
   if (e.touches.length === 2) {
     var dx = e.touches[0].clientX - e.touches[1].clientX;
     var dy = e.touches[0].clientY - e.touches[1].clientY;
     var dist = Math.sqrt(dx * dx + dy * dy);
+    var cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    var cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
     if (lastPinchDist > 0) {
-      state.zoom = Math.max(0.25, Math.min(2, state.zoom * (dist / lastPinchDist)));
+      var scale = dist / lastPinchDist;
+      var newZoom = Math.max(0.15, Math.min(3, state.zoom * scale));
+      var ratio = newZoom / state.zoom;
+      state.panX = cx - (cx - state.panX) * ratio;
+      state.panY = cy - (cy - state.panY) * ratio;
+      state.zoom = newZoom;
       renderDiagram();
     }
     lastPinchDist = dist;
+    pinchCenterX = cx;
+    pinchCenterY = cy;
   } else if (e.touches.length === 1 && isPanning) {
     state.panX = e.touches[0].clientX - panStartX;
     state.panY = e.touches[0].clientY - panStartY;
@@ -1209,6 +1453,10 @@ canvasArea.addEventListener('touchend', function() {
   lastPinchDist = 0;
 }, { passive: true });
 
+// Fit diagram on load and window resize
+window.addEventListener('resize', function() { fitToScreen(); });
+setTimeout(fitToScreen, 50);
+
 var modalNode = null;
 function openModal(n) {
   modalNode = n;
@@ -1216,9 +1464,10 @@ function openModal(n) {
   document.getElementById('modal-path').textContent = n.subtitle;
   document.getElementById('modal-text').value = '';
   document.getElementById('modal').classList.add('show');
+  document.body.classList.add('overlay-open');
   setTimeout(function() { document.getElementById('modal-text').focus(); }, 50);
 }
-function closeModal() { document.getElementById('modal').classList.remove('show'); modalNode = null; }
+function closeModal() { document.getElementById('modal').classList.remove('show'); document.body.classList.remove('overlay-open'); modalNode = null; }
 async function saveComment() {
   var text = document.getElementById('modal-text').value.trim();
   if (!text) { closeModal(); return; }
@@ -1289,16 +1538,41 @@ function toggleChat() {
   if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
     document.getElementById('chat-input').focus();
+    if (window.innerWidth <= 768) {
+      document.body.style.overflow = 'hidden';
+      chatMobileKeyboardInit();
+    }
+  } else {
+    document.body.style.overflow = '';
+    chatMobileKeyboardDestroy();
   }
+}
+
+var _chatVVHandler = null;
+function chatMobileKeyboardInit() {
+  if (!window.visualViewport || _chatVVHandler) return;
+  var panel = document.getElementById('chat-panel');
+  _chatVVHandler = function() {
+    panel.style.height = visualViewport.height + 'px';
+  };
+  visualViewport.addEventListener('resize', _chatVVHandler);
+}
+function chatMobileKeyboardDestroy() {
+  if (!window.visualViewport || !_chatVVHandler) return;
+  visualViewport.removeEventListener('resize', _chatVVHandler);
+  _chatVVHandler = null;
+  document.getElementById('chat-panel').style.height = '';
 }
 
 function openChatSettings() {
   document.getElementById('chat-author').value = localStorage.getItem('camber_map_author') || '';
   document.getElementById('chat-settings-overlay').classList.add('show');
+  document.body.classList.add('overlay-open');
 }
 
 function closeChatSettings() {
   document.getElementById('chat-settings-overlay').classList.remove('show');
+  document.body.classList.remove('overlay-open');
 }
 
 function saveChatSettings() {
