@@ -41,10 +41,12 @@ jobs:
         run: node scripts/generate_all.mjs
 
       - name: Inject API key into index.html
-        if: ${{ secrets.OPENAI_API_KEY != '' }}
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: sed -i "s|__OPENAI_API_KEY__|${OPENAI_KEY}|g" index.html
+        run: |
+          if [ -n "$OPENAI_KEY" ]; then
+            sed -i "s|__OPENAI_API_KEY__|${OPENAI_KEY}|g" index.html
+          fi
 
       - name: Commit generated outputs if changed
         run: |
