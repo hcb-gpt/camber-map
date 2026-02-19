@@ -513,9 +513,8 @@
     </div>
   </div>
   <div class="chat-messages" id="chat-messages">
-    <div class="chat-api-prompt" id="chat-api-prompt">
-      Ask questions about the Camber architecture.<br><br>
-      <button onclick="openChatSettings()">Set API Key</button>
+    <div class="chat-api-prompt" id="chat-api-prompt" style="display:none">
+      Ask questions about the Camber architecture.
     </div>
   </div>
   <div class="chat-input-area">
@@ -528,9 +527,6 @@
 <div class="chat-settings-overlay" id="chat-settings-overlay">
   <div class="chat-settings">
     <h3>Chat Settings</h3>
-    <label for="chat-api-key">OpenAI API Key</label>
-    <input type="password" id="chat-api-key" placeholder="sk-...">
-    <p class="hint">Key stays in your browser. Sent only to api.openai.com.</p>
     <label for="chat-author">Author Name</label>
     <input type="text" id="chat-author" placeholder="anonymous">
     <div class="chat-settings-btns">
@@ -1283,25 +1279,20 @@ document.addEventListener('keydown', function(e) {
 // ── CHAT WITH DIAGRAM ─────────────────────────────
 var chatMessages = [];
 var chatStreaming = false;
-function getChatApiKey() {
-  return localStorage.getItem('camber_map_openai_key') || '';
-}
+var CHAT_PROXY_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/chat-proxy';
 
 function toggleChat() {
   var panel = document.getElementById('chat-panel');
   var fab = document.getElementById('chat-fab');
   var isOpen = panel.classList.toggle('open');
   fab.classList.toggle('hidden', isOpen);
-  if (isOpen && !getChatApiKey()) {
-    document.getElementById('chat-api-prompt').style.display = '';
-  } else if (isOpen) {
+  if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
     document.getElementById('chat-input').focus();
   }
 }
 
 function openChatSettings() {
-  document.getElementById('chat-api-key').value = localStorage.getItem('camber_map_openai_key') || '';
   document.getElementById('chat-author').value = localStorage.getItem('camber_map_author') || '';
   document.getElementById('chat-settings-overlay').classList.add('show');
 }
@@ -1311,13 +1302,9 @@ function closeChatSettings() {
 }
 
 function saveChatSettings() {
-  var key = document.getElementById('chat-api-key').value.trim();
   var author = document.getElementById('chat-author').value.trim();
-  if (key) localStorage.setItem('camber_map_openai_key', key);
   if (author) localStorage.setItem('camber_map_author', author);
   closeChatSettings();
-  document.getElementById('chat-api-prompt').style.display = 'none';
-  document.getElementById('chat-input').focus();
 }
 
 function buildChatSystemPrompt() {
@@ -1361,11 +1348,11 @@ function buildChatSystemPrompt() {
   return p;
 }
 
-async function streamChat(messages, apiKey, onChunk) {
-  var res = await fetch('https://api.openai.com/v1/chat/completions', {
+async function streamChat(messages, onChunk) {
+  var res = await fetch(CHAT_PROXY_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
-    body: JSON.stringify({ model: 'gpt-4o-mini', messages: messages, stream: true })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages: messages, stream: true })
   });
   if (!res.ok) {
     var err = {};
@@ -1432,9 +1419,6 @@ async function sendChatMessage() {
   var text = input.value.trim();
   if (!text || chatStreaming) return;
 
-  var apiKey = getChatApiKey();
-  if (!apiKey) { openChatSettings(); return; }
-
   clearChatHighlights();
   addChatBubble('user', text);
   input.value = '';
@@ -1450,7 +1434,7 @@ async function sendChatMessage() {
   document.getElementById('chat-send').disabled = true;
 
   try {
-    await streamChat(chatMessages, apiKey, function(chunk) {
+    await streamChat(chatMessages, function(chunk) {
       fullResponse += chunk;
       assistantBubble.textContent = fullResponse;
       document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
@@ -1467,15 +1451,13 @@ async function sendChatMessage() {
     }
     var errMsg = err.message || 'Unknown error';
     if (location.protocol === 'file:' && (errMsg.indexOf('Load failed') >= 0 || errMsg.indexOf('Failed to fetch') >= 0)) {
-      addChatBubble('error', 'Cannot call OpenAI from file://. Serve via HTTPS or run: npx serve .');
+      addChatBubble('error', 'Cannot call chat proxy from file://. Serve via HTTPS or run: npx serve .');
     } else if (errMsg.indexOf('Load failed') >= 0 || errMsg.indexOf('Failed to fetch') >= 0) {
-      addChatBubble('error', 'Network error — check your connection and API key format.');
-    } else if (errMsg.indexOf('401') >= 0 || errMsg.indexOf('Incorrect API key') >= 0) {
-      addChatBubble('error', 'Invalid API key. Check Settings.');
+      addChatBubble('error', 'Network error — check your connection.');
     } else if (errMsg.indexOf('429') >= 0) {
       addChatBubble('error', 'Rate limited. Wait a moment and try again.');
     } else if (errMsg.indexOf('insufficient_quota') >= 0) {
-      addChatBubble('error', 'API quota exceeded. Check your OpenAI billing.');
+      addChatBubble('error', 'API quota exceeded.');
     } else {
       addChatBubble('error', 'Error: ' + errMsg);
     }
