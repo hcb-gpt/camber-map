@@ -1,0 +1,15 @@
+{
+  "updated_at": "2026-02-19T01:11:45Z",
+  "git_sha": "a5955077edb234318e30c1b51fb96a90b4532164",
+  "mode": "live",
+  "db": {
+    "applied_migrations": 490,
+    "tables": 109,
+    "views": 98,
+    "functions": 119,
+    "extensions": 12
+  },
+  "edge_functions": {
+    "count": 0
+  }
+}
