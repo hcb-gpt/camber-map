@@ -1386,6 +1386,134 @@
       <data key="d0">extension:vector</data>
       <data key="d1">ext</data>
     </node>
+    <node id="edge:review-resolve">
+      <data key="d0">review-resolve</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:sync-google-contacts">
+      <data key="d0">sync-google-contacts</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:test-tma-fetch">
+      <data key="d0">test-tma-fetch</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:transcribe-audio">
+      <data key="d0">transcribe-audio</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:transcribe-whisper">
+      <data key="d0">transcribe-whisper</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:transcribe-claude">
+      <data key="d0">transcribe-claude</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:transcribe-assemblyai">
+      <data key="d0">transcribe-assemblyai</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:transcribe-deepgram">
+      <data key="d0">transcribe-deepgram</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:process-call">
+      <data key="d0">process-call</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:segment-call">
+      <data key="d0">segment-call</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:dlq-enqueue">
+      <data key="d0">dlq-enqueue</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:context-assembly">
+      <data key="d0">context-assembly</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:ai-router">
+      <data key="d0">ai-router</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:eval-ai-router">
+      <data key="d0">eval-ai-router</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:segment-llm">
+      <data key="d0">segment-llm</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:admin-reseed">
+      <data key="d0">admin-reseed</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:zapier-call-ingest">
+      <data key="d0">zapier-call-ingest</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:striking-detect">
+      <data key="d0">striking-detect</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:journal-extract">
+      <data key="d0">journal-extract</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:journal-consolidate">
+      <data key="d0">journal-consolidate</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:chain-detect">
+      <data key="d0">chain-detect</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:generate-summary">
+      <data key="d0">generate-summary</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:gmail-context-lookup">
+      <data key="d0">gmail-context-lookup</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:shadow-replay">
+      <data key="d0">shadow-replay</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:morning-digest">
+      <data key="d0">morning-digest</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:loop-closure">
+      <data key="d0">loop-closure</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:review-triage">
+      <data key="d0">review-triage</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:journal-embed-backfill">
+      <data key="d0">journal-embed-backfill</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:gt-apply">
+      <data key="d0">gt-apply</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:alias-review">
+      <data key="d0">alias-review</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:alias-hygiene">
+      <data key="d0">alias-hygiene</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:alias-scout">
+      <data key="d0">alias-scout</data>
+      <data key="d1">edge</data>
+    </node>
     <edge id="e0" source="view:public.v_external_contacts" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
