@@ -1514,6 +1514,10 @@
       <data key="d0">alias-scout</data>
       <data key="d1">edge</data>
     </node>
+    <node id="edge:chat-proxy">
+      <data key="d0">chat-proxy</data>
+      <data key="d1">edge</data>
+    </node>
     <edge id="e0" source="view:public.v_external_contacts" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>

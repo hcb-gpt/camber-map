@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-19T18:57:00Z",
-  "git_sha": "ebdd9b469ed60ce70911fa761736494424de6044",
+  "updated_at": "2026-02-19T19:11:07Z",
+  "git_sha": "12c0c9be3f60aecb82fdd8f5b56efde0b5485748",
   "mode": "live",
   "nodes": [
     {
@@ -3177,6 +3177,19 @@
         "status": "ACTIVE",
         "version": 4,
         "updated_at": 1771343815540
+      }
+    },
+    {
+      "id": "edge:chat-proxy",
+      "kind": "edge",
+      "group": "edge",
+      "name": "chat-proxy",
+      "title": "chat-proxy",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1771528219257
       }
     }
   ],
