@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-02-19T18:01:00Z",
+  "updated_at": "2026-02-19T18:08:08Z",
   "git_sha": "15399426a5f3e7fd1423ffd440d49cf3f25504be",
   "capabilities": [
     {
@@ -24,7 +24,7 @@
       },
       "health": {
         "status": "unknown",
-        "row_count": 1106,
+        "row_count": 1107,
         "last_activity_at": null
       },
       "depends_on": []
@@ -46,7 +46,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 115.6,
+        "hours_since_last_activity": 115.7,
         "status": "stale"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 42.1,
+        "hours_since_last_activity": 42.2,
         "status": "aging"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 0.4,
+        "hours_since_last_activity": 0.5,
         "status": "fresh"
       },
       "health": {
@@ -279,7 +279,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 41.2,
+        "hours_since_last_activity": 41.3,
         "status": "aging"
       },
       "health": {

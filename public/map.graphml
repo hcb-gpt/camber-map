@@ -4493,5 +4493,23 @@
     <edge id="e992" source="edge:smoke_test" target="table:public.evidence_events">
       <data key="d2">writes</data>
     </edge>
+    <edge id="e993" source="edge:zapier-call-ingest" target="table:public.calls_raw">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e994" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e995" source="edge:segment-llm" target="table:public.call_spans">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e996" source="edge:ai-router" target="table:public.projects">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e997" source="edge:journal-extract" target="table:public.journal_claims">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e998" source="edge:embed-facts" target="table:public.project_facts">
+      <data key="d2">writes</data>
+    </edge>
   </graph>
 </graphml>

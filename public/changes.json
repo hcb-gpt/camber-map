@@ -1,5 +1,78 @@
 {
-  "updated_at": "2026-02-19T18:08:08Z",
+  "updated_at": "2026-02-19T18:32:44Z",
   "has_previous": true,
-  "changes": []
+  "changes": [
+    {
+      "type": "health_change",
+      "capability": "call-ingestion",
+      "from": "unknown",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "call-ingestion",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "transcription",
+      "from": "stale",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "transcription",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "segmentation",
+      "from": "unknown",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "segmentation",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "attribution",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "attribution",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "journal",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "journal",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "embedding",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "embedding",
+      "from": 0,
+      "to": 1
+    }
+  ]
 }
