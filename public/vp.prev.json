@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-19T18:32:44Z",
-  "git_sha": "41aa629035cea098a05e094e450d161a78190f58",
+  "updated_at": "2026-02-19T18:48:01Z",
+  "git_sha": "639539ec5c9183a9ca3b38a62a544311294d4226",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -12,14 +12,14 @@
         "pipeline"
       ],
       "tech_node_count": 4,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
@@ -39,14 +39,14 @@
         "pipeline"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
@@ -68,14 +68,14 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
@@ -97,7 +97,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -127,14 +127,14 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
@@ -156,14 +156,14 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
@@ -185,7 +185,7 @@
         "pipeline"
       ],
       "tech_node_count": 1,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -214,7 +214,7 @@
         "pipeline"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -243,7 +243,7 @@
         "pipeline"
       ],
       "tech_node_count": 1,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -272,14 +272,14 @@
         "search"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
