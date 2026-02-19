@@ -1283,13 +1283,19 @@ document.addEventListener('keydown', function(e) {
 // ── CHAT WITH DIAGRAM ─────────────────────────────
 var chatMessages = [];
 var chatStreaming = false;
+var INJECTED_KEY = '__OPENAI_API_KEY__';
+var HAS_INJECTED_KEY = INJECTED_KEY !== '__' + 'OPENAI_API_KEY' + '__';
+
+function getChatApiKey() {
+  return localStorage.getItem('camber_map_openai_key') || (HAS_INJECTED_KEY ? INJECTED_KEY : '');
+}
 
 function toggleChat() {
   var panel = document.getElementById('chat-panel');
   var fab = document.getElementById('chat-fab');
   var isOpen = panel.classList.toggle('open');
   fab.classList.toggle('hidden', isOpen);
-  if (isOpen && !localStorage.getItem('camber_map_openai_key')) {
+  if (isOpen && !getChatApiKey()) {
     document.getElementById('chat-api-prompt').style.display = '';
   } else if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
@@ -1298,7 +1304,7 @@ function toggleChat() {
 }
 
 function openChatSettings() {
-  document.getElementById('chat-api-key').value = localStorage.getItem('camber_map_openai_key') || '';
+  document.getElementById('chat-api-key').value = localStorage.getItem('camber_map_openai_key') || (HAS_INJECTED_KEY ? '(build-injected)' : '');
   document.getElementById('chat-author').value = localStorage.getItem('camber_map_author') || '';
   document.getElementById('chat-settings-overlay').classList.add('show');
 }
@@ -1429,8 +1435,8 @@ async function sendChatMessage() {
   var text = input.value.trim();
   if (!text || chatStreaming) return;
 
-  var apiKey = localStorage.getItem('camber_map_openai_key') || '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';
-  if (!apiKey || apiKey === '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') { openChatSettings(); return; }
+  var apiKey = getChatApiKey();
+  if (!apiKey) { openChatSettings(); return; }
 
   clearChatHighlights();
   addChatBubble('user', text);
