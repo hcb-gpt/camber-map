@@ -132,221 +132,6 @@
     display: block;
   }
 
-  /* ── Tablet / small-desktop breakpoint ── */
-  @media (max-width: 768px) {
-    .hamburger {
-      display: flex;
-      top: calc(12px + env(safe-area-inset-top, 0px));
-      left: calc(12px + env(safe-area-inset-left, 0px));
-    }
-
-    .layout {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 120px;
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      width: 85vw;
-      max-width: 320px;
-      padding-top: calc(16px + env(safe-area-inset-top, 0px));
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-    }
-    .sidebar.open {
-      transform: translateX(0);
-    }
-
-    .canvas-area {
-      width: 100%;
-      grid-row: 1;
-      overflow: hidden;
-    }
-
-    .prompt-area {
-      grid-column: 1;
-      padding: 8px 12px;
-      padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-      overflow-y: auto;
-    }
-
-    .modal {
-      width: calc(100vw - 32px);
-      max-width: 420px;
-      max-height: 80vh;
-      max-height: 80dvh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding: 16px;
-    }
-    .modal h3 { font-size: 15px; }
-    .modal textarea {
-      min-height: 80px;
-      font-size: 16px;
-    }
-    .modal-btns button {
-      min-height: 44px;
-      padding: 10px 16px;
-      font-size: 13px;
-    }
-
-    .info-panel {
-      left: 8px;
-      right: 8px;
-      max-width: none;
-      bottom: 60px;
-      top: auto;
-      max-height: 45vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .info-panel .info-comment-btn {
-      min-height: 44px;
-      padding: 10px 16px;
-      font-size: 13px;
-    }
-    .info-panel .info-close-btn {
-      display: flex;
-    }
-    .info-panel h4 {
-      padding-right: 36px;
-    }
-
-    .hamburger {
-      width: 44px;
-      height: 44px;
-    }
-
-    .zoom-btn {
-      width: 44px;
-      height: 44px;
-      font-size: 18px;
-    }
-
-    .layer-toggle,
-    .conn-toggle {
-      min-height: 44px;
-    }
-
-    .copy-btn {
-      min-height: 44px;
-      padding: 10px 16px;
-      font-size: 13px;
-    }
-
-    .comment-del {
-      min-width: 44px;
-      min-height: 44px;
-      font-size: 14px;
-    }
-
-    .legend {
-      font-size: 9px;
-      padding: 6px 10px;
-      max-height: 28px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: max-height 0.3s ease;
-    }
-    .legend.expanded {
-      max-height: 200px;
-    }
-    .legend::after {
-      content: ' ▸';
-      color: #7c83a6;
-      font-size: 8px;
-    }
-    .legend.expanded::after {
-      content: ' ▾';
-    }
-
-    .zoom-controls {
-      top: 12px;
-      right: 12px;
-    }
-    .zoom-btn {
-      width: 36px;
-      height: 36px;
-      font-size: 16px;
-    }
-  }
-
-  /* ── Phone breakpoint ── */
-  @media (max-width: 480px) {
-    h2 {
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-    h3 {
-      font-size: 11px;
-    }
-    .preset-btn {
-      padding: 10px 10px;
-      min-height: 44px;
-      font-size: 12px;
-    }
-    .layer-toggle,
-    .conn-toggle {
-      min-height: 44px;
-      font-size: 11px;
-    }
-    .legend {
-      font-size: 8px;
-      padding: 5px 8px;
-    }
-    .legend-row {
-      gap: 4px;
-      margin: 2px 0;
-    }
-    .prompt-text {
-      font-size: 10px;
-    }
-    .comment-item {
-      font-size: 10px;
-    }
-    .search-box {
-      font-size: 12px;
-      padding: 8px 10px;
-      min-height: 44px;
-    }
-    .zoom-btn {
-      width: 44px;
-      height: 44px;
-      font-size: 18px;
-    }
-    .stat-bar {
-      font-size: 9px;
-    }
-    .modal textarea {
-      font-size: 14px;
-    }
-    .modal-btns button {
-      padding: 10px 16px;
-      min-height: 44px;
-      font-size: 13px;
-    }
-    .layout {
-      grid-template-rows: 1fr 90px;
-    }
-    .sidebar {
-      width: 90vw;
-    }
-    .info-panel {
-      bottom: 50px;
-      max-height: 35vh;
-    }
-    .legend {
-      bottom: 4px;
-      left: 4px;
-    }
-  }
-
   /* ── Chat Panel ── */
   .chat-fab {
     position: fixed;
@@ -547,19 +332,71 @@
     50% { filter: drop-shadow(0 0 12px #3b82f6) drop-shadow(0 0 20px rgba(59,130,246,0.4)); }
   }
 
+  /* -- Body scroll lock when overlay is open -- */
+  body.overlay-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* ── Mobile breakpoint ── */
   @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      top: calc(12px + env(safe-area-inset-top, 0px));
+      left: calc(12px + env(safe-area-inset-left, 0px));
+    }
+    .layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+    }
+    .prompt-area { display: none; }
+    .sidebar {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      width: 85vw;
+      max-width: 320px;
+      padding-top: calc(16px + env(safe-area-inset-top, 0px));
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .canvas-area {
+      width: 100%;
+      grid-row: 1;
+      overflow: hidden;
+    }
+    .zoom-controls {
+      top: auto;
+      bottom: 16px;
+      right: 16px;
+      flex-direction: column;
+    }
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      background: #1e2235cc;
+    }
+    .chat-fab {
+      bottom: calc(16px + 120px);
+      right: 16px;
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+    }
     .chat-panel {
       width: 100vw;
       height: 100vh;
       height: 100dvh;
       border-left: none;
-    }
-    .chat-fab {
-      bottom: 16px;
-      right: 16px;
-      width: 56px;
-      height: 56px;
-      font-size: 24px;
     }
     .chat-header {
       padding: 14px 16px;
@@ -620,14 +457,122 @@
       padding: 10px 20px;
       font-size: 13px;
     }
+    .info-panel {
+      left: 8px;
+      right: 8px;
+      max-width: none;
+      bottom: 60px;
+      top: auto;
+      max-height: 45vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .info-panel .info-comment-btn {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+    .info-panel .info-close-btn { display: flex; }
+    .info-panel h4 { padding-right: 36px; }
+    .modal {
+      width: calc(100vw - 32px);
+      max-width: 420px;
+      max-height: 80vh;
+      max-height: 80dvh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px;
+    }
+    .modal h3 { font-size: 15px; }
+    .modal textarea { min-height: 80px; font-size: 16px; }
+    .modal-btns button {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+    .legend {
+      font-size: 9px;
+      padding: 6px 10px;
+      max-height: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-height 0.3s ease;
+    }
+    .legend.expanded { max-height: 200px; }
+    .legend::after {
+      content: ' ▸';
+      color: #7c83a6;
+      font-size: 8px;
+    }
+    .legend.expanded::after { content: ' ▾'; }
+    .layer-toggle, .conn-toggle { min-height: 44px; }
+    .copy-btn {
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+    .comment-del {
+      min-width: 44px;
+      min-height: 44px;
+      font-size: 14px;
+    }
   }
 
-  /* -- Body scroll lock when overlay is open -- */
-  body.overlay-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
+  /* ── Phone breakpoint ── */
+  @media (max-width: 480px) {
+    h2 { font-size: 12px; letter-spacing: 1px; }
+    h3 { font-size: 11px; }
+    .preset-btn {
+      padding: 10px 10px;
+      min-height: 44px;
+      font-size: 12px;
+    }
+    .layer-toggle, .conn-toggle {
+      min-height: 44px;
+      font-size: 11px;
+    }
+    .zoom-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+    }
+    .zoom-controls {
+      bottom: 12px;
+      right: 12px;
+    }
+    .chat-fab {
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      bottom: calc(12px + 100px);
+    }
+    .legend {
+      font-size: 8px;
+      padding: 5px 8px;
+      bottom: 4px;
+      left: 4px;
+    }
+    .legend-row { gap: 4px; margin: 2px 0; }
+    .comment-item { font-size: 10px; }
+    .search-box {
+      font-size: 12px;
+      padding: 8px 10px;
+      min-height: 44px;
+    }
+    .stat-bar { font-size: 9px; }
+    .modal textarea { font-size: 14px; }
+    .modal-btns button {
+      padding: 10px 16px;
+      min-height: 44px;
+      font-size: 13px;
+    }
+    .sidebar { width: 90vw; }
+    .info-panel {
+      bottom: 50px;
+      max-height: 35vh;
+    }
   }
+
 </style>
 </head>
 <body>
