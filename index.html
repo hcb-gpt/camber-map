@@ -1283,11 +1283,8 @@ document.addEventListener('keydown', function(e) {
 // ── CHAT WITH DIAGRAM ─────────────────────────────
 var chatMessages = [];
 var chatStreaming = false;
-var INJECTED_KEY = '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';
-var HAS_INJECTED_KEY = INJECTED_KEY !== '__' + 'OPENAI_API_KEY' + '__';
-
 function getChatApiKey() {
-  return localStorage.getItem('camber_map_openai_key') || (HAS_INJECTED_KEY ? INJECTED_KEY : '');
+  return localStorage.getItem('camber_map_openai_key') || '';
 }
 
 function toggleChat() {
@@ -1304,7 +1301,7 @@ function toggleChat() {
 }
 
 function openChatSettings() {
-  document.getElementById('chat-api-key').value = localStorage.getItem('camber_map_openai_key') || (HAS_INJECTED_KEY ? '(build-injected)' : '');
+  document.getElementById('chat-api-key').value = localStorage.getItem('camber_map_openai_key') || '';
   document.getElementById('chat-author').value = localStorage.getItem('camber_map_author') || '';
   document.getElementById('chat-settings-overlay').classList.add('show');
 }
