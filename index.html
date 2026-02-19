@@ -1429,8 +1429,8 @@ async function sendChatMessage() {
   var text = input.value.trim();
   if (!text || chatStreaming) return;
 
-  var apiKey = localStorage.getItem('camber_map_openai_key') || '__OPENAI_API_KEY__';
-  if (!apiKey || apiKey === '__OPENAI_API_KEY__') { openChatSettings(); return; }
+  var apiKey = localStorage.getItem('camber_map_openai_key') || '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';
+  if (!apiKey || apiKey === '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') { openChatSettings(); return; }
 
   clearChatHighlights();
   addChatBubble('user', text);
