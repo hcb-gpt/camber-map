@@ -1,0 +1,12 @@
+{
+  "name": "camber-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:live": "node scripts/generate_live_map.mjs",
+    "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.12.0"
+  }
+}
