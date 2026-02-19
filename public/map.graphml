@@ -46,6 +46,10 @@
       <data key="d0">public.calls_raw</data>
       <data key="d1">table</data>
     </node>
+    <node id="table:public.camber_map_artifacts">
+      <data key="d0">public.camber_map_artifacts</data>
+      <data key="d1">table</data>
+    </node>
     <node id="table:public.city_county_lookup">
       <data key="d0">public.city_county_lookup</data>
       <data key="d1">table</data>
@@ -388,6 +392,10 @@
     </node>
     <node id="table:public.suggested_aliases">
       <data key="d0">public.suggested_aliases</data>
+      <data key="d1">table</data>
+    </node>
+    <node id="table:public.system_lineage_edges">
+      <data key="d0">public.system_lineage_edges</data>
       <data key="d1">table</data>
     </node>
     <node id="table:public.trade_phase_map">
@@ -874,6 +882,10 @@
       <data key="d0">public.camber_auto_enable_rls()</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.camber_map_generate_json()">
+      <data key="d0">public.camber_map_generate_json()</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.canon_confidence_tier(conf numeric)">
       <data key="d0">public.canon_confidence_tier(conf numeric)</data>
       <data key="d1">fn</data>
@@ -1258,6 +1270,10 @@
       <data key="d0">public.trg_corrections_validate_pointer_match()</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.trg_evidence_events_to_lineage_edges()">
+      <data key="d0">public.trg_evidence_events_to_lineage_edges()</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.trg_review_queue_gt_notify()">
       <data key="d0">public.trg_review_queue_gt_notify()</data>
       <data key="d1">fn</data>
@@ -1300,6 +1316,10 @@
     </node>
     <node id="fn:public.upsert_idempotency_key(p_key text, p_interaction_id text, p_source text, p_payload_hash text, p_first_payload jsonb)">
       <data key="d0">public.upsert_idempotency_key(p_key text, p_interaction_id text, p_source text, p_payload_hash text, p_first_payload jsonb)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)">
+      <data key="d0">public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.validate_keywords_jsonb()">
@@ -4469,6 +4489,9 @@
     </edge>
     <edge id="e991" source="view:public.v_interaction_primary_project" target="table:public.interactions">
       <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e992" source="edge:smoke_test" target="table:public.evidence_events">
+      <data key="d2">writes</data>
     </edge>
   </graph>
 </graphml>

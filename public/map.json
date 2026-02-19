@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-19T15:30:54Z",
-  "git_sha": "77881343681c1a70cfaffd362300f42d7397bf5d",
+  "updated_at": "2026-02-19T17:37:45Z",
+  "git_sha": "b431a0a0415bfd361101c8f611922717d75538c4",
   "mode": "live",
   "nodes": [
     {
@@ -81,6 +81,14 @@
       "schema": "public",
       "name": "calls_raw",
       "title": "public.calls_raw",
+      "group": "db"
+    },
+    {
+      "id": "table:public.camber_map_artifacts",
+      "kind": "table",
+      "schema": "public",
+      "name": "camber_map_artifacts",
+      "title": "public.camber_map_artifacts",
       "group": "db"
     },
     {
@@ -769,6 +777,14 @@
       "schema": "public",
       "name": "suggested_aliases",
       "title": "public.suggested_aliases",
+      "group": "db"
+    },
+    {
+      "id": "table:public.system_lineage_edges",
+      "kind": "table",
+      "schema": "public",
+      "name": "system_lineage_edges",
+      "title": "public.system_lineage_edges",
       "group": "db"
     },
     {
@@ -1740,6 +1756,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.camber_map_generate_json()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "camber_map_generate_json",
+      "title": "public.camber_map_generate_json()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.canon_confidence_tier(conf numeric)",
       "kind": "fn",
       "schema": "public",
@@ -2508,6 +2532,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_evidence_events_to_lineage_edges()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_evidence_events_to_lineage_edges",
+      "title": "public.trg_evidence_events_to_lineage_edges()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_review_queue_gt_notify()",
       "kind": "fn",
       "schema": "public",
@@ -2593,6 +2625,14 @@
       "schema": "public",
       "name": "upsert_idempotency_key",
       "title": "public.upsert_idempotency_key(p_key text, p_interaction_id text, p_source text, p_payload_hash text, p_first_payload jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_system_lineage_edge",
+      "title": "public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)",
       "group": "db"
     },
     {
@@ -2732,7 +2772,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 30,
+        "version": 31,
         "updated_at": 1771391779694
       }
     },
@@ -2745,7 +2785,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 27,
+        "version": 28,
         "updated_at": 1768880323144
       }
     },
@@ -2758,7 +2798,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 27,
+        "version": 28,
         "updated_at": 1769203551168
       }
     },
@@ -2771,7 +2811,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 33,
+        "version": 34,
         "updated_at": 1769204461909
       }
     },
@@ -2784,7 +2824,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 28,
+        "version": 29,
         "updated_at": 1769205468082
       }
     },
@@ -2797,7 +2837,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 29,
+        "version": 30,
         "updated_at": 1769205580692
       }
     },
@@ -2810,7 +2850,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 26,
+        "version": 27,
         "updated_at": 1769206316340
       }
     },
@@ -2823,7 +2863,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 35,
+        "version": 36,
         "updated_at": 1771391787859
       }
     },
@@ -2836,7 +2876,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 66,
+        "version": 67,
         "updated_at": 1771391781757
       }
     },
@@ -2849,7 +2889,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 44,
+        "version": 45,
         "updated_at": 1771211112299
       }
     },
@@ -2862,7 +2902,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 26,
+        "version": 27,
         "updated_at": 1769753728479
       }
     },
@@ -2875,7 +2915,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 70,
+        "version": 71,
         "updated_at": 1771451177801
       }
     },
@@ -2888,7 +2928,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 91,
+        "version": 92,
         "updated_at": 1771395842810
       }
     },
@@ -2901,7 +2941,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 26,
+        "version": 27,
         "updated_at": 1769784329255
       }
     },
@@ -2914,7 +2954,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 37,
+        "version": 38,
         "updated_at": 1771391791148
       }
     },
@@ -2927,7 +2967,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 43,
+        "version": 44,
         "updated_at": 1771452430588
       }
     },
@@ -2940,7 +2980,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 23,
+        "version": 24,
         "updated_at": 1771356167367
       }
     },
@@ -2953,7 +2993,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 18,
+        "version": 19,
         "updated_at": 1771356183310
       }
     },
@@ -2966,7 +3006,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 31,
+        "version": 32,
         "updated_at": 1771356166018
       }
     },
@@ -2979,7 +3019,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 19,
+        "version": 20,
         "updated_at": 1771356169648
       }
     },
@@ -2992,7 +3032,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 18,
+        "version": 19,
         "updated_at": 1771356167842
       }
     },
@@ -3005,7 +3045,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 17,
+        "version": 18,
         "updated_at": 1771391778600
       }
     },
@@ -3018,7 +3058,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 11,
+        "version": 12,
         "updated_at": 1771391792771
       }
     },
@@ -3031,7 +3071,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 11,
+        "version": 12,
         "updated_at": 1771356167075
       }
     },
@@ -3044,7 +3084,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
+        "version": 15,
         "updated_at": 1771356163677
       }
     },
@@ -3057,7 +3097,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
+        "version": 14,
         "updated_at": 1771391784096
       }
     },
@@ -3070,7 +3110,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 12,
+        "version": 13,
         "updated_at": 1771111081237
       }
     },
@@ -3083,7 +3123,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 11,
+        "version": 12,
         "updated_at": 1771356182542
       }
     },
@@ -3096,7 +3136,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 8,
+        "version": 9,
         "updated_at": 1771356178888
       }
     },
@@ -3109,7 +3149,7 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
+        "version": 4,
         "updated_at": 1771356164279
       }
     },
@@ -3122,7 +3162,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 2,
+        "version": 3,
         "updated_at": 1771343823377
       }
     },
@@ -3135,7 +3175,7 @@
       "meta": {
         "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 2,
+        "version": 3,
         "updated_at": 1771343815540
       }
     }
@@ -8100,6 +8140,17 @@
       "from": "view:public.v_interaction_primary_project",
       "to": "table:public.interactions",
       "type": "depends_on"
+    },
+    {
+      "from": "edge:smoke_test",
+      "to": "table:public.evidence_events",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-19T17:23:40.074Z",
+        "seen_count": "1",
+        "last_evidence_event_id": "4657a699-1493-433d-bef9-773c7db439bf",
+        "note": "smoke"
+      }
     }
   ],
   "groups": {
