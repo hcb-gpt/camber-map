@@ -70,11 +70,90 @@
         "groups": { "type": ["object", "null"], "additionalProperties": true }
       },
       "additionalProperties": true
+    },
+    "Capability": {
+      "type": "object",
+      "required": ["id", "name", "health"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "owner": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "tech_node_count": { "type": "integer" },
+        "tech_nodes_in_graph": { "type": "integer" },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "expected": { "type": "integer" },
+            "observed": { "type": "integer" },
+            "pct": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "staleness": {
+          "type": "object",
+          "properties": {
+            "hours_since_last_activity": { "type": ["number", "null"] },
+            "status": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "health": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string" },
+            "row_count": { "type": ["integer", "null"] },
+            "last_activity_at": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "depends_on": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "VP": {
+      "type": "object",
+      "required": ["updated_at", "capabilities", "summary"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "git_sha": { "type": "string" },
+        "capabilities": { "type": "array", "items": { "$ref": "#/definitions/Capability" } },
+        "capability_edges": { "type": "array", "items": { "$ref": "#/definitions/Edge" } },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "healthy": { "type": "integer" },
+            "degraded": { "type": "integer" },
+            "stale": { "type": "integer" },
+            "unknown": { "type": "integer" },
+            "overall_coverage_pct": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "Changes": {
+      "type": "object",
+      "required": ["updated_at", "has_previous", "changes"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "has_previous": { "type": "boolean" },
+        "changes": {
+          "type": "array",
+          "items": { "type": "object", "additionalProperties": true }
+        }
+      },
+      "additionalProperties": true
     }
   },
   "properties": {
     "facts": { "$ref": "#/definitions/Facts" },
-    "map": { "$ref": "#/definitions/Map" }
+    "map": { "$ref": "#/definitions/Map" },
+    "vp": { "$ref": "#/definitions/VP" },
+    "changes": { "$ref": "#/definitions/Changes" }
   },
   "additionalProperties": true
 }

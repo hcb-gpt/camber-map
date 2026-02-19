@@ -3,6 +3,8 @@
 One-shot generator:
   1) generate_live_map.mjs -> public/facts.json, public/map.json
   2) render_outputs.mjs    -> public/map.md, public/map.graphml
+  3) generate_vp.mjs       -> public/vp.json (+ vp.prev.json backup)
+  4) render_vp.mjs         -> public/vp.md, public/changes.json, public/changes.md
 
 Use this as the single build entry.
 */
@@ -16,3 +18,5 @@ function run(cmd, args) {
 
 run('node', ['scripts/generate_live_map.mjs']);
 run('node', ['scripts/render_outputs.mjs']);
+run('node', ['scripts/generate_vp.mjs']);
+run('node', ['scripts/render_vp.mjs']);

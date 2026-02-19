@@ -1469,10 +1469,16 @@ async function sendChatMessage() {
       assistantBubble.remove();
     }
     var errMsg = err.message || 'Unknown error';
-    if (errMsg.indexOf('401') >= 0 || errMsg.indexOf('Incorrect API key') >= 0) {
+    if (location.protocol === 'file:' && (errMsg.indexOf('Load failed') >= 0 || errMsg.indexOf('Failed to fetch') >= 0)) {
+      addChatBubble('error', 'Cannot call OpenAI from file://. Serve via HTTPS or run: npx serve .');
+    } else if (errMsg.indexOf('Load failed') >= 0 || errMsg.indexOf('Failed to fetch') >= 0) {
+      addChatBubble('error', 'Network error — check your connection and API key format.');
+    } else if (errMsg.indexOf('401') >= 0 || errMsg.indexOf('Incorrect API key') >= 0) {
       addChatBubble('error', 'Invalid API key. Check Settings.');
     } else if (errMsg.indexOf('429') >= 0) {
       addChatBubble('error', 'Rate limited. Wait a moment and try again.');
+    } else if (errMsg.indexOf('insufficient_quota') >= 0) {
+      addChatBubble('error', 'API quota exceeded. Check your OpenAI billing.');
     } else {
       addChatBubble('error', 'Error: ' + errMsg);
     }

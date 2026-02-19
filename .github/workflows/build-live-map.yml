@@ -1,6 +1,3 @@
-# Copy this file to: .github/workflows/build-live-map.yml
-# GitHub restricts automated creation of workflow files from some tokens.
-
 name: Build live Camber map
 
 on:
