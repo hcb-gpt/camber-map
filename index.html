@@ -391,7 +391,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .chat-fab {
-      bottom: calc(16px + 120px + env(safe-area-inset-bottom, 0px));
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       width: 48px;
       height: 48px;
@@ -552,7 +552,7 @@
       width: 44px;
       height: 44px;
       font-size: 20px;
-      bottom: calc(12px + 100px + env(safe-area-inset-bottom, 0px));
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
     .legend {
       font-size: 8px;
@@ -581,6 +581,128 @@
     }
   }
 
+  /* ── VP Instrument Panel ── */
+  :root {
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-l: env(safe-area-inset-left, 0px);
+    --safe-r: env(safe-area-inset-right, 0px);
+  }
+  .mode-toggle {
+    display: flex; background: #0f1117; border: 1px solid #2d3148;
+    border-radius: 8px; padding: 3px; margin-bottom: 12px; gap: 2px;
+  }
+  .mode-toggle button {
+    flex: 1; padding: 6px 10px; background: none; border: none; border-radius: 6px;
+    color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer;
+    transition: all .15s; touch-action: manipulation;
+  }
+  .mode-toggle button.active { background: #1e3a5f; color: #93c5fd; }
+  .mode-toggle button:hover:not(.active) { color: #94a3b8; }
+
+  #mobile-view {
+    display: none; flex-direction: column; min-height: 100dvh;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: calc(12px + var(--safe-t, 0px)) 16px calc(16px + var(--safe-b, 0px));
+    background: #0f1117;
+  }
+  #mobile-view.active { display: flex; }
+
+  .now-bar {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px;
+    background: #161822; border: 1px solid #2d3148; border-radius: 10px;
+    margin-bottom: 12px; align-items: center; cursor: pointer; position: relative;
+  }
+  .now-badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px;
+    background: #1e2235; border-radius: 6px; font-size: 11px; color: #94a3b8; white-space: nowrap;
+  }
+  .now-badge .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .now-badge .dot.green { background: #22c55e; }
+  .now-badge .dot.yellow { background: #f59e0b; }
+  .now-badge .dot.red { background: #ef4444; }
+  .now-badge .dot.blue { background: #3b82f6; }
+  .now-badge .dot.grey { background: #475569; }
+  .now-badge strong { color: #e2e8f0; font-weight: 600; }
+  .now-changes-badge {
+    position: absolute; top: -4px; right: -4px; background: #ef4444; color: white;
+    font-size: 9px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+  }
+  .now-changes-badge.has-changes { display: flex; }
+
+  .stage-card {
+    background: #161822; border: 1px solid #2d3148; border-radius: 10px;
+    margin-bottom: 8px; overflow: hidden; transition: border-color .2s;
+  }
+  .stage-card.expanded { border-color: #3b82f6; }
+  .stage-header {
+    padding: 12px 14px; cursor: pointer; touch-action: manipulation; min-height: 44px;
+  }
+  .stage-header-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px;
+  }
+  .stage-num {
+    font-size: 10px; font-weight: 700; color: #3b82f6; letter-spacing: 0.5px;
+    text-transform: uppercase; flex-shrink: 0;
+  }
+  .stage-label { font-size: 15px; font-weight: 600; color: #e2e8f0; flex: 1; }
+  .stage-health {
+    display: inline-flex; align-items: center; gap: 4px; font-size: 10px; color: #94a3b8; flex-shrink: 0;
+  }
+  .stage-health .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .stage-health .dot.green { background: #22c55e; box-shadow: 0 0 4px rgba(34,197,94,0.4); }
+  .stage-health .dot.yellow { background: #f59e0b; box-shadow: 0 0 4px rgba(245,158,11,0.4); }
+  .stage-health .dot.red { background: #ef4444; box-shadow: 0 0 4px rgba(239,68,68,0.4); }
+  .stage-health .dot.grey { background: #475569; }
+  .stage-purpose { font-size: 13px; color: #94a3b8; line-height: 1.4; }
+  .stage-why { font-size: 11px; color: #64748b; line-height: 1.4; margin-top: 2px; }
+  .stage-arrow { text-align: center; padding: 2px 0; color: #2d3148; font-size: 16px; line-height: 1; }
+  .stage-body { display: none; padding: 0 14px 14px; border-top: 1px solid #2d3148; }
+  .stage-card.expanded .stage-body { display: block; }
+  .stage-node { padding: 8px 0; border-bottom: 1px solid #1e2235; }
+  .stage-node:last-child { border-bottom: none; }
+  .stage-node-label { font-size: 13px; font-weight: 600; color: #cbd5e1; }
+  .stage-node-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+  .stage-node-desc { font-size: 12px; color: #94a3b8; line-height: 1.5; margin-top: 4px; }
+  .stage-node-layer {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    margin-right: 6px; vertical-align: middle;
+  }
+
+  .changes-drawer {
+    position: fixed; bottom: 0; left: 0; right: 0; background: #161822;
+    border-top: 1px solid #2d3148; border-radius: 16px 16px 0 0;
+    padding: 16px; padding-bottom: calc(16px + var(--safe-b, 0px));
+    max-height: 60vh; overflow-y: auto; transform: translateY(100%);
+    transition: transform .3s ease; z-index: 90;
+  }
+  .changes-drawer.open { transform: translateY(0); }
+  .changes-drawer h3 { color: #e2e8f0; font-size: 14px; margin-bottom: 12px; }
+  .changes-empty { color: #475569; font-size: 12px; text-align: center; padding: 24px 0; }
+
+  .sidebar-flow-nav .flow-nav-item {
+    display: block; padding: 8px 10px; margin-bottom: 2px; background: #1e2235;
+    border: 1px solid transparent; border-radius: 6px; color: #cbd5e1;
+    font-size: 12px; cursor: pointer; transition: all .15s; touch-action: manipulation;
+  }
+  .sidebar-flow-nav .flow-nav-item:hover { border-color: #3b82f6; }
+  .sidebar-flow-nav .flow-nav-num { color: #3b82f6; font-weight: 700; font-size: 10px; margin-right: 6px; }
+  .sidebar-flow-nav .flow-nav-health { float: right; width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; }
+
+  .now-bar-desktop {
+    position: fixed; bottom: 0; left: 300px; right: 0; padding: 8px 16px;
+    background: #161822ee; border-top: 1px solid #2d3148; z-index: 20;
+    display: none; gap: 8px; flex-wrap: wrap; align-items: center;
+  }
+  .now-bar-desktop.active { display: flex; }
+
+  @media (max-width: 768px) {
+    .layout.hidden-mobile { display: none; }
+    .chat-panel { will-change: transform; }
+    .now-bar-desktop { display: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -590,16 +712,19 @@
 
 <div class="layout">
   <div class="sidebar">
+    <div class="mode-toggle" id="sidebar-mode-toggle">
+      <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+      <button data-mode="system" onclick="applyViewMode('system')">System</button>
+      <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
+    </div>
     <h2>Camber Deep Architecture</h2>
-    <div class="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
+    <div class="stat-bar" id="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
     <input class="search-box" id="search" type="text" placeholder="Search nodes..." oninput="filterNodes(this.value)">
-    <div id="presets"></div>
-    <h3>Layers</h3>
-    <div id="layer-toggles"></div>
-    <h3>Connections</h3>
-    <div id="conn-toggles"></div>
-    <h3>Comments (<span id="comment-count">0</span>)</h3>
-    <div id="comments-list"></div>
+    <div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
+    <div id="presets-section"><div id="presets"></div></div>
+    <div id="layers-section"><h3>Layers</h3><div id="layer-toggles"></div></div>
+    <div id="conns-section"><h3>Connections</h3><div id="conn-toggles"></div></div>
+    <div id="comments-section"><h3>Comments (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
   </div>
 
   <div class="canvas-area" id="canvas-area">
@@ -638,6 +763,29 @@
     <div class="prompt-text" id="prompt-output">Click components to add comments. Toggle layers and connections to explore the architecture.</div>
   </div>
 </div>
+
+<!-- Mobile VP View -->
+<div id="mobile-view">
+  <div class="mode-toggle" id="mobile-mode-toggle">
+    <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+    <button data-mode="system" onclick="applyViewMode('system')">System</button>
+    <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
+  </div>
+  <div class="now-bar" id="now-bar" onclick="toggleChangesDrawer()" role="status" aria-label="Pipeline status">
+    <span class="now-badge"><span class="dot blue"></span> Loading...</span>
+    <div class="now-changes-badge" id="now-changes-badge"></div>
+  </div>
+  <div id="mobile-stages" role="list" aria-label="Pipeline stages"></div>
+</div>
+
+<!-- Changes Drawer -->
+<div class="changes-drawer" id="changes-drawer">
+  <h3>Recent Changes</h3>
+  <div id="changes-content"><div class="changes-empty">No changes detected</div></div>
+</div>
+
+<!-- Desktop Now Bar -->
+<div class="now-bar-desktop" id="now-bar-desktop"></div>
 
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
@@ -1008,6 +1156,82 @@ var PRESETS = [
   { id: 'devops',     label: 'DevOps + CI/CD',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
 ];
 
+// ── MOBILE STAGES ────────────────────────────────────
+var MOBILE_STAGES = [
+  { num: 1, label: 'Call Arrives',
+    purpose: 'Phone call recorded and webhook fired from OpenPhone through Zapier.',
+    why: 'This is the entry point \u2014 nothing flows without a call landing.',
+    capabilities: ['call-ingestion'],
+    nodes: ['openphone', 'zapier', 'zapier-ingest'] },
+  { num: 2, label: 'Call Received',
+    purpose: 'Payload validated, normalized, and candidate projects collected from 6 sources.',
+    why: 'Bad data here poisons every downstream decision.',
+    capabilities: ['call-ingestion'],
+    nodes: ['process-call', 'pc-phone'] },
+  { num: 3, label: 'Transcript Split',
+    purpose: 'Multi-topic call segmented into single-topic spans by GPT-4o-mini.',
+    why: 'One call often covers multiple projects \u2014 splitting gets each piece to the right place.',
+    capabilities: ['transcription', 'segmentation'],
+    nodes: ['segment-call', 'segment-llm', 'shared'] },
+  { num: 4, label: 'Context Built',
+    purpose: '12-source evidence package assembled per span: CRM, history, aliases, email, geo, journal.',
+    why: 'The AI needs the full picture \u2014 garbage context means garbage routing.',
+    capabilities: ['context-assembly'],
+    nodes: ['ctx-assembly', 'gmail-ctx', 'ctx-retrievers'] },
+  { num: 5, label: 'Project Attributed',
+    purpose: 'AI assigns each span to a project; low-confidence spans go to human review.',
+    why: 'This is the core business decision \u2014 every downstream metric depends on correct attribution.',
+    capabilities: ['attribution'],
+    nodes: ['ai-router', 'guardrails', 'review-resolve', 'review-triage'] },
+  { num: 6, label: 'Intelligence Captured',
+    purpose: 'Summary, knowledge claims, follow-ups, and signals extracted per call.',
+    why: 'Turns raw conversations into structured business intelligence.',
+    capabilities: ['summarization', 'journal', 'consolidation'],
+    nodes: ['gen-summary', 'journal-ext', 'journal-cons', 'striking', 'chain-detect', 'loop-closure'] },
+  { num: 7, label: 'Daily Report',
+    purpose: 'Morning digest with signals, queue pressure, and health metrics.',
+    why: 'One glance tells you if the pipeline is healthy and what needs attention today.',
+    capabilities: [],
+    nodes: ['morning-digest'] }
+];
+
+// ── VIEW MODES ───────────────────────────────────────
+var VIEW_MODES = {
+  flow: {
+    preset: 'chain',
+    layers: ['pipeline'],
+    conns: ['data-flow'],
+    hideNodes: [
+      'deepgram','openai','anthropic','gmail-api','github','sb-auth',
+      'transcribe','admin-reseed','shadow-replay','gt-apply',
+      'alias-scout','alias-review','alias-hygiene','embed-facts','journal-embed',
+      'db-core','db-spans','db-review','db-pipeline-aux','db-journal','db-context','db-alias',
+      'world-model','storage','rpc-resolve','rpc-gt','rpc-journal','rpc-contact',
+      'trigger-lock','gh-actions','tests','smoke-test','claim-guard','cc-scripts','migrations'
+    ],
+    showControls: false, showPrompt: false, showComments: false
+  },
+  system: {
+    preset: 'pipeline',
+    layers: ['external', 'pipeline'],
+    conns: ['data-flow', 'fire-forget', 'tool-call'],
+    hideNodes: ['github', 'sb-auth'],
+    showControls: true, showPrompt: false, showComments: false
+  },
+  dev: {
+    preset: 'full',
+    layers: Object.keys(LAYERS),
+    conns: Object.keys(CONN_TYPES),
+    hideNodes: [],
+    showControls: true, showPrompt: true, showComments: true
+  }
+};
+
+// ── VP DATA CACHE ────────────────────────────────────
+var vpData = null;
+var factsData = null;
+var changesData = null;
+
 // ── STATE ──────────────────────────────────────────
 var state = {
   preset: 'full',
@@ -1017,8 +1241,113 @@ var state = {
   zoom: 0.65,
   panX: 0, panY: 0,
   searchFilter: '',
+  viewMode: 'flow',
 };
 Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
+
+// ── MOBILE STAGES ─────────────────────────────────
+var MOBILE_STAGES = [
+  {
+    num: 1,
+    label: 'Call Arrives',
+    purpose: 'Phone call recorded and webhook fired from OpenPhone through Zapier.',
+    why: 'This is the entry point — nothing flows without a call landing.',
+    capabilities: ['call-ingestion'],
+    nodes: ['openphone', 'zapier', 'zapier-ingest']
+  },
+  {
+    num: 2,
+    label: 'Call Received',
+    purpose: 'Payload validated, normalized, and candidate projects collected from 6 sources.',
+    why: 'Bad data here poisons every downstream decision.',
+    capabilities: ['call-ingestion'],
+    nodes: ['process-call', 'pc-phone']
+  },
+  {
+    num: 3,
+    label: 'Transcript Split',
+    purpose: 'Multi-topic call segmented into single-topic spans by GPT-4o-mini.',
+    why: 'One call often covers multiple projects — splitting gets each piece to the right place.',
+    capabilities: ['transcription', 'segmentation'],
+    nodes: ['segment-call', 'segment-llm', 'shared']
+  },
+  {
+    num: 4,
+    label: 'Context Built',
+    purpose: '12-source evidence package assembled per span: CRM, history, aliases, email, geo, journal.',
+    why: 'The AI needs the full picture — garbage context means garbage routing.',
+    capabilities: ['context-assembly'],
+    nodes: ['ctx-assembly', 'gmail-ctx', 'ctx-retrievers']
+  },
+  {
+    num: 5,
+    label: 'Project Attributed',
+    purpose: 'AI assigns each span to a project; low-confidence spans go to human review.',
+    why: 'This is the core business decision — every downstream metric depends on correct attribution.',
+    capabilities: ['attribution'],
+    nodes: ['ai-router', 'guardrails', 'review-resolve', 'review-triage']
+  },
+  {
+    num: 6,
+    label: 'Intelligence Captured',
+    purpose: 'Summary, knowledge claims, follow-ups, and signals extracted per call.',
+    why: 'Turns raw conversations into structured business intelligence.',
+    capabilities: ['summarization', 'journal', 'consolidation'],
+    nodes: ['gen-summary', 'journal-ext', 'journal-cons', 'striking', 'chain-detect', 'loop-closure']
+  },
+  {
+    num: 7,
+    label: 'Daily Report',
+    purpose: 'Morning digest with signals, queue pressure, and health metrics.',
+    why: 'One glance tells you if the pipeline is healthy and what needs attention today.',
+    capabilities: [],
+    nodes: ['morning-digest']
+  }
+];
+
+// ── VIEW MODES ────────────────────────────────────
+var VIEW_MODES = {
+  flow: {
+    preset: 'chain',
+    layers: ['pipeline'],
+    conns: ['data-flow'],
+    hideNodes: [
+      'deepgram', 'openai', 'anthropic', 'gmail-api', 'github', 'sb-auth',
+      'transcribe', 'admin-reseed', 'shadow-replay', 'gt-apply',
+      'alias-scout', 'alias-review', 'alias-hygiene', 'embed-facts', 'journal-embed',
+      'db-core', 'db-spans', 'db-review', 'db-pipeline-aux', 'db-journal',
+      'db-context', 'db-alias', 'world-model', 'storage',
+      'rpc-resolve', 'rpc-gt', 'rpc-journal', 'rpc-contact', 'trigger-lock',
+      'gh-actions', 'tests', 'smoke-test', 'claim-guard', 'cc-scripts', 'migrations'
+    ],
+    showControls: false,
+    showPrompt: false,
+    showComments: false
+  },
+  system: {
+    preset: 'pipeline',
+    layers: ['external', 'pipeline'],
+    conns: ['data-flow', 'fire-forget', 'tool-call'],
+    hideNodes: ['github', 'sb-auth'],
+    showControls: true,
+    showPrompt: false,
+    showComments: false
+  },
+  dev: {
+    preset: 'full',
+    layers: Object.keys(LAYERS),
+    conns: Object.keys(CONN_TYPES),
+    hideNodes: [],
+    showControls: true,
+    showPrompt: true,
+    showComments: true
+  }
+};
+
+// ── CACHE VARS ────────────────────────────────────
+var vpData = null;
+var factsData = null;
+var changesData = null;
 
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
@@ -1056,6 +1385,10 @@ function toggleSidebar() {
 }
 
 function isNodeVisible(n) {
+  // View-mode node exclusions
+  var vm = VIEW_MODES[state.viewMode];
+  if (vm && vm.hideNodes && vm.hideNodes.indexOf(n.id) >= 0) return false;
+
   if (!state.layers[n.layer]) return false;
   if (state.searchFilter && n.label.toLowerCase().indexOf(state.searchFilter) < 0 &&
       n.subtitle.toLowerCase().indexOf(state.searchFilter) < 0 &&
@@ -1330,7 +1663,8 @@ function fitToScreen() {
   var pad = isMobile ? 20 : 30;
   var zx = (cw - pad * 2) / b.w;
   var zy = (ch - pad * 2) / b.h;
-  state.zoom = Math.max(0.15, Math.min(1.5, Math.min(zx, zy)));
+  var minReadableZoom = isMobile ? 0.35 : 0.25;
+  state.zoom = Math.max(minReadableZoom, Math.min(1.5, Math.min(zx, zy)));
   state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
   if (isMobile) {
     // On mobile: align diagram to top instead of centering vertically
@@ -1507,11 +1841,11 @@ function toggleChat() {
   fab.classList.toggle('hidden', isOpen);
   if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
-    document.getElementById('chat-input').focus();
     if (window.innerWidth <= 768) {
       document.body.style.overflow = 'hidden';
-      chatMobileKeyboardInit();
+      chatMobileKeyboardInit(); // attach listener first ...
     }
+    document.getElementById('chat-input').focus(); // ... then focus to trigger keyboard
   } else {
     document.body.style.overflow = '';
     chatMobileKeyboardDestroy();
@@ -1524,14 +1858,18 @@ function chatMobileKeyboardInit() {
   var panel = document.getElementById('chat-panel');
   _chatVVHandler = function() {
     panel.style.height = visualViewport.height + 'px';
+    panel.style.top = visualViewport.offsetTop + 'px';
   };
   visualViewport.addEventListener('resize', _chatVVHandler);
+  _chatVVHandler(); // fire immediately so panel sizes correctly before first resize event
 }
 function chatMobileKeyboardDestroy() {
   if (!window.visualViewport || !_chatVVHandler) return;
   visualViewport.removeEventListener('resize', _chatVVHandler);
   _chatVVHandler = null;
-  document.getElementById('chat-panel').style.height = '';
+  var panel = document.getElementById('chat-panel');
+  panel.style.height = '';
+  panel.style.top = '';
 }
 
 function openChatSettings() {
@@ -1757,8 +2095,494 @@ if (sb) {
     .subscribe();
 }
 
+// ── STAGE HEALTH ──────────────────────────────────
+var HEALTH_PRIORITY = { stale: 3, aging: 2, fresh: 1, unknown: 0 };
+
+function getStageHealth(stage) {
+  if (!vpData || !stage.capabilities || stage.capabilities.length === 0) {
+    return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+  }
+
+  var worst = null;
+  var worstPriority = -1;
+  var worstHours = null;
+
+  for (var i = 0; i < stage.capabilities.length; i++) {
+    var capId = stage.capabilities[i];
+    var cap = null;
+    for (var j = 0; j < vpData.capabilities.length; j++) {
+      if (vpData.capabilities[j].id === capId) {
+        cap = vpData.capabilities[j];
+        break;
+      }
+    }
+    if (!cap) continue;
+
+    var status = (cap.staleness && cap.staleness.status) ? cap.staleness.status : 'unknown';
+    var priority = (HEALTH_PRIORITY[status] !== undefined) ? HEALTH_PRIORITY[status] : 0;
+
+    if (priority > worstPriority) {
+      worstPriority = priority;
+      worst = status;
+      worstHours = (cap.staleness && cap.staleness.hours_since_last_activity != null)
+        ? cap.staleness.hours_since_last_activity
+        : null;
+    }
+  }
+
+  if (!worst) {
+    return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+  }
+
+  if (worst === 'fresh') {
+    var hoursText = (worstHours != null) ? (Math.round(worstHours * 10) / 10) + 'h ago' : '';
+    return {
+      status: 'fresh',
+      color: '#22c55e',
+      text: hoursText ? 'Fresh ' + hoursText : 'Fresh',
+      dotClass: 'dot-fresh'
+    };
+  }
+  if (worst === 'aging') {
+    return { status: 'aging', color: '#f59e0b', text: 'Aging', dotClass: 'dot-aging' };
+  }
+  if (worst === 'stale') {
+    return { status: 'stale', color: '#ef4444', text: 'Stale', dotClass: 'dot-stale' };
+  }
+  return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+}
+
+// ── RENDER MOBILE VIEW ────────────────────────────
+function renderMobileView() {
+  var container = document.getElementById('mobile-stages');
+  if (!container) return;
+  clearChildren(container);
+
+  for (var s = 0; s < MOBILE_STAGES.length; s++) {
+    var stage = MOBILE_STAGES[s];
+    var health = getStageHealth(stage);
+
+    var card = createEl('div', { className: 'stage-card', 'data-stage': String(stage.num) });
+
+    var header = createEl('div', { className: 'stage-header' });
+    var headerTop = createEl('div', { className: 'stage-header-top' });
+    var stageNum = createEl('div', { className: 'stage-num' }, 'Stage ' + stage.num);
+    var stageLabel = createEl('div', { className: 'stage-label' }, stage.label);
+
+    var stageHealth = createEl('div', { className: 'stage-health' });
+    var dot = createEl('span', { className: 'health-dot ' + health.dotClass });
+    dot.style.background = health.color;
+    stageHealth.appendChild(dot);
+    var healthText = createEl('span', { className: 'health-text' }, health.text);
+    stageHealth.appendChild(healthText);
+
+    headerTop.appendChild(stageNum);
+    headerTop.appendChild(stageLabel);
+    headerTop.appendChild(stageHealth);
+    header.appendChild(headerTop);
+
+    var stagePurpose = createEl('div', { className: 'stage-purpose' }, stage.purpose);
+    header.appendChild(stagePurpose);
+
+    (function(cardEl) {
+      header.addEventListener('click', function() {
+        var allCards = container.querySelectorAll('.stage-card');
+        for (var i = 0; i < allCards.length; i++) {
+          if (allCards[i] !== cardEl) allCards[i].classList.remove('expanded');
+        }
+        cardEl.classList.toggle('expanded');
+      });
+    })(card);
+
+    card.appendChild(header);
+
+    var stageWhy = createEl('div', { className: 'stage-why' }, stage.why);
+    card.appendChild(stageWhy);
+
+    var body = createEl('div', { className: 'stage-body' });
+
+    for (var n = 0; n < stage.nodes.length; n++) {
+      var nodeId = stage.nodes[n];
+      var node = null;
+      for (var k = 0; k < nodes.length; k++) {
+        if (nodes[k].id === nodeId) { node = nodes[k]; break; }
+      }
+      if (!node) continue;
+
+      var nodeEl = createEl('div', { className: 'stage-node' });
+      var layerInfo = (node.layer && LAYERS[node.layer]) ? LAYERS[node.layer] : null;
+      var layerDotEl = createEl('span', { className: 'stage-node-layer' });
+      if (layerInfo) {
+        layerDotEl.style.background = layerInfo.dot;
+        layerDotEl.title = layerInfo.label;
+      }
+      nodeEl.appendChild(layerDotEl);
+
+      var nodeLabelEl = createEl('span', { className: 'stage-node-label' }, node.label);
+      nodeEl.appendChild(nodeLabelEl);
+
+      if (node.subtitle) {
+        var nodeSubEl = createEl('span', { className: 'stage-node-subtitle' }, node.subtitle);
+        nodeEl.appendChild(nodeSubEl);
+      }
+
+      if (node.desc) {
+        var descText = node.desc.length > 200 ? node.desc.slice(0, 200) + '...' : node.desc;
+        var nodeDescEl = createEl('div', { className: 'stage-node-desc' }, descText);
+        nodeEl.appendChild(nodeDescEl);
+      }
+
+      if (vpData && stage.capabilities && stage.capabilities.length > 0) {
+        for (var c = 0; c < stage.capabilities.length; c++) {
+          var capId = stage.capabilities[c];
+          for (var v = 0; v < vpData.capabilities.length; v++) {
+            var cap = vpData.capabilities[v];
+            if (cap.id === capId && cap.health && cap.health.row_count != null) {
+              var volEl = createEl('div', { className: 'stage-node-volume' },
+                cap.health.row_count.toLocaleString() + ' rows');
+              nodeEl.appendChild(volEl);
+              break;
+            }
+          }
+        }
+      }
+
+      body.appendChild(nodeEl);
+    }
+
+    card.appendChild(body);
+    container.appendChild(card);
+
+    if (s < MOBILE_STAGES.length - 1) {
+      var arrow = createEl('div', { className: 'stage-arrow' }, '\u25bc');
+      container.appendChild(arrow);
+    }
+  }
+}
+
+// ── VIEW MODE SWITCHING ───────────────────────────
+function applyViewMode(mode) {
+  state.viewMode = mode;
+  var vm = VIEW_MODES[mode];
+
+  if (vm.preset) {
+    state.preset = vm.preset;
+    var p = PRESETS.find(function(pr) { return pr.id === vm.preset; });
+    if (p) {
+      Object.keys(state.layers).forEach(function(k) {
+        state.layers[k] = p.layers.indexOf(k) >= 0;
+      });
+      Object.keys(state.conns).forEach(function(k) {
+        state.conns[k] = p.conns.indexOf(k) >= 0;
+      });
+    }
+  }
+  if (vm.layers) {
+    Object.keys(state.layers).forEach(function(k) {
+      state.layers[k] = vm.layers.indexOf(k) >= 0;
+    });
+  }
+  if (vm.conns) {
+    Object.keys(state.conns).forEach(function(k) {
+      state.conns[k] = vm.conns.indexOf(k) >= 0;
+    });
+  }
+
+  var isMobile = window.innerWidth <= 768;
+  var mobileView = document.getElementById('mobile-view');
+  var layoutEls = document.querySelectorAll('.layout');
+
+  if (isMobile) {
+    if (mobileView) mobileView.classList.add('active');
+    layoutEls.forEach(function(el) { el.classList.add('hidden-mobile'); });
+    if (typeof renderMobileView === 'function') renderMobileView();
+  } else {
+    if (mobileView) mobileView.classList.remove('active');
+    layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
+    document.body.style.overflow = '';
+  }
+
+  var toggleBtns = document.querySelectorAll('.mode-toggle button');
+  toggleBtns.forEach(function(btn) {
+    if (btn.getAttribute('data-mode') === mode) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  var sidebarFlowNav   = document.getElementById('sidebar-flow-nav');
+  var presetsSection   = document.getElementById('presets-section');
+  var layersSection    = document.getElementById('layers-section');
+  var connsSection     = document.getElementById('conns-section');
+  var commentsSection  = document.getElementById('comments-section');
+  var promptAreas      = document.querySelectorAll('.prompt-area');
+  var statBar          = document.getElementById('stat-bar');
+  var nowBarDesktop    = document.getElementById('now-bar-desktop');
+
+  function showEl(el)  { if (el) el.style.display = ''; }
+  function hideEl(el)  { if (el) el.style.display = 'none'; }
+  function showEls(nl) { nl.forEach(function(el) { el.style.display = ''; }); }
+  function hideEls(nl) { nl.forEach(function(el) { el.style.display = 'none'; }); }
+
+  if (mode === 'flow') {
+    showEl(sidebarFlowNav);
+    hideEl(presetsSection);
+    hideEl(layersSection);
+    hideEl(connsSection);
+    hideEl(commentsSection);
+    hideEls(promptAreas);
+    hideEl(statBar);
+    renderFlowNav();
+  } else if (mode === 'system') {
+    hideEl(sidebarFlowNav);
+    showEl(presetsSection);
+    showEl(layersSection);
+    hideEl(connsSection);
+    hideEl(commentsSection);
+    hideEls(promptAreas);
+    showEl(statBar);
+  } else {
+    hideEl(sidebarFlowNav);
+    showEl(presetsSection);
+    showEl(layersSection);
+    showEl(connsSection);
+    showEl(commentsSection);
+    showEls(promptAreas);
+    showEl(statBar);
+  }
+
+  if (!isMobile && nowBarDesktop) {
+    if (mode === 'flow' || mode === 'system') {
+      nowBarDesktop.classList.add('active');
+    } else {
+      nowBarDesktop.classList.remove('active');
+    }
+  }
+
+  updateAll();
+  if (!isMobile) fitToScreen();
+}
+
+// ── FLOW NAV ──────────────────────────────────────
+function renderFlowNav() {
+  var nav = document.getElementById('sidebar-flow-nav');
+  if (!nav) return;
+  clearChildren(nav);
+  MOBILE_STAGES.forEach(function(stage, i) {
+    var item = createEl('div', { className: 'flow-nav-item' });
+    item.setAttribute('data-stage', String(stage.num));
+
+    var num = createEl('span', { className: 'flow-nav-num' }, 'S' + (i + 1));
+    var label = createEl('span', {}, stage.label);
+    var healthDot = createEl('span', { className: 'flow-nav-health' });
+    var healthInfo = getStageHealth(stage);
+    healthDot.style.background = healthInfo.color;
+
+    item.appendChild(num);
+    item.appendChild(label);
+    item.appendChild(healthDot);
+
+    item.addEventListener('click', function() {
+      if (typeof renderMobileView === 'function') renderMobileView();
+    });
+
+    nav.appendChild(item);
+  });
+}
+
+// ── VP DATA FETCHER ───────────────────────────────
+function fetchVPData() {
+  return Promise.all([
+    fetch('./public/vp.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/facts.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/changes.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+  ]).then(function(results) {
+    vpData = results[0];
+    factsData = results[1];
+    changesData = results[2];
+
+    renderNowBar();
+
+    if (window.innerWidth <= 768 && state.viewMode === 'flow') {
+      if (typeof renderMobileView === 'function') renderMobileView();
+      if (typeof renderFlowNav === 'function') renderFlowNav();
+    }
+  });
+}
+
+// ── NOW BAR ───────────────────────────────────────
+function renderNowBar() {
+  var bars = [
+    document.getElementById('now-bar'),
+    document.getElementById('now-bar-desktop')
+  ];
+
+  bars.forEach(function(bar) {
+    if (!bar) return;
+    clearChildren(bar);
+
+    // Badge 1 — Data Freshness
+    var freshnessEl = createEl('span', { className: 'now-badge' });
+    var dotEl = createEl('span', { className: 'dot' });
+    var textEl = createEl('span', {});
+
+    if (factsData && factsData.updated_at) {
+      var updatedAt = new Date(factsData.updated_at);
+      var nowMs = Date.now();
+      var hoursAgo = (nowMs - updatedAt.getTime()) / (1000 * 60 * 60);
+
+      if (hoursAgo <= 2) {
+        dotEl.style.background = '#22c55e';
+      } else if (hoursAgo <= 8) {
+        dotEl.style.background = '#eab308';
+      } else {
+        dotEl.style.background = '#ef4444';
+      }
+
+      var agoText;
+      if (hoursAgo < 1) {
+        agoText = '<1h ago';
+      } else {
+        agoText = Math.floor(hoursAgo) + 'h ago';
+      }
+      textEl.textContent = 'Data: ' + agoText;
+    } else {
+      dotEl.style.background = '#9ca3af';
+      textEl.textContent = 'Data: unknown';
+    }
+
+    freshnessEl.appendChild(dotEl);
+    freshnessEl.appendChild(textEl);
+    bar.appendChild(freshnessEl);
+
+    // Badge 2 — Pipeline Health
+    var healthEl = createEl('span', { className: 'now-badge' });
+    var healthDot = createEl('span', { className: 'dot' });
+    var healthText = createEl('span', {});
+
+    if (vpData && vpData.summary) {
+      var total = vpData.summary.total || 0;
+      var healthy = vpData.summary.healthy || 0;
+      var healthRatio = total > 0 ? healthy / total : 0;
+
+      if (healthRatio === 1) {
+        healthDot.style.background = '#22c55e';
+      } else if (healthRatio > 0.5) {
+        healthDot.style.background = '#eab308';
+      } else {
+        healthDot.style.background = '#ef4444';
+      }
+      healthText.textContent = healthy + '/' + total + ' healthy';
+    } else {
+      healthDot.style.background = '#9ca3af';
+      healthText.textContent = '?/? healthy';
+    }
+
+    healthEl.appendChild(healthDot);
+    healthEl.appendChild(healthText);
+    bar.appendChild(healthEl);
+
+    // Badge 3 — Coverage
+    var coverageEl = createEl('span', { className: 'now-badge' });
+    var coverageNum = createEl('strong', {});
+    var coverageSuffix = createEl('span', {});
+
+    if (vpData && vpData.summary && vpData.summary.overall_coverage_pct != null) {
+      var pct = Math.round(vpData.summary.overall_coverage_pct * 100);
+      coverageNum.textContent = pct;
+      coverageSuffix.textContent = '% coverage';
+    } else {
+      coverageNum.textContent = '?';
+      coverageSuffix.textContent = '% coverage';
+    }
+
+    coverageEl.appendChild(coverageNum);
+    coverageEl.appendChild(coverageSuffix);
+    bar.appendChild(coverageEl);
+
+    // Badge 4 — Mode
+    var modeEl = createEl('span', { className: 'now-badge' });
+    var modeDot = createEl('span', { className: 'dot' });
+    modeDot.style.background = '#3b82f6';
+    var modeText = createEl('span', {});
+    modeText.textContent = (factsData && factsData.mode) ? factsData.mode : 'unknown';
+
+    modeEl.appendChild(modeDot);
+    modeEl.appendChild(modeText);
+    bar.appendChild(modeEl);
+  });
+
+  // Changes badge
+  var changesBadge = document.getElementById('now-changes-badge');
+  if (changesBadge) {
+    if (changesData && changesData.changes && changesData.changes.length > 0) {
+      changesBadge.classList.add('has-changes');
+      changesBadge.textContent = changesData.changes.length;
+    } else {
+      changesBadge.classList.remove('has-changes');
+    }
+  }
+}
+
+// ── CHANGES DRAWER ────────────────────────────────
+function toggleChangesDrawer() {
+  var drawer = document.getElementById('changes-drawer');
+  if (!drawer) return;
+
+  var isOpen = drawer.classList.toggle('open');
+
+  if (isOpen) {
+    var content = document.getElementById('changes-content');
+    if (!content) return;
+    clearChildren(content);
+
+    if (!changesData || !changesData.changes || changesData.changes.length === 0) {
+      var emptyEl = createEl('p', { className: 'changes-empty' }, 'No changes detected');
+      content.appendChild(emptyEl);
+      return;
+    }
+
+    changesData.changes.forEach(function(change) {
+      var itemEl = createEl('div', { className: 'change-item' });
+
+      if (change.type) {
+        var typeEl = createEl('span', { className: 'change-type change-type--' + change.type }, change.type);
+        itemEl.appendChild(typeEl);
+      }
+
+      if (change.id || change.name) {
+        var nameEl = createEl('span', { className: 'change-name' }, change.name || change.id);
+        itemEl.appendChild(nameEl);
+      }
+
+      if (change.description || change.summary) {
+        var descEl = createEl('p', { className: 'change-desc' }, change.description || change.summary);
+        itemEl.appendChild(descEl);
+      }
+
+      content.appendChild(itemEl);
+    });
+  }
+}
+
 updateAll();
 loadAnnotations();
+
+// ── VP Instrument Panel initialization ──
+var _lastMobileState = window.innerWidth <= 768;
+window.addEventListener('resize', function() {
+  var nowMobile = window.innerWidth <= 768;
+  if (nowMobile !== _lastMobileState) {
+    _lastMobileState = nowMobile;
+    applyViewMode(state.viewMode);
+  }
+});
+// Apply initial view mode after a frame (let DOM settle)
+requestAnimationFrame(function() {
+  applyViewMode('flow');
+  fetchVPData();
+});
 </script>
 </body>
 </html>
