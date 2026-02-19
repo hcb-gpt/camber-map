@@ -347,6 +347,9 @@
       height: 44px;
       top: calc(12px + env(safe-area-inset-top, 0px));
       left: calc(12px + env(safe-area-inset-left, 0px));
+      background: #252a40;
+      border-color: #3b82f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .layout {
       grid-template-columns: 1fr;
@@ -375,7 +378,7 @@
     }
     .zoom-controls {
       top: auto;
-      bottom: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       flex-direction: column;
     }
@@ -383,14 +386,17 @@
       width: 36px;
       height: 36px;
       font-size: 16px;
-      background: #1e2235cc;
+      background: #252a40;
+      border-color: #3b82f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .chat-fab {
-      bottom: calc(16px + 120px);
+      bottom: calc(16px + 120px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       width: 48px;
       height: 48px;
       font-size: 22px;
+      box-shadow: 0 4px 12px rgba(59,130,246,0.5);
     }
     .chat-panel {
       width: 100vw;
@@ -493,10 +499,12 @@
     .legend {
       font-size: 9px;
       padding: 6px 10px;
+      bottom: calc(8px + env(safe-area-inset-bottom, 0px));
       max-height: 28px;
       overflow: hidden;
       cursor: pointer;
       transition: max-height 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
     .legend.expanded { max-height: 200px; }
     .legend::after {
@@ -537,19 +545,19 @@
       font-size: 14px;
     }
     .zoom-controls {
-      bottom: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
       right: 12px;
     }
     .chat-fab {
       width: 44px;
       height: 44px;
       font-size: 20px;
-      bottom: calc(12px + 100px);
+      bottom: calc(12px + 100px + env(safe-area-inset-bottom, 0px));
     }
     .legend {
       font-size: 8px;
       padding: 5px 8px;
-      bottom: 4px;
+      bottom: calc(4px + env(safe-area-inset-bottom, 0px));
       left: 4px;
     }
     .legend-row { gap: 4px; margin: 2px 0; }
@@ -1302,6 +1310,13 @@ function getDiagramBounds() {
     if (n.x + n.w > maxX) maxX = n.x + n.w;
     if (n.y + n.h > maxY) maxY = n.y + n.h;
   });
+  // Include row labels which start at x:10
+  ROW_LABELS.forEach(function(rl) {
+    if (rl.y >= minY - 20 && rl.y <= maxY + 20) {
+      if (rl.x < minX) minX = rl.x;
+      if (rl.y < minY) minY = rl.y;
+    }
+  });
   return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
 }
 
@@ -1311,12 +1326,18 @@ function fitToScreen() {
   var cw = canvas.clientWidth, ch = canvas.clientHeight;
   if (cw === 0 || ch === 0) return;
   var b = getDiagramBounds();
-  var pad = 30;
+  var isMobile = window.innerWidth <= 768;
+  var pad = isMobile ? 20 : 30;
   var zx = (cw - pad * 2) / b.w;
   var zy = (ch - pad * 2) / b.h;
   state.zoom = Math.max(0.15, Math.min(1.5, Math.min(zx, zy)));
   state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
-  state.panY = (ch - b.h * state.zoom) / 2 - b.y * state.zoom;
+  if (isMobile) {
+    // On mobile: align diagram to top instead of centering vertically
+    state.panY = pad - b.y * state.zoom;
+  } else {
+    state.panY = (ch - b.h * state.zoom) / 2 - b.y * state.zoom;
+  }
   renderDiagram();
 }
 
@@ -1400,7 +1421,11 @@ canvasArea.addEventListener('touchend', function() {
 
 // Fit diagram on load and window resize
 window.addEventListener('resize', function() { fitToScreen(); });
-setTimeout(fitToScreen, 50);
+// iOS Safari needs extra time to finalize dynamic viewport (100dvh)
+requestAnimationFrame(function() {
+  fitToScreen();
+  setTimeout(fitToScreen, 300);
+});
 
 var modalNode = null;
 function openModal(n) {
