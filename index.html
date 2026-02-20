@@ -36,10 +36,10 @@
   /* ── Connection hover-to-reveal labels ── */
   .conn-group { cursor: pointer; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
-  .conn-group .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
   .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
-  .conn-group:hover .conn-label-group, .conn-group.conn-active .conn-label-group { opacity: 1; transform: scale(1.5); }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
+  .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+  .conn-label-group.label-active { opacity: 1; transform: scale(1.5); }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
   .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
@@ -1430,7 +1430,7 @@ function renderControls() {
   }
 }
 
-function drawConn(g, c) {
+function drawConn(g, c, lblLayer) {
   var from = nodes.find(function(n) { return n.id === c.from; });
   var to = nodes.find(function(n) { return n.id === c.to; });
   if (!from || !to) return;
@@ -1502,12 +1502,13 @@ function drawConn(g, c) {
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
-  // Bring to front on hover + highlight endpoint node groups
+  // Bring to front on hover + highlight endpoint nodes + show label
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
-    var nl = grp.parentNode.parentNode.querySelector('.node-layer');
-    if (!nl) return;
-    [c.from, c.to].forEach(function(nid) {
+    var root = grp.parentNode.parentNode;
+    var nl = root.querySelector('.node-layer');
+    var ll = root.querySelector('.label-layer');
+    if (nl) [c.from, c.to].forEach(function(nid) {
       var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
       if (!ng) return;
       ng.classList.add('node-active');
@@ -1515,17 +1516,23 @@ function drawConn(g, c) {
       var r = ng.querySelector('.node-rect');
       if (r) r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
     });
+    if (ll) {
+      var lbl = ll.querySelector('.conn-label-group[data-from="'+c.from+'"][data-to="'+c.to+'"]');
+      if (lbl) { lbl.classList.add('label-active'); ll.appendChild(lbl); }
+    }
   });
   grp.addEventListener('mouseleave', function() {
-    var nl = grp.parentNode.parentNode.querySelector('.node-layer');
-    if (!nl) return;
-    [c.from, c.to].forEach(function(nid) {
+    var root = grp.parentNode.parentNode;
+    var nl = root.querySelector('.node-layer');
+    var ll = root.querySelector('.label-layer');
+    if (nl) [c.from, c.to].forEach(function(nid) {
       var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
       if (!ng) return;
       ng.classList.remove('node-active');
       var r = ng.querySelector('.node-rect');
       if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
     });
+    if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
   });
 
   // Invisible wide hit-area for hover
@@ -1537,16 +1544,17 @@ function drawConn(g, c) {
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
   grp.appendChild(path);
 
-  if (c.label) {
-    var labelGrp = createSvgEl('g', { class: 'conn-label-group' });
+  g.appendChild(grp);
+
+  // Connection labels render in the top label layer (above nodes)
+  if (c.label && lblLayer) {
+    var labelGrp = createSvgEl('g', { class: 'conn-label-group', 'data-from': c.from, 'data-to': c.to });
     var pillW = c.label.length * 5 + 8;
     var pillH = 14;
     labelGrp.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
     labelGrp.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
-    grp.appendChild(labelGrp);
+    lblLayer.appendChild(labelGrp);
   }
-
-  g.appendChild(grp);
 }
 
 function renderDiagram() {
@@ -1574,18 +1582,20 @@ function renderDiagram() {
   var visibleIds = {};
   visibleNodes.forEach(function(n) { visibleIds[n.id] = true; });
 
-  // Two layers: connections behind, nodes in front (SVG z-order = DOM order)
+  // Three layers: lines behind, nodes middle, labels on top (SVG z-order = DOM order)
   var connLayer = createSvgEl('g', { class: 'conn-layer' });
   var nodeLayer = createSvgEl('g', { class: 'node-layer' });
+  var labelLayer = createSvgEl('g', { class: 'label-layer' });
   g.appendChild(connLayer);
   g.appendChild(nodeLayer);
+  g.appendChild(labelLayer);
 
   // Draw connections (into lower layer)
   var drawnEdges = {};
   connections.forEach(function(c) {
     if (!state.conns[c.type]) return;
     if (!visibleIds[c.from] || !visibleIds[c.to]) return;
-    drawConn(connLayer, c);
+    drawConn(connLayer, c, labelLayer);
     drawnEdges[c.from + '→' + c.to] = true;
   });
 
@@ -1597,7 +1607,7 @@ function renderDiagram() {
       var fromNode = nodes.find(function(n) { return n.id === fe.from; });
       var toNode = nodes.find(function(n) { return n.id === fe.to; });
       if (!fromNode || !toNode) return;
-      drawConn(connLayer, fe);
+      drawConn(connLayer, fe, labelLayer);
       drawnEdges[key] = true;
     });
   }
@@ -1641,7 +1651,6 @@ function renderDiagram() {
     });
     ng.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
-      // Bring this node group to front
       ng.parentNode.appendChild(ng);
       var connGroups = connLayer.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
       var peerIds = {};
@@ -1662,6 +1671,9 @@ function renderDiagram() {
       });
       ng.classList.add('node-active');
       rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
+      // Show related labels
+      var lbls = labelLayer.querySelectorAll('.conn-label-group[data-from="'+n.id+'"], .conn-label-group[data-to="'+n.id+'"]');
+      lbls.forEach(function(l) { l.classList.add('label-active'); labelLayer.appendChild(l); });
     });
     ng.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
@@ -1673,6 +1685,7 @@ function renderDiagram() {
         var ar = ag.querySelector('.node-rect');
         if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
       });
+      labelLayer.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
     });
 
     nodeLayer.appendChild(ng);
