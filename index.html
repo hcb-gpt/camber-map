@@ -34,8 +34,8 @@
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
-  .node-title { font-family: system-ui; font-size: 11px; font-weight: 600; fill: #1e293b; pointer-events: none; }
-  .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 8px; fill: #475569; pointer-events: none; }
+  .node-title { font-family: system-ui; font-size: 12px; font-weight: 600; fill: #1e293b; pointer-events: none; }
+  .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: #475569; pointer-events: none; }
   .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
   .prompt-strong { color: #93c5fd; font-weight: 600; }
   .copy-btn { position: absolute; top: var(--space-200); right: var(--space-card-padding); padding: var(--space-100) var(--space-300); background: #3b82f6; border: none; border-radius: var(--radius-200); color: white; font-size: 11px; cursor: pointer; }
@@ -67,7 +67,7 @@
   }
   .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: #2563eb; }
   .empty-comments { font-size: 11px; color: #475569; }
-  .row-label { font-family: system-ui; font-size: 9px; fill: #4a5568; letter-spacing: 1px; pointer-events: none; }
+  .row-label { font-family: system-ui; font-size: 10px; fill: #4a5568; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: #0f1117; border: 1px solid #2d3148; border-radius: var(--radius-200); color: #e2e8f0; font-size: 11px; margin-bottom: var(--space-300); }
   .search-box::placeholder { color: #475569; }
   .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
@@ -242,6 +242,66 @@
     font-size: 11px;
   }
   .chat-api-prompt button:hover, .chat-api-prompt button:active { border-color: #3b82f6; }
+
+  .chat-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: var(--space-600) var(--space-400);
+    text-align: center;
+    min-height: 200px;
+  }
+  .chat-empty-state .chat-empty-icon {
+    font-size: 32px;
+    margin-bottom: var(--space-300);
+    opacity: 0.5;
+  }
+  .chat-empty-state h4 {
+    color: #94a3b8;
+    font-size: var(--font-size-100);
+    font-weight: 600;
+    margin-bottom: var(--space-400);
+  }
+  .chat-empty-chips {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-200);
+    width: 100%;
+    max-width: 260px;
+  }
+  .chat-empty-chip {
+    display: block;
+    width: 100%;
+    padding: var(--space-200) var(--space-300);
+    background: transparent;
+    border: 1px solid #2d3148;
+    border-radius: var(--radius-300);
+    color: #64748b;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all .15s;
+    font-family: inherit;
+  }
+  .chat-empty-chip:hover, .chat-empty-chip:active {
+    border-color: #3b82f6;
+    color: #93c5fd;
+    background: #1e2235;
+  }
+
+  .changes-empty-heading {
+    color: #64748b;
+    font-size: var(--font-size-75);
+    font-weight: 600;
+    margin-bottom: var(--space-100);
+  }
+  .changes-empty-subtext {
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.5;
+  }
 
   .chat-input-area {
     display: flex;
@@ -553,7 +613,7 @@
   #mobile-view {
     display: none; flex-direction: column; height: 100dvh;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: calc(var(--space-300) + var(--safe-t, 0px)) var(--space-card-padding) calc(var(--space-card-padding) + var(--safe-b, 0px));
+    padding: calc(var(--space-300) + var(--safe-t, 0px)) var(--space-card-padding) calc(80px + var(--safe-b, 0px));
     background: #0f1117;
   }
   #mobile-view.active { display: flex; }
@@ -638,7 +698,7 @@
   }
   .sidebar-flow-nav .flow-nav-item:hover { border-color: #3b82f6; }
   .sidebar-flow-nav .flow-nav-num { color: #3b82f6; font-weight: 700; font-size: 10px; margin-right: 6px; }
-  .sidebar-flow-nav .flow-nav-health { float: right; width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; }
+  .sidebar-flow-nav .flow-nav-health { float: right; width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; margin-left: auto; }
 
   .now-bar-desktop {
     position: fixed; bottom: 0; left: 300px; right: 0; padding: var(--space-200) var(--space-card-padding);
@@ -676,14 +736,25 @@
   .small-btn:active { transform: translateY(1px); }
 
   /* Mobile explorer (System / Details) */
-  #mobile-explorer { display: none; height: calc(100dvh - 84px); overflow: auto; padding: 10px 12px 110px; }
+  #mobile-explorer { display: none; height: calc(100dvh - 84px); overflow: auto; padding: 10px 12px calc(110px + var(--safe-b, 0px)); }
   #mobile-explorer.active { display: block; }
-  .mobile-explorer-bar { position: sticky; top: 0; z-index: 5; background: rgba(15,17,23,.94); backdrop-filter: blur(10px); padding: var(--space-200) 0 var(--space-300); }
+  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(15,17,23,.94); backdrop-filter: blur(10px); padding: var(--space-200) 0 var(--space-300); }
   .mobile-search { width: 100%; padding: var(--space-300) var(--space-300); border-radius: var(--radius-300); border: 1px solid #334155; background: #0b1220; color: #e2e8f0; font-size: var(--font-size-100); min-height: 44px; }
   .mx-section { margin-top: var(--space-400); }
   .mx-section-title { font-size: var(--font-size-75); letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin: var(--space-300) 0 var(--space-200); display: flex; justify-content: space-between; align-items: baseline; }
   .mx-count { font-size: var(--font-size-75); color: #64748b; }
-  .mx-item { background: #111827; border: 1px solid #1f2937; border-radius: var(--radius-300); padding: var(--space-300); margin-bottom: var(--space-200); }
+  .mx-item { background: #111827; border: 1px solid #1f2937; border-radius: var(--radius-300); padding: var(--space-300); margin-bottom: var(--space-200); transition: border-left .15s ease; }
+  /* System mode: blue left-border accent on cards */
+  .mx-item.mode-system { border-left: 3px solid #3b82f6; }
+  /* Details mode: purple left-border accent on cards */
+  .mx-item.mode-dev { border-left: 3px solid #a78bfa; }
+  /* Mode description line below search */
+  .mx-mode-hint { font-size: var(--font-size-75); color: #64748b; margin-top: var(--space-100); line-height: 1.4; }
+  /* Item count badge next to search in Details mode */
+  .mx-count-badge { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #a78bfa; background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25); border-radius: 999px; padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
+  /* Section title accent per mode */
+  .mx-section-title.mode-system { border-left: 2px solid #3b82f6; padding-left: var(--space-200); }
+  .mx-section-title.mode-dev { border-left: 2px solid #a78bfa; padding-left: var(--space-200); }
   .mx-item-title { font-weight: 650; font-size: 15px; color: #e2e8f0; }
   .mx-item-sub { margin-top: var(--space-100); font-size: 13px; color: #94a3b8; }
   .mx-item-meta { margin-top: var(--space-200); display: flex; gap: var(--space-200); flex-wrap: wrap; }
@@ -701,7 +772,7 @@
   .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: #0b1220; border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid #1f2937; box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); }
   .mobile-sheet.open { bottom: 0; }
   .mobile-sheet.expanded { height: 85dvh; bottom: 0; }
-  .mobile-sheet-handle { width: 44px; height: 5px; border-radius: 999px; background: #334155; margin: var(--space-200) auto var(--space-100); cursor: grab; }
+  .mobile-sheet-handle { width: 64px; height: 5px; border-radius: 999px; background: #6b7280; margin: var(--space-200) auto var(--space-100); cursor: grab; box-shadow: 0 0 6px rgba(107,114,128,.35); }
   .mobile-sheet-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-300) var(--space-400) var(--space-150); border-bottom: 1px solid #1f2937; }
   .mobile-sheet-title { font-weight: 700; font-size: var(--font-size-200); }
   .mobile-sheet-close { background: transparent; border: 0; color: #cbd5e1; font-size: 18px; padding: var(--space-200); min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
@@ -741,7 +812,7 @@
       <button data-mode="dev" onclick="applyViewMode('dev')">Details</button>
     </div>
     <h2>Camber Product Map</h2>
-    <div class="stat-bar" id="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
+    <div class="stat-bar" id="stat-bar">25 Edge Functions · 16 sub-modules · 10 RPCs<br>39+ tables · 8 views · 498 migrations · ~17k LOC</div>
     <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
     
     <div id="zoom-section">
@@ -820,7 +891,7 @@
 <!-- Changes Drawer -->
 <div class="changes-drawer" id="changes-drawer">
   <h3>Recent Changes</h3>
-  <div id="changes-content"><div class="changes-empty">No changes detected</div></div>
+  <div id="changes-content"><div class="changes-empty"><div class="changes-empty-heading">No changes detected</div><div class="changes-empty-subtext">This panel tracks schema migrations, new edge functions, and config changes between map builds.</div></div></div>
 </div>
 
 <!-- Desktop Now Bar -->
@@ -855,6 +926,15 @@
   <div class="chat-messages" id="chat-messages">
     <div class="chat-api-prompt" id="chat-api-prompt" style="display:none">
       Ask questions about the Camber architecture.
+    </div>
+    <div class="chat-empty-state" id="chat-empty-state">
+      <div class="chat-empty-icon">&#x1F4AC;</div>
+      <h4>Ask about the architecture</h4>
+      <div class="chat-empty-chips">
+        <button class="chat-empty-chip" onclick="fillChatPrompt(this.textContent)">What does process-call do?</button>
+        <button class="chat-empty-chip" onclick="fillChatPrompt(this.textContent)">How does attribution work?</button>
+        <button class="chat-empty-chip" onclick="fillChatPrompt(this.textContent)">Show me the data flow</button>
+      </div>
     </div>
   </div>
   <div class="chat-input-area">
@@ -942,91 +1022,91 @@ var nodes = [
   // ── Row 1: Ingestion (y: 115) ──
   { id: 'zapier-ingest', label: 'zapier-call-ingest', subtitle: '226 lines',             x: 50,  y: 115, w: 175, h: 48, layer: 'pipeline',
     desc: 'zapier-call-ingest (v1.4.0) is the sole external entry point for call data. It validates callers using X-Edge-Secret (canonical) or X-Secret (legacy transitional), logging legacy usage to diagnostic_logs. After auth, it unwraps the payload from a payload_json envelope if present, stamps Zapier tracking metadata (zap ID, run ID, timestamp, idempotency key) as provenance, and forwards the enriched payload to process-call with both the service role key and X-Edge-Secret. On a 401 from process-call it retries exactly once after 500ms. The response proxies back to Zapier with an _ingest metadata block.' },
-  { id: 'process-call', label: 'process-call',      subtitle: 'v4.3.7 \u00b7 1,177 lines', x: 280, y: 115, w: 180, h: 48, layer: 'pipeline',
+  { id: 'process-call', label: 'process-call',      subtitle: 'v4.3.7 · 1,177 lines', x: 280, y: 115, w: 180, h: 48, layer: 'pipeline',
     desc: 'process-call (v4.3.7, 1,177 lines) is the core ingestion engine. It enforces idempotency via the idempotency_keys table, normalizes the raw payload, resolves phone direction (owner vs other-party), and runs a quality gate checking for malformed IDs and empty transcripts. The heart of the function is a 6-source candidate project collection: direct CRM assignments, historical call frequency affinity, existing project fallback, word-boundary transcript scanning, fuzzy similarity via RPC, and mentioned-contact expansion. Candidates are scored and ranked, but process-call never writes project_id to interactions (Stopline 1). A junk-call prefilter flags voicemail and low-content calls. If the gate passes, it fires segment-call as fire-and-forget.' },
-  { id: 'transcribe',   label: 'transcribe-deepgram', subtitle: 'v5 \u00b7 318 lines',   x: 520, y: 115, w: 180, h: 48, layer: 'pipeline',
+  { id: 'transcribe',   label: 'transcribe-deepgram', subtitle: 'v5 · 318 lines',   x: 520, y: 115, w: 180, h: 48, layer: 'pipeline',
     desc: 'transcribe-deepgram (v5) is a standalone function NOT in the main pipeline chain. It accepts a recording_url, fetches the audio as binary, and submits it to Deepgram with dynamic vocabulary injection from the transcription_vocab table (up to 100 terms, sorted by boost score). Transcription uses Nova-2 with diarization, punctuation, and smart formatting. Output is formatted with SPEAKER_N labels and includes word-level timing and confidence. Results are upserted to transcripts_comparison for A/B testing across engine variants (keywords_on vs keywords_off).' },
   { id: 'pc-phone',     label: 'phone modules',     subtitle: 'phone_lookup + direction',  x: 760, y: 115, w: 170, h: 48, layer: 'module',
     desc: 'Two small helper modules handle phone normalization for process-call. phone_lookup.ts exports normalizePhoneForLookup(), which strips non-digit characters and returns the last 10 digits to handle E.164 numbers with country codes. phone_direction.ts exports resolveCallPartyPhones(), which uses explicit owner_phone/other_party_phone fields first, then falls back to from/to fields interpreted by call direction: inbound treats to_phone as the owner (company line) and from_phone as the other party. When direction is unknown, it makes a best-effort assignment and emits a data_quality_missing_direction warning.' },
 
   // ── Row 2: Segmentation (y: 205) ──
-  { id: 'segment-call', label: 'segment-call',      subtitle: 'v2.5.3 \u00b7 934 lines',   x: 50,  y: 205, w: 160, h: 48, layer: 'pipeline',
+  { id: 'segment-call', label: 'segment-call',      subtitle: 'v2.5.3 · 934 lines',   x: 50,  y: 205, w: 160, h: 48, layer: 'pipeline',
     desc: 'segment-call (v2.5.3) is the orchestration hub between ingestion and per-span analysis. It enforces the reseed rule (409 if attributions already exist), fetches the transcript from calls_raw if not provided, sanitizes control characters, and calls segment-llm for boundaries. It then upserts N conversation_spans rows and processes each span SEQUENTIALLY (not in parallel): context-assembly (blocking) then ai-router (blocking). After successful attribution, it fires three async hooks: striking-detect on every span, journal-extract when decision=assign, and generate-summary once per call after all spans complete. Any span failure returns 500 chain_failed (fail-closed).' },
-  { id: 'segment-llm',  label: 'segment-llm',       subtitle: 'v1.4.0 \u00b7 897 lines',   x: 260, y: 205, w: 155, h: 48, layer: 'pipeline',
+  { id: 'segment-llm',  label: 'segment-llm',       subtitle: 'v1.4.0 · 897 lines',   x: 260, y: 205, w: 155, h: 48, layer: 'pipeline',
     desc: 'segment-llm (v1.4.0) is a pure computation function with ZERO database writes. It calls GPT-4o-mini with a construction-specific prompt to identify project-switch boundaries in the transcript. After LLM response, it applies a 10-step guardrail chain: clamp boundaries, sort, make contiguous, enforce first=0/last=len, merge undersized segments, enforce max_segments, remove zero-length, and split oversized segments (>3000 chars) at natural punctuation near project anchor terms. If a long transcript yields only one span, it retries with a stricter prompt, then falls back to deterministic equal-splitting. On LLM failure, it returns a single full-call fallback span.' },
-  { id: 'shared',       label: '_shared/',           subtitle: '4 modules \u00b7 ~380 lines', x: 465, y: 205, w: 190, h: 48, layer: 'module',
+  { id: 'shared',       label: '_shared/',           subtitle: '4 modules · ~380 lines', x: 465, y: 205, w: 190, h: 48, layer: 'module',
     desc: 'Four reusable modules imported across the pipeline. auth.ts implements requireEdgeSecret() with constant-time comparison and X-Source allowlist validation. id_guard.ts validates interaction_id (cll_...) and span_id (UUID) formats with OCR-confusable detection. llm_json.ts provides a 5-attempt JSON parser: strict parse, strip code fences, sanitize control chars, remove trailing commas, and extract named arrays from partial output. junk_call_prefilter.ts classifies calls as junk based on voicemail phrases, connection failure phrases, and low-content heuristics (word count <20, single speaker, absence of construction terms).' },
 
   // ── Row 3: Context Assembly (y: 295) ──
-  { id: 'ctx-assembly', label: 'context-assembly',  subtitle: 'v2.1.1 \u00b7 3,279 lines',  x: 50,  y: 295, w: 180, h: 48, layer: 'pipeline',
+  { id: 'ctx-assembly', label: 'context-assembly',  subtitle: 'v2.1.1 · 3,279 lines',  x: 50,  y: 295, w: 180, h: 48, layer: 'pipeline',
     desc: 'Context Assembly (v2.1.1, 3,279 lines) is the largest function in the pipeline. Called per-span by segment-call, it assembles a richly structured context_package from 12 evidence sources: direct CRM assignments, call-frequency affinity, existing attributions, alias matching, trigram fuzzy search, full-text search, journal claims cross-reference, place mentions, geo proximity, email context, world model facts, and homeowner override. Candidates are scored using Reciprocal Rank Fusion (RRF) with a strict priority ladder that ranks source_strength above affinity weight (a fix for the Permar-class misattribution bug). The homeowner override gate deterministically assigns if a unique homeowner is found without contradictory anchors in the transcript.' },
-  { id: 'gmail-ctx',    label: 'gmail-context-lookup', subtitle: 'v1.0.0 \u00b7 816 lines', x: 280, y: 295, w: 190, h: 48, layer: 'pipeline',
+  { id: 'gmail-ctx',    label: 'gmail-context-lookup', subtitle: 'v1.0.0 · 816 lines', x: 280, y: 295, w: 190, h: 48, layer: 'pipeline',
     desc: 'gmail-context-lookup (v1.0.0) is called synchronously by context-assembly with an 8-second timeout and fail-open design. It queries the Gmail API for recent email threads involving the contact, extracting subject keywords (stopword-filtered), project alias mentions (word-boundary matched), and dollar amounts via regex. Results are cached for 1 hour in gmail_context_cache keyed by SHA-256 of the contact email set. The function supports three auth modes in priority order: service account JWT, OAuth refresh token, and static access token. Any failure returns empty email_context rather than an error.' },
-  { id: 'ctx-retrievers', label: 'Context Retrievers', subtitle: '6 modules \u00b7 2,025 lines', x: 520, y: 295, w: 200, h: 48, layer: 'module',
+  { id: 'ctx-retrievers', label: 'Context Retrievers', subtitle: '6 modules · 2,025 lines', x: 520, y: 295, w: 200, h: 48, layer: 'module',
     desc: 'Six retrieval modules power context-assembly. claim_crossref.ts (1,306 lines) cross-references journal claims using IDF-weighted semantic overlap with tagged term categories (dollar amounts at 3x weight, proper nouns at 2x, construction terms at 1.5x). rrf_fusion.ts implements Reciprocal Rank Fusion across four channels (structured, FTS, trigram, vector) using the Cormack formula score = 1/(k + rank). trigram_retrieval.ts uses pg_trgm similarity for fuzzy project name matching. fts_retrieval.ts runs full-text search against project_facts. homeowner_override.ts provides the deterministic homeowner assignment when a unique link exists without contradictory anchors.' },
 
   // ── Row 4: Attribution Engine (y: 385) ──
-  { id: 'ai-router',    label: 'ai-router',          subtitle: 'v1.15.0 \u00b7 1,822 lines', x: 50,  y: 385, w: 165, h: 48, layer: 'pipeline',
+  { id: 'ai-router',    label: 'ai-router',          subtitle: 'v1.15.0 · 1,822 lines', x: 50,  y: 385, w: 165, h: 48, layer: 'pipeline',
     desc: 'ai-router (v1.15.0, 1,822 lines) is the attribution engine. It takes a context_package from context-assembly and uses Claude 3 Haiku (temp=0) to score candidates and assign spans to projects. The 3-band confidence policy: >=0.75 auto-assigns, 0.40-0.74 can safe-low-assign with strong anchors (homeowner override or smoking-gun tier), 0.25-0.40 goes to review, <0.25 produces no attribution. Before LLM inference it applies a junk-call prefilter; after inference, 8 deterministic guardrails run in sequence. The function respects the monotonic lock (human > AI) and fires journal-extract as a belt-and-suspenders hook for replay paths.' },
-  { id: 'guardrails',   label: 'Guardrail Battery',  subtitle: '8 modules \u00b7 1,417 lines', x: 260, y: 385, w: 195, h: 48, layer: 'module',
+  { id: 'guardrails',   label: 'Guardrail Battery',  subtitle: '8 modules · 1,417 lines', x: 260, y: 385, w: 195, h: 48, layer: 'module',
     desc: 'Eight deterministic modules applied in sequence after LLM inference. id_guardrails.ts normalizes IDs with NFKC Unicode and Cyrillic confusable mapping. alias_guardrails.ts downgrades assign to review when only generic material aliases support the decision. bizdev_guardrails.ts gates prospect/bizdev calls requiring commitment language for assign. bethany_winship_guardrail.ts handles an address-specific force-assignment. homeowner_override_gate.ts provides deterministic homeowner bypass. rrf_reranker.ts reorders candidates using a 5-tier evidence weight system. rrf_tier_guardrail.ts downgrades weak-tier assignments to review and floors smoking-gun hits at 0.85. world_model_facts.ts adds optional fact corroboration when WORLD_MODEL_FACTS_ENABLED=true.' },
-  { id: 'review-resolve',label:'review-resolve',     subtitle: 'v3.1.0 \u00b7 203 lines',    x: 505, y: 385, w: 160, h: 48, layer: 'pipeline',
+  { id: 'review-resolve',label:'review-resolve',     subtitle: 'v3.1.0 · 203 lines',    x: 505, y: 385, w: 160, h: 48, layer: 'pipeline',
     desc: 'review-resolve (v3.1.0) is the only user-facing endpoint (verify_jwt=true). It accepts JWT-authenticated requests from the review UI, verifying tokens via auth.getUser() — never by decoding JWT payloads directly. The core is a single call to the resolve_review_item RPC, which atomically in one transaction: updates span_attributions (applied_project_id, attribution_lock=human), closes the review_queue row, inserts an override_log audit entry, and propagates the project to scheduler_items and journal_claims. Human locks are monotonic and can never be downgraded; duplicate resolves are treated as no-ops.' },
   { id: 'review-triage', label: 'review-triage',     subtitle: 'review queue UI',           x: 715, y: 385, w: 150, h: 48, layer: 'pipeline',
     desc: 'Review queue management endpoint providing list, stats, and dismiss operations for pending review items. Used by morning-digest for queue pressure metrics and by the human review UI to browse pending items. Reads from review_queue, span_attributions, and conversation_spans to build contextual review cards. Auth: X-Edge-Secret.' },
 
   // ── Row 5: Perception + Journal Hooks (y: 475) ──
-  { id: 'gen-summary',  label: 'generate-summary',   subtitle: 'v1.0.2 \u00b7 682 lines',   x: 50,  y: 475, w: 175, h: 48, layer: 'pipeline',
+  { id: 'gen-summary',  label: 'generate-summary',   subtitle: 'v1.0.2 · 682 lines',   x: 50,  y: 475, w: 175, h: 48, layer: 'pipeline',
     desc: 'generate-summary (v1.0.2) produces the human-readable call summary and structured follow-up items after the full span pipeline completes. It assembles a prompt from the transcript (capped at 12,000 chars), span-level attributions, and contact/project metadata, then asks Claude 3 Haiku (configurable via GENERATE_SUMMARY_MODEL) for a 2-4 sentence summary and up to 12 prioritized follow-ups (each with title, action, owner, due hint, priority, and evidence quote). JSON parsing uses a three-attempt strategy: strict parse, repair pass (fix unquoted strings, trailing commas), and regex-based fallback extracting fields independently.' },
-  { id: 'striking',     label: 'striking-detect',    subtitle: 'v1.0.0 \u00b7 383 lines',   x: 270, y: 475, w: 160, h: 48, layer: 'pipeline',
+  { id: 'striking',     label: 'striking-detect',    subtitle: 'v1.0.0 · 383 lines',   x: 270, y: 475, w: 160, h: 48, layer: 'pipeline',
     desc: 'striking-detect (v1.0.0) is a separate perception channel with NO effect on attribution. Fire-and-forget per span, it uses Claude 3 Haiku to score 8 signal types: decision_point, scope_change, financial_signal, relationship_tension, commitment, escalation, surprise, and threshold. Scoring bands: 0-0.2 routine, 0.3-0.5 mild, 0.6-0.7 notable, 0.8-1.0 highly striking. Every signal quote is validated against the actual transcript — fabricated quotes are silently dropped. Spans under 50 characters are skipped entirely. Results feed the morning-digest dashboard.' },
-  { id: 'journal-ext',  label: 'journal-extract',    subtitle: 'v1.3.0 \u00b7 994 lines',   x: 475, y: 475, w: 170, h: 48, layer: 'pipeline',
+  { id: 'journal-ext',  label: 'journal-extract',    subtitle: 'v1.3.0 · 994 lines',   x: 475, y: 475, w: 170, h: 48, layer: 'pipeline',
     desc: 'journal-extract (v1.3.0) captures structured knowledge from attributed spans. Claude 3 Haiku extracts claims across 10 types (commitment, deadline, decision, blocker, requirement, preference, concern, fact, question, update) with 7 epistemic statuses and warrant levels. Transcripts are capped at 8,000 chars to prevent Haiku timeouts. JSON parsing uses a 5-attempt strategy with LLM retry on parse failure. Pre-flight checks: closed-project filter, idempotency (existing claims for span), and an optional SKIP_NON_ASSIGN_WRITES gate. Claims are inserted via the insert_journal_claims_dedup RPC. On success, fires journal-consolidate.' },
-  { id: 'journal-cons', label: 'journal-consolidate', subtitle: 'v1.0.2 \u00b7 519 lines',  x: 690, y: 475, w: 185, h: 48, layer: 'pipeline',
+  { id: 'journal-cons', label: 'journal-consolidate', subtitle: 'v1.0.2 · 519 lines',  x: 690, y: 475, w: 185, h: 48, layer: 'pipeline',
     desc: 'journal-consolidate (v1.0.2) maintains the project knowledge graph using Claude Sonnet 4.5 (the most capable model in the pipeline, reflecting the semantic complexity of the task). It compares freshly extracted claims against up to 100 existing confirmed claims for the same project and classifies each as: new, supersedes (temporal priority), corroborates (increases warrant level), or conflicts (requires human review, subtyped as factual/schedule/decision/cost). A notable output is cross_project_signals: when a claim implies resource movement across projects, it flags the implied project for future multi-project coordination.' },
-  { id: 'chain-detect', label: 'chain-detect',       subtitle: 'v1.0.0 \u00b7 493 lines',   x: 920, y: 475, w: 150, h: 48, layer: 'pipeline',
+  { id: 'chain-detect', label: 'chain-detect',       subtitle: 'v1.0.0 · 493 lines',   x: 920, y: 475, w: 150, h: 48, layer: 'pipeline',
     desc: 'chain-detect (v1.0.0) identifies temporal call chains — clusters of calls from the same contact on the same day. It takes an AI-forward approach where Claude 3 Haiku judges significance rather than using threshold heuristics. The model selects from 7 chain pattern types: crisis_burst, follow_up_sequence, routine_daily, coordination_cluster, escalation_chain, decision_sequence, or single_call. The design recognizes that 3 calls in 20 minutes is fundamentally different from 3 calls over 8 hours. Results are persisted to the call_chains table.' },
-  { id: 'loop-closure', label: 'loop-closure',       subtitle: 'v1.0.0 \u00b7 416 lines',   x: 1115, y: 475, w: 150, h: 48, layer: 'pipeline',
+  { id: 'loop-closure', label: 'loop-closure',       subtitle: 'v1.0.0 · 416 lines',   x: 1115, y: 475, w: 150, h: 48, layer: 'pipeline',
     desc: 'loop-closure (v1.0.0) resolves open action items by matching new call transcripts against a project\'s inventory of open loops. Claude 3 Haiku evaluates up to 50 open loops per project, requiring a confidence threshold of 0.75 and a specific transcript excerpt as evidence before closing any loop. The design enforces evidence-first policy: someone saying \'I will look into it\' does NOT close a loop. Accepted closures are written to journal_open_loops with the closure_evidence column populated, creating an append-only audit trail.' },
 
   // ── Row 6: Admin / Utility (y: 565) ──
-  { id: 'admin-reseed', label: 'admin-reseed',      subtitle: 'v1.8.0 \u00b7 1,718 lines',  x: 50,  y: 565, w: 165, h: 48, layer: 'pipeline',
+  { id: 'admin-reseed', label: 'admin-reseed',      subtitle: 'v1.8.0 · 1,718 lines',  x: 50,  y: 565, w: 165, h: 48, layer: 'pipeline',
     desc: 'admin-reseed (v1.8.0, 1,718 lines) is the second-largest function, responsible for re-chunking an interaction\'s spans when segmentation was wrong. Three modes: resegment_only, resegment_and_reroute (re-run full attribution), and reseed_and_close_loop (integrity guarantees — retries missing attributions, inserts fallback review rows). A key safety feature is human lock carryforward: if Chad manually corrected a span, that lock is preserved by mapping it to the positionally equivalent new span. Supports force=true for cascade deletion of all dependent data. Fails closed on any write failure.' },
-  { id: 'shadow-replay',label: 'shadow-replay',     subtitle: 'v0.1.0 \u00b7 231 lines',    x: 265, y: 565, w: 155, h: 48, layer: 'pipeline',
+  { id: 'shadow-replay',label: 'shadow-replay',     subtitle: 'v0.1.0 · 231 lines',    x: 265, y: 565, w: 155, h: 48, layer: 'pipeline',
     desc: 'shadow-replay (v0.1.0) is a lightweight A/B testing harness. Given a real interaction_id, it fetches the original transcript and metadata, wraps it in a new payload with a synthetic cll_SHADOW_<timestamp>_<rand> ID, and POSTs it to process-call as if it were a fresh call. The shadow record carries is_shadow=true and _shadow_replay_meta provenance so it can be isolated in the database. A dry_run mode previews the payload without triggering the pipeline. This is how engineers test pipeline changes against real transcripts without affecting production.' },
-  { id: 'gt-apply',     label: 'gt-apply',           subtitle: 'v1.0.0 \u00b7 359 lines',   x: 470, y: 565, w: 140, h: 48, layer: 'pipeline',
+  { id: 'gt-apply',     label: 'gt-apply',           subtitle: 'v1.0.0 · 359 lines',   x: 470, y: 565, w: 140, h: 48, layer: 'pipeline',
     desc: 'gt-apply (v1.0.0) is the batch ground-truth correction endpoint used by Claude agents on Chad\'s behalf. It accepts up to 100 corrections, resolving span references by span_id or interaction_id+span_index. Each correction calls the apply_gt_correction RPC, which writes attribution_lock=human to span_attributions and appends an override_log audit row. The database-level monotonic lock trigger prevents any correction from ever being downgraded. Returns per-item results with HTTP 207 on partial failures.' },
-  { id: 'morning-digest',label:'morning-digest',    subtitle: 'v1.2.0 \u00b7 376 lines',    x: 660, y: 565, w: 165, h: 48, layer: 'pipeline',
+  { id: 'morning-digest',label:'morning-digest',    subtitle: 'v1.2.0 · 376 lines',    x: 660, y: 565, w: 165, h: 48, layer: 'pipeline',
     desc: 'morning-digest (v1.2.0) is a read-only daily status report that never writes to the database. It assembles five sections: top striking signals by project, open journal loops by project, review queue pressure (pending count + oldest items), recent journal claims (last 24h by type and project), and pipeline health metrics (calls ingested, spans created, summary generation rate, journal run status). Joins across 11 tables to give the operator a one-glance view of both business intelligence and pipeline health.' },
 
   // ── Row 7: Alias + Embedding (y: 655) ──
-  { id: 'alias-scout',  label: 'alias-scout',       subtitle: 'v1.0.0 \u00b7 882 lines',    x: 50,  y: 655, w: 150, h: 48, layer: 'pipeline',
+  { id: 'alias-scout',  label: 'alias-scout',       subtitle: 'v1.0.0 · 882 lines',    x: 50,  y: 655, w: 150, h: 48, layer: 'pipeline',
     desc: 'alias-scout (v1.0.0) is the automated alias discovery job. Three strategies: (A) finds active projects with zero aliases and generates name-stem + street-name candidates from metadata, (B) enriches projects with only auto-generated aliases by combining client name and street, and (C) mines the last 30 days of attributed transcripts for capitalized terms (4+ chars) appearing in 3+ distinct transcripts for the same project. New candidates are deduplicated against existing aliases and pending suggestions before insertion. Supports dry_run mode.' },
-  { id: 'alias-review', label: 'alias-review',      subtitle: 'v1.0.0 \u00b7 560 lines',    x: 245, y: 655, w: 145, h: 48, layer: 'pipeline',
+  { id: 'alias-review', label: 'alias-review',      subtitle: 'v1.0.0 · 560 lines',    x: 245, y: 655, w: 145, h: 48, layer: 'pipeline',
     desc: 'alias-review (v1.0.0) is the approval interface for alias candidates surfaced by alias-scout. GET returns pending suggestions enriched with collision detection — for each candidate, it queries v_project_alias_lookup to find conflicts with other projects. POST processes approve/reject in batches up to 100: approval promotes via the promote_alias RPC (falling back to direct INSERT), rejection updates status. Designed for Claude agents acting on Chad\'s behalf.' },
-  { id: 'alias-hygiene',label: 'alias-hygiene',     subtitle: 'v1.0.0 \u00b7 442 lines',    x: 435, y: 655, w: 155, h: 48, layer: 'pipeline',
+  { id: 'alias-hygiene',label: 'alias-hygiene',     subtitle: 'v1.0.0 · 442 lines',    x: 435, y: 655, w: 155, h: 48, layer: 'pipeline',
     desc: 'alias-hygiene (v1.0.0) runs three cleanup operations: (1) retires aliases for closed/inactive projects by setting active=false via RPC, (2) expires stale pending suggestions older than 30 days, and (3) scans v_project_alias_lookup for cross-project alias collisions where the same string maps to multiple active projects. Returns a collision report for human attention. Supports dry_run mode. Designed to run as a periodic cron task to keep alias data trustworthy.' },
-  { id: 'embed-facts',  label: 'embed-facts',       subtitle: 'v1.0.0 \u00b7 264 lines',    x: 635, y: 655, w: 145, h: 48, layer: 'pipeline',
+  { id: 'embed-facts',  label: 'embed-facts',       subtitle: 'v1.0.0 · 264 lines',    x: 635, y: 655, w: 145, h: 48, layer: 'pipeline',
     desc: 'embed-facts (v1.0.0) generates vector embeddings for project_facts using OpenAI text-embedding-3-small (1536 dimensions). Backfill mode processes up to 500 unembedded rows per invocation; single mode embeds a specific fact by ID. Facts are composed as fact_kind + JSON payload text, batched in groups of 10 with 100ms inter-batch delays for rate limiting, and validated for exactly 1536 dimensions before writing. Powers the semantic retrieval path in context-assembly via the pgvector cosine distance operator.' },
-  { id: 'journal-embed',label: 'journal-embed-backfill', subtitle: 'v1.0.0 \u00b7 406 lines', x: 825, y: 655, w: 200, h: 48, layer: 'pipeline',
+  { id: 'journal-embed',label: 'journal-embed-backfill', subtitle: 'v1.0.0 · 406 lines', x: 825, y: 655, w: 200, h: 48, layer: 'pipeline',
     desc: 'journal-embed-backfill (v1.0.0) backfills vector embeddings on journal_claims for semantic search. For each eligible claim, it builds a structured search_text by concatenating claim_type, epistemic_status, testimony_type, speaker_label, and claim_text (capped at 1400 chars). Calls OpenAI text-embedding-3-small in configurable batches (default 20, max 50). Accepts optional project_id and call_id filters for targeted backfills, and a force flag to re-embed existing embeddings when switching model versions.' },
 
   // ── Row 8: Database \u2014 Core + Spans (y: 755) ──
-  { id: 'db-core',      label: 'Core Tables',        subtitle: 'interactions \u00b7 calls_raw \u00b7 contacts \u00b7 projects', x: 50, y: 755, w: 280, h: 48, layer: 'data',
+  { id: 'db-core',      label: 'Core Tables',        subtitle: 'interactions · calls_raw · contacts · projects', x: 50, y: 755, w: 280, h: 48, layer: 'data',
     desc: 'The four core tables form the foundational data layer. interactions is the canonical call record holding identity fields, timing, AI-generated summaries, and scheduler metadata — it is the linchpin that conversation_spans, journal_claims, and review_queue all reference. calls_raw is the raw archive of every webhook payload with full transcript text, raw JSON snapshot, and recording URL. contacts maps phone numbers to people (clients, subcontractors, vendors, staff). projects is the master list of construction projects with name, status, address, and aliases — the attribution target the entire pipeline routes calls toward.' },
-  { id: 'db-spans',     label: 'Span Tables',        subtitle: 'conversation_spans \u00b7 span_attributions', x: 375, y: 755, w: 250, h: 48, layer: 'data',
+  { id: 'db-spans',     label: 'Span Tables',        subtitle: 'conversation_spans · span_attributions', x: 375, y: 755, w: 250, h: 48, layer: 'data',
     desc: 'The two span tables are the single source of truth (SSOT) for all AI routing output. conversation_spans holds one row per logical segment with character offsets, transcript text, segmenter version, and a generation counter for reseed history; a unique constraint on (interaction_id, span_index) WHERE NOT is_superseded enforces clean generational history. span_attributions holds the routing decision: which project, at what confidence, the decision type, attribution_lock (human/AI/null), and full provenance. The monotonic lock trigger prevents any write from downgrading human to AI, making human corrections permanently authoritative.' },
-  { id: 'db-review',    label: 'Review / Override',   subtitle: 'review_queue \u00b7 override_log \u00b7 event_audit', x: 670, y: 755, w: 250, h: 48, layer: 'data',
+  { id: 'db-review',    label: 'Review / Override',   subtitle: 'review_queue · override_log · event_audit', x: 670, y: 755, w: 250, h: 48, layer: 'data',
     desc: 'Three tables form the human oversight and audit layer. review_queue holds spans where the AI declined to guess — with reason codes, context payload, and lifecycle status (pending/resolved/dismissed). override_log is the append-only audit trail for every human correction, capturing before/after values, requester, idempotency key, and an effects_receipt JSON blob. event_audit records pipeline stage tracing (function, status, duration, errors) functioning as a pre-pipeline firewall log.' },
-  { id: 'db-pipeline-aux', label: 'Pipeline Auxiliary', subtitle: 'idempotency \u00b7 event_audit \u00b7 striking \u00b7 chains', x: 965, y: 755, w: 270, h: 48, layer: 'data',
+  { id: 'db-pipeline-aux', label: 'Pipeline Auxiliary', subtitle: 'idempotency · event_audit · striking · chains', x: 965, y: 755, w: 270, h: 48, layer: 'data',
     desc: 'Four tables support pipeline reliability and evaluation. idempotency_keys prevents duplicate processing via atomic upsert returning is_duplicate. striking_signals stores per-span perception scores (0-1) with typed signal arrays and a unique index on span_id+model_id+prompt_version. transcripts_comparison holds multi-engine transcript variants for systematic quality comparison across Deepgram, Whisper, and other engines. call_chains links related interactions from the same contact for multi-call reasoning.' },
 
   // ── Row 9: Database \u2014 Journal + Context + Alias (y: 845) ──
-  { id: 'db-journal',   label: 'Journal Tables',     subtitle: 'claims \u00b7 runs \u00b7 loops \u00b7 conflicts', x: 50, y: 845, w: 260, h: 48, layer: 'data',
+  { id: 'db-journal',   label: 'Journal Tables',     subtitle: 'claims · runs · loops · conflicts', x: 50, y: 845, w: 260, h: 48, layer: 'data',
     desc: 'The journal tables store extracted call intelligence. journal_claims holds one row per factual assertion with claim type (10 types), epistemic metadata, speaker attribution, and a dedup unique index on (call_id, claim_type, claim_text, project_id). journal_runs audits each extraction invocation. journal_open_loops tracks unresolved items (questions, blockers, follow-ups) grouped by project and surfaced in morning-digest. journal_claim_conflicts records contradicting claim pairs with a resolved flag for triage.' },
-  { id: 'db-context',   label: 'Context Tables',     subtitle: 'fanout \u00b7 affinity \u00b7 geo \u00b7 email cache', x: 355, y: 845, w: 260, h: 48, layer: 'data',
+  { id: 'db-context',   label: 'Context Tables',     subtitle: 'fanout · affinity · geo · email cache', x: 355, y: 845, w: 260, h: 48, layer: 'data',
     desc: 'Pre-computed signals feeding context-assembly. contact_fanout classifies contacts by project count (anchored=1, semi_anchored=2, drifter=3-4, floater=5+). correspondent_project_affinity stores learned weights per contact-project pairing from interaction history. project_contacts holds explicit CRM assignments (subcontractor, homeowner, vendor links). The geo tables (project_geo, geo_places) provide proximity signals but geo alone can never justify auto-assign. gmail_context_cache stores bounded email thread summaries with a 1-hour TTL.' },
-  { id: 'db-alias',     label: 'Alias System',       subtitle: 'aliases \u00b7 suggestions \u00b7 v_alias_lookup', x: 660, y: 845, w: 265, h: 48, layer: 'data',
+  { id: 'db-alias',     label: 'Alias System',       subtitle: 'aliases · suggestions · v_alias_lookup', x: 660, y: 845, w: 265, h: 48, layer: 'data',
     desc: 'Three objects form the alias system. project_aliases links projects to spoken-word aliases (street_name, client_name, name_stem, transcript_mined types) with an active boolean for soft-deletes; a trigger auto-generates street-name aliases when a project address is set. suggested_aliases is the review queue for candidates from alias-scout. v_project_alias_lookup is the unified view used at query time — it unions the aliases table with legacy projects.aliases[], filters to active client projects, and excludes blocklisted terms.' },
   { id: 'world-model',  label: 'World Model',        subtitle: 'project_facts + embeddings',  x: 970, y: 845, w: 170, h: 48, layer: 'data',
     desc: 'The world model stores durable, timestamped facts about projects with two temporal fields: as_of_at (when the fact was true) and observed_at (when it was recorded), enabling AS_OF retrieval so context-assembly can pull facts known at the time of a call. Each fact has a flexible fact_payload JSONB blob typed by fact_kind, plus provenance pointers to the source span and interaction. embed-facts adds a 1536-dimension vector embedding, enabling cosine-similarity retrieval in context-assembly via the pgvector operator.' },
@@ -1034,13 +1114,13 @@ var nodes = [
     desc: 'Audio file storage relies on external URLs rather than native Supabase Storage buckets. Call recordings arrive from OpenPhone (via Zapier) as recording_url fields in the webhook payload, stored directly in calls_raw. The transcribe-deepgram function fetches audio at runtime by making an HTTP GET to that URL and streaming it to the Deepgram API — the audio never lands in a Supabase bucket. This means the system depends on the telephony provider URL stability.' },
 
   // ── Row 10: RPCs + Triggers (y: 935) ──
-  { id: 'rpc-resolve',  label: 'resolve_review_item', subtitle: 'RPC \u00b7 single-txn',    x: 50,  y: 935, w: 190, h: 42, layer: 'module',
+  { id: 'rpc-resolve',  label: 'resolve_review_item', subtitle: 'RPC · single-txn',    x: 50,  y: 935, w: 190, h: 42, layer: 'module',
     desc: 'resolve_review_item is the atomic single-transaction RPC for human review decisions. It row-locks the review_queue item, checks for human-lock conflicts, writes an idempotency-keyed audit row to override_log, updates span_attributions with applied_project_id and attribution_lock=human, marks the review resolved, and cascades project_id to null-project scheduler_items and journal_claims. Already-resolved items return was_already_resolved=true rather than failing. Runs as SECURITY DEFINER guaranteeing all-or-nothing semantics.' },
-  { id: 'rpc-gt',       label: 'apply_gt_correction', subtitle: 'RPC \u00b7 monotonic',     x: 290, y: 935, w: 190, h: 42, layer: 'module',
+  { id: 'rpc-gt',       label: 'apply_gt_correction', subtitle: 'RPC · monotonic',     x: 290, y: 935, w: 190, h: 42, layer: 'module',
     desc: 'apply_gt_correction applies a single ground-truth correction to span_attributions. Called by gt-apply for each correction in a batch, it writes applied_project_id and attribution_lock=human, and appends an override_log audit entry. The database-level enforce_lock_monotonic trigger fires on any lock change, rejecting attempts to move from human (level 3) to AI (level 2) or null (level 0) — making human corrections permanently authoritative regardless of subsequent pipeline reruns.' },
-  { id: 'rpc-journal',  label: 'insert_journal_claims_dedup', subtitle: 'RPC \u00b7 dedup', x: 530, y: 935, w: 230, h: 42, layer: 'module',
+  { id: 'rpc-journal',  label: 'insert_journal_claims_dedup', subtitle: 'RPC · dedup', x: 530, y: 935, w: 230, h: 42, layer: 'module',
     desc: 'insert_journal_claims_dedup is the idempotent batch writer for journal claims. It uses INSERT ... ON CONFLICT DO NOTHING keyed on a partial unique index (call_id, claim_type, claim_text, project_id) WHERE active=true, preventing duplicate claims from accumulating on retries or reseeds. Also includes resolve_speaker_contact which maps speaker labels from transcripts to contact records. Returns the count of newly inserted rows so the caller knows whether new information was added.' },
-  { id: 'rpc-contact',  label: 'Contact RPCs',       subtitle: 'lookup \u00b7 scan \u00b7 expand', x: 810, y: 935, w: 175, h: 42, layer: 'module',
+  { id: 'rpc-contact',  label: 'Contact RPCs',       subtitle: 'lookup · scan · expand', x: 810, y: 935, w: 175, h: 42, layer: 'module',
     desc: 'Three RPCs provide transcript-time lookups for process-call. lookup_contact_by_phone normalizes digits and tries three match strategies: exact, secondary phone, and last-10-digit suffix match for international formats. scan_transcript_for_projects tokenizes the transcript into 4+ character words and calls find_fuzzy_alias_matches (pg_trgm similarity, threshold 0.35) for each. expand_candidates_from_mentions finds contact first names mentioned in the transcript and uses their affinity weights to boost associated projects.' },
   { id: 'trigger-lock', label: 'Monotonic Lock Trigger', subtitle: 'enforce_lock_monotonic', x: 1035, y: 935, w: 200, h: 42, layer: 'module',
     desc: 'enforce_lock_monotonic is the PostgreSQL trigger enforcing Stopline 2: truth promotion is monotonic — human overrides AI; AI must never override human. It fires BEFORE UPDATE on span_attributions when attribution_lock changes, comparing old and new values against a priority map (human=3, AI=2, null=0). If the new level is lower than the old, it raises a Postgres EXCEPTION aborting the transaction. This means no edge function, RPC, or direct SQL can silently downgrade a human correction.' },
@@ -1487,7 +1567,7 @@ function renderControls() {
       del.addEventListener('click', function() { deleteComment(i); });
       var lbl = createEl('div', { className: 'comment-label' }, c.targetLabel);
       var meta = createEl('div', { className: 'comment-meta' });
-      meta.textContent = (c.author || 'anonymous') + (c.created_at ? ' \u00b7 ' + new Date(c.created_at).toLocaleDateString() : '');
+      meta.textContent = (c.author || 'anonymous') + (c.created_at ? ' · ' + new Date(c.created_at).toLocaleDateString() : '');
       var txt = createEl('div', { className: 'comment-text' }, c.text);
       item.appendChild(del);
       item.appendChild(lbl);
@@ -1552,12 +1632,12 @@ function renderDiagram() {
       d = 'M'+x1+','+y1+' C'+x1+','+(y1+cp)+' '+x2+','+(y2-cp)+' '+x2+','+y2;
     }
 
-    var path = createSvgEl('path', { d: d, fill: 'none', stroke: ct.color, 'stroke-width': '1.3', 'stroke-opacity': '0.45', 'marker-end': 'url(#'+ct.marker+')' });
+    var path = createSvgEl('path', { d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.55', 'marker-end': 'url(#'+ct.marker+')' });
     if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
     g.appendChild(path);
 
     if (c.label) {
-      g.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '7', 'font-family': 'system-ui', opacity: '0.7' }, c.label));
+      g.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', opacity: '0.8' }, c.label));
     }
   });
 
@@ -2022,7 +2102,21 @@ function mdToHtml(md) {
   return '<p>' + s + '</p>';
 }
 
+function fillChatPrompt(text) {
+  var input = document.getElementById('chat-input');
+  if (input) {
+    input.value = text;
+    input.focus();
+  }
+}
+
+function hideChatEmptyState() {
+  var el = document.getElementById('chat-empty-state');
+  if (el) el.style.display = 'none';
+}
+
 function addChatBubble(role, text) {
+  hideChatEmptyState();
   var container = document.getElementById('chat-messages');
   var bubble = document.createElement('div');
   bubble.className = 'chat-msg ' + role;
@@ -2238,8 +2332,45 @@ function renderMobileFlowCards() {
   if (!container) return;
   clearChildren(container);
 
+  // ── Search bar (consistent with System/Details mobile explorer) ──
+  var searchBar = createEl('div', { className: 'mobile-flow-search-bar' });
+  var searchInput = createEl('input', {
+    className: 'mobile-search',
+    id: 'mobile-flow-search',
+    type: 'text',
+    placeholder: 'Search stages, steps, or services\u2026'
+  });
+  searchInput.addEventListener('input', function() { filterNodesMobile(this.value); });
+  if (state.searchFilter) searchInput.value = state.searchFilter;
+  searchBar.appendChild(searchInput);
+  container.appendChild(searchBar);
+
+  var query = (state.searchFilter || '').toLowerCase();
+  var visibleCount = 0;
+
   for (var s = 0; s < MOBILE_STAGES.length; s++) {
     var stage = MOBILE_STAGES[s];
+
+    // ── Filter: match stage label, purpose, why, and contained node labels ──
+    if (query) {
+      var haystack = [stage.label, stage.purpose, stage.why || ''].join(' ');
+      for (var ni = 0; ni < stage.nodes.length; ni++) {
+        for (var ki = 0; ki < nodes.length; ki++) {
+          if (nodes[ki].id === stage.nodes[ni]) {
+            haystack += ' ' + (nodes[ki].label || '') + ' ' + (nodes[ki].subtitle || '') + ' ' + (nodes[ki].desc || '');
+            break;
+          }
+        }
+      }
+      if (haystack.toLowerCase().indexOf(query) < 0) continue;
+    }
+
+    if (visibleCount > 0) {
+      var arrow = createEl('div', { className: 'stage-arrow' }, '\u25bc');
+      container.appendChild(arrow);
+    }
+    visibleCount++;
+
     var health = getStageHealth(stage);
 
     var card = createEl('div', { className: 'stage-card', 'data-stage': String(stage.num) });
@@ -2332,11 +2463,19 @@ function renderMobileFlowCards() {
 
     card.appendChild(body);
     container.appendChild(card);
+  }
 
-    if (s < MOBILE_STAGES.length - 1) {
-      var arrow = createEl('div', { className: 'stage-arrow' }, '\u25bc');
-      container.appendChild(arrow);
-    }
+  // Empty state when search matches nothing
+  if (query && visibleCount === 0) {
+    var empty = createEl('div', { className: 'changes-empty' }, 'No stages match \u201c' + state.searchFilter + '\u201d');
+    container.appendChild(empty);
+  }
+
+  // Restore focus so user can keep typing after re-render
+  var focusTarget = document.getElementById('mobile-flow-search');
+  if (focusTarget && document.activeElement !== focusTarget && query) {
+    focusTarget.focus();
+    focusTarget.setSelectionRange(focusTarget.value.length, focusTarget.value.length);
   }
 }
 
@@ -2455,10 +2594,33 @@ function renderMobileExplorer() {
   if (!listEl) return;
   clearChildren(listEl);
 
+  var currentMode = state.viewMode || 'system';
+  var modeClass = 'mode-' + currentMode;
+
   // Keep the search box synced with the active filter
   if (searchEl && (searchEl.value || '') !== (state.searchFilter || '')) {
     // don't overwrite the user while typing; only set if empty
     if (!searchEl.value) searchEl.value = state.searchFilter || '';
+  }
+
+  // -- Mode hint + count badge in the explorer bar --
+  var barEl = document.querySelector('.mobile-explorer-bar');
+  if (barEl) {
+    var oldHint = barEl.querySelector('.mx-mode-hint');
+    if (oldHint) oldHint.remove();
+    var oldBadge = barEl.querySelector('.mx-count-badge');
+    if (oldBadge) oldBadge.remove();
+
+    var hintText = currentMode === 'system'
+      ? 'Pipeline components and their connections'
+      : 'Full technical reference for all ' + nodes.length + ' components';
+    var hint = createEl('div', { className: 'mx-mode-hint' }, hintText);
+    barEl.appendChild(hint);
+
+    if (currentMode === 'dev' && searchEl) {
+      var badge = createEl('span', { className: 'mx-count-badge' }, nodes.filter(isNodeVisible).length + ' items');
+      searchEl.parentNode.insertBefore(badge, searchEl.nextSibling);
+    }
   }
 
   var visibleNodes = nodes.filter(isNodeVisible);
@@ -2473,7 +2635,7 @@ function renderMobileExplorer() {
     if (!group.length) return;
 
     var sec = createEl('div', { className: 'mx-section' });
-    var title = createEl('div', { className: 'mx-section-title' });
+    var title = createEl('div', { className: 'mx-section-title ' + modeClass });
     title.appendChild(createEl('div', {}, layerLabel(layerId)));
     title.appendChild(createEl('div', { className: 'mx-count' }, String(group.length)));
     sec.appendChild(title);
@@ -2489,7 +2651,7 @@ function renderMobileExplorer() {
     });
 
     group.forEach(function(n) {
-      var item = createEl('div', { className: 'mx-item', role: 'button', tabindex: '0' });
+      var item = createEl('div', { className: 'mx-item ' + modeClass, role: 'button', tabindex: '0' });
       item.appendChild(createEl('div', { className: 'mx-item-title' }, n.label || n.id));
       var blurb = (n.summary || deriveSummary(n) || n.subtitle || '').trim();
       if (blurb) item.appendChild(createEl('div', { className: 'mx-item-sub' }, blurb));
@@ -2540,7 +2702,7 @@ function openMobileSheet(node) {
 
   // System view: keep this lightweight. Details live in the Details view.
   if (mode === 'system' && desc) {
-    var go = createEl('button', { className: 'small-btn', style: 'margin-top:6px;width:100%;' }, 'Open in Details (technical)');
+    var go = createEl('button', { className: 'small-btn', style: 'margin-top:6px;width:100%;' }, 'View full technical details');
     go.onclick = function() {
       applyViewMode('dev');
       // Let mode switch re-render, then reopen the same sheet
@@ -2765,10 +2927,16 @@ function renderFlowNav() {
     var healthDot = createEl('span', { className: 'flow-nav-health' });
     var healthInfo = getStageHealth(stage);
     healthDot.style.background = healthInfo.color;
+    healthDot.title = healthInfo.text || 'Unknown';
+
+    var healthLabel = createEl('span', { className: 'flow-nav-health-label' });
+    healthLabel.textContent = healthInfo.text || 'Unknown';
+    healthLabel.style.cssText = 'font-size:9px;color:#64748b;margin-left:4px;flex-shrink:0;';
 
     item.appendChild(num);
     item.appendChild(label);
     item.appendChild(healthDot);
+    item.appendChild(healthLabel);
 
     item.addEventListener('click', function() {
       if (typeof renderMobileView === 'function') renderMobileView();
@@ -2925,7 +3093,11 @@ function toggleChangesDrawer() {
     clearChildren(content);
 
     if (!changesData || !changesData.changes || changesData.changes.length === 0) {
-      var emptyEl = createEl('p', { className: 'changes-empty' }, 'No changes detected');
+      var emptyEl = createEl('div', { className: 'changes-empty' });
+      var headingEl = createEl('div', { className: 'changes-empty-heading' }, 'No changes detected');
+      var subtextEl = createEl('div', { className: 'changes-empty-subtext' }, 'This panel tracks schema migrations, new edge functions, and config changes between map builds.');
+      emptyEl.appendChild(headingEl);
+      emptyEl.appendChild(subtextEl);
       content.appendChild(emptyEl);
       return;
     }
