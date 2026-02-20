@@ -60,11 +60,13 @@
   .modal-btns button { padding: var(--space-150) var(--space-card-padding); border-radius: var(--radius-200); border: none; cursor: pointer; font-size: var(--font-size-75); }
   .modal-btns .save { background: var(--interactive-primary); color: white; }
   .modal-btns .cancel { background: var(--border-default); color: var(--text-secondary); }
-  .info-panel { position: absolute; bottom: var(--space-300); right: var(--space-300); background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300) var(--space-card-padding); font-size: 10px; z-index: 10; max-width: 320px; max-height: 40vh; overflow-y: auto; display: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
-  .info-panel.show { display: block; }
-  .info-panel h4 { color: var(--interactive-primary); font-size: var(--font-size-75); margin-bottom: var(--space-100); }
-  .info-panel p { color: var(--text-secondary); line-height: 1.5; }
-  .info-panel .info-comment-btn {
+  .sidebar-info { background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300); margin-bottom: var(--space-300); }
+  .sidebar-info-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .sidebar-info-header h4 { color: var(--interactive-primary); font-size: var(--font-size-75); margin: 0; flex: 1; }
+  .sidebar-info-close { background: none; border: none; color: var(--text-disabled); font-size: 18px; cursor: pointer; padding: 0; line-height: 1; min-width: 24px; min-height: 24px; }
+  .sidebar-info-close:hover { color: var(--text-primary); }
+  .sidebar-info p { color: var(--text-secondary); font-size: 11px; line-height: 1.5; margin: var(--space-100) 0 0; }
+  .sidebar-info .info-comment-btn {
     margin-top: var(--space-200);
     padding: var(--space-150) var(--space-400);
     background: var(--interactive-primary);
@@ -75,7 +77,7 @@
     cursor: pointer;
     display: inline-block;
   }
-  .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: var(--interactive-hover); }
+  .sidebar-info .info-comment-btn:hover, .sidebar-info .info-comment-btn:active { background: var(--interactive-hover); }
   .empty-comments { font-size: 11px; color: var(--text-disabled); }
   .row-label { font-family: 'DM Sans', system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 13px; margin-bottom: var(--space-300); }
@@ -88,24 +90,6 @@
   input[type="checkbox"] {
     touch-action: manipulation;
   }
-  .info-panel .info-close-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 44px;
-    height: 44px;
-    background: var(--border-default);
-    border: none;
-    border-radius: var(--radius-200);
-    color: var(--text-secondary);
-    font-size: 16px;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    touch-action: manipulation;
-  }
-  .info-panel .info-close-btn:hover, .info-panel .info-close-btn:active { background: var(--surface-hover); color: var(--text-primary); }
 
   /* ── Hamburger menu button (hidden on desktop) ── */
   .hamburger {
@@ -453,23 +437,11 @@
       padding: 10px 20px;
       font-size: 13px;
     }
-    .info-panel {
-      left: 8px;
-      right: 8px;
-      max-width: none;
-      bottom: 60px;
-      top: auto;
-      max-height: 45vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .info-panel .info-comment-btn {
+    .sidebar-info .info-comment-btn {
       min-height: 44px;
       padding: 10px 16px;
       font-size: 13px;
     }
-    .info-panel .info-close-btn { display: flex; }
-    .info-panel h4 { padding-right: 36px; }
     .modal {
       width: calc(100vw - 32px);
       max-width: 420px;
@@ -525,10 +497,6 @@
       font-size: 13px;
     }
     .sidebar { width: 90vw; }
-    .info-panel {
-      bottom: 50px;
-      max-height: 35vh;
-    }
   }
 
   /* ── VP Instrument Panel ── */
@@ -775,7 +743,15 @@
     <h2>Camber Product Map</h2>
     <div class="stat-bar" id="stat-bar"></div>
     <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
-    
+
+    <div id="sidebar-info" class="sidebar-info" style="display:none;">
+      <div class="sidebar-info-header">
+        <h4 id="sidebar-info-title"></h4>
+        <button class="sidebar-info-close" onclick="hideInfo()" aria-label="Close">&times;</button>
+      </div>
+      <p id="sidebar-info-desc"></p>
+    </div>
+
     <div id="zoom-section">
       <h3>Zoom</h3>
       <div class="zoom-row">
@@ -792,11 +768,6 @@
   </div>
 
   <div class="canvas-area" id="canvas-area">
-<div class="info-panel" id="info-panel">
-      <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
-      <h4 id="info-title"></h4>
-      <p id="info-desc"></p>
-    </div>
     <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563EB"/></marker>
@@ -1720,11 +1691,11 @@ var infoNode = null;    // which node is shown
 
 function showInfo(n) {
   infoNode = n;
-  var titleEl = document.getElementById('info-title');
-  var descEl = document.getElementById('info-desc');
+  var panel = document.getElementById('sidebar-info');
+  var titleEl = document.getElementById('sidebar-info-title');
+  var descEl = document.getElementById('sidebar-info-desc');
   titleEl.textContent = n.label + ' — ' + n.subtitle;
 
-  // Build description + comment button
   clearChildren(descEl);
   descEl.appendChild(document.createTextNode(n.desc || 'No description'));
 
@@ -1738,13 +1709,18 @@ function showInfo(n) {
     descEl.appendChild(btn);
   }
 
-  document.getElementById('info-panel').classList.add('show');
+  panel.style.display = 'block';
+  // On mobile, open the sidebar so the user sees it
+  if (window.innerWidth <= 768 && infoLocked) {
+    document.querySelector('.sidebar').classList.add('open');
+    document.getElementById('sidebar-overlay').classList.add('show');
+  }
 }
 
 function hideInfo() {
   infoLocked = false;
   infoNode = null;
-  document.getElementById('info-panel').classList.remove('show');
+  document.getElementById('sidebar-info').style.display = 'none';
 }
 
 function updateAll() { renderControls(); renderDiagram(); }
