@@ -41,7 +41,8 @@
   .conn-group:hover .conn-label-group, .conn-group.conn-active .conn-label-group { opacity: 1; transform: scale(1.5); }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
 
-  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
+  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; filter: none; }
+  .node-rect.node-active { filter: brightness(1.1); stroke-opacity: 1; stroke-width: 2.5; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: 'DM Sans', system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
@@ -1461,9 +1462,19 @@ function drawConn(g, c) {
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
-  // Bring to front on hover (SVG z-order = DOM order)
+  // Bring to front on hover (SVG z-order = DOM order) + highlight endpoint nodes
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
+    var fromRect = grp.parentNode.querySelector('[data-node-id="'+c.from+'"]');
+    var toRect = grp.parentNode.querySelector('[data-node-id="'+c.to+'"]');
+    if (fromRect) { fromRect.classList.add('node-active'); fromRect.parentNode.appendChild(fromRect); }
+    if (toRect) { toRect.classList.add('node-active'); toRect.parentNode.appendChild(toRect); }
+  });
+  grp.addEventListener('mouseleave', function() {
+    var fromRect = grp.parentNode.querySelector('[data-node-id="'+c.from+'"]');
+    var toRect = grp.parentNode.querySelector('[data-node-id="'+c.to+'"]');
+    if (fromRect) fromRect.classList.remove('node-active');
+    if (toRect) toRect.classList.remove('node-active');
   });
 
   // Invisible wide hit-area for hover
@@ -1557,15 +1568,27 @@ function renderDiagram() {
     rect.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
       var connGroups = g.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
+      var peerIds = {};
       connGroups.forEach(function(cg) {
         cg.classList.add('conn-active');
         cg.parentNode.appendChild(cg);
+        var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
+        if (f && f !== n.id) peerIds[f] = true;
+        if (t && t !== n.id) peerIds[t] = true;
       });
+      Object.keys(peerIds).forEach(function(pid) {
+        var pr = g.querySelector('[data-node-id="'+pid+'"]');
+        if (pr) { pr.classList.add('node-active'); pr.parentNode.appendChild(pr); }
+      });
+      rect.classList.add('node-active');
+      rect.parentNode.appendChild(rect);
     });
     rect.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
       var connGroups = g.querySelectorAll('.conn-group.conn-active');
       connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
+      var activeNodes = g.querySelectorAll('.node-rect.node-active');
+      activeNodes.forEach(function(nr) { nr.classList.remove('node-active'); });
     });
     g.appendChild(rect);
 
