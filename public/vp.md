@@ -8,16 +8,16 @@
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| OK | Call Ingestion | chad | 100% | 22h ago | 2026-02-19 18:32:33Z |
-| OK | Transcription | chad | 100% | 22h ago | 2026-02-19 18:32:33Z |
-| OK | Segmentation | chad | 100% | 22h ago | 2026-02-19 18:32:33Z |
+| OK | Call Ingestion | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
+| OK | Transcription | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
+| OK | Segmentation | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
 | ??? | Context Assembly | chad | 0% | n/a | n/a |
-| OK | Project Attribution | chad | 100% | 22h ago | 2026-02-19 18:32:33Z |
-| OK | Knowledge Extraction | chad | 100% | 6m ago | 2026-02-20 15:58:33Z |
+| OK | Project Attribution | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
+| OK | Knowledge Extraction | chad | 100% | 12m ago | 2026-02-20 17:35:30Z |
 | ??? | Call Summarization | chad | 0% | n/a | n/a |
 | ??? | Signal Detection | chad | 0% | n/a | n/a |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
-| OK | Embedding & Search | chad | 100% | 22h ago | 2026-02-19 18:32:33Z |
+| OK | Embedding & Search | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
 
 ## Bottlenecks
 
@@ -42,6 +42,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-20T16:04:37Z
-Git SHA: f06ccbd08097565449f294eb9b9157df42558dd6
+Generated: 2026-02-20T17:50:15Z
+Git SHA: 419b642fb2ad2df091b04accbf2a641f480712b8
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-20T16:04:34Z",
-  "git_sha": "f06ccbd08097565449f294eb9b9157df42558dd6",
+  "updated_at": "2026-02-20T17:50:13Z",
+  "git_sha": "419b642fb2ad2df091b04accbf2a641f480712b8",
   "mode": "live",
   "db": {
     "applied_migrations": 493,
