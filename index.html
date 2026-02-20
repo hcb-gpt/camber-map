@@ -2454,12 +2454,16 @@ function applyViewMode(mode) {
   var layoutEls = document.querySelectorAll('.layout');
 
   if (isMobile) {
-    if (mobileView) {
-      mobileView.classList.add('active');
-      mobileView.scrollTop = 0;
+    if (mode === 'flow') {
+      // Flow: VP card view
+      if (mobileView) { mobileView.classList.add('active'); mobileView.scrollTop = 0; }
+      layoutEls.forEach(function(el) { el.classList.add('hidden-mobile'); });
+      if (typeof renderMobileView === 'function') renderMobileView();
+    } else {
+      // System/Dev: show the SVG diagram (canvas fills viewport)
+      if (mobileView) mobileView.classList.remove('active');
+      layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
     }
-    layoutEls.forEach(function(el) { el.classList.add('hidden-mobile'); });
-    if (typeof renderMobileView === 'function') renderMobileView();
   } else {
     if (mobileView) mobileView.classList.remove('active');
     layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
