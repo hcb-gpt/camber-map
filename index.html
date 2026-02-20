@@ -1465,18 +1465,21 @@ function drawConn(g, c) {
   // Bring to front on hover + highlight endpoint nodes with fill boost
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
+    var nl = grp.parentNode.parentNode.querySelector('.node-layer');
+    if (!nl) return;
     [c.from, c.to].forEach(function(nid) {
-      var r = grp.parentNode.querySelector('[data-node-id="'+nid+'"]');
+      var r = nl.querySelector('[data-node-id="'+nid+'"]');
       if (!r) return;
       r.classList.add('node-active');
       if (!r.getAttribute('data-base-fill')) r.setAttribute('data-base-fill', r.getAttribute('fill'));
       r.setAttribute('fill', r.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
-      r.parentNode.appendChild(r);
     });
   });
   grp.addEventListener('mouseleave', function() {
+    var nl = grp.parentNode.parentNode.querySelector('.node-layer');
+    if (!nl) return;
     [c.from, c.to].forEach(function(nid) {
-      var r = grp.parentNode.querySelector('[data-node-id="'+nid+'"]');
+      var r = nl.querySelector('[data-node-id="'+nid+'"]');
       if (!r) return;
       r.classList.remove('node-active');
       var base = r.getAttribute('data-base-fill');
@@ -1530,12 +1533,18 @@ function renderDiagram() {
   var visibleIds = {};
   visibleNodes.forEach(function(n) { visibleIds[n.id] = true; });
 
-  // Draw connections
+  // Two layers: connections behind, nodes in front (SVG z-order = DOM order)
+  var connLayer = createSvgEl('g', { class: 'conn-layer' });
+  var nodeLayer = createSvgEl('g', { class: 'node-layer' });
+  g.appendChild(connLayer);
+  g.appendChild(nodeLayer);
+
+  // Draw connections (into lower layer)
   var drawnEdges = {};
   connections.forEach(function(c) {
     if (!state.conns[c.type]) return;
     if (!visibleIds[c.from] || !visibleIds[c.to]) return;
-    drawConn(g, c);
+    drawConn(connLayer, c);
     drawnEdges[c.from + '→' + c.to] = true;
   });
 
@@ -1547,12 +1556,12 @@ function renderDiagram() {
       var fromNode = nodes.find(function(n) { return n.id === fe.from; });
       var toNode = nodes.find(function(n) { return n.id === fe.to; });
       if (!fromNode || !toNode) return;
-      drawConn(g, fe);
+      drawConn(connLayer, fe);
       drawnEdges[key] = true;
     });
   }
 
-  // Draw nodes
+  // Draw nodes (into upper layer — always in front of connections)
   visibleNodes.forEach(function(n) {
     var layer = LAYERS[n.layer];
     var hasComment = state.comments.some(function(c) { return c.target === n.id; });
@@ -1574,7 +1583,7 @@ function renderDiagram() {
     });
     rect.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
-      var connGroups = g.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
+      var connGroups = connLayer.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
       var peerIds = {};
       connGroups.forEach(function(cg) {
         cg.classList.add('conn-active');
@@ -1584,40 +1593,38 @@ function renderDiagram() {
         if (t && t !== n.id) peerIds[t] = true;
       });
       Object.keys(peerIds).forEach(function(pid) {
-        var pr = g.querySelector('[data-node-id="'+pid+'"]');
+        var pr = nodeLayer.querySelector('[data-node-id="'+pid+'"]');
         if (!pr) return;
         pr.classList.add('node-active');
         if (!pr.getAttribute('data-base-fill')) pr.setAttribute('data-base-fill', pr.getAttribute('fill'));
         pr.setAttribute('fill', pr.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
-        pr.parentNode.appendChild(pr);
       });
       rect.classList.add('node-active');
       if (!rect.getAttribute('data-base-fill')) rect.setAttribute('data-base-fill', rect.getAttribute('fill'));
       rect.setAttribute('fill', rect.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
-      rect.parentNode.appendChild(rect);
     });
     rect.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
-      var connGroups = g.querySelectorAll('.conn-group.conn-active');
+      var connGroups = connLayer.querySelectorAll('.conn-group.conn-active');
       connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
-      var activeNodes = g.querySelectorAll('.node-rect.node-active');
+      var activeNodes = nodeLayer.querySelectorAll('.node-rect.node-active');
       activeNodes.forEach(function(nr) {
         nr.classList.remove('node-active');
         var base = nr.getAttribute('data-base-fill');
         if (base) nr.setAttribute('fill', base);
       });
     });
-    g.appendChild(rect);
+    nodeLayer.appendChild(rect);
 
     var maxChars = Math.floor((n.w - 16) / 6.5);
     var subtitleText = n.subtitle.length > maxChars ? n.subtitle.slice(0, maxChars-2)+'..' : n.subtitle;
-    g.appendChild(createSvgEl('text', { class: 'node-title', x: n.x + 8, y: n.y + 16 }, n.label));
-    g.appendChild(createSvgEl('text', { class: 'node-sub', x: n.x + 8, y: n.y + 29 }, subtitleText));
+    nodeLayer.appendChild(createSvgEl('text', { class: 'node-title', x: n.x + 8, y: n.y + 16 }, n.label));
+    nodeLayer.appendChild(createSvgEl('text', { class: 'node-sub', x: n.x + 8, y: n.y + 29 }, subtitleText));
 
     if (hasComment) {
       var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
-      g.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
-      g.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
+      nodeLayer.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
+      nodeLayer.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
     }
   });
 
