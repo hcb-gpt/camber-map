@@ -1,8 +1,8 @@
 # Camber Map (generated)
 
-Updated: 2026-02-20T21:48:06Z
+Updated: 2026-02-20T22:40:29Z
 Mode: live
-Git: 022d00f5a04e5893426fd647bb5acbf87defd4dd
+Git: fc05e2e45778f881837ca0d877875ec1873b32d5
 
 ## Live DB facts
 - Applied migrations: 493

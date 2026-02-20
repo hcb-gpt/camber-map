@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-20T19:14:43Z",
-  "git_sha": "9a72019c18e77f4879ca77dc8c3c7a833a4168af",
+  "updated_at": "2026-02-20T21:48:09Z",
+  "git_sha": "022d00f5a04e5893426fd647bb5acbf87defd4dd",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,12 +19,12 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 24.7,
+        "hours_since_last_activity": 27.3,
         "status": "aging"
       },
       "health": {
         "status": "degraded",
-        "row_count": 1120,
+        "row_count": 1123,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
       "depends_on": []
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 24.7,
+        "hours_since_last_activity": 27.3,
         "status": "aging"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 24.7,
+        "hours_since_last_activity": 27.3,
         "status": "aging"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 24.7,
+        "hours_since_last_activity": 27.3,
         "status": "aging"
       },
       "health": {
@@ -163,13 +163,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.7,
+        "hours_since_last_activity": 2.4,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 3377,
-        "last_activity_at": "2026-02-20T17:35:30.616Z"
+        "row_count": 3380,
+        "last_activity_at": "2026-02-20T19:23:01.331Z"
       },
       "depends_on": [
         "attribution"
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 24.7,
+        "hours_since_last_activity": 27.3,
         "status": "aging"
       },
       "health": {
