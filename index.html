@@ -33,14 +33,13 @@
   .comment-meta { color: var(--text-disabled); font-size: 9px; margin-top: var(--space-050); }
   .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
-  /* ── Connection hover-to-reveal labels (System view) ── */
+  /* ── Connection hover-to-reveal labels ── */
   .conn-group { cursor: pointer; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
-  .conn-group .conn-label { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
-  .conn-group:hover .conn-label { opacity: 1; }
-  .conn-group:hover .conn-path { stroke-opacity: 0.85; stroke-width: 2.5; }
-  /* Flow view: labels always visible */
-  svg[data-view-mode="flow"] .conn-group .conn-label { opacity: 1; }
+  .conn-group .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+  .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
+  .conn-group:hover .conn-label-group { opacity: 1; transform: scale(1.5); }
+  .conn-group:hover .conn-path { stroke-opacity: 1; stroke-width: 3; }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
@@ -1462,6 +1461,11 @@ function drawConn(g, c) {
 
   var grp = createSvgEl('g', { class: 'conn-group' });
 
+  // Bring to front on hover (SVG z-order = DOM order)
+  grp.addEventListener('mouseenter', function() {
+    grp.parentNode.appendChild(grp);
+  });
+
   // Invisible wide hit-area for hover
   var hit = createSvgEl('path', { class: 'conn-hit', d: d });
   grp.appendChild(hit);
@@ -1472,10 +1476,12 @@ function drawConn(g, c) {
   grp.appendChild(path);
 
   if (c.label) {
+    var labelGrp = createSvgEl('g', { class: 'conn-label-group' });
     var pillW = c.label.length * 5 + 8;
     var pillH = 14;
-    grp.appendChild(createSvgEl('rect', { class: 'conn-label', x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
-    grp.appendChild(createSvgEl('text', { class: 'conn-label', x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', opacity: '0.8', 'dominant-baseline': 'central' }, c.label));
+    labelGrp.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
+    labelGrp.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
+    grp.appendChild(labelGrp);
   }
 
   g.appendChild(grp);
