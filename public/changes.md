@@ -3,5 +3,5 @@
 No changes detected since last build.
 
 ---
-Generated: 2026-02-20T22:40:32Z
+Generated: 2026-02-20T22:43:44Z
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
