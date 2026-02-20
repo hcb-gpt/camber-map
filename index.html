@@ -33,6 +33,15 @@
   .comment-meta { color: var(--text-disabled); font-size: 9px; margin-top: var(--space-050); }
   .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
+  /* ── Connection hover-to-reveal labels (System view) ── */
+  .conn-group { cursor: pointer; }
+  .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
+  .conn-group .conn-label { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
+  .conn-group:hover .conn-label { opacity: 1; }
+  .conn-group:hover .conn-path { stroke-opacity: 0.85; stroke-width: 2.5; }
+  /* Flow view: labels always visible */
+  svg[data-view-mode="flow"] .conn-group .conn-label { opacity: 1; }
+
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
@@ -926,12 +935,12 @@ var ROW_LABELS = [
   { text: 'CONTEXT ASSEMBLY', x: 10, y: 288 },
   { text: 'ATTRIBUTION ENGINE', x: 10, y: 378 },
   { text: 'PERCEPTION + JOURNAL HOOKS', x: 10, y: 468 },
-  { text: 'ADMIN / UTILITY', x: 10, y: 558 },
-  { text: 'ALIAS + EMBEDDING', x: 10, y: 648 },
-  { text: 'DATABASE \u2014 CORE + SPANS', x: 10, y: 748 },
-  { text: 'DATABASE \u2014 JOURNAL + CONTEXT + ALIAS', x: 10, y: 838 },
-  { text: 'RPCs + TRIGGERS', x: 10, y: 928 },
-  { text: 'DEVOPS + CI/CD', x: 10, y: 1018 },
+  { text: 'ADMIN / UTILITY', x: 10, y: 623 },
+  { text: 'ALIAS + EMBEDDING', x: 10, y: 713 },
+  { text: 'DATABASE \u2014 CORE + SPANS', x: 10, y: 813 },
+  { text: 'DATABASE \u2014 JOURNAL + CONTEXT + ALIAS', x: 10, y: 903 },
+  { text: 'RPCs + TRIGGERS', x: 10, y: 993 },
+  { text: 'DEVOPS + CI/CD', x: 10, y: 1083 },
 ];
 
 var nodes = [
@@ -1004,73 +1013,73 @@ var nodes = [
     desc: 'loop-closure (v1.0.0) resolves open action items by matching new call transcripts against a project\'s inventory of open loops. Claude 3 Haiku evaluates up to 50 open loops per project, requiring a confidence threshold of 0.75 and a specific transcript excerpt as evidence before closing any loop. The design enforces evidence-first policy: someone saying \'I will look into it\' does NOT close a loop. Accepted closures are written to journal_open_loops with the closure_evidence column populated, creating an append-only audit trail.' },
 
   // ── Row 6: Admin / Utility (y: 565) ──
-  { id: 'admin-reseed', label: 'admin-reseed',      subtitle: 'v1.8.0 · 1,718 lines',  x: 50,  y: 565, w: 165, h: 48, layer: 'pipeline',
+  { id: 'admin-reseed', label: 'admin-reseed',      subtitle: 'v1.8.0 · 1,718 lines',  x: 50,  y: 630, w: 165, h: 48, layer: 'pipeline',
     desc: 'admin-reseed (v1.8.0, 1,718 lines) is the second-largest function, responsible for re-chunking an interaction\'s spans when segmentation was wrong. Three modes: resegment_only, resegment_and_reroute (re-run full attribution), and reseed_and_close_loop (integrity guarantees — retries missing attributions, inserts fallback review rows). A key safety feature is human lock carryforward: if Chad manually corrected a span, that lock is preserved by mapping it to the positionally equivalent new span. Supports force=true for cascade deletion of all dependent data. Fails closed on any write failure.' },
-  { id: 'shadow-replay',label: 'shadow-replay',     subtitle: 'v0.1.0 · 231 lines',    x: 265, y: 565, w: 155, h: 48, layer: 'pipeline',
+  { id: 'shadow-replay',label: 'shadow-replay',     subtitle: 'v0.1.0 · 231 lines',    x: 265, y: 630, w: 155, h: 48, layer: 'pipeline',
     desc: 'shadow-replay (v0.1.0) is a lightweight A/B testing harness. Given a real interaction_id, it fetches the original transcript and metadata, wraps it in a new payload with a synthetic cll_SHADOW_<timestamp>_<rand> ID, and POSTs it to process-call as if it were a fresh call. The shadow record carries is_shadow=true and _shadow_replay_meta provenance so it can be isolated in the database. A dry_run mode previews the payload without triggering the pipeline. This is how engineers test pipeline changes against real transcripts without affecting production.' },
-  { id: 'gt-apply',     label: 'gt-apply',           subtitle: 'v1.0.0 · 359 lines',   x: 470, y: 565, w: 140, h: 48, layer: 'pipeline',
+  { id: 'gt-apply',     label: 'gt-apply',           subtitle: 'v1.0.0 · 359 lines',   x: 470, y: 630, w: 140, h: 48, layer: 'pipeline',
     desc: 'gt-apply (v1.0.0) is the batch ground-truth correction endpoint used by Claude agents on Chad\'s behalf. It accepts up to 100 corrections, resolving span references by span_id or interaction_id+span_index. Each correction calls the apply_gt_correction RPC, which writes attribution_lock=human to span_attributions and appends an override_log audit row. The database-level monotonic lock trigger prevents any correction from ever being downgraded. Returns per-item results with HTTP 207 on partial failures.' },
-  { id: 'morning-digest',label:'morning-digest',    subtitle: 'v1.2.0 · 376 lines',    x: 660, y: 565, w: 165, h: 48, layer: 'pipeline',
+  { id: 'morning-digest',label:'morning-digest',    subtitle: 'v1.2.0 · 376 lines',    x: 660, y: 630, w: 165, h: 48, layer: 'pipeline',
     desc: 'morning-digest (v1.2.0) is a read-only daily status report that never writes to the database. It assembles five sections: top striking signals by project, open journal loops by project, review queue pressure (pending count + oldest items), recent journal claims (last 24h by type and project), and pipeline health metrics (calls ingested, spans created, summary generation rate, journal run status). Joins across 11 tables to give the operator a one-glance view of both business intelligence and pipeline health.' },
 
   // ── Row 7: Alias + Embedding (y: 655) ──
-  { id: 'alias-scout',  label: 'alias-scout',       subtitle: 'v1.0.0 · 882 lines',    x: 50,  y: 655, w: 150, h: 48, layer: 'pipeline',
+  { id: 'alias-scout',  label: 'alias-scout',       subtitle: 'v1.0.0 · 882 lines',    x: 50,  y: 720, w: 150, h: 48, layer: 'pipeline',
     desc: 'alias-scout (v1.0.0) is the automated alias discovery job. Three strategies: (A) finds active projects with zero aliases and generates name-stem + street-name candidates from metadata, (B) enriches projects with only auto-generated aliases by combining client name and street, and (C) mines the last 30 days of attributed transcripts for capitalized terms (4+ chars) appearing in 3+ distinct transcripts for the same project. New candidates are deduplicated against existing aliases and pending suggestions before insertion. Supports dry_run mode.' },
-  { id: 'alias-review', label: 'alias-review',      subtitle: 'v1.0.0 · 560 lines',    x: 245, y: 655, w: 145, h: 48, layer: 'pipeline',
+  { id: 'alias-review', label: 'alias-review',      subtitle: 'v1.0.0 · 560 lines',    x: 245, y: 720, w: 145, h: 48, layer: 'pipeline',
     desc: 'alias-review (v1.0.0) is the approval interface for alias candidates surfaced by alias-scout. GET returns pending suggestions enriched with collision detection — for each candidate, it queries v_project_alias_lookup to find conflicts with other projects. POST processes approve/reject in batches up to 100: approval promotes via the promote_alias RPC (falling back to direct INSERT), rejection updates status. Designed for Claude agents acting on Chad\'s behalf.' },
-  { id: 'alias-hygiene',label: 'alias-hygiene',     subtitle: 'v1.0.0 · 442 lines',    x: 435, y: 655, w: 155, h: 48, layer: 'pipeline',
+  { id: 'alias-hygiene',label: 'alias-hygiene',     subtitle: 'v1.0.0 · 442 lines',    x: 435, y: 720, w: 155, h: 48, layer: 'pipeline',
     desc: 'alias-hygiene (v1.0.0) runs three cleanup operations: (1) retires aliases for closed/inactive projects by setting active=false via RPC, (2) expires stale pending suggestions older than 30 days, and (3) scans v_project_alias_lookup for cross-project alias collisions where the same string maps to multiple active projects. Returns a collision report for human attention. Supports dry_run mode. Designed to run as a periodic cron task to keep alias data trustworthy.' },
-  { id: 'embed-facts',  label: 'embed-facts',       subtitle: 'v1.0.0 · 264 lines',    x: 635, y: 655, w: 145, h: 48, layer: 'pipeline',
+  { id: 'embed-facts',  label: 'embed-facts',       subtitle: 'v1.0.0 · 264 lines',    x: 635, y: 720, w: 145, h: 48, layer: 'pipeline',
     desc: 'embed-facts (v1.0.0) generates vector embeddings for project_facts using OpenAI text-embedding-3-small (1536 dimensions). Backfill mode processes up to 500 unembedded rows per invocation; single mode embeds a specific fact by ID. Facts are composed as fact_kind + JSON payload text, batched in groups of 10 with 100ms inter-batch delays for rate limiting, and validated for exactly 1536 dimensions before writing. Powers the semantic retrieval path in context-assembly via the pgvector cosine distance operator.' },
-  { id: 'journal-embed',label: 'journal-embed-backfill', subtitle: 'v1.0.0 · 406 lines', x: 825, y: 655, w: 200, h: 48, layer: 'pipeline',
+  { id: 'journal-embed',label: 'journal-embed-backfill', subtitle: 'v1.0.0 · 406 lines', x: 825, y: 720, w: 200, h: 48, layer: 'pipeline',
     desc: 'journal-embed-backfill (v1.0.0) backfills vector embeddings on journal_claims for semantic search. For each eligible claim, it builds a structured search_text by concatenating claim_type, epistemic_status, testimony_type, speaker_label, and claim_text (capped at 1400 chars). Calls OpenAI text-embedding-3-small in configurable batches (default 20, max 50). Accepts optional project_id and call_id filters for targeted backfills, and a force flag to re-embed existing embeddings when switching model versions.' },
 
   // ── Row 8: Database \u2014 Core + Spans (y: 755) ──
-  { id: 'db-core',      label: 'Core Tables',        subtitle: 'interactions · calls_raw · contacts · projects', x: 50, y: 755, w: 280, h: 48, layer: 'data',
+  { id: 'db-core',      label: 'Core Tables',        subtitle: 'interactions · calls_raw · contacts · projects', x: 50, y: 820, w: 280, h: 48, layer: 'data',
     desc: 'The four core tables form the foundational data layer. interactions is the canonical call record holding identity fields, timing, AI-generated summaries, and scheduler metadata — it is the linchpin that conversation_spans, journal_claims, and review_queue all reference. calls_raw is the raw archive of every webhook payload with full transcript text, raw JSON snapshot, and recording URL. contacts maps phone numbers to people (clients, subcontractors, vendors, staff). projects is the master list of construction projects with name, status, address, and aliases — the attribution target the entire pipeline routes calls toward.' },
-  { id: 'db-spans',     label: 'Span Tables',        subtitle: 'conversation_spans · span_attributions', x: 375, y: 755, w: 250, h: 48, layer: 'data',
+  { id: 'db-spans',     label: 'Span Tables',        subtitle: 'conversation_spans · span_attributions', x: 375, y: 820, w: 250, h: 48, layer: 'data',
     desc: 'The two span tables are the single source of truth (SSOT) for all AI routing output. conversation_spans holds one row per logical segment with character offsets, transcript text, segmenter version, and a generation counter for reseed history; a unique constraint on (interaction_id, span_index) WHERE NOT is_superseded enforces clean generational history. span_attributions holds the routing decision: which project, at what confidence, the decision type, attribution_lock (human/AI/null), and full provenance. The monotonic lock trigger prevents any write from downgrading human to AI, making human corrections permanently authoritative.' },
-  { id: 'db-review',    label: 'Review / Override',   subtitle: 'review_queue · override_log · event_audit', x: 670, y: 755, w: 250, h: 48, layer: 'data',
+  { id: 'db-review',    label: 'Review / Override',   subtitle: 'review_queue · override_log · event_audit', x: 670, y: 820, w: 250, h: 48, layer: 'data',
     desc: 'Three tables form the human oversight and audit layer. review_queue holds spans where the AI declined to guess — with reason codes, context payload, and lifecycle status (pending/resolved/dismissed). override_log is the append-only audit trail for every human correction, capturing before/after values, requester, idempotency key, and an effects_receipt JSON blob. event_audit records pipeline stage tracing (function, status, duration, errors) functioning as a pre-pipeline firewall log.' },
-  { id: 'db-pipeline-aux', label: 'Pipeline Auxiliary', subtitle: 'idempotency · event_audit · striking · chains', x: 965, y: 755, w: 270, h: 48, layer: 'data',
+  { id: 'db-pipeline-aux', label: 'Pipeline Auxiliary', subtitle: 'idempotency · event_audit · striking · chains', x: 965, y: 820, w: 270, h: 48, layer: 'data',
     desc: 'Four tables support pipeline reliability and evaluation. idempotency_keys prevents duplicate processing via atomic upsert returning is_duplicate. striking_signals stores per-span perception scores (0-1) with typed signal arrays and a unique index on span_id+model_id+prompt_version. transcripts_comparison holds multi-engine transcript variants for systematic quality comparison across Deepgram, Whisper, and other engines. call_chains links related interactions from the same contact for multi-call reasoning.' },
 
   // ── Row 9: Database \u2014 Journal + Context + Alias (y: 845) ──
-  { id: 'db-journal',   label: 'Journal Tables',     subtitle: 'claims · runs · loops · conflicts', x: 50, y: 845, w: 260, h: 48, layer: 'data',
+  { id: 'db-journal',   label: 'Journal Tables',     subtitle: 'claims · runs · loops · conflicts', x: 50, y: 910, w: 260, h: 48, layer: 'data',
     desc: 'The journal tables store extracted call intelligence. journal_claims holds one row per factual assertion with claim type (10 types), epistemic metadata, speaker attribution, and a dedup unique index on (call_id, claim_type, claim_text, project_id). journal_runs audits each extraction invocation. journal_open_loops tracks unresolved items (questions, blockers, follow-ups) grouped by project and surfaced in morning-digest. journal_claim_conflicts records contradicting claim pairs with a resolved flag for triage.' },
-  { id: 'db-context',   label: 'Context Tables',     subtitle: 'fanout · affinity · geo · email cache', x: 355, y: 845, w: 260, h: 48, layer: 'data',
+  { id: 'db-context',   label: 'Context Tables',     subtitle: 'fanout · affinity · geo · email cache', x: 355, y: 910, w: 260, h: 48, layer: 'data',
     desc: 'Pre-computed signals feeding context-assembly. contact_fanout classifies contacts by project count (anchored=1, semi_anchored=2, drifter=3-4, floater=5+). correspondent_project_affinity stores learned weights per contact-project pairing from interaction history. project_contacts holds explicit CRM assignments (subcontractor, homeowner, vendor links). The geo tables (project_geo, geo_places) provide proximity signals but geo alone can never justify auto-assign. gmail_context_cache stores bounded email thread summaries with a 1-hour TTL.' },
-  { id: 'db-alias',     label: 'Alias System',       subtitle: 'aliases · suggestions · v_alias_lookup', x: 660, y: 845, w: 265, h: 48, layer: 'data',
+  { id: 'db-alias',     label: 'Alias System',       subtitle: 'aliases · suggestions · v_alias_lookup', x: 660, y: 910, w: 265, h: 48, layer: 'data',
     desc: 'Three objects form the alias system. project_aliases links projects to spoken-word aliases (street_name, client_name, name_stem, transcript_mined types) with an active boolean for soft-deletes; a trigger auto-generates street-name aliases when a project address is set. suggested_aliases is the review queue for candidates from alias-scout. v_project_alias_lookup is the unified view used at query time — it unions the aliases table with legacy projects.aliases[], filters to active client projects, and excludes blocklisted terms.' },
-  { id: 'world-model',  label: 'World Model',        subtitle: 'project_facts + embeddings',  x: 970, y: 845, w: 170, h: 48, layer: 'data',
+  { id: 'world-model',  label: 'World Model',        subtitle: 'project_facts + embeddings',  x: 970, y: 910, w: 170, h: 48, layer: 'data',
     desc: 'The world model stores durable, timestamped facts about projects with two temporal fields: as_of_at (when the fact was true) and observed_at (when it was recorded), enabling AS_OF retrieval so context-assembly can pull facts known at the time of a call. Each fact has a flexible fact_payload JSONB blob typed by fact_kind, plus provenance pointers to the source span and interaction. embed-facts adds a 1536-dimension vector embedding, enabling cosine-similarity retrieval in context-assembly via the pgvector operator.' },
-  { id: 'storage',      label: 'Supabase Storage',   subtitle: 'audio files + assets',       x: 1185, y: 845, w: 155, h: 48, layer: 'data',
+  { id: 'storage',      label: 'Supabase Storage',   subtitle: 'audio files + assets',       x: 1185, y: 910, w: 155, h: 48, layer: 'data',
     desc: 'Audio file storage relies on external URLs rather than native Supabase Storage buckets. Call recordings arrive from OpenPhone (via Zapier) as recording_url fields in the webhook payload, stored directly in calls_raw. The transcribe-deepgram function fetches audio at runtime by making an HTTP GET to that URL and streaming it to the Deepgram API — the audio never lands in a Supabase bucket. This means the system depends on the telephony provider URL stability.' },
 
   // ── Row 10: RPCs + Triggers (y: 935) ──
-  { id: 'rpc-resolve',  label: 'resolve_review_item', subtitle: 'RPC · single-txn',    x: 50,  y: 935, w: 190, h: 42, layer: 'module',
+  { id: 'rpc-resolve',  label: 'resolve_review_item', subtitle: 'RPC · single-txn',    x: 50,  y: 1000, w: 190, h: 42, layer: 'module',
     desc: 'resolve_review_item is the atomic single-transaction RPC for human review decisions. It row-locks the review_queue item, checks for human-lock conflicts, writes an idempotency-keyed audit row to override_log, updates span_attributions with applied_project_id and attribution_lock=human, marks the review resolved, and cascades project_id to null-project scheduler_items and journal_claims. Already-resolved items return was_already_resolved=true rather than failing. Runs as SECURITY DEFINER guaranteeing all-or-nothing semantics.' },
-  { id: 'rpc-gt',       label: 'apply_gt_correction', subtitle: 'RPC · monotonic',     x: 290, y: 935, w: 190, h: 42, layer: 'module',
+  { id: 'rpc-gt',       label: 'apply_gt_correction', subtitle: 'RPC · monotonic',     x: 290, y: 1000, w: 190, h: 42, layer: 'module',
     desc: 'apply_gt_correction applies a single ground-truth correction to span_attributions. Called by gt-apply for each correction in a batch, it writes applied_project_id and attribution_lock=human, and appends an override_log audit entry. The database-level enforce_lock_monotonic trigger fires on any lock change, rejecting attempts to move from human (level 3) to AI (level 2) or null (level 0) — making human corrections permanently authoritative regardless of subsequent pipeline reruns.' },
-  { id: 'rpc-journal',  label: 'insert_journal_claims_dedup', subtitle: 'RPC · dedup', x: 530, y: 935, w: 230, h: 42, layer: 'module',
+  { id: 'rpc-journal',  label: 'insert_journal_claims_dedup', subtitle: 'RPC · dedup', x: 530, y: 1000, w: 230, h: 42, layer: 'module',
     desc: 'insert_journal_claims_dedup is the idempotent batch writer for journal claims. It uses INSERT ... ON CONFLICT DO NOTHING keyed on a partial unique index (call_id, claim_type, claim_text, project_id) WHERE active=true, preventing duplicate claims from accumulating on retries or reseeds. Also includes resolve_speaker_contact which maps speaker labels from transcripts to contact records. Returns the count of newly inserted rows so the caller knows whether new information was added.' },
-  { id: 'rpc-contact',  label: 'Contact RPCs',       subtitle: 'lookup · scan · expand', x: 810, y: 935, w: 175, h: 42, layer: 'module',
+  { id: 'rpc-contact',  label: 'Contact RPCs',       subtitle: 'lookup · scan · expand', x: 810, y: 1000, w: 175, h: 42, layer: 'module',
     desc: 'Three RPCs provide transcript-time lookups for process-call. lookup_contact_by_phone normalizes digits and tries three match strategies: exact, secondary phone, and last-10-digit suffix match for international formats. scan_transcript_for_projects tokenizes the transcript into 4+ character words and calls find_fuzzy_alias_matches (pg_trgm similarity, threshold 0.35) for each. expand_candidates_from_mentions finds contact first names mentioned in the transcript and uses their affinity weights to boost associated projects.' },
-  { id: 'trigger-lock', label: 'Monotonic Lock Trigger', subtitle: 'enforce_lock_monotonic', x: 1035, y: 935, w: 200, h: 42, layer: 'module',
+  { id: 'trigger-lock', label: 'Monotonic Lock Trigger', subtitle: 'enforce_lock_monotonic', x: 1035, y: 1000, w: 200, h: 42, layer: 'module',
     desc: 'enforce_lock_monotonic is the PostgreSQL trigger enforcing Stopline 2: truth promotion is monotonic — human overrides AI; AI must never override human. It fires BEFORE UPDATE on span_attributions when attribution_lock changes, comparing old and new values against a priority map (human=3, AI=2, null=0). If the new level is lower than the old, it raises a Postgres EXCEPTION aborting the transaction. This means no edge function, RPC, or direct SQL can silently downgrade a human correction.' },
 
   // ── Row 11: DevOps + CI/CD (y: 1025) ──
-  { id: 'gh-actions',   label: 'GitHub Actions',     subtitle: '.github/workflows/',          x: 50,  y: 1025, w: 160, h: 42, layer: 'devops',
+  { id: 'gh-actions',   label: 'GitHub Actions',     subtitle: '.github/workflows/',          x: 50,  y: 1090, w: 160, h: 42, layer: 'devops',
     desc: 'Four GitHub Actions workflows. deploy-edge-functions.yml auto-deploys all functions on push to main using Supabase CLI v2.76.8 (pinned to avoid deno.lock incompatibilities) with parallel matrix jobs and endpoint verification. deno-ci.yml enforces fmt + lint on PRs, runs a live pipeline replay proof-pack, and executes invariant gate checks. secret-scan.yml scans diffs for credentials. camber-preflight.yml validates auth patterns (no hardcoded URLs, proper dual-header internal calls).' },
-  { id: 'tests',        label: 'Tests',              subtitle: '15+ *_test.ts + fixtures',    x: 250, y: 1025, w: 170, h: 42, layer: 'devops',
+  { id: 'tests',        label: 'Tests',              subtitle: '15+ *_test.ts + fixtures',    x: 250, y: 1090, w: 170, h: 42, layer: 'devops',
     desc: 'Testing is primarily shell-script-based rather than unit-test-based, reflecting the integration-heavy nature of edge function pipelines. edge-smoke-test.sh is the post-deploy suite (auth gate + auth pass for all 13 functions). invariant_gates.sh checks four DB invariants. proof_pack.sh and replay_call.sh replay known-good interactions. segmentation_regression_check.sh tests specific problematic transcripts. gt_rerun_proof_harness.sh verifies ground-truth corrections survive reseed cycles.' },
-  { id: 'smoke-test',   label: 'edge-smoke-test.sh', subtitle: 'auth gate + pass test',      x: 460, y: 1025, w: 180, h: 42, layer: 'devops',
+  { id: 'smoke-test',   label: 'edge-smoke-test.sh', subtitle: 'auth gate + pass test',      x: 460, y: 1090, w: 180, h: 42, layer: 'devops',
     desc: 'edge-smoke-test.sh runs two checks per function across all 13 pipeline endpoints: an auth gate test (no credentials, expect 401/403) and an auth pass test (with X-Edge-Secret, expect 200/400/403/404 — any proving auth worked since the smoke payload uses invalid IDs). Results are color-coded pass/fail/warn, and the script exits 1 on any hard failure. It also serves as the live registry of all pipeline function names and their expected auth behaviors. Can target a single function or test all at once.' },
-  { id: 'claim-guard',  label: 'Claim Guard',        subtitle: 'claim_guard.sh + write scripts', x: 680, y: 1025, w: 195, h: 42, layer: 'devops',
+  { id: 'claim-guard',  label: 'Claim Guard',        subtitle: 'claim_guard.sh + write scripts', x: 680, y: 1090, w: 195, h: 42, layer: 'devops',
     desc: 'claim_guard.sh is the shared preflight library for all write-mode scripts. require_claim_context enforces that ORIGIN_SESSION (e.g., dev-3) and CLAIM_RECEIPT (must start with claim__) are set before any DB writes — missing either prints example export commands and exits with code 2. write_claim_artifact saves a timestamped claim_context.txt capturing session owner, receipt, ETA, lease, and claimed resource. This implements Charter section 11 collision-prevention at the script level.' },
-  { id: 'cc-scripts',   label: 'Pipeline Scripts',   subtitle: '50+ scripts/ (Python+Bash)',  x: 915, y: 1025, w: 175, h: 42, layer: 'devops',
+  { id: 'cc-scripts',   label: 'Pipeline Scripts',   subtitle: '50+ scripts/ (Python+Bash)',  x: 915, y: 1090, w: 175, h: 42, layer: 'devops',
     desc: 'Over 50 operational and evaluation scripts spanning the pipeline lifecycle. Key categories: replay/backfill (replay_call.sh, shadow_batch_replay.sh, admin_reseed_batch_backfill.py), ground-truth evaluation (gt_batch_runner.sh, gt_pick_fresh_review_items_v1.sh, gt_rerun_proof_harness.sh), invariant/proof scripts (invariant_gates.sh, proof_pack.sh), migration management (migration_apply_guarded.sh, migration_drift_snapshot.sh), and regression harnesses (segmentation_regression_check.sh, temporal_backtest_harness.sh). All write-mode scripts require claim_guard.sh preflight.' },
-  { id: 'migrations',   label: 'Migrations',         subtitle: '498 SQL (Dec 2025 \u2013 Feb 2026)', x: 1130, y: 1025, w: 195, h: 42, layer: 'devops',
+  { id: 'migrations',   label: 'Migrations',         subtitle: '498 SQL (Dec 2025 \u2013 Feb 2026)', x: 1130, y: 1090, w: 195, h: 42, layer: 'devops',
     desc: '498 SQL migration files (Dec 2025 - Feb 2026) managing the full schema evolution. December established core tables (interactions, contacts, projects, calls_raw). January built out journal tables, review_queue, override_log, fuzzy alias functions, and the affinity system. Late January/early February added conversation_spans, span_attributions, the enforce_lock_monotonic trigger, and close-loop machinery. February 2026 added the alias system, world model with vector embeddings, contact_fanout, and ground-truth RPCs.' },
 ];
 
@@ -1451,16 +1460,25 @@ function drawConn(g, c) {
     d = 'M'+x1+','+y1+' C'+x1+','+(y1+cp)+' '+x2+','+(y2-cp)+' '+x2+','+y2;
   }
 
-  var path = createSvgEl('path', { d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.55', 'marker-end': 'url(#'+ct.marker+')' });
+  var grp = createSvgEl('g', { class: 'conn-group' });
+
+  // Invisible wide hit-area for hover
+  var hit = createSvgEl('path', { class: 'conn-hit', d: d });
+  grp.appendChild(hit);
+
+  // Visible connection path
+  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.55', 'marker-end': 'url(#'+ct.marker+')' });
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
-  g.appendChild(path);
+  grp.appendChild(path);
 
   if (c.label) {
     var pillW = c.label.length * 5 + 8;
     var pillH = 14;
-    g.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
-    g.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', opacity: '0.8', 'dominant-baseline': 'central' }, c.label));
+    grp.appendChild(createSvgEl('rect', { class: 'conn-label', x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
+    grp.appendChild(createSvgEl('text', { class: 'conn-label', x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', opacity: '0.8', 'dominant-baseline': 'central' }, c.label));
   }
+
+  g.appendChild(grp);
 }
 
 function renderDiagram() {
@@ -2627,6 +2645,8 @@ function closeMobileSheet() {
 // ── VIEW MODE SWITCHING ───────────────────────────
 function applyViewMode(mode) {
   state.viewMode = mode;
+  var svg = document.getElementById('diagram');
+  if (svg) svg.setAttribute('data-view-mode', mode);
   var vm = VIEW_MODES[mode];
 
   if (vm.preset) {
