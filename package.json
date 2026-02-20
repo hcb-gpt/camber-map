@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "generate:live": "node scripts/generate_live_map.mjs",
-    "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs"
+    "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs",
+    "audit:flow": "node scripts/audit_flow_edges.mjs"
   },
   "dependencies": {
     "pg": "^8.12.0"
