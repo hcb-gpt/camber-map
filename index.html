@@ -912,11 +912,11 @@ try {
 
 // ── DATA ──────────────────────────────────────────────
 var LAYERS = {
-  external:  { label: 'External Services', color: 'rgba(37,99,235,0.08)', dot: '#2563EB', stroke: '#2563EB' },
-  pipeline:  { label: 'Pipeline (Edge Functions)', color: 'rgba(5,150,105,0.08)', dot: '#059669', stroke: '#059669' },
-  module:    { label: 'Sub-modules & RPCs', color: 'rgba(124,58,237,0.08)', dot: '#7C3AED', stroke: '#7C3AED' },
-  data:      { label: 'Data Layer', color: 'rgba(217,119,6,0.08)', dot: '#D97706', stroke: '#D97706' },
-  devops:    { label: 'DevOps / Tooling', color: 'rgba(180,83,9,0.08)', dot: '#B45309', stroke: '#B45309' },
+  external:  { label: 'External Services', color: '#F3F5FB', colorActive: '#E7ECFA', dot: '#2563EB', stroke: '#2563EB' },
+  pipeline:  { label: 'Pipeline (Edge Functions)', color: '#F2FAF7', colorActive: '#E2F5EE', dot: '#059669', stroke: '#059669' },
+  module:    { label: 'Sub-modules & RPCs', color: '#F6F3FC', colorActive: '#EDE6FA', dot: '#7C3AED', stroke: '#7C3AED' },
+  data:      { label: 'Data Layer', color: '#FDF6EE', colorActive: '#FAEDDD', dot: '#D97706', stroke: '#D97706' },
+  devops:    { label: 'DevOps / Tooling', color: '#FBF4ED', colorActive: '#F7EADB', dot: '#B45309', stroke: '#B45309' },
 };
 
 var CONN_TYPES = {
@@ -1471,8 +1471,7 @@ function drawConn(g, c) {
       var r = nl.querySelector('[data-node-id="'+nid+'"]');
       if (!r) return;
       r.classList.add('node-active');
-      if (!r.getAttribute('data-base-fill')) r.setAttribute('data-base-fill', r.getAttribute('fill'));
-      r.setAttribute('fill', r.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
+      r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
     });
   });
   grp.addEventListener('mouseleave', function() {
@@ -1482,8 +1481,7 @@ function drawConn(g, c) {
       var r = nl.querySelector('[data-node-id="'+nid+'"]');
       if (!r) return;
       r.classList.remove('node-active');
-      var base = r.getAttribute('data-base-fill');
-      if (base) r.setAttribute('fill', base);
+      r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
     });
   });
 
@@ -1570,6 +1568,8 @@ function renderDiagram() {
     var rect = createSvgEl('rect', {
       class: 'node-rect' + (hasComment ? ' commented' : ''),
       'data-node-id': n.id,
+      'data-base-fill': layer.color,
+      'data-active-fill': layer.colorActive,
       x: n.x, y: n.y, width: n.w, height: n.h,
       fill: layer.color,
       stroke: hasComment ? '#D97706' : (isSearchMatch ? '#22d3ee' : layer.stroke),
@@ -1596,12 +1596,10 @@ function renderDiagram() {
         var pr = nodeLayer.querySelector('[data-node-id="'+pid+'"]');
         if (!pr) return;
         pr.classList.add('node-active');
-        if (!pr.getAttribute('data-base-fill')) pr.setAttribute('data-base-fill', pr.getAttribute('fill'));
-        pr.setAttribute('fill', pr.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
+        pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
       });
       rect.classList.add('node-active');
-      if (!rect.getAttribute('data-base-fill')) rect.setAttribute('data-base-fill', rect.getAttribute('fill'));
-      rect.setAttribute('fill', rect.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
+      rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
     });
     rect.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
@@ -1610,8 +1608,7 @@ function renderDiagram() {
       var activeNodes = nodeLayer.querySelectorAll('.node-rect.node-active');
       activeNodes.forEach(function(nr) {
         nr.classList.remove('node-active');
-        var base = nr.getAttribute('data-base-fill');
-        if (base) nr.setAttribute('fill', base);
+        nr.setAttribute('fill', nr.getAttribute('data-base-fill') || nr.getAttribute('fill'));
       });
     });
     nodeLayer.appendChild(rect);
