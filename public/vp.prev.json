@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-20T05:28:36Z",
-  "git_sha": "3bb4109f794f441fd709a158a7711f11805adfc1",
+  "updated_at": "2026-02-20T06:10:48Z",
+  "git_sha": "4d51153b3499668420c9bae78838449ced476e45",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.9,
+        "hours_since_last_activity": 11.6,
         "status": "fresh"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.9,
+        "hours_since_last_activity": 11.6,
         "status": "fresh"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.9,
+        "hours_since_last_activity": 11.6,
         "status": "fresh"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.9,
+        "hours_since_last_activity": 11.6,
         "status": "fresh"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.6,
+        "hours_since_last_activity": 7.3,
         "status": "fresh"
       },
       "health": {
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.9,
+        "hours_since_last_activity": 11.6,
         "status": "fresh"
       },
       "health": {
