@@ -34,7 +34,7 @@
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
-  .node-title { font-family: system-ui; font-size: 12px; font-weight: 600; fill: #1e293b; pointer-events: none; }
+  .node-title { font-family: system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
   .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: var(--text-disabled); pointer-events: none; }
   .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: var(--text-secondary); white-space: pre-wrap; line-height: 1.6; }
   .prompt-strong { color: var(--interactive-primary); font-weight: 600; }
@@ -70,7 +70,7 @@
   .row-label { font-family: system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 13px; margin-bottom: var(--space-300); }
   .search-box::placeholder { color: var(--text-disabled); }
-  .stat-bar { font-size: 11px; font-weight: 400; color: var(--text-tertiary); margin: -4px 0 10px; line-height: 1.5; }
+  .stat-bar { font-size: 11px; font-weight: 400; color: var(--text-tertiary); margin: 0 0 var(--space-300); line-height: 1.5; }
 
   /* ── Touch interaction fixes ── */
   button, .preset-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
@@ -399,11 +399,11 @@
       display: flex;
       width: 44px;
       height: 44px;
-      top: calc(12px + env(safe-area-inset-top, 0px));
-      left: calc(12px + env(safe-area-inset-left, 0px));
-      background: var(--surface-hover);
-      border-color: var(--interactive-primary);
-      box-shadow: var(--shadow-200);
+      top: calc(10px + var(--safe-t, 0px));
+      left: calc(10px + var(--safe-l, 0px));
+      background: var(--surface-base);
+      border: 1px solid var(--border-default);
+      box-shadow: var(--shadow-100);
     }
     .layout {
       grid-template-columns: 1fr;
@@ -444,7 +444,7 @@
       border-left: none;
     }
     .chat-header {
-      padding: 14px 16px;
+      padding: var(--space-300) var(--space-400);
       min-height: 52px;
     }
     .chat-header-btn {
@@ -456,30 +456,30 @@
       justify-content: center;
     }
     .chat-messages {
-      padding: 12px;
+      padding: var(--space-300);
       -webkit-overflow-scrolling: touch;
     }
     .chat-msg {
       max-width: 90%;
-      font-size: 14px;
-      padding: 12px 16px;
+      font-size: var(--font-size-100);
+      padding: var(--space-300) var(--space-400);
     }
     .chat-input-area {
-      padding: 10px 12px;
-      padding-bottom: max(10px, env(safe-area-inset-bottom));
-      gap: 10px;
+      padding: var(--space-300);
+      padding-bottom: max(var(--space-300), env(safe-area-inset-bottom));
+      gap: var(--space-200);
     }
     .chat-input {
       font-size: 16px;
       min-height: 44px;
-      padding: 10px 14px;
+      padding: var(--space-300) var(--space-400);
     }
     .chat-send {
       min-width: 44px;
       min-height: 44px;
-      font-size: 14px;
-      padding: 10px 18px;
-      border-radius: 10px;
+      font-size: var(--font-size-100);
+      padding: var(--space-300) var(--space-500);
+      border-radius: var(--radius-200);
     }
     .chat-settings {
       width: calc(100vw - 32px);
@@ -567,11 +567,11 @@
     }
     .comment-item { font-size: 10px; }
     .search-box {
-      font-size: 12px;
-      padding: 8px 10px;
+      font-size: var(--font-size-75);
+      padding: var(--space-200) var(--space-300);
       min-height: 44px;
     }
-    .stat-bar { font-size: 9px; }
+    .stat-bar { font-size: 10px; }
     .modal textarea { font-size: 14px; }
     .modal-btns button {
       padding: 10px 16px;
@@ -608,7 +608,7 @@
   #mobile-view {
     display: none; flex-direction: column; height: 100dvh;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: calc(var(--space-300) + var(--safe-t, 0px)) var(--space-card-padding) calc(80px + var(--safe-b, 0px));
+    padding: calc(64px + var(--safe-t, 0px)) var(--space-card-padding) calc(80px + var(--safe-b, 0px));
     background: var(--surface-base);
   }
   #mobile-view.active { display: flex; }
@@ -664,7 +664,7 @@
     display: flex; align-items: center; justify-content: space-between; gap: var(--space-200); margin-bottom: var(--space-100);
   }
   .stage-num {
-    font-size: 10.5px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.08em;
+    font-size: 11px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.08em;
     text-transform: uppercase; flex-shrink: 0;
   }
   .stage-label { font-size: 15px; font-weight: 700; color: var(--text-primary); flex: 1; }
@@ -729,27 +729,28 @@
     .mode-toggle.mobile-only {
       display: flex;
       position: fixed;
-      top: 8px;
+      top: calc(10px + var(--safe-t, 0px));
       left: 56px;
       right: 16px;
       z-index: 40;
+      box-shadow: var(--shadow-100);
     }
     .preset-btn { min-height: 44px; padding: 10px; margin-bottom: var(--space-200); }
-    .search-box { min-height: 44px; font-size: var(--font-size-100); padding: var(--space-300); }
+    .search-box { min-height: 44px; font-size: var(--font-size-100); padding: var(--space-200) var(--space-300); }
   }
 
 
   /* ── Product-designer copy + mobile explorer ───────────────────── */
-  #zoom-section { margin-top: 10px; margin-bottom: var(--space-300); }
-  #zoom-section h3 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin: 10px 0 6px; }
-  .zoom-row { display: flex; gap: 8px; }
+  #zoom-section { margin-top: var(--space-300); margin-bottom: var(--space-300); }
+  #zoom-section h3 { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); margin: var(--space-300) 0 var(--space-150); }
+  .zoom-row { display: flex; gap: var(--space-200); }
   .small-btn { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border-default); color: var(--text-secondary); padding: var(--space-100) var(--space-200); border-radius: var(--radius-200); font-size: 12px; font-weight: 500; min-height: 36px; display: flex; align-items: center; justify-content: center; }
   .small-btn:active { transform: translateY(1px); }
 
   /* Mobile explorer (System / Details) */
-  #mobile-explorer { display: none; height: calc(100dvh - 84px); overflow: auto; padding: 10px 12px calc(110px + var(--safe-b, 0px)); }
+  #mobile-explorer { display: none; height: calc(100dvh - 64px - var(--safe-t, 0px)); overflow: auto; padding: 0 var(--space-300) calc(80px + var(--safe-b, 0px)); }
   #mobile-explorer.active { display: block; }
-  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); padding: var(--space-200) 0 var(--space-300); }
+  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(246,247,249,.94); backdrop-filter: blur(10px); padding: var(--space-300) 0 var(--space-300); }
   .mobile-search { width: 100%; padding: var(--space-300) var(--space-300); border-radius: var(--radius-300); border: 1px solid var(--border-default); background: var(--surface-base); color: var(--text-primary); font-size: var(--font-size-100); min-height: 44px; }
   .mx-section { margin-top: var(--space-400); }
   .mx-section-title { font-size: var(--font-size-75); letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin: var(--space-300) 0 var(--space-200); display: flex; justify-content: space-between; align-items: baseline; }
@@ -779,7 +780,7 @@
   .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: var(--surface-raised); border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid var(--border-default); box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); }
   .mobile-sheet.open { bottom: 0; }
   .mobile-sheet.expanded { height: 85dvh; bottom: 0; }
-  .mobile-sheet-handle { width: 64px; height: 5px; border-radius: 999px; background: var(--text-disabled); margin: var(--space-200) auto var(--space-100); cursor: grab; box-shadow: 0 0 6px rgba(107,114,128,.35); }
+  .mobile-sheet-handle { width: 64px; height: 5px; border-radius: 999px; background: var(--border-default); margin: var(--space-200) auto var(--space-100); cursor: grab; }
   .mobile-sheet-header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-300) var(--space-400) var(--space-150); border-bottom: 1px solid var(--border-default); }
   .mobile-sheet-title { font-weight: 700; font-size: var(--font-size-200); }
   .mobile-sheet-close { background: transparent; border: 0; color: var(--text-primary); font-size: 18px; padding: var(--space-200); min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
@@ -937,7 +938,7 @@
       Ask questions about the Camber architecture.
     </div>
     <div class="chat-empty-state" id="chat-empty-state">
-      <div class="chat-empty-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="16" r="3" stroke="#8899AA" stroke-width="1.5"/><circle cx="24" cy="16" r="3" stroke="#8899AA" stroke-width="1.5"/><line x1="11" y1="16" x2="21" y2="16" stroke="#8899AA" stroke-width="1.5"/><circle cx="16" cy="8" r="2" stroke="#556677" stroke-width="1"/><line x1="16" y1="10" x2="16" y2="14" stroke="#556677" stroke-width="1"/></svg></div>
+      <div class="chat-empty-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="16" r="3" stroke="#8C8F99" stroke-width="1.5"/><circle cx="24" cy="16" r="3" stroke="#8C8F99" stroke-width="1.5"/><line x1="11" y1="16" x2="21" y2="16" stroke="#8C8F99" stroke-width="1.5"/><circle cx="16" cy="8" r="2" stroke="#5C5F6A" stroke-width="1"/><line x1="16" y1="10" x2="16" y2="14" stroke="#5C5F6A" stroke-width="1"/></svg></div>
       <h4>Ask about the architecture</h4><div style="font-size: 12px; color: var(--text-tertiary, #556677); margin-bottom: var(--space-300);">Ask about any part of the system</div>
       <div class="chat-empty-chips">
         <button class="chat-empty-chip" onclick="fillChatPrompt(this.textContent)">What does process-call do?</button>
