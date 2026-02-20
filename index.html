@@ -13,23 +13,23 @@
   .sidebar { grid-row: 1/3; background: var(--surface-raised); border-right: 1px solid var(--border-default); padding: var(--space-card-padding); overflow-y: auto; }
   .canvas-area { position: relative; overflow: hidden; background: var(--surface-base); touch-action: none; }
   .prompt-area { grid-column: 2; background: var(--surface-raised); border-top: 1px solid var(--border-default); padding: var(--space-300) var(--space-card-padding); overflow-y: auto; }
-  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-tertiary); margin-bottom: var(--space-300); }
-  h3 { font-size: var(--font-size-75); color: var(--text-secondary); margin: var(--space-300) 0 var(--space-150); }
-  .preset-btn { display: block; width: 100%; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-100); background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 11px; cursor: pointer; text-align: left; transition: all .15s; }
+  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-primary); margin-bottom: var(--space-300); }
+  h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary); margin: var(--space-300) 0 var(--space-150); }
+  .preset-btn { display: block; width: 100%; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-100); background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 12px; font-weight: 500; cursor: pointer; text-align: left; transition: all .15s; }
   .preset-btn:hover, .preset-btn:active { background: var(--surface-hover); border-color: var(--interactive-primary); }
   .preset-btn.active { background: var(--interactive-muted); border-color: var(--interactive-primary); color: var(--interactive-primary); }
-  .layer-toggle { display: flex; align-items: center; gap: var(--space-200); padding: var(--space-100) 0; cursor: pointer; font-size: var(--font-size-75); }
+  .layer-toggle { display: flex; align-items: center; gap: var(--space-200); padding: var(--space-100) 0; cursor: pointer; font-size: 13px; font-weight: 400; }
   .layer-toggle input { accent-color: var(--interactive-primary); }
   .layer-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-  .conn-toggle { display: flex; align-items: center; gap: var(--space-200); padding: var(--space-100) 0; cursor: pointer; font-size: var(--font-size-75); }
+  .conn-toggle { display: flex; align-items: center; gap: var(--space-200); padding: var(--space-100) 0; cursor: pointer; font-size: 13px; font-weight: 400; }
   .conn-toggle input { accent-color: var(--interactive-primary); }
   .conn-line { width: 18px; height: 2px; display: inline-block; }
-  .comment-item { background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-200); margin-bottom: var(--space-150); font-size: 11px; }
+  .comment-item { background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-200); margin-bottom: var(--space-150); font-size: 12px; }
   .comment-label { color: var(--interactive-primary); font-weight: 600; }
   .comment-text { color: var(--text-secondary); margin-top: var(--space-100); }
   .comment-del { float: right; color: var(--status-error); cursor: pointer; font-size: 10px; border: none; background: none; min-width: 28px; min-height: 28px; display: inline-flex; align-items: center; justify-content: center; }
   .comment-meta { color: var(--text-disabled); font-size: 9px; margin-top: var(--space-050); }
-  .offline-banner { background: #3b1520; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: #fca5a5; margin-bottom: var(--space-200); }
+  .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
@@ -40,7 +40,7 @@
   .prompt-strong { color: var(--interactive-primary); font-weight: 600; }
   .copy-btn { position: absolute; top: var(--space-200); right: var(--space-card-padding); padding: var(--space-100) var(--space-300); background: var(--interactive-primary); border: none; border-radius: var(--radius-200); color: white; font-size: 11px; cursor: pointer; }
   .copy-btn:hover, .copy-btn:active { background: var(--interactive-hover); }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: #000000aa; z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.show { display: flex; }
   .modal { background: var(--surface-overlay); border: 1px solid var(--interactive-primary); border-radius: var(--radius-300); padding: var(--space-500); width: 420px; box-shadow: var(--shadow-600); }
   .modal h3 { color: var(--interactive-primary); font-size: var(--font-size-100); margin: 0 0 var(--space-100); }
@@ -67,10 +67,10 @@
   }
   .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: var(--interactive-hover); }
   .empty-comments { font-size: 11px; color: var(--text-disabled); }
-  .row-label { font-family: system-ui; font-size: 10px; fill: #4a5568; letter-spacing: 1px; pointer-events: none; }
-  .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 11px; margin-bottom: var(--space-300); }
+  .row-label { font-family: system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
+  .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 13px; margin-bottom: var(--space-300); }
   .search-box::placeholder { color: var(--text-disabled); }
-  .stat-bar { font-size: 10px; color: var(--text-tertiary); margin: -4px 0 10px; line-height: 1.5; }
+  .stat-bar { font-size: 11px; font-weight: 400; color: var(--text-tertiary); margin: -4px 0 10px; line-height: 1.5; }
 
   /* ── Touch interaction fixes ── */
   button, .preset-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
@@ -95,7 +95,7 @@
     justify-content: center;
     touch-action: manipulation;
   }
-  .info-panel .info-close-btn:hover, .info-panel .info-close-btn:active { background: #3b4260; color: var(--text-primary); }
+  .info-panel .info-close-btn:hover, .info-panel .info-close-btn:active { background: var(--surface-hover); color: var(--text-primary); }
 
   /* ── Hamburger menu button (hidden on desktop) ── */
   .hamburger {
@@ -120,7 +120,7 @@
   .sidebar-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.3);
     z-index: 45;
     display: none;
   }
@@ -134,13 +134,12 @@
     bottom: 24px;
     right: 24px;
     z-index: 60;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--interactive-primary);
-    border: none;
-    color: white;
-    font-size: 22px;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-300);
+    background: var(--surface-raised);
+    border: 1px solid var(--border-default);
+    color: var(--text-secondary);
     cursor: pointer;
     box-shadow: var(--shadow-200);
     display: flex;
@@ -148,7 +147,7 @@
     justify-content: center;
     transition: all .2s;
   }
-  .chat-fab:hover, .chat-fab:active { background: var(--interactive-hover); transform: scale(1.05); }
+  .chat-fab:hover, .chat-fab:active { background: var(--surface-overlay); border-color: var(--interactive-primary); }
   .chat-fab.hidden { display: none; }
 
   .chat-panel {
@@ -220,9 +219,9 @@
   }
   .chat-msg.error {
     align-self: center;
-    background: #3b1520;
+    background: #FEF2F2;
     border: 1px solid var(--status-error);
-    color: #fca5a5;
+    color: var(--status-error);
     font-size: 11px;
   }
   .chat-api-prompt {
@@ -343,7 +342,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: #000000aa;
+    background: rgba(0,0,0,0.4);
     z-index: 80;
     align-items: center;
     justify-content: center;
@@ -433,12 +432,10 @@
       overflow: hidden;
     }
     .chat-fab {
-      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-      right: 16px;
-      width: 48px;
-      height: 48px;
-      font-size: 22px;
-      box-shadow: var(--shadow-200);
+      width: 40px;
+      height: 40px;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      right: 12px;
     }
     .chat-panel {
       width: 100vw;
@@ -565,10 +562,8 @@
       font-size: 11px;
     }
     .chat-fab {
-      width: 44px;
-      height: 44px;
-      font-size: 20px;
-      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      width: 40px;
+      height: 40px;
     }
     .comment-item { font-size: 10px; }
     .search-box {
@@ -745,17 +740,17 @@
 
 
   /* ── Product-designer copy + mobile explorer ───────────────────── */
-  #zoom-section { margin-top: 10px; }
+  #zoom-section { margin-top: 10px; margin-bottom: var(--space-300); }
   #zoom-section h3 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin: 10px 0 6px; }
   .zoom-row { display: flex; gap: 8px; }
-  .small-btn { flex: 1; background: var(--border-default); border: 1px solid #334155; color: var(--text-primary); padding: var(--space-200) var(--space-300); border-radius: var(--radius-300); font-size: 13px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .small-btn { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border-default); color: var(--text-secondary); padding: var(--space-100) var(--space-200); border-radius: var(--radius-200); font-size: 12px; font-weight: 500; min-height: 36px; display: flex; align-items: center; justify-content: center; }
   .small-btn:active { transform: translateY(1px); }
 
   /* Mobile explorer (System / Details) */
   #mobile-explorer { display: none; height: calc(100dvh - 84px); overflow: auto; padding: 10px 12px calc(110px + var(--safe-b, 0px)); }
   #mobile-explorer.active { display: block; }
-  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(15,17,23,.94); backdrop-filter: blur(10px); padding: var(--space-200) 0 var(--space-300); }
-  .mobile-search { width: 100%; padding: var(--space-300) var(--space-300); border-radius: var(--radius-300); border: 1px solid #334155; background: #0b1220; color: var(--text-primary); font-size: var(--font-size-100); min-height: 44px; }
+  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); padding: var(--space-200) 0 var(--space-300); }
+  .mobile-search { width: 100%; padding: var(--space-300) var(--space-300); border-radius: var(--radius-300); border: 1px solid var(--border-default); background: var(--surface-base); color: var(--text-primary); font-size: var(--font-size-100); min-height: 44px; }
   .mx-section { margin-top: var(--space-400); }
   .mx-section-title { font-size: var(--font-size-75); letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin: var(--space-300) 0 var(--space-200); display: flex; justify-content: space-between; align-items: baseline; }
   .mx-count { font-size: 11px; font-family: monospace; color: var(--text-secondary); background: var(--surface-hover); padding: 1px 7px; border-radius: 8px; }
@@ -779,9 +774,9 @@
   /* pill dot colors removed -- Polaris v1 pill standardization */
 
   /* Bottom sheet for node details (Material-style modal) */
-  .mobile-sheet-scrim { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 49; }
+  .mobile-sheet-scrim { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 49; }
   .mobile-sheet-scrim.open { display: block; }
-  .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: #0b1220; border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid var(--border-default); box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); }
+  .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: var(--surface-raised); border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid var(--border-default); box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); }
   .mobile-sheet.open { bottom: 0; }
   .mobile-sheet.expanded { height: 85dvh; bottom: 0; }
   .mobile-sheet-handle { width: 64px; height: 5px; border-radius: 999px; background: var(--text-disabled); margin: var(--space-200) auto var(--space-100); cursor: grab; box-shadow: 0 0 6px rgba(107,114,128,.35); }
@@ -792,7 +787,7 @@
   .ms-desc { color: var(--text-primary); font-size: var(--font-size-100); line-height: 1.35; margin: var(--space-200) 0 var(--space-300); }
   .ms-block { margin-top: var(--space-400); }
   .ms-block h4 { font-size: var(--font-size-75); letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-200); }
-  .ms-link { padding: var(--space-300); border-radius: var(--radius-300); border: 1px solid var(--border-default); background: #0f172a; margin-bottom: var(--space-200); min-height: 44px; display: flex; flex-direction: column; justify-content: center; }
+  .ms-link { padding: var(--space-300); border-radius: var(--radius-300); border: 1px solid var(--border-default); background: var(--surface-overlay); margin-bottom: var(--space-200); min-height: 44px; display: flex; flex-direction: column; justify-content: center; }
   .ms-link-top { display: flex; justify-content: space-between; gap: var(--space-300); }
   .ms-link-title { font-weight: 650; font-size: var(--font-size-100); }
   .ms-link-type { font-size: var(--font-size-75); color: var(--interactive-primary); white-space: nowrap; }
@@ -850,12 +845,12 @@
     </div>
     <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker>
-        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#10b981"/></marker>
-        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ef4444"/></marker>
-        <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f97316"/></marker>
-        <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6b7280"/></marker>
-        <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
+        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563EB"/></marker>
+        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#059669"/></marker>
+        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#DC2626"/></marker>
+        <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#D97706"/></marker>
+        <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6B7280"/></marker>
+        <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/></marker>
       </defs>
     </svg>
     </div>
@@ -923,7 +918,9 @@
 
 <!-- Chat FAB -->
 <button class="chat-fab" id="chat-fab" onclick="toggleChat()" title="Chat with diagram">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4h12a2 2 0 012 2v6a2 2 0 01-2 2h-3l-3 3-3-3H4a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+  </svg>
 </button>
 
 <!-- Chat Panel -->
@@ -982,20 +979,20 @@ try {
 
 // ── DATA ──────────────────────────────────────────────
 var LAYERS = {
-  external:  { label: 'External Services', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
-  pipeline:  { label: 'Pipeline (Edge Functions)', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
-  module:    { label: 'Sub-modules & RPCs', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
-  data:      { label: 'Data Layer', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
-  devops:    { label: 'DevOps / Tooling', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
+  external:  { label: 'External Services', color: 'rgba(37,99,235,0.08)', dot: '#2563EB', stroke: '#2563EB' },
+  pipeline:  { label: 'Pipeline (Edge Functions)', color: 'rgba(5,150,105,0.08)', dot: '#059669', stroke: '#059669' },
+  module:    { label: 'Sub-modules & RPCs', color: 'rgba(124,58,237,0.08)', dot: '#7C3AED', stroke: '#7C3AED' },
+  data:      { label: 'Data Layer', color: 'rgba(217,119,6,0.08)', dot: '#D97706', stroke: '#D97706' },
+  devops:    { label: 'DevOps / Tooling', color: 'rgba(180,83,9,0.08)', dot: '#B45309', stroke: '#B45309' },
 };
 
 var CONN_TYPES = {
-  'data-flow':  { label: 'Data Flow (blocking)', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
-  'fire-forget': { label: 'Fire & Forget', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
-  'tool-call':  { label: 'External API Call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
-  'event':      { label: 'Async / Event', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
-  'dependency': { label: 'Import / Dependency', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
-  'rpc':        { label: 'RPC / DB Function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
+  'data-flow':  { label: 'Data Flow (blocking)', color: '#2563EB', dash: '', marker: 'arrow-blue' },
+  'fire-forget': { label: 'Fire & Forget', color: '#D97706', dash: '8,4', marker: 'arrow-orange' },
+  'tool-call':  { label: 'External API Call', color: '#059669', dash: '6,3', marker: 'arrow-green' },
+  'event':      { label: 'Async / Event', color: '#DC2626', dash: '4,4', marker: 'arrow-red' },
+  'dependency': { label: 'Import / Dependency', color: '#6B7280', dash: '2,4', marker: 'arrow-gray' },
+  'rpc':        { label: 'RPC / DB Function', color: '#7C3AED', dash: '5,3', marker: 'arrow-purple' },
 };
 
 var ROW_LABELS = [
@@ -1609,7 +1606,7 @@ function renderDiagram() {
     if (!anyVisible) return;
     g.appendChild(createSvgEl('text', { class: 'row-label', x: rl.x, y: rl.y, 'text-anchor': 'start' }, rl.text));
     var laneLineX1 = rl.x + rl.text.length * 7 + 20;
-    g.appendChild(createSvgEl('line', { x1: laneLineX1, y1: rl.y, x2: 2000, y2: rl.y, stroke: '#1E2A38', 'stroke-width': '1', 'stroke-dasharray': '4 4' }));
+    g.appendChild(createSvgEl('line', { x1: laneLineX1, y1: rl.y, x2: 2000, y2: rl.y, stroke: '#D5D7DA', 'stroke-width': '1', 'stroke-dasharray': '4 4' }));
   });
 
   var visibleNodes = nodes.filter(isNodeVisible);
@@ -1654,7 +1651,7 @@ function renderDiagram() {
     if (c.label) {
       var pillW = c.label.length * 5 + 8;
       var pillH = 14;
-      g.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#0B0F14' }));
+      g.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
       g.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', opacity: '0.8', 'dominant-baseline': 'central' }, c.label));
     }
   });
@@ -1670,7 +1667,7 @@ function renderDiagram() {
       'data-node-id': n.id,
       x: n.x, y: n.y, width: n.w, height: n.h,
       fill: layer.color,
-      stroke: hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke),
+      stroke: hasComment ? '#D97706' : (isSearchMatch ? '#22d3ee' : layer.stroke),
       'stroke-opacity': hasComment ? '1' : (isSearchMatch ? '1' : '0.6'),
       'stroke-width': isSearchMatch ? '2.5' : '1.5'
     });
@@ -1694,8 +1691,8 @@ function renderDiagram() {
 
     if (hasComment) {
       var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
-      g.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#f59e0b' }));
-      g.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#1e293b', 'font-size': '7', 'font-weight': '700' }, String(count)));
+      g.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
+      g.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
     }
   });
 
@@ -2275,7 +2272,7 @@ var HEALTH_PRIORITY = { stale: 3, aging: 2, fresh: 1, unknown: 0 };
 
 function getStageHealth(stage) {
   if (!vpData || !stage.capabilities || stage.capabilities.length === 0) {
-    return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+    return { status: 'unknown', color: '#9CA3AF', text: 'Unknown', dotClass: 'dot-unknown' };
   }
 
   var worst = null;
@@ -2306,25 +2303,25 @@ function getStageHealth(stage) {
   }
 
   if (!worst) {
-    return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+    return { status: 'unknown', color: '#9CA3AF', text: 'Unknown', dotClass: 'dot-unknown' };
   }
 
   if (worst === 'fresh') {
     var hoursText = (worstHours != null) ? (Math.round(worstHours * 10) / 10) + 'h ago' : '';
     return {
       status: 'fresh',
-      color: '#22c55e',
+      color: '#059669',
       text: hoursText ? 'Fresh ' + hoursText : 'Fresh',
       dotClass: 'dot-fresh'
     };
   }
   if (worst === 'aging') {
-    return { status: 'aging', color: '#f59e0b', text: 'Aging', dotClass: 'dot-aging' };
+    return { status: 'aging', color: '#D97706', text: 'Aging', dotClass: 'dot-aging' };
   }
   if (worst === 'stale') {
-    return { status: 'stale', color: '#ef4444', text: 'Stale', dotClass: 'dot-stale' };
+    return { status: 'stale', color: '#DC2626', text: 'Stale', dotClass: 'dot-stale' };
   }
-  return { status: 'unknown', color: '#475569', text: 'Unknown', dotClass: 'dot-unknown' };
+  return { status: 'unknown', color: '#9CA3AF', text: 'Unknown', dotClass: 'dot-unknown' };
 }
 
 // ── RENDER MOBILE VIEW ────────────────────────────
@@ -2615,7 +2612,7 @@ function highlightMatch(text, query) {
   var safe = _escapeHtml(text);
   var safeQ = _escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return safe.replace(new RegExp('(' + safeQ + ')', 'gi'),
-    '<span style="background:rgba(59,130,246,0.15);border-radius:2px;padding:0 2px;">$1</span>');
+    '<span style="background:rgba(37,99,235,0.15);border-radius:2px;padding:0 2px;">$1</span>');
 }
 
 function renderMobileExplorer() {
@@ -3067,12 +3064,12 @@ function renderNowBar() {
       var hoursAgo = (nowMs - updatedAt.getTime()) / (1000 * 60 * 60);
 
       if (hoursAgo <= 2) {
-        dotEl.style.background = '#34D399';
+        dotEl.style.background = '#059669';
         isLive = true;
       } else if (hoursAgo <= 8) {
-        dotEl.style.background = '#FBBF24';
+        dotEl.style.background = '#D97706';
       } else {
-        dotEl.style.background = '#F87171';
+        dotEl.style.background = '#DC2626';
       }
 
       var agoText;
@@ -3088,7 +3085,7 @@ function renderNowBar() {
         ? ' \u2014 Pipeline live \u2014 data current as of ' + timestamp
         : ' \u2014 Pipeline data as of ' + timestamp;
     } else {
-      dotEl.style.background = '#9ca3af';
+      dotEl.style.background = '#9CA3AF';
       textEl.textContent = 'Data: unknown';
       liveDetailEl.textContent = ' \u2014 No pipeline data available';
     }
@@ -3113,16 +3110,16 @@ function renderNowBar() {
       var healthRatio = total > 0 ? healthy / total : 0;
 
       if (healthRatio === 1) {
-        healthDot.style.background = '#22c55e';
+        healthDot.style.background = '#059669';
       } else if (healthRatio > 0.5) {
-        healthDot.style.background = '#eab308';
+        healthDot.style.background = '#D97706';
       } else {
-        healthDot.style.background = '#ef4444';
+        healthDot.style.background = '#DC2626';
       }
       healthText.textContent = healthy + '/' + total + ' healthy';
-      healthText.style.color = (healthy === total) ? '#34D399' : '#FBBF24';
+      healthText.style.color = (healthy === total) ? '#059669' : '#D97706';
     } else {
-      healthDot.style.background = '#9ca3af';
+      healthDot.style.background = '#9CA3AF';
       healthText.textContent = '?/? healthy';
     }
 
@@ -3139,7 +3136,7 @@ function renderNowBar() {
       var pct = Math.round(vpData.summary.overall_coverage_pct * 100);
       coverageNum.textContent = pct;
       coverageSuffix.textContent = '% coverage';
-      coverageNum.style.color = (pct >= 80) ? '#34D399' : '#FBBF24';
+      coverageNum.style.color = (pct >= 80) ? '#059669' : '#D97706';
     } else {
       coverageNum.textContent = '?';
       coverageSuffix.textContent = '% coverage';
@@ -3152,7 +3149,7 @@ function renderNowBar() {
     // Badge 4 — Mode
     var modeEl = createEl('span', { className: 'now-badge' });
     var modeDot = createEl('span', { className: 'dot' });
-    modeDot.style.background = '#3b82f6';
+    modeDot.style.background = '#2563EB';
     var modeText = createEl('span', {});
     modeText.textContent = (factsData && factsData.mode) ? factsData.mode : 'unknown';
 
