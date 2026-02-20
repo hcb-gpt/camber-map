@@ -4,19 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camber Product Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="public/tokens.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { overflow: hidden; overscroll-behavior: none; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: var(--surface-base); color: var(--text-primary); height: 100vh; height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
-  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100vh; }
+  body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; background: var(--surface-base); color: var(--text-primary); height: 100vh; height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr; height: 100vh; }
   .sidebar { grid-row: 1/3; background: var(--surface-raised); border-right: 1px solid var(--border-default); padding: var(--space-card-padding); overflow-y: auto; }
   .canvas-area { position: relative; overflow: hidden; background: var(--surface-base); touch-action: none; }
-  .prompt-area { grid-column: 2; background: var(--surface-raised); border-top: 1px solid var(--border-default); padding: var(--space-300) var(--space-card-padding); overflow-y: auto; }
-  h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-primary); margin-bottom: var(--space-300); }
-  h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary); margin: var(--space-300) 0 var(--space-150); }
-  .preset-btn { display: block; width: 100%; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-100); background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 12px; font-weight: 500; cursor: pointer; text-align: left; transition: all .15s; }
-  .preset-btn:hover, .preset-btn:active { background: var(--surface-hover); border-color: var(--interactive-primary); }
+  h2 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-primary); margin-bottom: var(--space-300); }
+  h3 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); margin: var(--space-400) 0 var(--space-200); }
+  .preset-btn { display: block; width: 100%; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-100); background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 12px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.15s ease; font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
+  .preset-btn:hover, .preset-btn:active { background: var(--surface-hover); border-color: var(--interactive-primary); transform: translateY(-1px); }
   .preset-btn.active { background: var(--interactive-muted); border-color: var(--interactive-primary); color: var(--interactive-primary); }
   .layer-toggle { display: flex; align-items: center; gap: var(--space-200); padding: var(--space-100) 0; cursor: pointer; font-size: 13px; font-weight: 400; }
   .layer-toggle input { accent-color: var(--interactive-primary); }
@@ -34,17 +36,13 @@
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
-  .node-title { font-family: system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
-  .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: var(--text-disabled); pointer-events: none; }
-  .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: var(--text-secondary); white-space: pre-wrap; line-height: 1.6; }
-  .prompt-strong { color: var(--interactive-primary); font-weight: 600; }
-  .copy-btn { position: absolute; top: var(--space-200); right: var(--space-card-padding); padding: var(--space-100) var(--space-300); background: var(--interactive-primary); border: none; border-radius: var(--radius-200); color: white; font-size: 11px; cursor: pointer; }
-  .copy-btn:hover, .copy-btn:active { background: var(--interactive-hover); }
+  .node-title { font-family: 'DM Sans', system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
+  .node-sub { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: var(--text-disabled); pointer-events: none; }
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.show { display: flex; }
   .modal { background: var(--surface-overlay); border: 1px solid var(--interactive-primary); border-radius: var(--radius-300); padding: var(--space-500); width: 420px; box-shadow: var(--shadow-600); }
   .modal h3 { color: var(--interactive-primary); font-size: var(--font-size-100); margin: 0 0 var(--space-100); }
-  .modal .path { font-family: monospace; font-size: 11px; color: var(--text-tertiary); margin-bottom: var(--space-300); }
+  .modal .path { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-tertiary); margin-bottom: var(--space-300); }
   .modal textarea { width: 100%; height: 80px; background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); padding: var(--space-200); font-size: var(--font-size-75); resize: vertical; }
   .modal-btns { display: flex; gap: var(--space-200); margin-top: var(--space-300); justify-content: flex-end; }
   .modal-btns button { padding: var(--space-150) var(--space-card-padding); border-radius: var(--radius-200); border: none; cursor: pointer; font-size: var(--font-size-75); }
@@ -67,13 +65,13 @@
   }
   .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: var(--interactive-hover); }
   .empty-comments { font-size: 11px; color: var(--text-disabled); }
-  .row-label { font-family: system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
+  .row-label { font-family: 'DM Sans', system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 13px; margin-bottom: var(--space-300); }
   .search-box::placeholder { color: var(--text-disabled); }
-  .stat-bar { font-size: 11px; font-weight: 400; color: var(--text-tertiary); margin: 0 0 var(--space-300); line-height: 1.5; }
+  .stat-bar { font-size: 10px; font-weight: 400; color: var(--text-disabled); margin: 0 0 var(--space-300); line-height: 1.5; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
 
   /* ── Touch interaction fixes ── */
-  button, .preset-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
+  button, .preset-btn, .chat-fab, .chat-send, .chat-header-btn,
   .comment-del, .info-comment-btn, .layer-toggle, .conn-toggle, .hamburger,
   input[type="checkbox"] {
     touch-action: manipulation;
@@ -338,48 +336,6 @@
   .chat-send:hover, .chat-send:active { background: var(--interactive-hover); }
   .chat-send:disabled { background: var(--surface-overlay); color: var(--text-disabled); cursor: default; }
 
-  .chat-settings-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 80;
-    align-items: center;
-    justify-content: center;
-  }
-  .chat-settings-overlay.show { display: flex; }
-  .chat-settings {
-    background: var(--surface-overlay);
-    border: 1px solid var(--interactive-primary);
-    border-radius: var(--radius-300);
-    padding: var(--space-500);
-    width: 340px;
-  }
-  .chat-settings h3 { color: var(--interactive-primary); font-size: var(--font-size-100); margin: 0 0 var(--space-card-padding); }
-  .chat-settings label { display: block; color: var(--text-secondary); font-size: 11px; margin-bottom: var(--space-100); }
-  .chat-settings input {
-    width: 100%;
-    padding: var(--space-200) var(--space-300);
-    background: var(--surface-base);
-    border: 1px solid var(--border-default);
-    border-radius: var(--radius-200);
-    color: var(--text-primary);
-    font-size: var(--font-size-75);
-    margin-bottom: var(--space-300);
-  }
-  .chat-settings input:focus { outline: none; border-color: var(--interactive-primary); }
-  .chat-settings .hint { font-size: 10px; color: var(--text-disabled); margin: calc(-1 * var(--space-100)) 0 var(--space-300); }
-  .chat-settings-btns { display: flex; gap: var(--space-200); justify-content: flex-end; }
-  .chat-settings-btns button {
-    padding: var(--space-150) var(--space-card-padding);
-    border-radius: var(--radius-200);
-    border: none;
-    cursor: pointer;
-    font-size: var(--font-size-75);
-  }
-  .chat-settings-btns .save { background: var(--interactive-primary); color: white; }
-  .chat-settings-btns .cancel { background: var(--border-default); color: var(--text-secondary); }
-
   .chat-highlighted { animation: chat-pulse 1.5s ease-in-out infinite; }
   @keyframes chat-pulse {
     0%, 100% { filter: drop-shadow(0 0 4px var(--interactive-primary)); }
@@ -412,7 +368,6 @@
       height: 100dvh;
       overflow: hidden;
     }
-    .prompt-area { display: none; }
     .sidebar {
       position: fixed;
       inset: 0;
@@ -421,7 +376,7 @@
       transition: transform 0.3s ease;
       width: 85vw;
       max-width: 320px;
-      padding-top: calc(16px + env(safe-area-inset-top, 0px));
+      padding-top: calc(60px + env(safe-area-inset-top, 0px));
       padding-bottom: env(safe-area-inset-bottom, 0px);
       pointer-events: none;
     }
@@ -481,22 +436,6 @@
       padding: var(--space-300) var(--space-500);
       border-radius: var(--radius-200);
     }
-    .chat-settings {
-      width: calc(100vw - 32px);
-      max-width: 340px;
-      max-height: calc(100vh - 64px);
-      max-height: calc(100dvh - 64px);
-      overflow-y: auto;
-    }
-    .chat-settings input {
-      font-size: 16px;
-      min-height: 44px;
-    }
-    .chat-settings-btns button {
-      min-height: 44px;
-      padding: 10px 20px;
-      font-size: 14px;
-    }
     .chat-api-prompt button {
       min-height: 44px;
       padding: 10px 20px;
@@ -536,11 +475,6 @@
       font-size: 13px;
     }
     .layer-toggle, .conn-toggle { min-height: 44px; }
-    .copy-btn {
-      min-height: 44px;
-      padding: 10px 16px;
-      font-size: 13px;
-    }
     .comment-del {
       min-width: 44px;
       min-height: 44px;
@@ -571,7 +505,7 @@
       padding: var(--space-200) var(--space-300);
       min-height: 44px;
     }
-    .stat-bar { font-size: 10px; }
+    .stat-bar { font-size: 9px; }
     .modal textarea { font-size: 14px; }
     .modal-btns button {
       padding: 10px 16px;
@@ -594,30 +528,33 @@
   }
   .mode-toggle {
     display: flex; background: var(--surface-base); border: 1px solid var(--border-default);
-    border-radius: var(--radius-200); padding: var(--space-100); margin-bottom: var(--space-300); gap: var(--space-050);
+    border-radius: var(--radius-200); padding: 3px; margin-bottom: var(--space-400); gap: 3px; box-shadow: var(--shadow-100);
   }
   .mode-toggle button {
-    flex: 1; padding: var(--space-200) var(--space-300); background: none; border: none; border-radius: var(--radius-200);
-    color: var(--text-tertiary); font-size: var(--font-size-75); font-weight: 600; cursor: pointer;
-    transition: all .15s; touch-action: manipulation; min-height: 44px;
+    flex: 0 0 calc(50% - 1.5px); width: calc(50% - 1.5px); padding: var(--space-200) var(--space-400);
+    background: none; border: none; border-radius: 6px; color: var(--text-tertiary);
+    font-size: var(--font-size-100); font-weight: 600; letter-spacing: 0.02em; cursor: pointer;
+    transition: all 0.15s ease; touch-action: manipulation; min-height: 40px;
     display: inline-flex; align-items: center; justify-content: center;
   }
-  .mode-toggle button.active { background: var(--interactive-muted); color: var(--interactive-primary); }
-  .mode-toggle button:hover:not(.active) { color: var(--text-secondary); }
+  .mode-toggle button.active { background: var(--interactive-muted); color: var(--interactive-primary); box-shadow: inset 0 0 0 1px rgba(37,99,235,0.2); }
+  .mode-toggle button:hover:not(.active) { background: var(--surface-overlay); color: var(--text-secondary); }
 
   #mobile-view {
     display: none; flex-direction: column; height: 100dvh;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: calc(64px + var(--safe-t, 0px)) var(--space-card-padding) calc(80px + var(--safe-b, 0px));
+    padding: calc(64px + var(--safe-t, 0px)) var(--space-card-padding) calc(96px + var(--safe-b, 0px));
     background: var(--surface-base);
   }
   #mobile-view.active { display: flex; }
 
   .now-bar {
-    display: flex; flex-wrap: wrap; gap: var(--space-200); padding: var(--space-300);
-    background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200);
-    margin-bottom: var(--space-300); align-items: center; cursor: pointer; position: relative;
+    display: flex; flex-wrap: wrap; gap: var(--space-200); padding: var(--space-300) var(--space-400);
+    background: var(--surface-raised); border: 1px solid var(--border-default); border-top: 2px solid var(--interactive-primary);
+    border-radius: var(--radius-200); margin-bottom: var(--space-400); align-items: center; cursor: pointer;
+    position: relative; box-shadow: var(--shadow-100); transition: all 0.15s ease;
   }
+  .now-bar:hover { box-shadow: var(--shadow-200); }
   .now-badge {
     display: inline-flex; align-items: center; gap: var(--space-100); padding: var(--space-100) var(--space-200);
     background: var(--surface-overlay); border-radius: var(--radius-200); font-size: 11px; color: var(--text-secondary); white-space: nowrap;
@@ -653,10 +590,12 @@
   }
 
   .stage-card {
-    background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200);
-    margin-bottom: var(--space-200); overflow: hidden; transition: border-color .2s;
+    background: var(--surface-raised); border: 1px solid var(--border-default); border-left: 3px solid var(--interactive-primary);
+    border-radius: var(--radius-200); margin-bottom: var(--space-300); overflow: hidden;
+    transition: all 0.15s ease; box-shadow: var(--shadow-100);
   }
-  .stage-card.expanded { border-color: var(--interactive-primary); }
+  .stage-card:hover { box-shadow: var(--shadow-200); border-color: rgba(37,99,235,0.35); border-left-color: var(--interactive-primary); }
+  .stage-card.expanded { border-color: var(--interactive-primary); border-left-color: var(--interactive-primary); box-shadow: var(--shadow-200); }
   .stage-header {
     padding: var(--space-300) var(--space-400); cursor: pointer; touch-action: manipulation; min-height: 44px;
   }
@@ -664,8 +603,9 @@
     display: flex; align-items: center; justify-content: space-between; gap: var(--space-200); margin-bottom: var(--space-100);
   }
   .stage-num {
-    font-size: 11px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.08em;
-    text-transform: uppercase; flex-shrink: 0;
+    font-size: 10px; font-weight: 700; color: var(--interactive-primary); letter-spacing: 0.12em;
+    text-transform: uppercase; flex-shrink: 0; font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    background: var(--interactive-muted); padding: 2px 6px; border-radius: 4px;
   }
   .stage-label { font-size: 15px; font-weight: 700; color: var(--text-primary); flex: 1; }
   .stage-health {
@@ -705,16 +645,17 @@
   .sidebar-flow-nav .flow-nav-item {
     display: flex; align-items: center; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-200); background: var(--surface-overlay);
     border: 1px solid transparent; border-radius: var(--radius-200); color: var(--text-primary);
-    font-size: var(--font-size-75); cursor: pointer; transition: all .15s; touch-action: manipulation; min-height: 44px;
+    font-size: var(--font-size-75); cursor: pointer; transition: all 0.15s ease; touch-action: manipulation; min-height: 44px;
   }
-  .sidebar-flow-nav .flow-nav-item:hover { border-color: var(--interactive-primary); }
-  .sidebar-flow-nav .flow-nav-num { color: var(--interactive-primary); font-weight: 700; font-size: 10px; margin-right: 6px; }
+  .sidebar-flow-nav .flow-nav-item:hover { border-color: var(--interactive-primary); background: var(--interactive-muted); }
+  .sidebar-flow-nav .flow-nav-num { color: var(--interactive-primary); font-weight: 700; font-size: 10px; margin-right: 6px; font-family: 'JetBrains Mono', monospace; }
   .sidebar-flow-nav .flow-nav-health { float: right; width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; margin-left: auto; }
 
   .now-bar-desktop {
     position: fixed; bottom: 0; left: 300px; right: 0; padding: var(--space-200) var(--space-card-padding);
-    background: var(--surface-raised); border-top: 1px solid var(--border-default); z-index: 20;
+    background: var(--surface-raised); border-top: 2px solid var(--interactive-primary); z-index: 20;
     display: none; gap: var(--space-200); flex-wrap: wrap; align-items: center;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
   }
   .now-bar-desktop.active { display: flex; }
 
@@ -747,26 +688,20 @@
   .small-btn { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border-default); color: var(--text-secondary); padding: var(--space-100) var(--space-200); border-radius: var(--radius-200); font-size: 12px; font-weight: 500; min-height: 36px; display: flex; align-items: center; justify-content: center; }
   .small-btn:active { transform: translateY(1px); }
 
-  /* Mobile explorer (System / Details) */
-  #mobile-explorer { display: none; height: calc(100dvh - 64px - var(--safe-t, 0px)); overflow: auto; padding: 0 var(--space-300) calc(80px + var(--safe-b, 0px)); }
+  /* Mobile explorer (System view) */
+  #mobile-explorer { display: none; height: calc(100dvh - 64px - var(--safe-t, 0px)); overflow: auto; padding: 0 var(--space-300) calc(96px + var(--safe-b, 0px)); }
   #mobile-explorer.active { display: block; }
-  .mobile-explorer-bar, .mobile-flow-search-bar { position: sticky; top: 0; z-index: 5; background: rgba(246,247,249,.94); backdrop-filter: blur(10px); padding: var(--space-300) 0 var(--space-300); }
+  .mobile-explorer-bar { padding: var(--space-300) 0 var(--space-200); border-bottom: 1px solid var(--border-default); margin-bottom: var(--space-200); }
+  .mobile-flow-search-bar { padding: var(--space-300) 0 var(--space-200); }
   .mobile-search { width: 100%; padding: var(--space-300) var(--space-300); border-radius: var(--radius-300); border: 1px solid var(--border-default); background: var(--surface-base); color: var(--text-primary); font-size: var(--font-size-100); min-height: 44px; }
   .mx-section { margin-top: var(--space-400); }
   .mx-section-title { font-size: var(--font-size-75); letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary); margin: var(--space-300) 0 var(--space-200); display: flex; justify-content: space-between; align-items: baseline; }
-  .mx-count { font-size: 11px; font-family: monospace; color: var(--text-secondary); background: var(--surface-hover); padding: 1px 7px; border-radius: 8px; }
-  .mx-item { background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-300); padding: var(--space-300); margin-bottom: var(--space-200); transition: border-left .15s ease; }
-  /* System mode: blue left-border accent on cards */
+  .mx-count { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-secondary); background: var(--surface-hover); padding: 1px 7px; border-radius: 8px; }
+  .mx-item { background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-300); padding: var(--space-400); margin-bottom: var(--space-200); transition: all 0.15s ease; cursor: pointer; }
+  .mx-item:hover { transform: translateY(-1px); box-shadow: var(--shadow-200); border-color: rgba(37,99,235,0.25); }
   .mx-item.mode-system { border-left: 3px solid var(--interactive-primary); }
-  /* Details mode: purple left-border accent on cards */
-  .mx-item.mode-dev { border-left: 3px solid var(--area-submodule); }
-  /* Mode description line below search */
   .mx-mode-hint { font-size: var(--font-size-75); color: var(--text-tertiary); margin-top: var(--space-100); line-height: 1.4; }
-  /* Item count badge next to search in Details mode */
-  .mx-count-badge { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--area-submodule); background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25); border-radius: 999px; padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
-  /* Section title accent per mode */
   .mx-section-title.mode-system { border-left: 2px solid var(--interactive-primary); padding-left: var(--space-200); }
-  .mx-section-title.mode-dev { border-left: 2px solid var(--area-submodule); padding-left: var(--space-200); }
   .mx-item-title { font-weight: 650; font-size: 15px; color: var(--text-primary); }
   .mx-item-sub { margin-top: var(--space-100); font-size: 13px; color: var(--text-secondary); }
   .mx-item-meta { margin-top: var(--space-200); display: flex; gap: var(--space-200); flex-wrap: wrap; }
@@ -777,7 +712,7 @@
   /* Bottom sheet for node details (Material-style modal) */
   .mobile-sheet-scrim { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 49; }
   .mobile-sheet-scrim.open { display: block; }
-  .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: var(--surface-raised); border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid var(--border-default); box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); }
+  .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -56dvh; height: 56dvh; background: var(--surface-raised); border-top-left-radius: var(--radius-400); border-top-right-radius: var(--radius-400); border: 1px solid var(--border-default); box-shadow: var(--shadow-600); z-index: 50; transition: bottom .22s ease, height .22s ease; padding-bottom: env(safe-area-inset-bottom); display: flex; flex-direction: column; }
   .mobile-sheet.open { bottom: 0; }
   .mobile-sheet.expanded { height: 85dvh; bottom: 0; }
   .mobile-sheet-handle { width: 64px; height: 5px; border-radius: 999px; background: var(--border-default); margin: var(--space-200) auto var(--space-100); cursor: grab; }
@@ -801,10 +736,17 @@
   .chat-msg h4, .chat-msg h5 { margin: 8px 0 4px; font-size: 13px; color: var(--text-primary); }
   .chat-msg ul, .chat-msg ol { margin: 4px 0; padding-left: 18px; }
   .chat-msg li { margin: 2px 0; }
-  .chat-msg code { background: var(--surface-base); padding: 1px 4px; border-radius: 3px; font-size: 11px; }
-  .chat-msg pre { background: var(--surface-base); padding: 8px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
+  .chat-msg code { background: var(--surface-base); padding: 1px 4px; border-radius: 3px; font-size: 11px; font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+  .chat-msg pre { background: var(--surface-base); padding: 8px; border-radius: 6px; overflow-x: auto; margin: 6px 0; font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
   .chat-msg pre code { padding: 0; background: none; }
   .chat-msg strong { color: var(--text-primary); }
+
+  /* ── Transition consistency for interactive elements ── */
+  .chat-fab, .chat-header-btn, .chat-empty-chip, .small-btn, .ms-link { transition: all 0.15s ease; }
+  .chat-panel { transition: transform 0.3s ease; }
+  .mobile-sheet { transition: bottom 0.22s ease, height 0.22s ease; }
+  .changes-drawer { transition: transform 0.3s ease; }
+  .node-rect { transition: all 0.15s ease; }
 </style>
 </head>
 <body>
@@ -817,10 +759,9 @@
     <div class="mode-toggle" id="sidebar-mode-toggle">
       <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
       <button data-mode="system" onclick="applyViewMode('system')">System</button>
-      <button data-mode="dev" onclick="applyViewMode('dev')">Details</button>
     </div>
     <h2>Camber Product Map</h2>
-    <div class="stat-bar" id="stat-bar">25 Edge Functions · 16 sub-modules · 10 RPCs<br>39+ tables · 8 views · 498 migrations · ~17k LOC</div>
+    <div class="stat-bar" id="stat-bar"></div>
     <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
     
     <div id="zoom-section">
@@ -857,17 +798,12 @@
     </div>
   </div>
 
-  <div class="prompt-area" style="position:relative">
-    <button class="copy-btn" onclick="copyPrompt()">Copy context</button>
-    <div class="prompt-text" id="prompt-output">Click components to add comments. Toggle layers and connections to explore the architecture.</div>
-  </div>
 </div>
 
 <!-- Mobile mode toggle (always visible on mobile, outside mobile-view) -->
 <div class="mode-toggle mobile-only" id="mobile-mode-toggle">
   <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
   <button data-mode="system" onclick="applyViewMode('system')">System</button>
-  <button data-mode="dev" onclick="applyViewMode('dev')">Details</button>
 </div>
 
 <!-- Mobile VP View -->
@@ -929,7 +865,6 @@
   <div class="chat-header">
     <h3>Chat with Diagram</h3>
     <div class="chat-header-actions">
-      <button class="chat-header-btn" onclick="openChatSettings()" title="Settings">&#9881;</button>
       <button class="chat-header-btn" onclick="toggleChat()" title="Close">&times;</button>
     </div>
   </div>
@@ -953,18 +888,6 @@
   </div>
 </div>
 
-<!-- Chat Settings -->
-<div class="chat-settings-overlay" id="chat-settings-overlay" onclick="if(event.target===this)closeChatSettings()">
-  <div class="chat-settings">
-    <h3>Chat Settings</h3>
-    <label for="chat-author">Author Name</label>
-    <input type="text" id="chat-author" placeholder="anonymous">
-    <div class="chat-settings-btns">
-      <button class="cancel" onclick="closeChatSettings()">Cancel</button>
-      <button class="save" onclick="saveChatSettings()">Save</button>
-    </div>
-  </div>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1286,82 +1209,6 @@ var PRESETS = [
   { id: 'devops',     label: 'DevOps + CI/CD',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
 ];
 
-// ── MOBILE STAGES ────────────────────────────────────
-var MOBILE_STAGES = [
-  { num: 1, label: 'Call Arrives',
-    purpose: 'Phone call recorded and webhook fired from OpenPhone through Zapier.',
-    why: 'This is the entry point \u2014 nothing flows without a call landing.',
-    capabilities: ['call-ingestion'],
-    nodes: ['openphone', 'zapier', 'zapier-ingest'] },
-  { num: 2, label: 'Call Received',
-    purpose: 'Payload validated, normalized, and candidate projects collected from 6 sources.',
-    why: 'Bad data here poisons every downstream decision.',
-    capabilities: ['call-ingestion'],
-    nodes: ['process-call', 'pc-phone'] },
-  { num: 3, label: 'Transcript Split',
-    purpose: 'Multi-topic call segmented into single-topic spans by GPT-4o-mini.',
-    why: 'One call often covers multiple projects \u2014 splitting gets each piece to the right place.',
-    capabilities: ['transcription', 'segmentation'],
-    nodes: ['segment-call', 'segment-llm', 'shared'] },
-  { num: 4, label: 'Context Built',
-    purpose: '12-source evidence package assembled per span: CRM, history, aliases, email, geo, journal.',
-    why: 'The AI needs the full picture \u2014 garbage context means garbage routing.',
-    capabilities: ['context-assembly'],
-    nodes: ['ctx-assembly', 'gmail-ctx', 'ctx-retrievers'] },
-  { num: 5, label: 'Project Attributed',
-    purpose: 'AI assigns each span to a project; low-confidence spans go to human review.',
-    why: 'This is the core business decision \u2014 every downstream metric depends on correct attribution.',
-    capabilities: ['attribution'],
-    nodes: ['ai-router', 'guardrails', 'review-resolve', 'review-triage'] },
-  { num: 6, label: 'Intelligence Captured',
-    purpose: 'Summary, knowledge claims, follow-ups, and signals extracted per call.',
-    why: 'Turns raw conversations into structured business intelligence.',
-    capabilities: ['summarization', 'journal', 'consolidation'],
-    nodes: ['gen-summary', 'journal-ext', 'journal-cons', 'striking', 'chain-detect', 'loop-closure'] },
-  { num: 7, label: 'Daily Report',
-    purpose: 'Morning digest with signals, queue pressure, and health metrics.',
-    why: 'One glance tells you if the pipeline is healthy and what needs attention today.',
-    capabilities: [],
-    nodes: ['morning-digest'] }
-];
-
-// ── VIEW MODES ───────────────────────────────────────
-var VIEW_MODES = {
-  flow: {
-    preset: 'chain',
-    layers: ['pipeline'],
-    conns: ['data-flow'],
-    hideNodes: [
-      'deepgram','openai','anthropic','gmail-api','github','sb-auth',
-      'transcribe','admin-reseed','shadow-replay','gt-apply',
-      'alias-scout','alias-review','alias-hygiene','embed-facts','journal-embed',
-      'db-core','db-spans','db-review','db-pipeline-aux','db-journal','db-context','db-alias',
-      'world-model','storage','rpc-resolve','rpc-gt','rpc-journal','rpc-contact',
-      'trigger-lock','gh-actions','tests','smoke-test','claim-guard','cc-scripts','migrations'
-    ],
-    showControls: false, showPrompt: false, showComments: false
-  },
-  system: {
-    preset: 'pipeline',
-    layers: ['external', 'pipeline'],
-    conns: ['data-flow', 'fire-forget', 'tool-call'],
-    hideNodes: ['github', 'sb-auth'],
-    showControls: true, showPrompt: false, showComments: false
-  },
-  dev: {
-    preset: 'full',
-    layers: Object.keys(LAYERS),
-    conns: Object.keys(CONN_TYPES),
-    hideNodes: [],
-    showControls: true, showPrompt: true, showComments: true
-  }
-};
-
-// ── VP DATA CACHE ────────────────────────────────────
-var vpData = null;
-var factsData = null;
-var changesData = null;
-
 // ── STATE ──────────────────────────────────────────
 var state = {
   preset: 'full',
@@ -1379,22 +1226,14 @@ Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
 var MOBILE_STAGES = [
   {
     num: 1,
-    label: 'Call Arrives',
-    purpose: 'Phone call recorded and webhook fired from OpenPhone through Zapier.',
-    why: 'This is the entry point — nothing flows without a call landing.',
+    label: 'Call Ingested',
+    purpose: 'Phone call recorded via OpenPhone, payload validated and normalized, candidate projects collected.',
+    why: 'This is the entry point — nothing flows without clean call data landing in the system.',
     capabilities: ['call-ingestion'],
-    nodes: ['openphone', 'zapier', 'zapier-ingest']
+    nodes: ['openphone', 'zapier', 'zapier-ingest', 'process-call', 'pc-phone']
   },
   {
     num: 2,
-    label: 'Call Received',
-    purpose: 'Payload validated, normalized, and candidate projects collected from 6 sources.',
-    why: 'Bad data here poisons every downstream decision.',
-    capabilities: ['call-ingestion'],
-    nodes: ['process-call', 'pc-phone']
-  },
-  {
-    num: 3,
     label: 'Transcript Split',
     purpose: 'Multi-topic call segmented into single-topic spans by GPT-4o-mini.',
     why: 'One call often covers multiple projects — splitting gets each piece to the right place.',
@@ -1402,7 +1241,7 @@ var MOBILE_STAGES = [
     nodes: ['segment-call', 'segment-llm', 'shared']
   },
   {
-    num: 4,
+    num: 3,
     label: 'Context Built',
     purpose: '12-source evidence package assembled per span: CRM, history, aliases, email, geo, journal.',
     why: 'The AI needs the full picture — garbage context means garbage routing.',
@@ -1410,7 +1249,7 @@ var MOBILE_STAGES = [
     nodes: ['ctx-assembly', 'gmail-ctx', 'ctx-retrievers']
   },
   {
-    num: 5,
+    num: 4,
     label: 'Project Attributed',
     purpose: 'AI assigns each span to a project; low-confidence spans go to human review.',
     why: 'This is the core business decision — every downstream metric depends on correct attribution.',
@@ -1418,7 +1257,7 @@ var MOBILE_STAGES = [
     nodes: ['ai-router', 'guardrails', 'review-resolve', 'review-triage']
   },
   {
-    num: 6,
+    num: 5,
     label: 'Intelligence Captured',
     purpose: 'Summary, knowledge claims, follow-ups, and signals extracted per call.',
     why: 'Turns raw conversations into structured business intelligence.',
@@ -1426,7 +1265,7 @@ var MOBILE_STAGES = [
     nodes: ['gen-summary', 'journal-ext', 'journal-cons', 'striking', 'chain-detect', 'loop-closure']
   },
   {
-    num: 7,
+    num: 6,
     label: 'Daily Report',
     purpose: 'Morning digest with signals, queue pressure, and health metrics.',
     why: 'One glance tells you if the pipeline is healthy and what needs attention today.',
@@ -1455,15 +1294,6 @@ var VIEW_MODES = {
     showComments: false
   },
   system: {
-    preset: 'pipeline',
-    layers: ['external', 'pipeline'],
-    conns: ['data-flow', 'fire-forget', 'tool-call'],
-    hideNodes: ['github', 'sb-auth'],
-    showControls: true,
-    showPrompt: false,
-    showComments: false
-  },
-  dev: {
     preset: 'full',
     layers: Object.keys(LAYERS),
     conns: Object.keys(CONN_TYPES),
@@ -1732,28 +1562,7 @@ function hideInfo() {
   document.getElementById('info-panel').classList.remove('show');
 }
 
-function updatePrompt() {
-  var el = document.getElementById('prompt-output');
-  clearChildren(el);
-  var visibleLayers = [];
-  Object.entries(state.layers).forEach(function(pair) { if (pair[1]) visibleLayers.push(LAYERS[pair[0]].label); });
-
-  if (state.comments.length === 0) {
-    el.textContent = 'Camber deep architecture \u2014 25 Edge Functions, 16 sub-modules, 10 RPCs, 39+ tables, 498 migrations.\nViewing: ' + visibleLayers.join(', ') + '.\n\nClick components to add comments. Comments become a copyable prompt.';
-    return;
-  }
-
-  var header = document.createTextNode('This is the Camber architecture (camber-calls repo), focusing on ' + visibleLayers.join(', ') + '.\n\nFeedback on specific components:\n\n');
-  el.appendChild(header);
-
-  state.comments.forEach(function(c) {
-    var strong = createEl('span', { className: 'prompt-strong' }, c.targetLabel);
-    el.appendChild(strong);
-    el.appendChild(document.createTextNode(' (' + c.targetFile + '):\n' + c.text + '\n\n'));
-  });
-}
-
-function updateAll() { renderControls(); renderDiagram(); updatePrompt(); }
+function updateAll() { renderControls(); renderDiagram(); }
 
 // ── INTERACTIONS ──────────────────────────────────
 function applyPreset(id) {
@@ -1945,18 +1754,8 @@ function showOfflineBanner() {
   list.parentNode.insertBefore(banner, list);
 }
 
-function copyPrompt() {
-  var text = document.getElementById('prompt-output').textContent;
-  navigator.clipboard.writeText(text).then(function() {
-    var btn = document.querySelector('.copy-btn');
-    btn.textContent = 'Copied!';
-    setTimeout(function() { btn.textContent = 'Copy context'; }, 1500);
-  });
-}
-
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    if (document.getElementById('chat-settings-overlay').classList.contains('show')) { closeChatSettings(); return; }
     if (infoLocked) { hideInfo(); return; }
     if (document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
     closeModal();
@@ -2007,23 +1806,6 @@ function chatMobileKeyboardDestroy() {
   panel.style.top = '';
 }
 
-function openChatSettings() {
-  document.getElementById('chat-author').value = localStorage.getItem('camber_map_author') || '';
-  document.getElementById('chat-settings-overlay').classList.add('show');
-  document.body.classList.add('overlay-open');
-}
-
-function closeChatSettings() {
-  document.getElementById('chat-settings-overlay').classList.remove('show');
-  document.body.classList.remove('overlay-open');
-}
-
-function saveChatSettings() {
-  var author = document.getElementById('chat-author').value.trim();
-  if (author) localStorage.setItem('camber_map_author', author);
-  closeChatSettings();
-}
-
 function buildChatSystemPrompt() {
   var byLayer = {};
   var layerNames = { external: 'External Services', pipeline: 'Pipeline (Edge Functions)', module: 'Sub-modules & RPCs', data: 'Data Layer', devops: 'DevOps / Tooling' };
@@ -2048,7 +1830,7 @@ function buildChatSystemPrompt() {
 
   p += '## Node Details\n';
   nodes.forEach(function(n) {
-    p += n.label + ' [' + n.id + '] (' + layerNames[n.layer] + '): ' + n.subtitle + '\n';
+    p += n.label + ' (' + layerNames[n.layer] + '): ' + n.subtitle + '\n';
   });
 
   p += '\n## Dependencies\n';
@@ -2060,7 +1842,7 @@ function buildChatSystemPrompt() {
   p += '- Only answer about components listed above.\n';
   p += '- Reference components by their label (e.g., "process-call", "ai-router").\n';
   p += '- When describing relationships, explain direction: "X calls Y" or "Y depends on X".\n';
-  p += '- Include the node ID in brackets [like-this] when mentioning components so they can be highlighted on the diagram.\n';
+  p += '- When referring to components, use their label name (e.g., "process-call", "ai-router").\n';
   p += '- If asked about something not in the architecture, say so clearly.\n';
   return p;
 }
@@ -2331,7 +2113,7 @@ function renderMobileView() {
   var stagesEl = document.getElementById('mobile-stages');
   var explorerEl = document.getElementById('mobile-explorer');
 
-  // Flow uses the stage card experience; System/Details use the map explorer.
+  // Flow uses the stage card experience; System use the map explorer.
   if (state.viewMode === 'flow') {
     if (explorerEl) explorerEl.classList.remove('active');
     if (stagesEl) stagesEl.style.display = '';
@@ -2348,7 +2130,7 @@ function renderMobileFlowCards() {
   if (!container) return;
   clearChildren(container);
 
-  // ── Search bar (consistent with System/Details mobile explorer) ──
+  // ── Search bar (consistent with System mobile explorer) ──
   var searchBar = createEl('div', { className: 'mobile-flow-search-bar' });
   var searchInput = createEl('input', {
     className: 'mobile-search',
@@ -2457,21 +2239,6 @@ function renderMobileFlowCards() {
         var descText = node.desc.length > 200 ? node.desc.slice(0, 200) + '...' : node.desc;
         var nodeDescEl = createEl('div', { className: 'stage-node-desc' }, descText);
         nodeEl.appendChild(nodeDescEl);
-      }
-
-      if (vpData && stage.capabilities && stage.capabilities.length > 0) {
-        for (var c = 0; c < stage.capabilities.length; c++) {
-          var capId = stage.capabilities[c];
-          for (var v = 0; v < vpData.capabilities.length; v++) {
-            var cap = vpData.capabilities[v];
-            if (cap.id === capId && cap.health && cap.health.row_count != null) {
-              var volEl = createEl('div', { className: 'stage-node-volume' },
-                cap.health.row_count.toLocaleString() + ' rows');
-              nodeEl.appendChild(volEl);
-              break;
-            }
-          }
-        }
       }
 
       body.appendChild(nodeEl);
@@ -2622,8 +2389,7 @@ function renderMobileExplorer() {
   if (!listEl) return;
   clearChildren(listEl);
 
-  var currentMode = state.viewMode || 'system';
-  var modeClass = 'mode-' + currentMode;
+  var modeClass = 'mode-system';
 
   // Keep the search box synced with the active filter
   if (searchEl && (searchEl.value || '') !== (state.searchFilter || '')) {
@@ -2647,19 +2413,9 @@ function renderMobileExplorer() {
   if (barEl) {
     var oldHint = barEl.querySelector('.mx-mode-hint');
     if (oldHint) oldHint.remove();
-    var oldBadge = barEl.querySelector('.mx-count-badge');
-    if (oldBadge) oldBadge.remove();
-
-    var hintText = currentMode === 'system'
-      ? 'Pipeline components and their connections'
-      : 'Full technical reference for all ' + nodes.length + ' components';
+    var hintText = 'All components and connections';
     var hint = createEl('div', { className: 'mx-mode-hint' }, hintText);
     barEl.appendChild(hint);
-
-    if (currentMode === 'dev' && searchEl) {
-      var badge = createEl('span', { className: 'mx-count-badge' }, nodes.filter(isNodeVisible).length + ' items');
-      searchEl.parentNode.insertBefore(badge, searchEl.nextSibling);
-    }
   }
 
   var visibleNodes = nodes.filter(isNodeVisible);
@@ -2711,11 +2467,6 @@ function renderMobileExplorer() {
 
       var meta = createEl('div', { className: 'mx-item-meta' });
       meta.appendChild(createEl('span', { className: 'pill dot ' + n.layer }, layerLabel(n.layer)));
-      if (n.subtitle) meta.appendChild(createEl('span', { className: 'pill' }, n.subtitle));
-
-      var deg = 0;
-      conns.forEach(function(c) { if (c.from === n.id || c.to === n.id) deg++; });
-      meta.appendChild(createEl('span', { className: 'pill' }, deg + ' ' + (deg === 1 ? 'link' : 'links')));
       item.appendChild(meta);
 
       item.onclick = function() { openMobileSheet(n); };
@@ -2753,22 +2504,13 @@ function openMobileSheet(node) {
     bodyEl.appendChild(p);
   }
 
-  // System view: keep this lightweight. Details live in the Details view.
+  // System view: expandable full details
   if (mode === 'system' && desc) {
-    var go = createEl('button', { className: 'small-btn', style: 'margin-top:6px;width:100%;' }, 'View technical details');
-    go.onclick = function() {
-      applyViewMode('dev');
-      // Let mode switch re-render, then reopen the same sheet
-      setTimeout(function(){ openMobileSheet(node); }, 0);
-    };
-    bodyEl.appendChild(go);
-  }
-
-  // Details view: show full technical detail, but only on demand.
-  if (mode === 'dev' && desc) {
     var expanded = false;
-    var more = createEl('button', { style: 'color:var(--interactive-primary);background:none;border:none;font-size:12px;cursor:pointer;padding:4px 0;display:inline-block;margin-top:6px;' });
-    more.innerHTML = 'Show full details &#9662;';
+    var more = createEl('button', {
+      style: 'color:var(--interactive-primary);background:none;border:none;font-size:12px;cursor:pointer;padding:4px 0;display:inline-block;margin-top:6px;'
+    });
+    more.textContent = 'Show full details';
     more.onclick = function() {
       expanded = !expanded;
       if (!summary) {
@@ -2777,7 +2519,7 @@ function openMobileSheet(node) {
       } else {
         p.textContent = expanded ? desc : summary;
       }
-      more.innerHTML = expanded ? 'Hide details &#9652;' : 'Show full details &#9662;';
+      more.textContent = expanded ? 'Hide details' : 'Show full details';
     };
     bodyEl.appendChild(more);
   }
@@ -2811,9 +2553,9 @@ function openMobileSheet(node) {
     bodyEl.appendChild(block);
   }
 
-  var mode2 = state.viewMode || 'flow';
-  var upTitle = (mode2 === 'system') ? 'What leads here' : 'Upstream';
-  var downTitle = (mode2 === 'system') ? 'What happens next' : 'Downstream';
+  var isSystem = state.viewMode === 'system';
+  var upTitle = isSystem ? 'What leads here' : 'Upstream';
+  var downTitle = isSystem ? 'What happens next' : 'Downstream';
   renderLinks(upTitle, incoming, 'in');
   renderLinks(downTitle, outgoing, 'out');
 
@@ -2918,14 +2660,11 @@ function applyViewMode(mode) {
   var layersSection    = document.getElementById('layers-section');
   var connsSection     = document.getElementById('conns-section');
   var commentsSection  = document.getElementById('comments-section');
-  var promptAreas      = document.querySelectorAll('.prompt-area');
   var statBar          = document.getElementById('stat-bar');
   var nowBarDesktop    = document.getElementById('now-bar-desktop');
 
   function showEl(el)  { if (el) el.style.display = ''; }
   function hideEl(el)  { if (el) el.style.display = 'none'; }
-  function showEls(nl) { nl.forEach(function(el) { el.style.display = ''; }); }
-  function hideEls(nl) { nl.forEach(function(el) { el.style.display = 'none'; }); }
 
   if (mode === 'flow') {
     showEl(sidebarFlowNav);
@@ -2933,33 +2672,20 @@ function applyViewMode(mode) {
     hideEl(layersSection);
     hideEl(connsSection);
     hideEl(commentsSection);
-    hideEls(promptAreas);
     hideEl(statBar);
     renderFlowNav();
-  } else if (mode === 'system') {
-    hideEl(sidebarFlowNav);
-    showEl(presetsSection);
-    showEl(layersSection);
-    hideEl(connsSection);
-    hideEl(commentsSection);
-    hideEls(promptAreas);
-    showEl(statBar);
   } else {
+    // system: show everything (absorbed dev's full-disclosure behaviour)
     hideEl(sidebarFlowNav);
     showEl(presetsSection);
     showEl(layersSection);
     showEl(connsSection);
     showEl(commentsSection);
-    showEls(promptAreas);
     showEl(statBar);
   }
 
   if (!isMobile && nowBarDesktop) {
-    if (mode === 'flow' || mode === 'system') {
-      nowBarDesktop.classList.add('active');
-    } else {
-      nowBarDesktop.classList.remove('active');
-    }
+    nowBarDesktop.classList.add('active');
   }
 
   updateAll();
