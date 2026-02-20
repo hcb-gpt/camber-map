@@ -29,13 +29,18 @@
   .comment-del { float: right; color: #ef4444; cursor: pointer; font-size: 10px; border: none; background: none; min-width: 28px; min-height: 28px; display: inline-flex; align-items: center; justify-content: center; }
   .comment-meta { color: #475569; font-size: 9px; margin-top: 2px; }
   .offline-banner { background: #3b1520; border: 1px solid #ef444466; border-radius: 6px; padding: 6px 10px; font-size: 10px; color: #fca5a5; margin-bottom: 8px; }
-        svg { width: 100%; height: 100%; touch-action: none; }
+  .zoom-controls { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
+  .zoom-btn { width: 30px; height: 30px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .zoom-btn:hover, .zoom-btn:active { background: #252a40; border-color: #3b82f6; }
+  svg { width: 100%; height: 100%; touch-action: none; }
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: system-ui; font-size: 11px; font-weight: 600; fill: #1e293b; pointer-events: none; }
   .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 8px; fill: #475569; pointer-events: none; }
-      .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
+  .legend { position: absolute; bottom: 8px; left: 12px; background: #161822ee; border: 1px solid #2d3148; border-radius: 8px; padding: 10px 14px; font-size: 10px; z-index: 10; }
+  .legend-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+  .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
   .prompt-strong { color: #93c5fd; font-weight: 600; }
   .copy-btn { position: absolute; top: 8px; right: 16px; padding: 5px 14px; background: #3b82f6; border: none; border-radius: 6px; color: white; font-size: 11px; cursor: pointer; }
   .copy-btn:hover, .copy-btn:active { background: #2563eb; }
@@ -72,7 +77,12 @@
   .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
 
   /* ── Touch interaction fixes ── */
-  button, .preset-btn,   .info-panel .info-close-btn {
+  button, .preset-btn, .zoom-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
+  .comment-del, .info-comment-btn, .layer-toggle, .conn-toggle, .hamburger,
+  input[type="checkbox"] {
+    touch-action: manipulation;
+  }
+  .info-panel .info-close-btn {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -366,7 +376,21 @@
       grid-row: 1;
       overflow: hidden;
     }
-            .chat-fab {
+    .zoom-controls {
+      top: auto;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      right: 16px;
+      flex-direction: column;
+    }
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      background: #252a40;
+      border-color: #3b82f6;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .chat-fab {
       bottom: calc(24px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       width: 48px;
@@ -472,7 +496,24 @@
       padding: 10px 16px;
       font-size: 13px;
     }
-                    .layer-toggle, .conn-toggle { min-height: 44px; }
+    .legend {
+      font-size: 9px;
+      padding: 6px 10px;
+      bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+      max-height: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: max-height 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .legend.expanded { max-height: 200px; }
+    .legend::after {
+      content: ' ▸';
+      color: #7c83a6;
+      font-size: 8px;
+    }
+    .legend.expanded::after { content: ' ▾'; }
+    .layer-toggle, .conn-toggle { min-height: 44px; }
     .copy-btn {
       min-height: 44px;
       padding: 10px 16px;
@@ -498,13 +539,29 @@
       min-height: 44px;
       font-size: 11px;
     }
-            .chat-fab {
+    .zoom-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+    }
+    .zoom-controls {
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      right: 12px;
+    }
+    .chat-fab {
       width: 44px;
       height: 44px;
       font-size: 20px;
       bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
-            .comment-item { font-size: 10px; }
+    .legend {
+      font-size: 8px;
+      padding: 5px 8px;
+      bottom: calc(4px + env(safe-area-inset-bottom, 0px));
+      left: 4px;
+    }
+    .legend-row { gap: 4px; margin: 2px 0; }
+    .comment-item { font-size: 10px; }
     .search-box {
       font-size: 12px;
       padding: 8px 10px;
@@ -536,8 +593,6 @@
     border-radius: 8px; padding: 3px; margin-bottom: 12px; gap: 2px;
   }
   .mode-toggle button {
-    display: inline-flex; align-items: center; justify-content: center;
-    position: static; width: auto; height: auto;
     flex: 1; padding: 6px 10px; background: none; border: none; border-radius: 6px;
     color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer;
     transition: all .15s; touch-action: manipulation;
@@ -661,22 +716,49 @@
   }
 
 
-  .zoom-menu { display: flex; gap: 8px; margin-top: 8px; }
-  .zoom-menu-btn {
-    flex: 1;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1px solid #2d3148;
-    background: #1e2235;
-    color: #cbd5e1;
-    font-size: 12px;
-    cursor: pointer;
-    min-height: 36px;
-  }
-  .zoom-menu-btn:hover { border-color: #3b82f6; }
+  /* ── Product-designer copy + mobile explorer ───────────────────── */
+  #zoom-section { margin-top: 10px; }
+  #zoom-section h3 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin: 10px 0 6px; }
+  .zoom-row { display: flex; gap: 8px; }
+  .small-btn { flex: 1; background: #1f2937; border: 1px solid #334155; color: #e2e8f0; padding: 8px 10px; border-radius: 10px; font-size: 13px; }
+  .small-btn:active { transform: translateY(1px); }
 
-  .sidebar-hint { margin: 6px 0 10px; font-size: 11px; color: #94a3b8; line-height: 1.3; }
-  .sidebar-hint-inline { margin-left: 6px; font-size: 11px; color: #94a3b8; font-weight: 500; }
+  /* Mobile explorer (System / Details) */
+  #mobile-explorer { display: none; height: calc(100dvh - 84px); overflow: auto; padding: 10px 12px 110px; }
+  #mobile-explorer.active { display: block; }
+  .mobile-explorer-bar { position: sticky; top: 0; z-index: 5; background: rgba(15,17,23,.94); backdrop-filter: blur(10px); padding: 8px 0 10px; }
+  .mobile-search { width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid #334155; background: #0b1220; color: #e2e8f0; font-size: 14px; }
+  .mx-section { margin-top: 14px; }
+  .mx-section-title { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin: 10px 0 8px; display: flex; justify-content: space-between; align-items: baseline; }
+  .mx-count { font-size: 12px; color: #64748b; }
+  .mx-item { background: #111827; border: 1px solid #1f2937; border-radius: 14px; padding: 12px; margin-bottom: 10px; }
+  .mx-item-title { font-weight: 650; font-size: 15px; color: #e2e8f0; }
+  .mx-item-sub { margin-top: 3px; font-size: 13px; color: #94a3b8; }
+  .mx-item-meta { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #0b1220; border: 1px solid #1f2937; color: #cbd5e1; }
+  .pill.dot:before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: #64748b; vertical-align: middle; }
+  .pill.external.dot:before { background: #93c5fd; }
+  .pill.pipeline.dot:before { background: #86efac; }
+  .pill.module.dot:before { background: #c4b5fd; }
+  .pill.data.dot:before { background: #fca5a5; }
+  .pill.devops.dot:before { background: #fcd34d; }
+
+  /* Bottom sheet for node details */
+  .mobile-sheet { position: fixed; left: 0; right: 0; bottom: -85dvh; height: 85dvh; background: #0b1220; border-top-left-radius: 18px; border-top-right-radius: 18px; border: 1px solid #1f2937; box-shadow: 0 -12px 40px rgba(0,0,0,.55); z-index: 50; transition: bottom .22s ease; padding-bottom: env(safe-area-inset-bottom); }
+  .mobile-sheet.open { bottom: 0; }
+  .mobile-sheet-handle { width: 44px; height: 5px; border-radius: 999px; background: #334155; margin: 8px auto 4px; }
+  .mobile-sheet-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px 6px; border-bottom: 1px solid #1f2937; }
+  .mobile-sheet-title { font-weight: 700; font-size: 16px; }
+  .mobile-sheet-close { background: transparent; border: 0; color: #cbd5e1; font-size: 18px; padding: 8px; }
+  .mobile-sheet-body { padding: 12px 14px 24px; overflow: auto; height: calc(85dvh - 54px); }
+  .ms-desc { color: #cbd5e1; font-size: 14px; line-height: 1.35; margin: 8px 0 12px; }
+  .ms-block { margin-top: 14px; }
+  .ms-block h4 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
+  .ms-link { padding: 10px 12px; border-radius: 12px; border: 1px solid #1f2937; background: #0f172a; margin-bottom: 8px; }
+  .ms-link-top { display: flex; justify-content: space-between; gap: 10px; }
+  .ms-link-title { font-weight: 650; font-size: 14px; }
+  .ms-link-type { font-size: 12px; color: #93c5fd; white-space: nowrap; }
+  .ms-link-sub { margin-top: 2px; font-size: 12px; color: #94a3b8; }
 
   /* Chat markdown rendering */
   .chat-msg.user { white-space: pre-wrap; }
@@ -705,21 +787,21 @@
     </div>
     <h2>Camber Product Map</h2>
     <div class="stat-bar" id="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
-    <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data..." oninput="filterNodes(this.value)">
+    <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
+    
     <div id="zoom-section">
       <h3>Zoom</h3>
-      <div class="zoom-menu">
-        <button class="zoom-menu-btn" onclick="zoomOut()" aria-label="Zoom out">Smaller</button>
-        <button class="zoom-menu-btn" onclick="zoomReset()" aria-label="Fit to screen">Fit</button>
-        <button class="zoom-menu-btn" onclick="zoomIn()" aria-label="Zoom in">Bigger</button>
+      <div class="zoom-row">
+        <button class="small-btn" onclick="zoomOut()">Smaller</button>
+        <button class="small-btn" onclick="fitToScreen()">Fit</button>
+        <button class="small-btn" onclick="zoomIn()">Bigger</button>
       </div>
     </div>
-
-    <div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
-    <div id="presets-section"><h3>Views</h3><div class="sidebar-hint">Quick ways to look at the map.</div><div id="presets"></div></div>
-    <div id="layers-section"><h3>Areas</h3><div class="sidebar-hint">Show/hide parts of the system.</div><div id="layer-toggles"></div></div>
-    <div id="conns-section"><h3>Links</h3><div class="sidebar-hint">Choose which relationships to draw.</div><div id="conn-toggles"></div></div>
-    <div id="comments-section"><h3>Notes<span class="sidebar-hint-inline"> (for the team)</span> (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
+<div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
+    <div id="presets-section"><div id="presets"></div></div>
+    <div id="layers-section"><h3>Areas</h3><div id="layer-toggles"></div></div>
+    <div id="conns-section"><h3>Links</h3><div id="conn-toggles"></div></div>
+    <div id="comments-section"><h3>Notes (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
   </div>
 
   <div class="canvas-area" id="canvas-area">
@@ -738,13 +820,17 @@
         <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
       </defs>
     </svg>
+<div class="legend-row"><span class="layer-dot" style="background:#93c5fd"></span> External Services</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#86efac"></span> Pipeline (Edge Functions)</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#c4b5fd"></span> Sub-modules &amp; RPCs</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#fca5a5"></span> Data Layer</div>
+      <div class="legend-row"><span class="layer-dot" style="background:#fcd34d"></span> DevOps / Tooling</div>
+    </div>
   </div>
 
-
-
   <div class="prompt-area" style="position:relative">
-    <button class="copy-btn" onclick="copyPrompt()">Copy Context</button>
-    <div class="prompt-text" id="prompt-output">Tap any part to add a note. Use the filters to explore how things connect.</div>
+    <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+    <div class="prompt-text" id="prompt-output">Click components to add comments. Toggle layers and connections to explore the architecture.</div>
   </div>
 </div>
 
@@ -762,6 +848,22 @@
     <div class="now-changes-badge" id="now-changes-badge"></div>
   </div>
   <div id="mobile-stages" role="list" aria-label="Pipeline stages"></div>
+  <div id="mobile-explorer" class="mobile-explorer" aria-label="Map explorer">
+    <div class="mobile-explorer-bar">
+      <input class="mobile-search" id="mobile-search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodesMobile(this.value)">
+    </div>
+    <div id="mobile-explorer-list"></div>
+  </div>
+
+  <div class="mobile-sheet" id="mobile-node-sheet" aria-hidden="true">
+    <div class="mobile-sheet-handle"></div>
+    <div class="mobile-sheet-header">
+      <div class="mobile-sheet-title" id="mobile-sheet-title"></div>
+      <button class="mobile-sheet-close" onclick="closeMobileSheet()" aria-label="Close">✕</button>
+    </div>
+    <div class="mobile-sheet-body" id="mobile-sheet-body"></div>
+  </div>
+
 </div>
 
 <!-- Changes Drawer -->
@@ -836,20 +938,20 @@ try {
 
 // ── DATA ──────────────────────────────────────────────
 var LAYERS = {
-  external:  { label: 'Outside tools', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
-  pipeline:  { label: 'Core automations', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
-  module:    { label: 'Supporting logic', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
-  data:      { label: 'Data (database)', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
-  devops:    { label: 'Build & operations', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
+  external:  { label: 'External Services', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
+  pipeline:  { label: 'Pipeline (Edge Functions)', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
+  module:    { label: 'Sub-modules & RPCs', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
+  data:      { label: 'Data Layer', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
+  devops:    { label: 'DevOps / Tooling', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
 };
 
 var CONN_TYPES = {
-  'data-flow':  { label: 'Main path', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
-  'fire-forget': { label: 'Background step', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
-  'tool-call':  { label: 'Outside service call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
-  'event':      { label: 'Event message', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
-  'dependency': { label: 'Depends on', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
-  'rpc':        { label: 'Database function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
+  'data-flow':  { label: 'Data Flow (blocking)', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
+  'fire-forget': { label: 'Fire & Forget', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
+  'tool-call':  { label: 'External API Call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
+  'event':      { label: 'Async / Event', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
+  'dependency': { label: 'Import / Dependency', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
+  'rpc':        { label: 'RPC / DB Function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
 };
 
 var ROW_LABELS = [
@@ -1130,16 +1232,16 @@ var connections = [
 ];
 
 var PRESETS = [
-  { id: 'full',       label: 'Everything',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
-  { id: 'pipeline',   label: 'End-to-end flow',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
-  { id: 'chain',      label: 'Main path only', layers: ['pipeline'],                                   conns: ['data-flow'] },
-  { id: 'attrib',     label: 'Attribution details',    layers: ['pipeline','module','data'],                     conns: ['data-flow','rpc','dependency'] },
-  { id: 'journal',    label: 'Journal + follow-ups',           layers: ['external','pipeline','data'],                   conns: ['data-flow','fire-forget','tool-call','rpc'] },
-  { id: 'llm',        label: 'AI calls only',         layers: ['external','pipeline'],                          conns: ['tool-call'] },
-  { id: 'modules',    label: 'Supporting logic',       layers: ['pipeline','module'],                            conns: ['dependency','rpc'] },
-  { id: 'data',       label: 'Data movement',           layers: ['pipeline','data'],                              conns: ['data-flow','rpc'] },
-  { id: 'fire',       label: 'Background paths',      layers: ['pipeline'],                                     conns: ['fire-forget'] },
-  { id: 'devops',     label: 'Build & deploy',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
+  { id: 'full',       label: 'Full System',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
+  { id: 'pipeline',   label: 'Call Pipeline Chain',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
+  { id: 'chain',      label: 'Main Chain Only (Blocking)', layers: ['pipeline'],                                   conns: ['data-flow'] },
+  { id: 'attrib',     label: 'Attribution Deep Dive',    layers: ['pipeline','module','data'],                     conns: ['data-flow','rpc','dependency'] },
+  { id: 'journal',    label: 'Journal System',           layers: ['external','pipeline','data'],                   conns: ['data-flow','fire-forget','tool-call','rpc'] },
+  { id: 'llm',        label: 'LLM Engines Only',         layers: ['external','pipeline'],                          conns: ['tool-call'] },
+  { id: 'modules',    label: 'Sub-modules & RPCs',       layers: ['pipeline','module'],                            conns: ['dependency','rpc'] },
+  { id: 'data',       label: 'Data Flow Only',           layers: ['pipeline','data'],                              conns: ['data-flow','rpc'] },
+  { id: 'fire',       label: 'Fire & Forget Paths',      layers: ['pipeline'],                                     conns: ['fire-forget'] },
+  { id: 'devops',     label: 'DevOps + CI/CD',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
 ];
 
 // ── MOBILE STAGES ────────────────────────────────────
@@ -1649,7 +1751,7 @@ function fitToScreen() {
   var pad = isMobile ? 20 : 30;
   var zx = (cw - pad * 2) / b.w;
   var zy = (ch - pad * 2) / b.h;
-  var minReadableZoom = isMobile ? 0.45 : 0.25;
+  var minReadableZoom = isMobile ? 0.35 : 0.25;
   state.zoom = Math.max(minReadableZoom, Math.min(1.5, Math.min(zx, zy)));
   state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
   if (isMobile) {
@@ -1801,7 +1903,7 @@ function copyPrompt() {
   navigator.clipboard.writeText(text).then(function() {
     var btn = document.querySelector('.copy-btn');
     btn.textContent = 'Copied!';
-    setTimeout(function() { btn.textContent = 'Copy Context'; }, 1500);
+    setTimeout(function() { btn.textContent = 'Copy Prompt'; }, 1500);
   });
 }
 
@@ -2163,7 +2265,24 @@ function getStageHealth(stage) {
 }
 
 // ── RENDER MOBILE VIEW ────────────────────────────
+
 function renderMobileView() {
+  var stagesEl = document.getElementById('mobile-stages');
+  var explorerEl = document.getElementById('mobile-explorer');
+
+  // Flow uses the stage card experience; System/Details use the map explorer.
+  if (state.viewMode === 'flow') {
+    if (explorerEl) explorerEl.classList.remove('active');
+    if (stagesEl) stagesEl.style.display = '';
+    renderMobileFlowCards();
+  } else {
+    if (stagesEl) stagesEl.style.display = 'none';
+    if (explorerEl) explorerEl.classList.add('active');
+    renderMobileExplorer();
+  }
+}
+
+function renderMobileFlowCards() {
   var container = document.getElementById('mobile-stages');
   if (!container) return;
   clearChildren(container);
@@ -2270,6 +2389,281 @@ function renderMobileView() {
   }
 }
 
+function filterNodesMobile(query) {
+  state.searchFilter = (query || '').toLowerCase().trim();
+  renderMobileView();
+}
+
+function getNodeById(id) {
+  return nodes.find(function(n) { return n.id === id; }) || null;
+}
+
+function visibleNodeIds() {
+  var ids = {};
+  nodes.filter(isNodeVisible).forEach(function(n) { ids[n.id] = true; });
+  return ids;
+}
+
+function getVisibleConnections() {
+  var ids = visibleNodeIds();
+  return connections.filter(function(c) {
+    if (!state.conns[c.type]) return false;
+    if (!ids[c.from] || !ids[c.to]) return false;
+    return true;
+  });
+}
+
+function connLabel(type) {
+  // Friendly wording for product designers
+  var map = {
+    'data-flow': 'Data moves',
+    'fire-forget': 'Triggers',
+    'tool-call': 'External call',
+    'event': 'Async event',
+    'dependency': 'Depends on',
+    'rpc': 'DB function'
+  };
+  return map[type] || (CONN_TYPES[type] ? CONN_TYPES[type].label : type);
+}
+
+function layerLabel(layerId) {
+  var map = {
+    external: 'Outside services',
+    pipeline: 'Main pipeline steps',
+    module: 'Supporting building blocks',
+    data: 'Stored data',
+    devops: 'Tools & automation'
+  };
+  if (map[layerId]) return map[layerId];
+  return (LAYERS[layerId] ? LAYERS[layerId].label : layerId);
+}
+
+
+function _sentenceFirst(text) {
+  var t = (text || '').replace(/\s+/g, ' ').trim();
+  if (!t) return '';
+  var i = t.indexOf('.');
+  if (i > 40 && i < 180) return t.slice(0, i + 1);
+  // fall back to a short chunk
+  return (t.length > 160) ? (t.slice(0, 160).trim() + '…') : t;
+}
+
+function deriveSummary(n) {
+  if (!n) return '';
+  if (n.summary) return n.summary;
+
+  var subtitle = (n.subtitle || '').trim();
+  var first = _sentenceFirst(n.desc || '');
+
+  // Light de-jargon pass (designer-friendly, still accurate)
+  first = first
+    .replace(/Supabase Edge Function/gi, 'backend service')
+    .replace(/Edge Function/gi, 'backend service')
+    .replace(/RPC/gi, 'database function')
+    .replace(/webhook/gi, 'automated callback')
+    .replace(/cron job/gi, 'scheduled job')
+    .replace(/JSON/gi, 'structured data')
+    .replace(/Postgres/gi, 'database')
+    .replace(/SQL/gi, 'database query');
+
+  var s = '';
+  if (subtitle) {
+    // Keep the subtitle as a short category, then add the first useful sentence.
+    s = subtitle.charAt(0).toUpperCase() + subtitle.slice(1);
+    if (first && first.toLowerCase().indexOf(subtitle.toLowerCase()) !== 0) s += '. ' + first;
+  } else {
+    s = first;
+  }
+
+  // clamp
+  s = (s || '').trim();
+  if (s.length > 220) s = s.slice(0, 220).trim() + '…';
+  return s;
+}
+
+function ensureSummaries() {
+  // Nodes
+  if (Array.isArray(nodes)) {
+    nodes.forEach(function(n) {
+      if (!n.summary) n.summary = deriveSummary(n);
+    });
+  }
+
+  // Mobile stages (so the field exists even if we don't explicitly write it)
+  if (Array.isArray(MOBILE_STAGES)) {
+    MOBILE_STAGES.forEach(function(s) {
+      if (!s.summary) s.summary = s.purpose || s.why || '';
+    });
+  }
+}
+
+
+function renderMobileExplorer() {
+  var listEl = document.getElementById('mobile-explorer-list');
+  var searchEl = document.getElementById('mobile-search');
+  if (!listEl) return;
+  clearChildren(listEl);
+
+  // Keep the search box synced with the active filter
+  if (searchEl && (searchEl.value || '') !== (state.searchFilter || '')) {
+    // don't overwrite the user while typing; only set if empty
+    if (!searchEl.value) searchEl.value = state.searchFilter || '';
+  }
+
+  var visibleNodes = nodes.filter(isNodeVisible);
+  var conns = getVisibleConnections();
+
+  // Order by “story” first; only show layers that are currently enabled
+  var layerOrder = ['external','pipeline','module','data','devops'];
+
+  layerOrder.forEach(function(layerId) {
+    if (!state.layers[layerId]) return;
+    var group = visibleNodes.filter(function(n) { return n.layer === layerId; });
+    if (!group.length) return;
+
+    var sec = createEl('div', { className: 'mx-section' });
+    var title = createEl('div', { className: 'mx-section-title' });
+    title.appendChild(createEl('div', {}, layerLabel(layerId)));
+    title.appendChild(createEl('div', { className: 'mx-count' }, String(group.length)));
+    sec.appendChild(title);
+
+    // Sort by how connected they are (most important first)
+    group.sort(function(a,b) {
+      var aDeg = 0, bDeg = 0;
+      conns.forEach(function(c) {
+        if (c.from === a.id || c.to === a.id) aDeg++;
+        if (c.from === b.id || c.to === b.id) bDeg++;
+      });
+      return bDeg - aDeg;
+    });
+
+    group.forEach(function(n) {
+      var item = createEl('div', { className: 'mx-item', role: 'button', tabindex: '0' });
+      item.appendChild(createEl('div', { className: 'mx-item-title' }, n.label || n.id));
+      var blurb = (n.summary || deriveSummary(n) || n.subtitle || '').trim();
+      if (blurb) item.appendChild(createEl('div', { className: 'mx-item-sub' }, blurb));
+
+      var meta = createEl('div', { className: 'mx-item-meta' });
+      meta.appendChild(createEl('span', { className: 'pill dot ' + n.layer }, layerLabel(n.layer)));
+      if (n.subtitle) meta.appendChild(createEl('span', { className: 'pill' }, n.subtitle));
+
+      var deg = 0;
+      conns.forEach(function(c) { if (c.from === n.id || c.to === n.id) deg++; });
+      meta.appendChild(createEl('span', { className: 'pill' }, deg + ' links'));
+      item.appendChild(meta);
+
+      item.onclick = function() { openMobileSheet(n); };
+      item.onkeydown = function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMobileSheet(n); } };
+
+      sec.appendChild(item);
+    });
+
+    listEl.appendChild(sec);
+  });
+
+  // Empty state
+  if (!listEl.children.length) {
+    listEl.appendChild(createEl('div', { className: 'changes-empty', style: 'margin-top:18px;' }, 'No matches. Try a different search.'));
+  }
+}
+
+function openMobileSheet(node) {
+  var sheet = document.getElementById('mobile-node-sheet');
+  var titleEl = document.getElementById('mobile-sheet-title');
+  var bodyEl = document.getElementById('mobile-sheet-body');
+  if (!sheet || !titleEl || !bodyEl) return;
+
+  titleEl.textContent = node.label || node.id;
+  clearChildren(bodyEl);
+
+  if (node.subtitle) bodyEl.appendChild(createEl('div', { className: 'mx-item-sub', style: 'margin-top:2px;' }, node.subtitle));
+
+  var mode = state.viewMode || 'flow';
+  var summary = (node.summary || deriveSummary(node) || '').trim();
+  var desc = (node.desc || '').trim();
+
+  if (summary) {
+    var p = createEl('div', { className: 'ms-desc' }, summary);
+    bodyEl.appendChild(p);
+  }
+
+  // System view: keep this lightweight. Details live in the Details view.
+  if (mode === 'system' && desc) {
+    var go = createEl('button', { className: 'small-btn', style: 'margin-top:6px;width:100%;' }, 'Open in Details (technical)');
+    go.onclick = function() {
+      applyViewMode('dev');
+      // Let mode switch re-render, then reopen the same sheet
+      setTimeout(function(){ openMobileSheet(node); }, 0);
+    };
+    bodyEl.appendChild(go);
+  }
+
+  // Details view: show full technical detail, but only on demand.
+  if (mode === 'dev' && desc) {
+    var expanded = false;
+    var more = createEl('button', { className: 'small-btn', style: 'margin-top:6px;width:100%;' }, 'Show full details');
+    more.onclick = function() {
+      expanded = !expanded;
+      if (!summary) {
+        // If there was no summary, inject the paragraph on first toggle
+        p = createEl('div', { className: 'ms-desc' }, expanded ? desc : '');
+        bodyEl.insertBefore(p, more);
+      } else {
+        p.textContent = expanded ? desc : summary;
+      }
+      more.textContent = expanded ? 'Hide details' : 'Show full details';
+    };
+    bodyEl.appendChild(more);
+  }
+
+  var conns = getVisibleConnections();
+  var incoming = conns.filter(function(c) { return c.to === node.id; });
+  var outgoing = conns.filter(function(c) { return c.from === node.id; });
+
+  function renderLinks(title, list, dir) {
+    var block = createEl('div', { className: 'ms-block' });
+    block.appendChild(createEl('h4', {}, title));
+    if (!list.length) {
+      block.appendChild(createEl('div', { className: 'mx-item-sub' }, 'None'));
+      bodyEl.appendChild(block);
+      return;
+    }
+    list.slice(0, 40).forEach(function(c) {
+      var otherId = (dir === 'in') ? c.from : c.to;
+      var other = getNodeById(otherId) || { label: otherId, subtitle: '' };
+      var row = createEl('div', { className: 'ms-link' });
+      var top = createEl('div', { className: 'ms-link-top' });
+      top.appendChild(createEl('div', { className: 'ms-link-title' }, other.label || otherId));
+      top.appendChild(createEl('div', { className: 'ms-link-type' }, connLabel(c.type)));
+      row.appendChild(top);
+      var otherBlurb = (other.summary || deriveSummary(other) || other.subtitle || '').trim();
+      if (otherBlurb) row.appendChild(createEl('div', { className: 'ms-link-sub' }, otherBlurb));
+      if (c.label) row.appendChild(createEl('div', { className: 'ms-link-sub' }, c.label));
+      row.onclick = function() { openMobileSheet(other); };
+      block.appendChild(row);
+    });
+    bodyEl.appendChild(block);
+  }
+
+  var mode2 = state.viewMode || 'flow';
+  var upTitle = (mode2 === 'system') ? 'What leads here' : 'Upstream (feeds into this)';
+  var downTitle = (mode2 === 'system') ? 'What happens next' : 'Downstream (this feeds)';
+  renderLinks(upTitle, incoming, 'in');
+  renderLinks(downTitle, outgoing, 'out');
+
+  sheet.classList.add('open');
+  sheet.setAttribute('aria-hidden', 'false');
+}
+
+function closeMobileSheet() {
+  var sheet = document.getElementById('mobile-node-sheet');
+  if (!sheet) return;
+  sheet.classList.remove('open');
+  sheet.setAttribute('aria-hidden', 'true');
+}
+
+
+
 // ── VIEW MODE SWITCHING ───────────────────────────
 function applyViewMode(mode) {
   state.viewMode = mode;
@@ -2298,13 +2692,11 @@ function applyViewMode(mode) {
     });
   }
 
-  var isSmall = window.innerWidth <= 1024;
+  var isMobile = window.innerWidth <= 1024;
   var mobileView = document.getElementById('mobile-view');
   var layoutEls = document.querySelectorAll('.layout');
 
-  // On smaller screens, only Flow uses the card view.
-  // System + Details stay as the map (with pan/zoom), so it stays readable.
-  if (isSmall && mode === 'flow') {
+  if (isMobile) {
     if (mobileView) {
       mobileView.classList.add('active');
       mobileView.scrollTop = 0;
@@ -2314,7 +2706,7 @@ function applyViewMode(mode) {
   } else {
     if (mobileView) mobileView.classList.remove('active');
     layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = '';
   }
 
   var toggleBtns = document.querySelectorAll('.mode-toggle button');
@@ -2367,7 +2759,7 @@ function applyViewMode(mode) {
     showEl(statBar);
   }
 
-  if (!isSmall && nowBarDesktop) {
+  if (!isMobile && nowBarDesktop) {
     if (mode === 'flow' || mode === 'system') {
       nowBarDesktop.classList.add('active');
     } else {
@@ -2376,7 +2768,7 @@ function applyViewMode(mode) {
   }
 
   updateAll();
-  if (!(isSmall && mode === 'flow')) fitToScreen();
+  if (!isMobile) fitToScreen();
 }
 
 // ── FLOW NAV ──────────────────────────────────────
@@ -2595,6 +2987,7 @@ window.addEventListener('resize', function() {
 });
 // Apply initial view mode after a frame (let DOM settle)
 requestAnimationFrame(function() {
+  ensureSummaries();
   applyViewMode('flow');
   fetchVPData();
 });
