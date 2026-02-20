@@ -796,12 +796,12 @@
     </div>
     <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563EB"/></marker>
-        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#059669"/></marker>
-        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#DC2626"/></marker>
-        <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#D97706"/></marker>
-        <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6B7280"/></marker>
-        <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/></marker>
+        <marker id="arrow-blue" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#2563EB"/></marker>
+        <marker id="arrow-green" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#059669"/></marker>
+        <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#DC2626"/></marker>
+        <marker id="arrow-orange" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#D97706"/></marker>
+        <marker id="arrow-gray" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#6B7280"/></marker>
+        <marker id="arrow-purple" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 4, 0 8" fill="#7C3AED"/></marker>
       </defs>
     </svg>
     </div>
@@ -1437,6 +1437,7 @@ function drawConn(g, c) {
   var ct = CONN_TYPES[c.type];
   if (!ct) return;
 
+  var ARROW_LEN = 10; // must match marker refX
   var fx = from.x + from.w/2, fy = from.y + from.h;
   var tx = to.x + to.w/2, ty = to.y;
 
@@ -1447,6 +1448,14 @@ function drawConn(g, c) {
     x1 = from.x + from.w; y1 = from.y + from.h/2;
     x2 = to.x; y2 = to.y + to.h/2;
     if (x1 > x2) { x1 = from.x; x2 = to.x + to.w; }
+  }
+
+  // Pull endpoint back by arrow length so tip lands exactly on box edge
+  var edx = x2 - x1, edy = y2 - y1;
+  var elen = Math.sqrt(edx*edx + edy*edy);
+  if (elen > ARROW_LEN) {
+    x2 -= (edx/elen) * ARROW_LEN;
+    y2 -= (edy/elen) * ARROW_LEN;
   }
 
   var dy = Math.abs(y2-y1);
@@ -1462,26 +1471,29 @@ function drawConn(g, c) {
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
-  // Bring to front on hover + highlight endpoint nodes with fill boost
+  // Bring to front on hover + highlight endpoint node groups
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
     var nl = grp.parentNode.parentNode.querySelector('.node-layer');
     if (!nl) return;
     [c.from, c.to].forEach(function(nid) {
-      var r = nl.querySelector('[data-node-id="'+nid+'"]');
-      if (!r) return;
-      r.classList.add('node-active');
-      r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
+      var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+      if (!ng) return;
+      ng.classList.add('node-active');
+      ng.parentNode.appendChild(ng);
+      var r = ng.querySelector('.node-rect');
+      if (r) r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
     });
   });
   grp.addEventListener('mouseleave', function() {
     var nl = grp.parentNode.parentNode.querySelector('.node-layer');
     if (!nl) return;
     [c.from, c.to].forEach(function(nid) {
-      var r = nl.querySelector('[data-node-id="'+nid+'"]');
-      if (!r) return;
-      r.classList.remove('node-active');
-      r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
+      var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+      if (!ng) return;
+      ng.classList.remove('node-active');
+      var r = ng.querySelector('.node-rect');
+      if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
     });
   });
 
@@ -1565,9 +1577,11 @@ function renderDiagram() {
     var hasComment = state.comments.some(function(c) { return c.target === n.id; });
     var isSearchMatch = state.searchFilter && (n.label.toLowerCase().indexOf(state.searchFilter) >= 0);
 
+    // Wrap each node in a group so rect+text+badges move together
+    var ng = createSvgEl('g', { class: 'node-group', 'data-node-id': n.id });
+
     var rect = createSvgEl('rect', {
       class: 'node-rect' + (hasComment ? ' commented' : ''),
-      'data-node-id': n.id,
       'data-base-fill': layer.color,
       'data-active-fill': layer.colorActive,
       x: n.x, y: n.y, width: n.w, height: n.h,
@@ -1576,13 +1590,28 @@ function renderDiagram() {
       'stroke-opacity': hasComment ? '1' : (isSearchMatch ? '1' : '0.6'),
       'stroke-width': isSearchMatch ? '2.5' : '1.5'
     });
-    rect.addEventListener('click', function(e) {
+    ng.appendChild(rect);
+
+    var maxChars = Math.floor((n.w - 16) / 6.5);
+    var subtitleText = n.subtitle.length > maxChars ? n.subtitle.slice(0, maxChars-2)+'..' : n.subtitle;
+    ng.appendChild(createSvgEl('text', { class: 'node-title', x: n.x + 8, y: n.y + 16 }, n.label));
+    ng.appendChild(createSvgEl('text', { class: 'node-sub', x: n.x + 8, y: n.y + 29 }, subtitleText));
+
+    if (hasComment) {
+      var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
+      ng.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
+      ng.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
+    }
+
+    ng.addEventListener('click', function(e) {
       e.stopPropagation();
       infoLocked = true;
       showInfo(n);
     });
-    rect.addEventListener('mouseenter', function() {
+    ng.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
+      // Bring this node group to front
+      ng.parentNode.appendChild(ng);
       var connGroups = connLayer.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
       var peerIds = {};
       connGroups.forEach(function(cg) {
@@ -1593,36 +1622,29 @@ function renderDiagram() {
         if (t && t !== n.id) peerIds[t] = true;
       });
       Object.keys(peerIds).forEach(function(pid) {
-        var pr = nodeLayer.querySelector('[data-node-id="'+pid+'"]');
-        if (!pr) return;
-        pr.classList.add('node-active');
-        pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
+        var pg = nodeLayer.querySelector('.node-group[data-node-id="'+pid+'"]');
+        if (!pg) return;
+        pg.classList.add('node-active');
+        pg.parentNode.appendChild(pg);
+        var pr = pg.querySelector('.node-rect');
+        if (pr) pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
       });
-      rect.classList.add('node-active');
+      ng.classList.add('node-active');
       rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
     });
-    rect.addEventListener('mouseleave', function() {
+    ng.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
       var connGroups = connLayer.querySelectorAll('.conn-group.conn-active');
       connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
-      var activeNodes = nodeLayer.querySelectorAll('.node-rect.node-active');
-      activeNodes.forEach(function(nr) {
-        nr.classList.remove('node-active');
-        nr.setAttribute('fill', nr.getAttribute('data-base-fill') || nr.getAttribute('fill'));
+      var activeGroups = nodeLayer.querySelectorAll('.node-group.node-active');
+      activeGroups.forEach(function(ag) {
+        ag.classList.remove('node-active');
+        var ar = ag.querySelector('.node-rect');
+        if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
       });
     });
-    nodeLayer.appendChild(rect);
 
-    var maxChars = Math.floor((n.w - 16) / 6.5);
-    var subtitleText = n.subtitle.length > maxChars ? n.subtitle.slice(0, maxChars-2)+'..' : n.subtitle;
-    nodeLayer.appendChild(createSvgEl('text', { class: 'node-title', x: n.x + 8, y: n.y + 16 }, n.label));
-    nodeLayer.appendChild(createSvgEl('text', { class: 'node-sub', x: n.x + 8, y: n.y + 29 }, subtitleText));
-
-    if (hasComment) {
-      var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
-      nodeLayer.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
-      nodeLayer.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
-    }
+    nodeLayer.appendChild(ng);
   });
 
   svg.appendChild(g);
