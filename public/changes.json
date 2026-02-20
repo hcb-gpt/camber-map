@@ -1,5 +1,36 @@
 {
-  "updated_at": "2026-02-20T17:50:15Z",
+  "updated_at": "2026-02-20T19:08:27Z",
   "has_previous": true,
-  "changes": []
+  "changes": [
+    {
+      "type": "health_change",
+      "capability": "call-ingestion",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "transcription",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "segmentation",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "attribution",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "embedding",
+      "from": "healthy",
+      "to": "degraded"
+    }
+  ]
 }

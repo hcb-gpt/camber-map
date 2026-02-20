@@ -2,26 +2,30 @@
 
 ## Overall Health
 
-**6 healthy, 4 unknown** out of 10 capabilities (coverage: 60%)
+**1 healthy, 5 degraded, 4 unknown** out of 10 capabilities (coverage: 60%)
 
 ## Capabilities
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| OK | Call Ingestion | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
-| OK | Transcription | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
-| OK | Segmentation | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
+| WARN | Call Ingestion | chad | 100% | 25h ago | 2026-02-19 18:32:33Z |
+| WARN | Transcription | chad | 100% | 25h ago | 2026-02-19 18:32:33Z |
+| WARN | Segmentation | chad | 100% | 25h ago | 2026-02-19 18:32:33Z |
 | ??? | Context Assembly | chad | 0% | n/a | n/a |
-| OK | Project Attribution | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
-| OK | Knowledge Extraction | chad | 100% | 12m ago | 2026-02-20 17:35:30Z |
+| WARN | Project Attribution | chad | 100% | 25h ago | 2026-02-19 18:32:33Z |
+| OK | Knowledge Extraction | chad | 100% | 2h ago | 2026-02-20 17:35:30Z |
 | ??? | Call Summarization | chad | 0% | n/a | n/a |
 | ??? | Signal Detection | chad | 0% | n/a | n/a |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
-| OK | Embedding & Search | chad | 100% | 23h ago | 2026-02-19 18:32:33Z |
+| WARN | Embedding & Search | chad | 100% | 25h ago | 2026-02-19 18:32:33Z |
 
 ## Bottlenecks
 
-No degraded or stale capabilities detected.
+- **WARN** Call Ingestion — blocks: transcription
+- **WARN** Transcription — blocks: segmentation
+- **WARN** Segmentation — blocks: context-assembly, summarization
+- **WARN** Project Attribution — blocks: journal
+- **WARN** Embedding & Search — blocks: context-assembly
 
 ## Pipeline Flow
 
@@ -42,6 +46,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-20T17:50:15Z
-Git SHA: 419b642fb2ad2df091b04accbf2a641f480712b8
+Generated: 2026-02-20T19:08:27Z
+Git SHA: a1474382e6b43f73c31dccccb092d71574bc07c0
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
