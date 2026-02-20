@@ -38,8 +38,8 @@
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
   .conn-group .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
   .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
-  .conn-group:hover .conn-label-group { opacity: 1; transform: scale(1.5); }
-  .conn-group:hover .conn-path { stroke-opacity: 1; stroke-width: 3; }
+  .conn-group:hover .conn-label-group, .conn-group.conn-active .conn-label-group { opacity: 1; transform: scale(1.5); }
+  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
@@ -1459,7 +1459,7 @@ function drawConn(g, c) {
     d = 'M'+x1+','+y1+' C'+x1+','+(y1+cp)+' '+x2+','+(y2-cp)+' '+x2+','+y2;
   }
 
-  var grp = createSvgEl('g', { class: 'conn-group' });
+  var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
   // Bring to front on hover (SVG z-order = DOM order)
   grp.addEventListener('mouseenter', function() {
@@ -1471,7 +1471,7 @@ function drawConn(g, c) {
   grp.appendChild(hit);
 
   // Visible connection path
-  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.55', 'marker-end': 'url(#'+ct.marker+')' });
+  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.15', 'marker-end': 'url(#'+ct.marker+')' });
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
   grp.appendChild(path);
 
@@ -1556,9 +1556,16 @@ function renderDiagram() {
     });
     rect.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
+      var connGroups = g.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
+      connGroups.forEach(function(cg) {
+        cg.classList.add('conn-active');
+        cg.parentNode.appendChild(cg);
+      });
     });
     rect.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
+      var connGroups = g.querySelectorAll('.conn-group.conn-active');
+      connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
     });
     g.appendChild(rect);
 
