@@ -41,9 +41,9 @@
   .conn-group:hover .conn-label-group, .conn-group.conn-active .conn-label-group { opacity: 1; transform: scale(1.5); }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
 
-  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; filter: none; }
-  .node-rect.node-active { filter: brightness(1.1); stroke-opacity: 1; stroke-width: 2.5; }
-  .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
+  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
+  .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
+  .node-rect:hover, .node-rect:active { stroke-width: 2.5; }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: 'DM Sans', system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
   .node-sub { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: var(--text-disabled); pointer-events: none; }
@@ -1462,19 +1462,26 @@ function drawConn(g, c) {
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
-  // Bring to front on hover (SVG z-order = DOM order) + highlight endpoint nodes
+  // Bring to front on hover + highlight endpoint nodes with fill boost
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
-    var fromRect = grp.parentNode.querySelector('[data-node-id="'+c.from+'"]');
-    var toRect = grp.parentNode.querySelector('[data-node-id="'+c.to+'"]');
-    if (fromRect) { fromRect.classList.add('node-active'); fromRect.parentNode.appendChild(fromRect); }
-    if (toRect) { toRect.classList.add('node-active'); toRect.parentNode.appendChild(toRect); }
+    [c.from, c.to].forEach(function(nid) {
+      var r = grp.parentNode.querySelector('[data-node-id="'+nid+'"]');
+      if (!r) return;
+      r.classList.add('node-active');
+      if (!r.getAttribute('data-base-fill')) r.setAttribute('data-base-fill', r.getAttribute('fill'));
+      r.setAttribute('fill', r.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
+      r.parentNode.appendChild(r);
+    });
   });
   grp.addEventListener('mouseleave', function() {
-    var fromRect = grp.parentNode.querySelector('[data-node-id="'+c.from+'"]');
-    var toRect = grp.parentNode.querySelector('[data-node-id="'+c.to+'"]');
-    if (fromRect) fromRect.classList.remove('node-active');
-    if (toRect) toRect.classList.remove('node-active');
+    [c.from, c.to].forEach(function(nid) {
+      var r = grp.parentNode.querySelector('[data-node-id="'+nid+'"]');
+      if (!r) return;
+      r.classList.remove('node-active');
+      var base = r.getAttribute('data-base-fill');
+      if (base) r.setAttribute('fill', base);
+    });
   });
 
   // Invisible wide hit-area for hover
@@ -1578,9 +1585,15 @@ function renderDiagram() {
       });
       Object.keys(peerIds).forEach(function(pid) {
         var pr = g.querySelector('[data-node-id="'+pid+'"]');
-        if (pr) { pr.classList.add('node-active'); pr.parentNode.appendChild(pr); }
+        if (!pr) return;
+        pr.classList.add('node-active');
+        if (!pr.getAttribute('data-base-fill')) pr.setAttribute('data-base-fill', pr.getAttribute('fill'));
+        pr.setAttribute('fill', pr.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
+        pr.parentNode.appendChild(pr);
       });
       rect.classList.add('node-active');
+      if (!rect.getAttribute('data-base-fill')) rect.setAttribute('data-base-fill', rect.getAttribute('fill'));
+      rect.setAttribute('fill', rect.getAttribute('fill').replace(/[\d.]+\)$/, '0.18)'));
       rect.parentNode.appendChild(rect);
     });
     rect.addEventListener('mouseleave', function() {
@@ -1588,7 +1601,11 @@ function renderDiagram() {
       var connGroups = g.querySelectorAll('.conn-group.conn-active');
       connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
       var activeNodes = g.querySelectorAll('.node-rect.node-active');
-      activeNodes.forEach(function(nr) { nr.classList.remove('node-active'); });
+      activeNodes.forEach(function(nr) {
+        nr.classList.remove('node-active');
+        var base = nr.getAttribute('data-base-fill');
+        if (base) nr.setAttribute('fill', base);
+      });
     });
     g.appendChild(rect);
 
