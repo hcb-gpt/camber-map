@@ -13,7 +13,7 @@
 | OK | Segmentation | chad | 100% | 11h ago | 2026-02-19 18:32:33Z |
 | ??? | Context Assembly | chad | 0% | n/a | n/a |
 | OK | Project Attribution | chad | 100% | 11h ago | 2026-02-19 18:32:33Z |
-| OK | Knowledge Extraction | chad | 100% | 6h ago | 2026-02-19 22:50:27Z |
+| OK | Knowledge Extraction | chad | 100% | 7h ago | 2026-02-19 22:50:27Z |
 | ??? | Call Summarization | chad | 0% | n/a | n/a |
 | ??? | Signal Detection | chad | 0% | n/a | n/a |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
@@ -42,6 +42,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-20T05:02:17Z
-Git SHA: 2e33d6c132be8bbcab20bec26e4a2a8012aa1654
+Generated: 2026-02-20T05:28:36Z
+Git SHA: 3bb4109f794f441fd709a158a7711f11805adfc1
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
