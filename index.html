@@ -1437,27 +1437,67 @@ function drawConn(g, c) {
   var ct = CONN_TYPES[c.type];
   if (!ct) return;
 
-  var fx = from.x + from.w/2, fy = from.y + from.h;
-  var tx = to.x + to.w/2, ty = to.y;
+  // Determine exit/entry ports and build orthogonal route
+  var R = 6; // corner radius
+  var GAP = 12; // min clearance from box edges
+  var x1, y1, x2, y2, mx, my, d;
 
-  var x1, y1, x2, y2;
-  if (fy <= ty) { x1=fx; y1=fy; x2=tx; y2=ty; }
-  else if (from.y >= to.y + to.h) { x1=fx; y1=from.y; x2=tx; y2=to.y+to.h; }
-  else {
-    x1 = from.x + from.w; y1 = from.y + from.h/2;
-    x2 = to.x; y2 = to.y + to.h/2;
-    if (x1 > x2) { x1 = from.x; x2 = to.x + to.w; }
-  }
+  var fromCx = from.x + from.w/2, fromCy = from.y + from.h/2;
+  var toCx = to.x + to.w/2, toCy = to.y + to.h/2;
 
-  var dy = Math.abs(y2-y1);
-  var cp = Math.max(30, dy * 0.4);
-  var mx = (x1+x2)/2, my = (y1+y2)/2;
-
-  var d;
-  if (Math.abs(y1 - y2) < 10) {
-    d = 'M'+x1+','+y1+' C'+(x1+40)+','+(y1-25)+' '+(x2-40)+','+(y2-25)+' '+x2+','+y2;
+  if (from.y + from.h <= to.y) {
+    // Normal: source above target — exit bottom, enter top
+    x1 = fromCx; y1 = from.y + from.h;
+    x2 = toCx;   y2 = to.y;
+    my = (y1 + y2) / 2;
+    mx = (x1 + x2) / 2;
+    if (Math.abs(x1 - x2) < 2) {
+      // Straight vertical
+      d = 'M'+x1+','+y1+' L'+x2+','+y2;
+    } else {
+      // Orthogonal: down, across, down (with rounded corners)
+      d = 'M'+x1+','+y1
+        +' L'+x1+','+(my-R)
+        +' Q'+x1+','+my+' '+(x1 < x2 ? x1+R : x1-R)+','+my
+        +' L'+(x2 < x1 ? x2+R : x2-R)+','+my
+        +' Q'+x2+','+my+' '+x2+','+(my+R)
+        +' L'+x2+','+y2;
+    }
+  } else if (from.y >= to.y + to.h) {
+    // Reverse: source below target — exit top, enter bottom
+    x1 = fromCx; y1 = from.y;
+    x2 = toCx;   y2 = to.y + to.h;
+    my = (y1 + y2) / 2;
+    mx = (x1 + x2) / 2;
+    if (Math.abs(x1 - x2) < 2) {
+      d = 'M'+x1+','+y1+' L'+x2+','+y2;
+    } else {
+      d = 'M'+x1+','+y1
+        +' L'+x1+','+(my+R)
+        +' Q'+x1+','+my+' '+(x1 < x2 ? x1+R : x1-R)+','+my
+        +' L'+(x2 < x1 ? x2+R : x2-R)+','+my
+        +' Q'+x2+','+my+' '+x2+','+(my-R)
+        +' L'+x2+','+y2;
+    }
   } else {
-    d = 'M'+x1+','+y1+' C'+x1+','+(y1+cp)+' '+x2+','+(y2-cp)+' '+x2+','+y2;
+    // Same row: exit right/left, route around
+    var goRight = fromCx <= toCx;
+    x1 = goRight ? from.x + from.w : from.x;
+    y1 = fromCy;
+    x2 = goRight ? to.x : to.x + to.w;
+    y2 = toCy;
+    mx = (x1 + x2) / 2;
+    my = (y1 + y2) / 2;
+    if (Math.abs(y1 - y2) < 2) {
+      d = 'M'+x1+','+y1+' L'+x2+','+y2;
+    } else {
+      d = 'M'+x1+','+y1
+        +' L'+(mx-R)+','+y1
+        +' Q'+mx+','+y1+' '+mx+','+(y1 < y2 ? y1+R : y1-R)
+        +' L'+mx+','+(y2 < y1 ? y2+R : y2-R)
+        +' Q'+mx+','+y2+' '+(mx < x2 ? mx+R : mx-R)+','+y2
+        +' L'+x2+','+y2;
+    }
   }
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
