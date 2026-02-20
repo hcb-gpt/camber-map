@@ -213,8 +213,17 @@
     font-size: 12px;
     line-height: 1.5;
     word-wrap: break-word;
-    white-space: pre-wrap;
   }
+  .chat-msg.user { white-space: pre-wrap; }
+  .chat-msg p { margin: 0 0 8px; }
+  .chat-msg p:last-child { margin-bottom: 0; }
+  .chat-msg h4, .chat-msg h5 { margin: 8px 0 4px; font-size: 13px; color: #e2e8f0; }
+  .chat-msg ul, .chat-msg ol { margin: 4px 0; padding-left: 18px; }
+  .chat-msg li { margin: 2px 0; }
+  .chat-msg code { background: #0f1117; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .chat-msg pre { background: #0f1117; padding: 8px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
+  .chat-msg pre code { padding: 0; background: none; }
+  .chat-msg strong { color: #e2e8f0; }
   .chat-msg.user {
     align-self: flex-end;
     background: #1e3a5f;
@@ -1665,14 +1674,6 @@ function applyPreset(id) {
   });
 
   // VP-first: hide the chat UI unless we're in Dev mode.
-  var chatFab = document.getElementById('chat-fab');
-  var chatPanel = document.getElementById('chat-panel');
-  if (mode === 'dev') {
-    if (chatFab) chatFab.style.display = '';
-  } else {
-    if (chatFab) chatFab.style.display = 'none';
-    if (chatPanel) chatPanel.classList.remove('open');
-  }
 
   updateAll();
 }
@@ -1903,14 +1904,7 @@ document.addEventListener('keydown', function(e) {
 // ── CHAT WITH DIAGRAM ─────────────────────────────
 var chatMessages = [];
 var chatStreaming = false;
-var CHAT_PROXY_URL = (function(){
-  try {
-    var qs = new URLSearchParams(window.location.search);
-    var qv = qs.get('chatProxy');
-    if (qv) { localStorage.setItem('chatProxy', qv); return qv; }
-    return localStorage.getItem('chatProxy') || '';
-  } catch (e) { return ''; }
-})();
+var CHAT_PROXY_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/chat-proxy';
 // Public artifacts (no secrets). Override by setting localStorage.artifactBaseUrl or ?artifactBaseUrl=
 var DEFAULT_ARTIFACT_BASE_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/camber-map-artifact?key=';
 
@@ -1951,10 +1945,6 @@ function fetchJsonWithFallback(key, localPath) {
 
 
 function toggleChat() {
-  if (!CHAT_PROXY_URL) {
-    alert('Chat is disabled in the public build. Provide ?chatProxy=<url> to enable.');
-    return;
-  }
   var panel = document.getElementById('chat-panel');
   var fab = document.getElementById('chat-fab');
   var isOpen = panel.classList.toggle('open');
@@ -2083,11 +2073,37 @@ async function streamChat(messages, onChunk) {
   }
 }
 
+// Lightweight markdown to HTML (input is HTML-escaped first to prevent XSS)
+function mdToHtml(md) {
+  if (!md) return '';
+  var s = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  s = s.replace(/```(\w*)\n([\s\S]*?)```/g, function(_, lang, code) {
+    return '<pre><code>' + code.trim() + '</code></pre>';
+  });
+  s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  s = s.replace(/^### (.+)$/gm, '<h5>$1</h5>');
+  s = s.replace(/^## (.+)$/gm, '<h4>$1</h4>');
+  s = s.replace(/^# (.+)$/gm, '<h4>$1</h4>');
+  s = s.replace(/^[*\-] (.+)$/gm, '<li>$1</li>');
+  s = s.replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>');
+  s = s.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+  s = s.replace(/\n\n/g, '</p><p>');
+  s = s.replace(/\n/g, '<br>');
+  return '<p>' + s + '</p>';
+}
+
 function addChatBubble(role, text) {
   var container = document.getElementById('chat-messages');
   var bubble = document.createElement('div');
   bubble.className = 'chat-msg ' + role;
-  bubble.textContent = text || '';
+  if (role === 'user') {
+    bubble.textContent = text || '';
+  } else {
+    // Safe: mdToHtml escapes all HTML entities before inserting markup
+    bubble.innerHTML = mdToHtml(text || '');
+  }
   container.appendChild(bubble);
   container.scrollTop = container.scrollHeight;
   return bubble;
@@ -2138,7 +2154,7 @@ async function sendChatMessage() {
   try {
     await streamChat(chatMessages, function(chunk) {
       fullResponse += chunk;
-      assistantBubble.textContent = fullResponse;
+      assistantBubble.innerHTML = mdToHtml(fullResponse);
       document.getElementById('chat-messages').scrollTop = document.getElementById('chat-messages').scrollHeight;
     });
     if (fullResponse) {
@@ -2193,14 +2209,6 @@ async function loadAnnotations() {
   });
 
   // VP-first: hide the chat UI unless we're in Dev mode.
-  var chatFab = document.getElementById('chat-fab');
-  var chatPanel = document.getElementById('chat-panel');
-  if (mode === 'dev') {
-    if (chatFab) chatFab.style.display = '';
-  } else {
-    if (chatFab) chatFab.style.display = 'none';
-    if (chatPanel) chatPanel.classList.remove('open');
-  }
 
   updateAll();
   } catch(e) {
@@ -2232,14 +2240,6 @@ if (sb) {
   });
 
   // VP-first: hide the chat UI unless we're in Dev mode.
-  var chatFab = document.getElementById('chat-fab');
-  var chatPanel = document.getElementById('chat-panel');
-  if (mode === 'dev') {
-    if (chatFab) chatFab.style.display = '';
-  } else {
-    if (chatFab) chatFab.style.display = 'none';
-    if (chatPanel) chatPanel.classList.remove('open');
-  }
 
   updateAll();
     })
@@ -2255,14 +2255,6 @@ if (sb) {
   });
 
   // VP-first: hide the chat UI unless we're in Dev mode.
-  var chatFab = document.getElementById('chat-fab');
-  var chatPanel = document.getElementById('chat-panel');
-  if (mode === 'dev') {
-    if (chatFab) chatFab.style.display = '';
-  } else {
-    if (chatFab) chatFab.style.display = 'none';
-    if (chatPanel) chatPanel.classList.remove('open');
-  }
 
   updateAll();
     })
@@ -2550,14 +2542,6 @@ function applyViewMode(mode) {
   });
 
   // VP-first: hide the chat UI unless we're in Dev mode.
-  var chatFab = document.getElementById('chat-fab');
-  var chatPanel = document.getElementById('chat-panel');
-  if (mode === 'dev') {
-    if (chatFab) chatFab.style.display = '';
-  } else {
-    if (chatFab) chatFab.style.display = 'none';
-    if (chatPanel) chatPanel.classList.remove('open');
-  }
 
   updateAll();
   if (!isMobile) fitToScreen();
