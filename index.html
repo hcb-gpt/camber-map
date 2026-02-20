@@ -34,12 +34,15 @@
   .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
   /* ── Connection hover-to-reveal labels ── */
-  .conn-group { cursor: pointer; }
+  .conn-group { cursor: pointer; transition: opacity 0.2s ease; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
   .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
   .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
   .conn-label-group.label-active { opacity: 1; transform: scale(1.5); }
+
+  .node-group { transition: opacity 0.2s ease; }
+  .node-group.dimmed, .conn-group.dimmed { opacity: 0.15; }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
   .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
@@ -1502,15 +1505,22 @@ function drawConn(g, c, lblLayer) {
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
 
-  // Bring to front on hover + highlight endpoint nodes + show label
+  // Hover: highlight this route, dim everything else
   grp.addEventListener('mouseenter', function() {
     grp.parentNode.appendChild(grp);
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
     var ll = root.querySelector('.label-layer');
+    var cl = grp.parentNode;
+    // Dim all nodes and connections
+    if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
+    cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
+    // Un-dim this connection and its endpoints
+    grp.classList.remove('dimmed');
     if (nl) [c.from, c.to].forEach(function(nid) {
       var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
       if (!ng) return;
+      ng.classList.remove('dimmed');
       ng.classList.add('node-active');
       ng.parentNode.appendChild(ng);
       var r = ng.querySelector('.node-rect');
@@ -1525,13 +1535,17 @@ function drawConn(g, c, lblLayer) {
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
     var ll = root.querySelector('.label-layer');
-    if (nl) [c.from, c.to].forEach(function(nid) {
-      var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
-      if (!ng) return;
-      ng.classList.remove('node-active');
-      var r = ng.querySelector('.node-rect');
-      if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
-    });
+    var cl = grp.parentNode;
+    // Remove all dims and active states
+    cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+    if (nl) {
+      nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+      nl.querySelectorAll('.node-active').forEach(function(el) {
+        el.classList.remove('node-active');
+        var r = el.querySelector('.node-rect');
+        if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
+      });
+    }
     if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
   });
 
@@ -1651,10 +1665,19 @@ function renderDiagram() {
     });
     ng.addEventListener('mouseenter', function() {
       if (!infoLocked) showInfo(n);
+      // Dim everything first
+      nodeLayer.querySelectorAll('.node-group').forEach(function(el) { el.classList.add('dimmed'); });
+      connLayer.querySelectorAll('.conn-group').forEach(function(el) { el.classList.add('dimmed'); });
+      // Un-dim this node
+      ng.classList.remove('dimmed');
+      ng.classList.add('node-active');
       ng.parentNode.appendChild(ng);
+      rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
+      // Un-dim connected edges and peer nodes
       var connGroups = connLayer.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
       var peerIds = {};
       connGroups.forEach(function(cg) {
+        cg.classList.remove('dimmed');
         cg.classList.add('conn-active');
         cg.parentNode.appendChild(cg);
         var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
@@ -1664,25 +1687,23 @@ function renderDiagram() {
       Object.keys(peerIds).forEach(function(pid) {
         var pg = nodeLayer.querySelector('.node-group[data-node-id="'+pid+'"]');
         if (!pg) return;
+        pg.classList.remove('dimmed');
         pg.classList.add('node-active');
         pg.parentNode.appendChild(pg);
         var pr = pg.querySelector('.node-rect');
         if (pr) pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
       });
-      ng.classList.add('node-active');
-      rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
       // Show related labels
       var lbls = labelLayer.querySelectorAll('.conn-label-group[data-from="'+n.id+'"], .conn-label-group[data-to="'+n.id+'"]');
       lbls.forEach(function(l) { l.classList.add('label-active'); labelLayer.appendChild(l); });
     });
     ng.addEventListener('mouseleave', function() {
       if (!infoLocked) hideInfo();
-      var connGroups = connLayer.querySelectorAll('.conn-group.conn-active');
-      connGroups.forEach(function(cg) { cg.classList.remove('conn-active'); });
-      var activeGroups = nodeLayer.querySelectorAll('.node-group.node-active');
-      activeGroups.forEach(function(ag) {
-        ag.classList.remove('node-active');
-        var ar = ag.querySelector('.node-rect');
+      // Clear all dims, actives, labels
+      connLayer.querySelectorAll('.dimmed, .conn-active').forEach(function(el) { el.classList.remove('dimmed', 'conn-active'); });
+      nodeLayer.querySelectorAll('.dimmed, .node-active').forEach(function(el) {
+        el.classList.remove('dimmed', 'node-active');
+        var ar = el.querySelector('.node-rect');
         if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
       });
       labelLayer.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
