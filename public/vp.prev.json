@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-20T17:50:15Z",
-  "git_sha": "419b642fb2ad2df091b04accbf2a641f480712b8",
+  "updated_at": "2026-02-20T19:08:27Z",
+  "git_sha": "a1474382e6b43f73c31dccccb092d71574bc07c0",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,11 +19,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 23.3,
-        "status": "fresh"
+        "hours_since_last_activity": 24.6,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 1120,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
@@ -46,11 +46,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 23.3,
-        "status": "fresh"
+        "hours_since_last_activity": 24.6,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 559,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
@@ -75,11 +75,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 23.3,
-        "status": "fresh"
+        "hours_since_last_activity": 24.6,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": null,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
@@ -134,11 +134,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 23.3,
-        "status": "fresh"
+        "hours_since_last_activity": 24.6,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 22,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 1.5,
         "status": "fresh"
       },
       "health": {
@@ -279,11 +279,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 23.3,
-        "status": "fresh"
+        "hours_since_last_activity": 24.6,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 381,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
@@ -346,8 +346,8 @@
   ],
   "summary": {
     "total": 10,
-    "healthy": 6,
-    "degraded": 0,
+    "healthy": 1,
+    "degraded": 5,
     "stale": 0,
     "unknown": 4,
     "overall_coverage_pct": 0.6
