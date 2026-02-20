@@ -703,10 +703,21 @@
   }
   .now-bar-desktop.active { display: flex; }
 
+  .mode-toggle.mobile-only { display: none; }
+
   @media (max-width: 1024px) {
     .layout.hidden-mobile { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     .chat-panel { will-change: transform; }
     .now-bar-desktop { display: none !important; }
+    #sidebar-mode-toggle { display: none; }
+    .mode-toggle.mobile-only {
+      display: flex;
+      position: fixed;
+      top: 8px;
+      left: 56px;
+      right: 16px;
+      z-index: 40;
+    }
   }
 
 </style>
@@ -770,13 +781,15 @@
   </div>
 </div>
 
+<!-- Mobile mode toggle (always visible on mobile, outside mobile-view so it persists in System/Dev) -->
+<div class="mode-toggle mobile-only" id="mobile-mode-toggle">
+  <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+  <button data-mode="system" onclick="applyViewMode('system')">System</button>
+  <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
+</div>
+
 <!-- Mobile VP View -->
 <div id="mobile-view">
-  <div class="mode-toggle" id="mobile-mode-toggle">
-    <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
-    <button data-mode="system" onclick="applyViewMode('system')">System</button>
-    <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
-  </div>
   <div class="now-bar" id="now-bar" onclick="toggleChangesDrawer()" role="status" aria-label="Pipeline status">
     <span class="now-badge"><span class="dot blue"></span> Loading...</span>
     <div class="now-changes-badge" id="now-changes-badge"></div>
