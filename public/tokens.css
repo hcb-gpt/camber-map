@@ -1,0 +1,80 @@
+/* ============================================================
+   Camber Map -- Design Tokens (Polaris-inspired)
+   Dark theme: bg #0b1220 | text #e2e8f0 / #94a3b8 / #64748b
+   Base unit: 4px
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     2.2  Spacing tokens
+     Polaris-aligned scale on a 4px base unit.
+     ---------------------------------------------------------- */
+  --space-0:    0px;
+  --space-025:  1px;
+  --space-050:  2px;
+  --space-100:  4px;
+  --space-150:  6px;
+  --space-200:  8px;
+  --space-300:  12px;
+  --space-400:  16px;
+  --space-500:  20px;
+  --space-600:  24px;
+  --space-800:  32px;
+  --space-1000: 40px;
+  --space-1200: 48px;
+
+  /* Semantic spacing aliases */
+  --space-card-padding: var(--space-400);
+  --space-card-gap:     var(--space-400);
+
+  /* ----------------------------------------------------------
+     2.3  Radius tokens
+     ---------------------------------------------------------- */
+  --radius-200: 8px;
+  --radius-300: 12px;
+  --radius-400: 16px;
+
+  /* ----------------------------------------------------------
+     2.4  Shadow tokens (depth)
+     Dark-theme shadows use black/near-black with higher opacity
+     so they read clearly against the #0b1220 background.
+
+     Level 100 -- subtle card
+     Level 200 -- raised interactive surface
+     Level 300 -- popover / menu
+     Level 600 -- modal / full-screen sheet
+     ---------------------------------------------------------- */
+  --shadow-100:
+    0 1px 2px rgba(0, 0, 0, 0.40),
+    0 1px 3px rgba(0, 0, 0, 0.30);
+
+  --shadow-200:
+    0 2px 4px rgba(0, 0, 0, 0.45),
+    0 1px 6px rgba(0, 0, 0, 0.35);
+
+  --shadow-300:
+    0 4px 8px rgba(0, 0, 0, 0.50),
+    0 2px 12px rgba(0, 0, 0, 0.40);
+
+  --shadow-600:
+    0 8px 24px rgba(0, 0, 0, 0.60),
+    0 4px 40px rgba(0, 0, 0, 0.50);
+
+  /* ----------------------------------------------------------
+     2.5  Type tokens
+     Tight ramp; line heights snap to the 4px grid.
+     ---------------------------------------------------------- */
+
+  /* Font sizes */
+  --font-size-75:  12px;   /* captions, metadata          */
+  --font-size-100: 14px;   /* default body                */
+  --font-size-200: 16px;   /* dense headings, key labels  */
+  --font-size-300: 20px;   /* page / section titles       */
+
+  /* Line heights (4px-grid-aligned) */
+  --line-height-1: 16px;
+  --line-height-2: 20px;
+  --line-height-3: 24px;
+  --line-height-4: 28px;
+}
