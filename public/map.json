@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-20T05:28:33Z",
-  "git_sha": "3bb4109f794f441fd709a158a7711f11805adfc1",
+  "updated_at": "2026-02-20T06:10:46Z",
+  "git_sha": "4d51153b3499668420c9bae78838449ced476e45",
   "mode": "live",
   "nodes": [
     {
@@ -3188,8 +3188,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 1,
-        "updated_at": 1771528219257
+        "version": 2,
+        "updated_at": 1771565626910
       }
     }
   ],
