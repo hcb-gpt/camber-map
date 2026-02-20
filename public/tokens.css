@@ -77,4 +77,41 @@
   --line-height-2: 20px;
   --line-height-3: 24px;
   --line-height-4: 28px;
+
+  /* ----------------------------------------------------------
+     2.6  Color tokens
+     Polaris UI spec — dark theme palette.
+     ---------------------------------------------------------- */
+
+  /* ── Surfaces ── */
+  --surface-base:    #0B0F14;
+  --surface-raised:  #121820;
+  --surface-overlay: #1A2230;
+  --surface-hover:   #222D3D;
+
+  /* ── Text ── */
+  --text-primary:    #E8ECF1;
+  --text-secondary:  #8899AA;
+  --text-tertiary:   #556677;
+  --text-disabled:   #3A4655;
+
+  /* ── Status ── */
+  --status-fresh:    #34D399;
+  --status-stale:    #FBBF24;
+  --status-error:    #F87171;
+  --status-unknown:  #6B7280;
+
+  /* ── Area classification ── */
+  --area-external:   #60A5FA;
+  --area-pipeline:   #34D399;
+  --area-submodule:  #A78BFA;
+  --area-data:       #FB923C;
+  --area-devops:     #FBBF24;
+
+  /* ── Interactive ── */
+  --interactive-primary: #3B82F6;
+  --interactive-hover:   #2563EB;
+  --interactive-muted:   #1E3A5F;
+  --border-default:      #1E2A38;
+  --border-focus:        #3B82F6;
 }
