@@ -2865,7 +2865,7 @@ function renderFlowNav() {
     var item = createEl('div', { className: 'flow-nav-item' });
     item.setAttribute('data-stage', String(stage.num));
 
-    var num = createEl('span', { className: 'flow-nav-num' }, 'S' + (i + 1));
+    var num = createEl('span', { className: 'flow-nav-num' }, String(stage.num));
     var label = createEl('span', {}, stage.label);
     var healthDot = createEl('span', { className: 'flow-nav-health' });
     var healthInfo = getStageHealth(stage);
@@ -2900,40 +2900,11 @@ function renderFlowNav() {
       var stageNodes = stage.nodes || [];
       if (!stageNodes.length) return;
 
-      // Find bounding box of all stage nodes
-      var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-      stageNodes.forEach(function(nid) {
-        var n = nodes.find(function(nd) { return nd.id === nid; });
-        if (!n) return;
-        if (n.x < minX) minX = n.x;
-        if (n.y < minY) minY = n.y;
-        if (n.x + n.w > maxX) maxX = n.x + n.w;
-        if (n.y + n.h > maxY) maxY = n.y + n.h;
-      });
-      if (minX === Infinity) return;
-
-      // Pan + zoom to fit stage nodes with padding
-      var svgW = svg.clientWidth, svgH = svg.clientHeight;
-      var pad = 60;
-      var bw = maxX - minX + pad * 2, bh = maxY - minY + pad * 2;
-      var z = Math.min(svgW / bw, svgH / bh, 1.2);
-      var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
-      state.zoom = z;
-      state.panX = svgW / 2 / z - cx;
-      state.panY = svgH / 2 / z - cy;
-      renderDiagram();
-
-      // Re-query layers after re-render
-      nl = svg.querySelector('.node-layer');
-      cl = svg.querySelector('.conn-layer');
-      ll = svg.querySelector('.label-layer');
-
-      // Dim everything
-      if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
+      // Dim everything, then un-dim stage nodes and their connections
+      if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); ng.classList.remove('node-active'); });
       if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
       if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.add('dimmed'); });
 
-      // Un-dim stage nodes and their inter-stage connections + labels
       var stageSet = {};
       stageNodes.forEach(function(nid) { stageSet[nid] = true; });
       stageNodes.forEach(function(nid) {
