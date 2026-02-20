@@ -8,10 +8,15 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { overflow: hidden; overscroll-behavior: none; }
   body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; height: 100vh; height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
-  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100vh; }
-  .sidebar { grid-row: 1/3; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; }
-  .canvas-area { position: relative; overflow: hidden; background: #0f1117; touch-action: none; }
-  .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100dvh; min-height: 0; }
+  .layout.no-prompt { grid-template-rows: 1fr; }
+
+  .sidebar { grid-row: 1 / -1; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; min-height: 0; }
+
+  .canvas-area { position: relative; overflow: hidden; background: #0f1117; touch-action: none; min-height: 0; }
+
+  .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; min-height: 0; }
+
   h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: #7c83a6; margin-bottom: 10px; }
   h3 { font-size: 12px; color: #94a3b8; margin: 12px 0 6px; }
   .preset-btn { display: block; width: 100%; padding: 7px 10px; margin-bottom: 4px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer; text-align: left; transition: all .15s; }
@@ -340,7 +345,7 @@
   }
 
   /* ── Mobile breakpoint ── */
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .hamburger {
       display: flex;
       width: 44px;
@@ -698,7 +703,7 @@
   }
   .now-bar-desktop.active { display: flex; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .layout.hidden-mobile { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
     .chat-panel { will-change: transform; }
     .now-bar-desktop { display: none !important; }
@@ -840,11 +845,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── SUPABASE ──────────────────────────────────────────
+// ── SUPABASE (OPTIONAL) ────────────────────────────────
+// This repo is public. Do not hardcode keys. If you want live annotations,
+// provide sbUrl + sbKey (anon) via query params or localStorage.
 var sb = null;
-var sbOffline = false;
+var sbOffline = true;
 try {
-  sb = supabase.createClient('https://rjhdwidddtfetbwqolof.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGR3aWRkZHRmZXRid3FvbG9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxMTYwNDQsImV4cCI6MjA4MDY5MjA0NH0.m0BArfDxAMQrX2-50_IgircX_SwWLe5VccxewGmuWio');
+  var _sbQs = new URLSearchParams(window.location.search);
+  var sbUrl = _sbQs.get('sbUrl') || localStorage.getItem('sbUrl');
+  var sbKey = _sbQs.get('sbKey') || localStorage.getItem('sbKey');
+  if (sbUrl && sbKey && typeof supabase !== 'undefined') {
+    localStorage.setItem('sbUrl', sbUrl);
+    localStorage.setItem('sbKey', sbKey);
+    sb = supabase.createClient(sbUrl, sbKey);
+    sbOffline = false;
+  }
 } catch(e) {
   sbOffline = true;
 }
@@ -1232,6 +1247,10 @@ var VIEW_MODES = {
 var vpData = null;
 var factsData = null;
 var changesData = null;
+var capabilitiesConfig = null;
+
+// UI breakpoint: at/below this width, show VP mobile view (cards)
+var MOBILE_BREAKPOINT = 1024;
 
 // ── STATE ──────────────────────────────────────────
 var state = {
@@ -1243,6 +1262,7 @@ var state = {
   panX: 0, panY: 0,
   searchFilter: '',
   viewMode: 'flow',
+  focusIds: [],
 };
 Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
 
@@ -1345,11 +1365,6 @@ var VIEW_MODES = {
   }
 };
 
-// ── CACHE VARS ────────────────────────────────────
-var vpData = null;
-var factsData = null;
-var changesData = null;
-
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
 
@@ -1403,7 +1418,7 @@ function renderControls() {
   clearChildren(presetsEl);
   PRESETS.forEach(function(p) {
     var btn = createEl('button', { className: 'preset-btn' + (state.preset===p.id?' active':'') }, p.label);
-    btn.addEventListener('click', function() { applyPreset(p.id); if (window.innerWidth <= 768) toggleSidebar(); });
+    btn.addEventListener('click', function() { applyPreset(p.id); if (window.innerWidth <= MOBILE_BREAKPOINT) toggleSidebar(); });
     presetsEl.appendChild(btn);
   });
 
@@ -1528,15 +1543,16 @@ function renderDiagram() {
     var layer = LAYERS[n.layer];
     var hasComment = state.comments.some(function(c) { return c.target === n.id; });
     var isSearchMatch = state.searchFilter && (n.label.toLowerCase().indexOf(state.searchFilter) >= 0);
+    var isFocused = state.focusIds && state.focusIds.indexOf(n.id) >= 0;
 
     var rect = createSvgEl('rect', {
       class: 'node-rect' + (hasComment ? ' commented' : ''),
       'data-node-id': n.id,
       x: n.x, y: n.y, width: n.w, height: n.h,
       fill: layer.color,
-      stroke: hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke),
-      'stroke-opacity': hasComment ? '1' : (isSearchMatch ? '1' : '0.6'),
-      'stroke-width': isSearchMatch ? '2.5' : '1.5'
+      stroke: isFocused ? '#60a5fa' : (hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke)),
+      'stroke-opacity': (isFocused || hasComment || isSearchMatch) ? '1' : '0.6',
+      'stroke-width': isFocused ? '3.2' : (isSearchMatch ? '2.5' : '1.5')
     });
     rect.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -1627,6 +1643,24 @@ function applyPreset(id) {
   state.preset = id;
   Object.keys(state.layers).forEach(function(k) { state.layers[k] = p.layers.indexOf(k) >= 0; });
   Object.keys(state.conns).forEach(function(k) { state.conns[k] = p.conns.indexOf(k) >= 0; });
+
+  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
+  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
+  document.querySelectorAll('.layout').forEach(function(el) {
+    if (mode === 'dev') el.classList.remove('no-prompt');
+    else el.classList.add('no-prompt');
+  });
+
+  // VP-first: hide the chat UI unless we're in Dev mode.
+  var chatFab = document.getElementById('chat-fab');
+  var chatPanel = document.getElementById('chat-panel');
+  if (mode === 'dev') {
+    if (chatFab) chatFab.style.display = '';
+  } else {
+    if (chatFab) chatFab.style.display = 'none';
+    if (chatPanel) chatPanel.classList.remove('open');
+  }
+
   updateAll();
 }
 
@@ -1659,20 +1693,36 @@ function fitToScreen() {
   var canvas = document.getElementById('canvas-area');
   var cw = canvas.clientWidth, ch = canvas.clientHeight;
   if (cw === 0 || ch === 0) return;
+
   var b = getDiagramBounds();
-  var isMobile = window.innerWidth <= 768;
+  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
   var pad = isMobile ? 20 : 30;
+
+  // Compute fit zoom, but enforce readability in Flow mode (VP-first).
   var zx = (cw - pad * 2) / b.w;
   var zy = (ch - pad * 2) / b.h;
-  var minReadableZoom = isMobile ? 0.35 : 0.25;
-  state.zoom = Math.max(minReadableZoom, Math.min(1.5, Math.min(zx, zy)));
-  state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
-  if (isMobile) {
-    // On mobile: align diagram to top instead of centering vertically
+  var fitZoom = Math.min(zx, zy);
+
+  var minReadableZoom = isMobile ? 0.40 : 0.35;
+  if (state.viewMode === 'flow') {
+    minReadableZoom = isMobile ? 0.55 : 0.45;
+  }
+
+  // Cap zoom so we don't over-zoom huge canvases.
+  state.zoom = Math.max(minReadableZoom, Math.min(1.6, fitZoom));
+
+  // If we had to clamp to the minimum (diagram is too big to fit), anchor top-left
+  // so Stage 1 is immediately readable; users can pan to explore.
+  var clampedToMin = (fitZoom < minReadableZoom);
+
+  if (clampedToMin || state.viewMode === 'flow') {
+    state.panX = pad - b.x * state.zoom;
     state.panY = pad - b.y * state.zoom;
   } else {
+    state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
     state.panY = (ch - b.h * state.zoom) / 2 - b.y * state.zoom;
   }
+
   renderDiagram();
 }
 
@@ -1693,6 +1743,13 @@ canvasArea.addEventListener('mousemove', function(e) {
 });
 canvasArea.addEventListener('mouseup', function() { isPanning = false; });
 canvasArea.addEventListener('mouseleave', function() { isPanning = false; });
+canvasArea.addEventListener('click', function(e) {
+  if (e.target && e.target.tagName === 'rect') return;
+  infoLocked = false;
+  state.focusIds = [];
+  hideInfo();
+  renderDiagram();
+});
 canvasArea.addEventListener('click', function(e) {
   if (e.target.tagName !== 'rect' && infoLocked) hideInfo();
 });
@@ -1833,16 +1890,65 @@ document.addEventListener('keydown', function(e) {
 // ── CHAT WITH DIAGRAM ─────────────────────────────
 var chatMessages = [];
 var chatStreaming = false;
-var CHAT_PROXY_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/chat-proxy';
+var CHAT_PROXY_URL = (function(){
+  try {
+    var qs = new URLSearchParams(window.location.search);
+    var qv = qs.get('chatProxy');
+    if (qv) { localStorage.setItem('chatProxy', qv); return qv; }
+    return localStorage.getItem('chatProxy') || '';
+  } catch (e) { return ''; }
+})();
+// Public artifacts (no secrets). Override by setting localStorage.artifactBaseUrl or ?artifactBaseUrl=
+var DEFAULT_ARTIFACT_BASE_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/camber-map-artifact?key=';
+
+function getArtifactBaseUrl() {
+  try {
+    var qs = new URLSearchParams(window.location.search);
+    var qv = qs.get('artifactBaseUrl');
+    if (qv) {
+      localStorage.setItem('artifactBaseUrl', qv);
+      return qv;
+    }
+    var lv = localStorage.getItem('artifactBaseUrl');
+    return lv || DEFAULT_ARTIFACT_BASE_URL;
+  } catch (e) {
+    return DEFAULT_ARTIFACT_BASE_URL;
+  }
+}
+
+function artifactUrl(key) {
+  var base = getArtifactBaseUrl();
+  if (base.indexOf('?key=') >= 0) return base + encodeURIComponent(key);
+  if (base[base.length - 1] !== '/') base += '/';
+  return base + key;
+}
+
+function fetchJsonWithFallback(key, localPath) {
+  // Try live product artifact endpoint first, then fall back to repo-committed artifacts.
+  return fetch(artifactUrl(key), { cache: 'no-store' })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .catch(function() { return null; })
+    .then(function(primary) {
+      if (primary) return primary;
+      return fetch(localPath)
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .catch(function() { return null; });
+    });
+}
+
 
 function toggleChat() {
+  if (!CHAT_PROXY_URL) {
+    alert('Chat is disabled in the public build. Provide ?chatProxy=<url> to enable.');
+    return;
+  }
   var panel = document.getElementById('chat-panel');
   var fab = document.getElementById('chat-fab');
   var isOpen = panel.classList.toggle('open');
   fab.classList.toggle('hidden', isOpen);
   if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
       document.body.style.overflow = 'hidden';
       chatMobileKeyboardInit(); // attach listener first ...
     }
@@ -2065,7 +2171,25 @@ async function loadAnnotations() {
         created_at: a.created_at
       };
     });
-    updateAll();
+  
+  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
+  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
+  document.querySelectorAll('.layout').forEach(function(el) {
+    if (mode === 'dev') el.classList.remove('no-prompt');
+    else el.classList.add('no-prompt');
+  });
+
+  // VP-first: hide the chat UI unless we're in Dev mode.
+  var chatFab = document.getElementById('chat-fab');
+  var chatPanel = document.getElementById('chat-panel');
+  if (mode === 'dev') {
+    if (chatFab) chatFab.style.display = '';
+  } else {
+    if (chatFab) chatFab.style.display = 'none';
+    if (chatPanel) chatPanel.classList.remove('open');
+  }
+
+  updateAll();
   } catch(e) {
     sbOffline = true; showOfflineBanner();
   }
@@ -2086,12 +2210,48 @@ if (sb) {
         text: a.content, author: a.author || 'anonymous',
         created_at: a.created_at
       });
-      updateAll();
+    
+  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
+  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
+  document.querySelectorAll('.layout').forEach(function(el) {
+    if (mode === 'dev') el.classList.remove('no-prompt');
+    else el.classList.add('no-prompt');
+  });
+
+  // VP-first: hide the chat UI unless we're in Dev mode.
+  var chatFab = document.getElementById('chat-fab');
+  var chatPanel = document.getElementById('chat-panel');
+  if (mode === 'dev') {
+    if (chatFab) chatFab.style.display = '';
+  } else {
+    if (chatFab) chatFab.style.display = 'none';
+    if (chatPanel) chatPanel.classList.remove('open');
+  }
+
+  updateAll();
     })
     .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'map_annotations' }, function(payload) {
       var delId = payload.old.id;
       state.comments = state.comments.filter(function(c) { return c.id !== delId; });
-      updateAll();
+    
+  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
+  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
+  document.querySelectorAll('.layout').forEach(function(el) {
+    if (mode === 'dev') el.classList.remove('no-prompt');
+    else el.classList.add('no-prompt');
+  });
+
+  // VP-first: hide the chat UI unless we're in Dev mode.
+  var chatFab = document.getElementById('chat-fab');
+  var chatPanel = document.getElementById('chat-panel');
+  if (mode === 'dev') {
+    if (chatFab) chatFab.style.display = '';
+  } else {
+    if (chatFab) chatFab.style.display = 'none';
+    if (chatPanel) chatPanel.classList.remove('open');
+  }
+
+  updateAll();
     })
     .subscribe();
 }
@@ -2289,7 +2449,7 @@ function applyViewMode(mode) {
     });
   }
 
-  var isMobile = window.innerWidth <= 768;
+  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
   var mobileView = document.getElementById('mobile-view');
   var layoutEls = document.querySelectorAll('.layout');
 
@@ -2364,6 +2524,24 @@ function applyViewMode(mode) {
     }
   }
 
+
+  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
+  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
+  document.querySelectorAll('.layout').forEach(function(el) {
+    if (mode === 'dev') el.classList.remove('no-prompt');
+    else el.classList.add('no-prompt');
+  });
+
+  // VP-first: hide the chat UI unless we're in Dev mode.
+  var chatFab = document.getElementById('chat-fab');
+  var chatPanel = document.getElementById('chat-panel');
+  if (mode === 'dev') {
+    if (chatFab) chatFab.style.display = '';
+  } else {
+    if (chatFab) chatFab.style.display = 'none';
+    if (chatPanel) chatPanel.classList.remove('open');
+  }
+
   updateAll();
   if (!isMobile) fitToScreen();
 }
@@ -2388,27 +2566,138 @@ function renderFlowNav() {
     item.appendChild(healthDot);
 
     item.addEventListener('click', function() {
-      if (typeof renderMobileView === 'function') renderMobileView();
+      focusStage(stage);
     });
 
     nav.appendChild(item);
   });
 }
 
+
+// ── STAGE FOCUS (VP navigation) ────────────────────
+function canonToDiagramId(id) {
+  if (!id) return id;
+  if (id.indexOf('edge:') === 0) return id.slice(5);
+  if (id.indexOf('fn:') === 0) {
+    // fn:public.my_fn(args) -> my_fn
+    var p = id.split(':').slice(1).join(':');
+    var name = p.split('(')[0];
+    name = name.split('.').pop();
+    return name;
+  }
+  if (id.indexOf('table:') === 0 || id.indexOf('view:') === 0 || id.indexOf('matview:') === 0) {
+    // table:public.calls_raw -> calls-raw (best-effort)
+    var parts = id.split('.');
+    var name2 = parts[parts.length - 1];
+    return name2.replace(/_/g, '-');
+  }
+  if (id.indexOf('router:') === 0) return id; // rarely in diagram
+  return id;
+}
+
+function getCapabilityTechNodes(capId) {
+  // Prefer local config (has tech_nodes list); vp.json currently summarizes without listing nodes.
+  if (capabilitiesConfig && capabilitiesConfig.capabilities) {
+    for (var i = 0; i < capabilitiesConfig.capabilities.length; i++) {
+      var c = capabilitiesConfig.capabilities[i];
+      if (c.id === capId && c.tech_nodes) return c.tech_nodes.slice();
+    }
+  }
+  return [];
+}
+
+function focusNodes(nodeIds, opts) {
+  opts = opts || {};
+  if (!nodeIds || nodeIds.length === 0) return;
+
+  var ids = [];
+  nodeIds.forEach(function(id) {
+    var did = canonToDiagramId(id);
+    if (did) ids.push(did);
+  });
+
+  // Filter to nodes that exist in the diagram model.
+  var target = nodes.filter(function(n) { return ids.indexOf(n.id) >= 0; });
+  if (target.length === 0) {
+    // Still record focus for highlighting when user searches.
+    state.focusIds = ids;
+    renderDiagram();
+    return;
+  }
+
+  var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  target.forEach(function(n) {
+    minX = Math.min(minX, n.x);
+    minY = Math.min(minY, n.y);
+    maxX = Math.max(maxX, n.x + n.w);
+    maxY = Math.max(maxY, n.y + n.h);
+  });
+
+  var b = { x: minX, y: minY, w: (maxX - minX), h: (maxY - minY) };
+  var canvas = document.getElementById('canvas-area');
+  var cw = canvas.clientWidth, ch = canvas.clientHeight;
+  if (cw === 0 || ch === 0) return;
+
+  var pad = 40;
+  var zx = (cw - pad * 2) / b.w;
+  var zy = (ch - pad * 2) / b.h;
+  var z = Math.min(2.2, Math.max(0.55, Math.min(zx, zy)));
+
+  // Keep VP readability; do not zoom too small.
+  state.zoom = z;
+  state.panX = (cw - b.w * z) / 2 - b.x * z;
+  state.panY = pad - b.y * z;
+
+  state.focusIds = ids;
+  infoLocked = false;
+  renderDiagram();
+
+  if (opts.openInfo) {
+    showInfo(target[0]);
+  }
+}
+
+function focusStage(stage) {
+  if (!stage) return;
+
+  // Collect tech nodes from capabilities config.
+  var tech = [];
+  if (stage.capabilities) {
+    stage.capabilities.forEach(function(cid) {
+      var tn = getCapabilityTechNodes(cid);
+      tn.forEach(function(t) { tech.push(t); });
+    });
+  }
+  // Dedupe
+  var seen = {};
+  var uniq = [];
+  tech.forEach(function(t) { if (!seen[t]) { seen[t] = true; uniq.push(t); } });
+
+  // If nothing found, clear focus.
+  if (uniq.length === 0) {
+    state.focusIds = [];
+    renderDiagram();
+    return;
+  }
+  focusNodes(uniq, { openInfo: false });
+}
+
 // ── VP DATA FETCHER ───────────────────────────────
 function fetchVPData() {
   return Promise.all([
-    fetch('./public/vp.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/facts.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/changes.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    fetchJsonWithFallback('vp.json', './public/vp.json'),
+    fetchJsonWithFallback('facts.json', './public/facts.json'),
+    fetchJsonWithFallback('changes.json', './public/changes.json'),
+    fetch('./config/capabilities.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
   ]).then(function(results) {
     vpData = results[0];
     factsData = results[1];
     changesData = results[2];
+    capabilitiesConfig = results[3];
 
     renderNowBar();
 
-    if (window.innerWidth <= 768 && state.viewMode === 'flow') {
+    if (window.innerWidth <= MOBILE_BREAKPOINT && state.viewMode === 'flow') {
       if (typeof renderMobileView === 'function') renderMobileView();
       if (typeof renderFlowNav === 'function') renderFlowNav();
     }
@@ -2574,9 +2863,9 @@ updateAll();
 loadAnnotations();
 
 // ── VP Instrument Panel initialization ──
-var _lastMobileState = window.innerWidth <= 768;
+var _lastMobileState = window.innerWidth <= MOBILE_BREAKPOINT;
 window.addEventListener('resize', function() {
-  var nowMobile = window.innerWidth <= 768;
+  var nowMobile = window.innerWidth <= MOBILE_BREAKPOINT;
   if (nowMobile !== _lastMobileState) {
     _lastMobileState = nowMobile;
     applyViewMode(state.viewMode);
