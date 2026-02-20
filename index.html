@@ -3,20 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camber Codebase Map — Deep Architecture</title>
+<title>Camber Product Map</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { overflow: hidden; overscroll-behavior: none; }
   body { font-family: system-ui, -apple-system, sans-serif; background: #0f1117; color: #e2e8f0; height: 100vh; height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-overflow-scrolling: touch; }
-  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100dvh; min-height: 0; }
-  .layout.no-prompt { grid-template-rows: 1fr; }
-
-  .sidebar { grid-row: 1 / -1; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; min-height: 0; }
-
-  .canvas-area { position: relative; overflow: hidden; background: #0f1117; touch-action: none; min-height: 0; }
-
-  .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; min-height: 0; }
-
+  .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr 180px; height: 100vh; }
+  .sidebar { grid-row: 1/3; background: #161822; border-right: 1px solid #2d3148; padding: 16px; overflow-y: auto; }
+  .canvas-area { position: relative; overflow: hidden; background: #0f1117; touch-action: none; }
+  .prompt-area { grid-column: 2; background: #161822; border-top: 1px solid #2d3148; padding: 12px 16px; overflow-y: auto; }
   h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px; color: #7c83a6; margin-bottom: 10px; }
   h3 { font-size: 12px; color: #94a3b8; margin: 12px 0 6px; }
   .preset-btn { display: block; width: 100%; padding: 7px 10px; margin-bottom: 4px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer; text-align: left; transition: all .15s; }
@@ -34,18 +29,13 @@
   .comment-del { float: right; color: #ef4444; cursor: pointer; font-size: 10px; border: none; background: none; min-width: 28px; min-height: 28px; display: inline-flex; align-items: center; justify-content: center; }
   .comment-meta { color: #475569; font-size: 9px; margin-top: 2px; }
   .offline-banner { background: #3b1520; border: 1px solid #ef444466; border-radius: 6px; padding: 6px 10px; font-size: 10px; color: #fca5a5; margin-bottom: 8px; }
-  .zoom-controls { position: absolute; top: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
-  .zoom-btn { width: 30px; height: 30px; background: #1e2235; border: 1px solid #2d3148; border-radius: 6px; color: #cbd5e1; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .zoom-btn:hover, .zoom-btn:active { background: #252a40; border-color: #3b82f6; }
-  svg { width: 100%; height: 100%; touch-action: none; }
+        svg { width: 100%; height: 100%; touch-action: none; }
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: all .15s; }
   .node-rect:hover, .node-rect:active { stroke-width: 2.5; filter: brightness(1.15); }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: system-ui; font-size: 11px; font-weight: 600; fill: #1e293b; pointer-events: none; }
   .node-sub { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 8px; fill: #475569; pointer-events: none; }
-  .legend { position: absolute; bottom: 8px; left: 12px; background: #161822ee; border: 1px solid #2d3148; border-radius: 8px; padding: 10px 14px; font-size: 10px; z-index: 10; }
-  .legend-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
-  .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
+      .prompt-text { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; white-space: pre-wrap; line-height: 1.6; }
   .prompt-strong { color: #93c5fd; font-weight: 600; }
   .copy-btn { position: absolute; top: 8px; right: 16px; padding: 5px 14px; background: #3b82f6; border: none; border-radius: 6px; color: white; font-size: 11px; cursor: pointer; }
   .copy-btn:hover, .copy-btn:active { background: #2563eb; }
@@ -82,12 +72,7 @@
   .stat-bar { font-size: 10px; color: #64748b; margin: -4px 0 10px; line-height: 1.5; }
 
   /* ── Touch interaction fixes ── */
-  button, .preset-btn, .zoom-btn, .copy-btn, .chat-fab, .chat-send, .chat-header-btn,
-  .comment-del, .info-comment-btn, .layer-toggle, .conn-toggle, .hamburger,
-  input[type="checkbox"] {
-    touch-action: manipulation;
-  }
-  .info-panel .info-close-btn {
+  button, .preset-btn,   .info-panel .info-close-btn {
     position: absolute;
     top: 8px;
     right: 8px;
@@ -214,16 +199,6 @@
     line-height: 1.5;
     word-wrap: break-word;
   }
-  .chat-msg.user { white-space: pre-wrap; }
-  .chat-msg p { margin: 0 0 8px; }
-  .chat-msg p:last-child { margin-bottom: 0; }
-  .chat-msg h4, .chat-msg h5 { margin: 8px 0 4px; font-size: 13px; color: #e2e8f0; }
-  .chat-msg ul, .chat-msg ol { margin: 4px 0; padding-left: 18px; }
-  .chat-msg li { margin: 2px 0; }
-  .chat-msg code { background: #0f1117; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
-  .chat-msg pre { background: #0f1117; padding: 8px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
-  .chat-msg pre code { padding: 0; background: none; }
-  .chat-msg strong { color: #e2e8f0; }
   .chat-msg.user {
     align-self: flex-end;
     background: #1e3a5f;
@@ -391,21 +366,7 @@
       grid-row: 1;
       overflow: hidden;
     }
-    .zoom-controls {
-      top: auto;
-      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-      right: 16px;
-      flex-direction: column;
-    }
-    .zoom-btn {
-      width: 36px;
-      height: 36px;
-      font-size: 16px;
-      background: #252a40;
-      border-color: #3b82f6;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .chat-fab {
+            .chat-fab {
       bottom: calc(24px + env(safe-area-inset-bottom, 0px));
       right: 16px;
       width: 48px;
@@ -511,24 +472,7 @@
       padding: 10px 16px;
       font-size: 13px;
     }
-    .legend {
-      font-size: 9px;
-      padding: 6px 10px;
-      bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-      max-height: 28px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: max-height 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-    .legend.expanded { max-height: 200px; }
-    .legend::after {
-      content: ' ▸';
-      color: #7c83a6;
-      font-size: 8px;
-    }
-    .legend.expanded::after { content: ' ▾'; }
-    .layer-toggle, .conn-toggle { min-height: 44px; }
+                    .layer-toggle, .conn-toggle { min-height: 44px; }
     .copy-btn {
       min-height: 44px;
       padding: 10px 16px;
@@ -554,29 +498,13 @@
       min-height: 44px;
       font-size: 11px;
     }
-    .zoom-btn {
-      width: 32px;
-      height: 32px;
-      font-size: 14px;
-    }
-    .zoom-controls {
-      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-      right: 12px;
-    }
-    .chat-fab {
+            .chat-fab {
       width: 44px;
       height: 44px;
       font-size: 20px;
       bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
-    .legend {
-      font-size: 8px;
-      padding: 5px 8px;
-      bottom: calc(4px + env(safe-area-inset-bottom, 0px));
-      left: 4px;
-    }
-    .legend-row { gap: 4px; margin: 2px 0; }
-    .comment-item { font-size: 10px; }
+            .comment-item { font-size: 10px; }
     .search-box {
       font-size: 12px;
       padding: 8px 10px;
@@ -608,6 +536,8 @@
     border-radius: 8px; padding: 3px; margin-bottom: 12px; gap: 2px;
   }
   .mode-toggle button {
+    display: inline-flex; align-items: center; justify-content: center;
+    position: static; width: auto; height: auto;
     flex: 1; padding: 6px 10px; background: none; border: none; border-radius: 6px;
     color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer;
     transition: all .15s; touch-action: manipulation;
@@ -712,6 +642,7 @@
   }
   .now-bar-desktop.active { display: flex; }
 
+  /* Mobile-only toggle (hidden on desktop, shown in @media below) */
   .mode-toggle.mobile-only { display: none; }
 
   @media (max-width: 1024px) {
@@ -729,6 +660,35 @@
     }
   }
 
+
+  .zoom-menu { display: flex; gap: 8px; margin-top: 8px; }
+  .zoom-menu-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #2d3148;
+    background: #1e2235;
+    color: #cbd5e1;
+    font-size: 12px;
+    cursor: pointer;
+    min-height: 36px;
+  }
+  .zoom-menu-btn:hover { border-color: #3b82f6; }
+
+  .sidebar-hint { margin: 6px 0 10px; font-size: 11px; color: #94a3b8; line-height: 1.3; }
+  .sidebar-hint-inline { margin-left: 6px; font-size: 11px; color: #94a3b8; font-weight: 500; }
+
+  /* Chat markdown rendering */
+  .chat-msg.user { white-space: pre-wrap; }
+  .chat-msg p { margin: 0 0 8px; }
+  .chat-msg p:last-child { margin-bottom: 0; }
+  .chat-msg h4, .chat-msg h5 { margin: 8px 0 4px; font-size: 13px; color: #e2e8f0; }
+  .chat-msg ul, .chat-msg ol { margin: 4px 0; padding-left: 18px; }
+  .chat-msg li { margin: 2px 0; }
+  .chat-msg code { background: #0f1117; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+  .chat-msg pre { background: #0f1117; padding: 8px; border-radius: 6px; overflow-x: auto; margin: 6px 0; }
+  .chat-msg pre code { padding: 0; background: none; }
+  .chat-msg strong { color: #e2e8f0; }
 </style>
 </head>
 <body>
@@ -741,25 +701,29 @@
     <div class="mode-toggle" id="sidebar-mode-toggle">
       <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
       <button data-mode="system" onclick="applyViewMode('system')">System</button>
-      <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
+      <button data-mode="dev" onclick="applyViewMode('dev')">Details</button>
     </div>
-    <h2>Camber Deep Architecture</h2>
+    <h2>Camber Product Map</h2>
     <div class="stat-bar" id="stat-bar">25 Edge Functions \u00b7 16 sub-modules \u00b7 10 RPCs<br>39+ tables \u00b7 8 views \u00b7 498 migrations \u00b7 ~17k LOC</div>
-    <input class="search-box" id="search" type="text" placeholder="Search nodes..." oninput="filterNodes(this.value)">
+    <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data..." oninput="filterNodes(this.value)">
+    <div id="zoom-section">
+      <h3>Zoom</h3>
+      <div class="zoom-menu">
+        <button class="zoom-menu-btn" onclick="zoomOut()" aria-label="Zoom out">Smaller</button>
+        <button class="zoom-menu-btn" onclick="zoomReset()" aria-label="Fit to screen">Fit</button>
+        <button class="zoom-menu-btn" onclick="zoomIn()" aria-label="Zoom in">Bigger</button>
+      </div>
+    </div>
+
     <div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
-    <div id="presets-section"><div id="presets"></div></div>
-    <div id="layers-section"><h3>Layers</h3><div id="layer-toggles"></div></div>
-    <div id="conns-section"><h3>Connections</h3><div id="conn-toggles"></div></div>
-    <div id="comments-section"><h3>Comments (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
+    <div id="presets-section"><h3>Views</h3><div class="sidebar-hint">Quick ways to look at the map.</div><div id="presets"></div></div>
+    <div id="layers-section"><h3>Areas</h3><div class="sidebar-hint">Show/hide parts of the system.</div><div id="layer-toggles"></div></div>
+    <div id="conns-section"><h3>Links</h3><div class="sidebar-hint">Choose which relationships to draw.</div><div id="conn-toggles"></div></div>
+    <div id="comments-section"><h3>Notes<span class="sidebar-hint-inline"> (for the team)</span> (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
   </div>
 
   <div class="canvas-area" id="canvas-area">
-    <div class="zoom-controls">
-      <button class="zoom-btn" onclick="zoomIn()">+</button>
-      <button class="zoom-btn" onclick="zoomOut()">&minus;</button>
-      <button class="zoom-btn" onclick="zoomReset()" style="font-size:10px">1:1</button>
-    </div>
-    <div class="info-panel" id="info-panel">
+<div class="info-panel" id="info-panel">
       <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
       <h4 id="info-title"></h4>
       <p id="info-desc"></p>
@@ -774,27 +738,21 @@
         <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#a855f7"/></marker>
       </defs>
     </svg>
-    <div class="legend" id="legend" onclick="this.classList.toggle('expanded')">
-      <div style="font-weight:600;margin-bottom:4px;color:#cbd5e1">Legend</div>
-      <div class="legend-row"><span class="layer-dot" style="background:#93c5fd"></span> External Services</div>
-      <div class="legend-row"><span class="layer-dot" style="background:#86efac"></span> Pipeline (Edge Functions)</div>
-      <div class="legend-row"><span class="layer-dot" style="background:#c4b5fd"></span> Sub-modules &amp; RPCs</div>
-      <div class="legend-row"><span class="layer-dot" style="background:#fca5a5"></span> Data Layer</div>
-      <div class="legend-row"><span class="layer-dot" style="background:#fcd34d"></span> DevOps / Tooling</div>
-    </div>
   </div>
 
+
+
   <div class="prompt-area" style="position:relative">
-    <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
-    <div class="prompt-text" id="prompt-output">Click components to add comments. Toggle layers and connections to explore the architecture.</div>
+    <button class="copy-btn" onclick="copyPrompt()">Copy Context</button>
+    <div class="prompt-text" id="prompt-output">Tap any part to add a note. Use the filters to explore how things connect.</div>
   </div>
 </div>
 
-<!-- Mobile mode toggle (always visible on mobile, outside mobile-view so it persists in System/Dev) -->
+<!-- Mobile mode toggle (always visible on mobile, outside mobile-view) -->
 <div class="mode-toggle mobile-only" id="mobile-mode-toggle">
   <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
   <button data-mode="system" onclick="applyViewMode('system')">System</button>
-  <button data-mode="dev" onclick="applyViewMode('dev')">Dev</button>
+  <button data-mode="dev" onclick="applyViewMode('dev')">Details</button>
 </div>
 
 <!-- Mobile VP View -->
@@ -867,41 +825,31 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// ── SUPABASE (OPTIONAL) ────────────────────────────────
-// This repo is public. Do not hardcode keys. If you want live annotations,
-// provide sbUrl + sbKey (anon) via query params or localStorage.
+// ── SUPABASE ──────────────────────────────────────────
 var sb = null;
-var sbOffline = true;
+var sbOffline = false;
 try {
-  var _sbQs = new URLSearchParams(window.location.search);
-  var sbUrl = _sbQs.get('sbUrl') || localStorage.getItem('sbUrl');
-  var sbKey = _sbQs.get('sbKey') || localStorage.getItem('sbKey');
-  if (sbUrl && sbKey && typeof supabase !== 'undefined') {
-    localStorage.setItem('sbUrl', sbUrl);
-    localStorage.setItem('sbKey', sbKey);
-    sb = supabase.createClient(sbUrl, sbKey);
-    sbOffline = false;
-  }
+  sb = supabase.createClient('https://rjhdwidddtfetbwqolof.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqaGR3aWRkZHRmZXRid3FvbG9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxMTYwNDQsImV4cCI6MjA4MDY5MjA0NH0.m0BArfDxAMQrX2-50_IgircX_SwWLe5VccxewGmuWio');
 } catch(e) {
   sbOffline = true;
 }
 
 // ── DATA ──────────────────────────────────────────────
 var LAYERS = {
-  external:  { label: 'External Services', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
-  pipeline:  { label: 'Pipeline (Edge Functions)', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
-  module:    { label: 'Sub-modules & RPCs', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
-  data:      { label: 'Data Layer', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
-  devops:    { label: 'DevOps / Tooling', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
+  external:  { label: 'Outside tools', color: '#dbeafe', dot: '#93c5fd', stroke: '#3b82f6' },
+  pipeline:  { label: 'Core automations', color: '#dcfce7', dot: '#86efac', stroke: '#22c55e' },
+  module:    { label: 'Supporting logic', color: '#f3e8ff', dot: '#c4b5fd', stroke: '#a855f7' },
+  data:      { label: 'Data (database)', color: '#fce7f3', dot: '#fca5a5', stroke: '#ef4444' },
+  devops:    { label: 'Build & operations', color: '#fef3c7', dot: '#fcd34d', stroke: '#f59e0b' },
 };
 
 var CONN_TYPES = {
-  'data-flow':  { label: 'Data Flow (blocking)', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
-  'fire-forget': { label: 'Fire & Forget', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
-  'tool-call':  { label: 'External API Call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
-  'event':      { label: 'Async / Event', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
-  'dependency': { label: 'Import / Dependency', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
-  'rpc':        { label: 'RPC / DB Function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
+  'data-flow':  { label: 'Main path', color: '#3b82f6', dash: '', marker: 'arrow-blue' },
+  'fire-forget': { label: 'Background step', color: '#f97316', dash: '8,4', marker: 'arrow-orange' },
+  'tool-call':  { label: 'Outside service call', color: '#10b981', dash: '6,3', marker: 'arrow-green' },
+  'event':      { label: 'Event message', color: '#ef4444', dash: '4,4', marker: 'arrow-red' },
+  'dependency': { label: 'Depends on', color: '#6b7280', dash: '2,4', marker: 'arrow-gray' },
+  'rpc':        { label: 'Database function', color: '#a855f7', dash: '5,3', marker: 'arrow-purple' },
 };
 
 var ROW_LABELS = [
@@ -1182,16 +1130,16 @@ var connections = [
 ];
 
 var PRESETS = [
-  { id: 'full',       label: 'Full System',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
-  { id: 'pipeline',   label: 'Call Pipeline Chain',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
-  { id: 'chain',      label: 'Main Chain Only (Blocking)', layers: ['pipeline'],                                   conns: ['data-flow'] },
-  { id: 'attrib',     label: 'Attribution Deep Dive',    layers: ['pipeline','module','data'],                     conns: ['data-flow','rpc','dependency'] },
-  { id: 'journal',    label: 'Journal System',           layers: ['external','pipeline','data'],                   conns: ['data-flow','fire-forget','tool-call','rpc'] },
-  { id: 'llm',        label: 'LLM Engines Only',         layers: ['external','pipeline'],                          conns: ['tool-call'] },
-  { id: 'modules',    label: 'Sub-modules & RPCs',       layers: ['pipeline','module'],                            conns: ['dependency','rpc'] },
-  { id: 'data',       label: 'Data Flow Only',           layers: ['pipeline','data'],                              conns: ['data-flow','rpc'] },
-  { id: 'fire',       label: 'Fire & Forget Paths',      layers: ['pipeline'],                                     conns: ['fire-forget'] },
-  { id: 'devops',     label: 'DevOps + CI/CD',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
+  { id: 'full',       label: 'Everything',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
+  { id: 'pipeline',   label: 'End-to-end flow',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
+  { id: 'chain',      label: 'Main path only', layers: ['pipeline'],                                   conns: ['data-flow'] },
+  { id: 'attrib',     label: 'Attribution details',    layers: ['pipeline','module','data'],                     conns: ['data-flow','rpc','dependency'] },
+  { id: 'journal',    label: 'Journal + follow-ups',           layers: ['external','pipeline','data'],                   conns: ['data-flow','fire-forget','tool-call','rpc'] },
+  { id: 'llm',        label: 'AI calls only',         layers: ['external','pipeline'],                          conns: ['tool-call'] },
+  { id: 'modules',    label: 'Supporting logic',       layers: ['pipeline','module'],                            conns: ['dependency','rpc'] },
+  { id: 'data',       label: 'Data movement',           layers: ['pipeline','data'],                              conns: ['data-flow','rpc'] },
+  { id: 'fire',       label: 'Background paths',      layers: ['pipeline'],                                     conns: ['fire-forget'] },
+  { id: 'devops',     label: 'Build & deploy',           layers: ['external','data','devops'],                     conns: ['event','dependency','data-flow'] },
 ];
 
 // ── MOBILE STAGES ────────────────────────────────────
@@ -1269,10 +1217,6 @@ var VIEW_MODES = {
 var vpData = null;
 var factsData = null;
 var changesData = null;
-var capabilitiesConfig = null;
-
-// UI breakpoint: at/below this width, show VP mobile view (cards)
-var MOBILE_BREAKPOINT = 1024;
 
 // ── STATE ──────────────────────────────────────────
 var state = {
@@ -1284,7 +1228,6 @@ var state = {
   panX: 0, panY: 0,
   searchFilter: '',
   viewMode: 'flow',
-  focusIds: [],
 };
 Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
 
@@ -1387,6 +1330,11 @@ var VIEW_MODES = {
   }
 };
 
+// ── CACHE VARS ────────────────────────────────────
+var vpData = null;
+var factsData = null;
+var changesData = null;
+
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
 
@@ -1440,7 +1388,7 @@ function renderControls() {
   clearChildren(presetsEl);
   PRESETS.forEach(function(p) {
     var btn = createEl('button', { className: 'preset-btn' + (state.preset===p.id?' active':'') }, p.label);
-    btn.addEventListener('click', function() { applyPreset(p.id); if (window.innerWidth <= MOBILE_BREAKPOINT) toggleSidebar(); });
+    btn.addEventListener('click', function() { applyPreset(p.id); if (window.innerWidth <= 1024) toggleSidebar(); });
     presetsEl.appendChild(btn);
   });
 
@@ -1565,16 +1513,15 @@ function renderDiagram() {
     var layer = LAYERS[n.layer];
     var hasComment = state.comments.some(function(c) { return c.target === n.id; });
     var isSearchMatch = state.searchFilter && (n.label.toLowerCase().indexOf(state.searchFilter) >= 0);
-    var isFocused = state.focusIds && state.focusIds.indexOf(n.id) >= 0;
 
     var rect = createSvgEl('rect', {
       class: 'node-rect' + (hasComment ? ' commented' : ''),
       'data-node-id': n.id,
       x: n.x, y: n.y, width: n.w, height: n.h,
       fill: layer.color,
-      stroke: isFocused ? '#60a5fa' : (hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke)),
-      'stroke-opacity': (isFocused || hasComment || isSearchMatch) ? '1' : '0.6',
-      'stroke-width': isFocused ? '3.2' : (isSearchMatch ? '2.5' : '1.5')
+      stroke: hasComment ? '#f59e0b' : (isSearchMatch ? '#22d3ee' : layer.stroke),
+      'stroke-opacity': hasComment ? '1' : (isSearchMatch ? '1' : '0.6'),
+      'stroke-width': isSearchMatch ? '2.5' : '1.5'
     });
     rect.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -1665,16 +1612,6 @@ function applyPreset(id) {
   state.preset = id;
   Object.keys(state.layers).forEach(function(k) { state.layers[k] = p.layers.indexOf(k) >= 0; });
   Object.keys(state.conns).forEach(function(k) { state.conns[k] = p.conns.indexOf(k) >= 0; });
-
-  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
-  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
-  document.querySelectorAll('.layout').forEach(function(el) {
-    if (mode === 'dev') el.classList.remove('no-prompt');
-    else el.classList.add('no-prompt');
-  });
-
-  // VP-first: hide the chat UI unless we're in Dev mode.
-
   updateAll();
 }
 
@@ -1707,36 +1644,20 @@ function fitToScreen() {
   var canvas = document.getElementById('canvas-area');
   var cw = canvas.clientWidth, ch = canvas.clientHeight;
   if (cw === 0 || ch === 0) return;
-
   var b = getDiagramBounds();
-  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  var isMobile = window.innerWidth <= 1024;
   var pad = isMobile ? 20 : 30;
-
-  // Compute fit zoom, but enforce readability in Flow mode (VP-first).
   var zx = (cw - pad * 2) / b.w;
   var zy = (ch - pad * 2) / b.h;
-  var fitZoom = Math.min(zx, zy);
-
-  var minReadableZoom = isMobile ? 0.40 : 0.35;
-  if (state.viewMode === 'flow') {
-    minReadableZoom = isMobile ? 0.55 : 0.45;
-  }
-
-  // Cap zoom so we don't over-zoom huge canvases.
-  state.zoom = Math.max(minReadableZoom, Math.min(1.6, fitZoom));
-
-  // If we had to clamp to the minimum (diagram is too big to fit), anchor top-left
-  // so Stage 1 is immediately readable; users can pan to explore.
-  var clampedToMin = (fitZoom < minReadableZoom);
-
-  if (clampedToMin || state.viewMode === 'flow') {
-    state.panX = pad - b.x * state.zoom;
+  var minReadableZoom = isMobile ? 0.45 : 0.25;
+  state.zoom = Math.max(minReadableZoom, Math.min(1.5, Math.min(zx, zy)));
+  state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
+  if (isMobile) {
+    // On mobile: align diagram to top instead of centering vertically
     state.panY = pad - b.y * state.zoom;
   } else {
-    state.panX = (cw - b.w * state.zoom) / 2 - b.x * state.zoom;
     state.panY = (ch - b.h * state.zoom) / 2 - b.y * state.zoom;
   }
-
   renderDiagram();
 }
 
@@ -1757,13 +1678,6 @@ canvasArea.addEventListener('mousemove', function(e) {
 });
 canvasArea.addEventListener('mouseup', function() { isPanning = false; });
 canvasArea.addEventListener('mouseleave', function() { isPanning = false; });
-canvasArea.addEventListener('click', function(e) {
-  if (e.target && e.target.tagName === 'rect') return;
-  infoLocked = false;
-  state.focusIds = [];
-  hideInfo();
-  renderDiagram();
-});
 canvasArea.addEventListener('click', function(e) {
   if (e.target.tagName !== 'rect' && infoLocked) hideInfo();
 });
@@ -1887,7 +1801,7 @@ function copyPrompt() {
   navigator.clipboard.writeText(text).then(function() {
     var btn = document.querySelector('.copy-btn');
     btn.textContent = 'Copied!';
-    setTimeout(function() { btn.textContent = 'Copy Prompt'; }, 1500);
+    setTimeout(function() { btn.textContent = 'Copy Context'; }, 1500);
   });
 }
 
@@ -1905,44 +1819,6 @@ document.addEventListener('keydown', function(e) {
 var chatMessages = [];
 var chatStreaming = false;
 var CHAT_PROXY_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/chat-proxy';
-// Public artifacts (no secrets). Override by setting localStorage.artifactBaseUrl or ?artifactBaseUrl=
-var DEFAULT_ARTIFACT_BASE_URL = 'https://rjhdwidddtfetbwqolof.supabase.co/functions/v1/camber-map-artifact?key=';
-
-function getArtifactBaseUrl() {
-  try {
-    var qs = new URLSearchParams(window.location.search);
-    var qv = qs.get('artifactBaseUrl');
-    if (qv) {
-      localStorage.setItem('artifactBaseUrl', qv);
-      return qv;
-    }
-    var lv = localStorage.getItem('artifactBaseUrl');
-    return lv || DEFAULT_ARTIFACT_BASE_URL;
-  } catch (e) {
-    return DEFAULT_ARTIFACT_BASE_URL;
-  }
-}
-
-function artifactUrl(key) {
-  var base = getArtifactBaseUrl();
-  if (base.indexOf('?key=') >= 0) return base + encodeURIComponent(key);
-  if (base[base.length - 1] !== '/') base += '/';
-  return base + key;
-}
-
-function fetchJsonWithFallback(key, localPath) {
-  // Try live product artifact endpoint first, then fall back to repo-committed artifacts.
-  return fetch(artifactUrl(key), { cache: 'no-store' })
-    .then(function(r) { return r.ok ? r.json() : null; })
-    .catch(function() { return null; })
-    .then(function(primary) {
-      if (primary) return primary;
-      return fetch(localPath)
-        .then(function(r) { return r.ok ? r.json() : null; })
-        .catch(function() { return null; });
-    });
-}
-
 
 function toggleChat() {
   var panel = document.getElementById('chat-panel');
@@ -1951,7 +1827,7 @@ function toggleChat() {
   fab.classList.toggle('hidden', isOpen);
   if (isOpen) {
     document.getElementById('chat-api-prompt').style.display = 'none';
-    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+    if (window.innerWidth <= 1024) {
       document.body.style.overflow = 'hidden';
       chatMobileKeyboardInit(); // attach listener first ...
     }
@@ -2073,7 +1949,6 @@ async function streamChat(messages, onChunk) {
   }
 }
 
-// Lightweight markdown to HTML (input is HTML-escaped first to prevent XSS)
 function mdToHtml(md) {
   if (!md) return '';
   var s = md.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -2101,7 +1976,6 @@ function addChatBubble(role, text) {
   if (role === 'user') {
     bubble.textContent = text || '';
   } else {
-    // Safe: mdToHtml escapes all HTML entities before inserting markup
     bubble.innerHTML = mdToHtml(text || '');
   }
   container.appendChild(bubble);
@@ -2200,17 +2074,7 @@ async function loadAnnotations() {
         created_at: a.created_at
       };
     });
-  
-  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
-  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
-  document.querySelectorAll('.layout').forEach(function(el) {
-    if (mode === 'dev') el.classList.remove('no-prompt');
-    else el.classList.add('no-prompt');
-  });
-
-  // VP-first: hide the chat UI unless we're in Dev mode.
-
-  updateAll();
+    updateAll();
   } catch(e) {
     sbOffline = true; showOfflineBanner();
   }
@@ -2231,32 +2095,12 @@ if (sb) {
         text: a.content, author: a.author || 'anonymous',
         created_at: a.created_at
       });
-    
-  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
-  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
-  document.querySelectorAll('.layout').forEach(function(el) {
-    if (mode === 'dev') el.classList.remove('no-prompt');
-    else el.classList.add('no-prompt');
-  });
-
-  // VP-first: hide the chat UI unless we're in Dev mode.
-
-  updateAll();
+      updateAll();
     })
     .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'map_annotations' }, function(payload) {
       var delId = payload.old.id;
       state.comments = state.comments.filter(function(c) { return c.id !== delId; });
-    
-  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
-  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
-  document.querySelectorAll('.layout').forEach(function(el) {
-    if (mode === 'dev') el.classList.remove('no-prompt');
-    else el.classList.add('no-prompt');
-  });
-
-  // VP-first: hide the chat UI unless we're in Dev mode.
-
-  updateAll();
+      updateAll();
     })
     .subscribe();
 }
@@ -2454,25 +2298,23 @@ function applyViewMode(mode) {
     });
   }
 
-  var isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  var isSmall = window.innerWidth <= 1024;
   var mobileView = document.getElementById('mobile-view');
   var layoutEls = document.querySelectorAll('.layout');
 
-  if (isMobile) {
-    if (mode === 'flow') {
-      // Flow: VP card view
-      if (mobileView) { mobileView.classList.add('active'); mobileView.scrollTop = 0; }
-      layoutEls.forEach(function(el) { el.classList.add('hidden-mobile'); });
-      if (typeof renderMobileView === 'function') renderMobileView();
-    } else {
-      // System/Dev: show the SVG diagram (canvas fills viewport)
-      if (mobileView) mobileView.classList.remove('active');
-      layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
+  // On smaller screens, only Flow uses the card view.
+  // System + Details stay as the map (with pan/zoom), so it stays readable.
+  if (isSmall && mode === 'flow') {
+    if (mobileView) {
+      mobileView.classList.add('active');
+      mobileView.scrollTop = 0;
     }
+    layoutEls.forEach(function(el) { el.classList.add('hidden-mobile'); });
+    if (typeof renderMobileView === 'function') renderMobileView();
   } else {
     if (mobileView) mobileView.classList.remove('active');
     layoutEls.forEach(function(el) { el.classList.remove('hidden-mobile'); });
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'hidden';
   }
 
   var toggleBtns = document.querySelectorAll('.mode-toggle button');
@@ -2525,7 +2367,7 @@ function applyViewMode(mode) {
     showEl(statBar);
   }
 
-  if (!isMobile && nowBarDesktop) {
+  if (!isSmall && nowBarDesktop) {
     if (mode === 'flow' || mode === 'system') {
       nowBarDesktop.classList.add('active');
     } else {
@@ -2533,18 +2375,8 @@ function applyViewMode(mode) {
     }
   }
 
-
-  // Layout sizing: when prompt area is hidden, collapse the bottom grid row
-  // so the diagram gets the full viewport height (prevents 'tiny map' syndrome).
-  document.querySelectorAll('.layout').forEach(function(el) {
-    if (mode === 'dev') el.classList.remove('no-prompt');
-    else el.classList.add('no-prompt');
-  });
-
-  // VP-first: hide the chat UI unless we're in Dev mode.
-
   updateAll();
-  if (!isMobile) fitToScreen();
+  if (!(isSmall && mode === 'flow')) fitToScreen();
 }
 
 // ── FLOW NAV ──────────────────────────────────────
@@ -2567,138 +2399,27 @@ function renderFlowNav() {
     item.appendChild(healthDot);
 
     item.addEventListener('click', function() {
-      focusStage(stage);
+      if (typeof renderMobileView === 'function') renderMobileView();
     });
 
     nav.appendChild(item);
   });
 }
 
-
-// ── STAGE FOCUS (VP navigation) ────────────────────
-function canonToDiagramId(id) {
-  if (!id) return id;
-  if (id.indexOf('edge:') === 0) return id.slice(5);
-  if (id.indexOf('fn:') === 0) {
-    // fn:public.my_fn(args) -> my_fn
-    var p = id.split(':').slice(1).join(':');
-    var name = p.split('(')[0];
-    name = name.split('.').pop();
-    return name;
-  }
-  if (id.indexOf('table:') === 0 || id.indexOf('view:') === 0 || id.indexOf('matview:') === 0) {
-    // table:public.calls_raw -> calls-raw (best-effort)
-    var parts = id.split('.');
-    var name2 = parts[parts.length - 1];
-    return name2.replace(/_/g, '-');
-  }
-  if (id.indexOf('router:') === 0) return id; // rarely in diagram
-  return id;
-}
-
-function getCapabilityTechNodes(capId) {
-  // Prefer local config (has tech_nodes list); vp.json currently summarizes without listing nodes.
-  if (capabilitiesConfig && capabilitiesConfig.capabilities) {
-    for (var i = 0; i < capabilitiesConfig.capabilities.length; i++) {
-      var c = capabilitiesConfig.capabilities[i];
-      if (c.id === capId && c.tech_nodes) return c.tech_nodes.slice();
-    }
-  }
-  return [];
-}
-
-function focusNodes(nodeIds, opts) {
-  opts = opts || {};
-  if (!nodeIds || nodeIds.length === 0) return;
-
-  var ids = [];
-  nodeIds.forEach(function(id) {
-    var did = canonToDiagramId(id);
-    if (did) ids.push(did);
-  });
-
-  // Filter to nodes that exist in the diagram model.
-  var target = nodes.filter(function(n) { return ids.indexOf(n.id) >= 0; });
-  if (target.length === 0) {
-    // Still record focus for highlighting when user searches.
-    state.focusIds = ids;
-    renderDiagram();
-    return;
-  }
-
-  var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-  target.forEach(function(n) {
-    minX = Math.min(minX, n.x);
-    minY = Math.min(minY, n.y);
-    maxX = Math.max(maxX, n.x + n.w);
-    maxY = Math.max(maxY, n.y + n.h);
-  });
-
-  var b = { x: minX, y: minY, w: (maxX - minX), h: (maxY - minY) };
-  var canvas = document.getElementById('canvas-area');
-  var cw = canvas.clientWidth, ch = canvas.clientHeight;
-  if (cw === 0 || ch === 0) return;
-
-  var pad = 40;
-  var zx = (cw - pad * 2) / b.w;
-  var zy = (ch - pad * 2) / b.h;
-  var z = Math.min(2.2, Math.max(0.55, Math.min(zx, zy)));
-
-  // Keep VP readability; do not zoom too small.
-  state.zoom = z;
-  state.panX = (cw - b.w * z) / 2 - b.x * z;
-  state.panY = pad - b.y * z;
-
-  state.focusIds = ids;
-  infoLocked = false;
-  renderDiagram();
-
-  if (opts.openInfo) {
-    showInfo(target[0]);
-  }
-}
-
-function focusStage(stage) {
-  if (!stage) return;
-
-  // Collect tech nodes from capabilities config.
-  var tech = [];
-  if (stage.capabilities) {
-    stage.capabilities.forEach(function(cid) {
-      var tn = getCapabilityTechNodes(cid);
-      tn.forEach(function(t) { tech.push(t); });
-    });
-  }
-  // Dedupe
-  var seen = {};
-  var uniq = [];
-  tech.forEach(function(t) { if (!seen[t]) { seen[t] = true; uniq.push(t); } });
-
-  // If nothing found, clear focus.
-  if (uniq.length === 0) {
-    state.focusIds = [];
-    renderDiagram();
-    return;
-  }
-  focusNodes(uniq, { openInfo: false });
-}
-
 // ── VP DATA FETCHER ───────────────────────────────
 function fetchVPData() {
   return Promise.all([
-    fetchJsonWithFallback('vp.json', './public/vp.json'),
-    fetchJsonWithFallback('facts.json', './public/facts.json'),
-    fetchJsonWithFallback('changes.json', './public/changes.json'),
-    fetch('./config/capabilities.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    fetch('./public/vp.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/facts.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/changes.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
   ]).then(function(results) {
     vpData = results[0];
     factsData = results[1];
     changesData = results[2];
-    capabilitiesConfig = results[3];
 
     renderNowBar();
 
-    if (window.innerWidth <= MOBILE_BREAKPOINT && state.viewMode === 'flow') {
+    if (window.innerWidth <= 1024 && state.viewMode === 'flow') {
       if (typeof renderMobileView === 'function') renderMobileView();
       if (typeof renderFlowNav === 'function') renderFlowNav();
     }
@@ -2864,9 +2585,9 @@ updateAll();
 loadAnnotations();
 
 // ── VP Instrument Panel initialization ──
-var _lastMobileState = window.innerWidth <= MOBILE_BREAKPOINT;
+var _lastMobileState = window.innerWidth <= 1024;
 window.addEventListener('resize', function() {
-  var nowMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  var nowMobile = window.innerWidth <= 1024;
   if (nowMobile !== _lastMobileState) {
     _lastMobileState = nowMobile;
     applyViewMode(state.viewMode);
