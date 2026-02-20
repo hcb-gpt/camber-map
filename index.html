@@ -2881,7 +2881,89 @@ function renderFlowNav() {
     item.appendChild(healthLabel);
 
     item.addEventListener('click', function() {
-      if (typeof renderMobileView === 'function') renderMobileView();
+      var svg = document.getElementById('diagram');
+      var nl = svg.querySelector('.node-layer');
+      var cl = svg.querySelector('.conn-layer');
+      var ll = svg.querySelector('.label-layer');
+
+      // Toggle off if already active
+      if (item.getAttribute('data-active') === '1') {
+        item.removeAttribute('data-active');
+        nav.querySelectorAll('.flow-nav-item').forEach(function(el) { el.style.borderColor = ''; });
+        if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.remove('dimmed', 'node-active'); });
+        if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.remove('dimmed'); });
+        if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.remove('dimmed'); });
+        return;
+      }
+
+      var stageNodes = stage.nodes || [];
+      if (!stageNodes.length) return;
+
+      // Find bounding box of all stage nodes
+      var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      stageNodes.forEach(function(nid) {
+        var n = nodes.find(function(nd) { return nd.id === nid; });
+        if (!n) return;
+        if (n.x < minX) minX = n.x;
+        if (n.y < minY) minY = n.y;
+        if (n.x + n.w > maxX) maxX = n.x + n.w;
+        if (n.y + n.h > maxY) maxY = n.y + n.h;
+      });
+      if (minX === Infinity) return;
+
+      // Pan + zoom to fit stage nodes with padding
+      var svgW = svg.clientWidth, svgH = svg.clientHeight;
+      var pad = 60;
+      var bw = maxX - minX + pad * 2, bh = maxY - minY + pad * 2;
+      var z = Math.min(svgW / bw, svgH / bh, 1.2);
+      var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+      state.zoom = z;
+      state.panX = svgW / 2 / z - cx;
+      state.panY = svgH / 2 / z - cy;
+      renderDiagram();
+
+      // Re-query layers after re-render
+      nl = svg.querySelector('.node-layer');
+      cl = svg.querySelector('.conn-layer');
+      ll = svg.querySelector('.label-layer');
+
+      // Dim everything
+      if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
+      if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
+      if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.add('dimmed'); });
+
+      // Un-dim stage nodes and their inter-stage connections + labels
+      var stageSet = {};
+      stageNodes.forEach(function(nid) { stageSet[nid] = true; });
+      stageNodes.forEach(function(nid) {
+        if (nl) {
+          var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+          if (ng) { ng.classList.remove('dimmed'); ng.classList.add('node-active'); }
+        }
+        if (cl) {
+          cl.querySelectorAll('.conn-group[data-from="'+nid+'"], .conn-group[data-to="'+nid+'"]').forEach(function(cg) {
+            var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
+            if (stageSet[f] || stageSet[t]) {
+              cg.classList.remove('dimmed');
+              if (ll) {
+                var lbl = ll.querySelector('.conn-label-group[data-from="'+f+'"][data-to="'+t+'"]');
+                if (lbl) lbl.classList.remove('dimmed');
+              }
+            }
+          });
+        }
+      });
+
+      // Highlight active nav item (toggle state)
+      nav.querySelectorAll('.flow-nav-item').forEach(function(el) { el.style.borderColor = ''; el.removeAttribute('data-active'); });
+      item.style.borderColor = 'var(--interactive-primary)';
+      item.setAttribute('data-active', '1');
+
+      // Close sidebar on mobile
+      if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.remove('open');
+        document.getElementById('sidebar-overlay').classList.remove('show');
+      }
     });
 
     nav.appendChild(item);
