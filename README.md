@@ -12,6 +12,9 @@ All outputs are generated into `public/`:
 - `public/facts.json`
 - `public/map.json`
 - `public/map.schema.json`
+- `public/diagram.nodes.json`
+- `public/diagram.connections.json`
+- `public/diagram.schema.json`
 - `public/map.md`
 - `public/map.graphml`
 - `public/vp.json`
