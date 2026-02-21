@@ -5,9 +5,13 @@
   "scripts": {
     "generate:live": "node scripts/generate_live_map.mjs",
     "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs",
-    "audit:flow": "node scripts/audit_flow_edges.mjs"
+    "audit:flow": "node scripts/audit_flow_edges.mjs",
+    "test:smoke": "playwright test"
   },
   "dependencies": {
     "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
   }
 }
