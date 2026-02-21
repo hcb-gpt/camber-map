@@ -192,9 +192,7 @@ async function runtimeLineage(client) {
              to_node_id as "to",
              edge_type as type,
              last_seen_at_utc,
-             seen_count,
-             last_evidence_event_id,
-             meta
+             seen_count
       from public.system_lineage_edges;
     `);
     return res.rows.map((r) => ({
@@ -204,7 +202,6 @@ async function runtimeLineage(client) {
       meta: {
         last_seen_at_utc: r.last_seen_at_utc,
         seen_count: r.seen_count,
-        last_evidence_event_id: r.last_evidence_event_id,
       },
     }));
   } catch {
