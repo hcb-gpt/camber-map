@@ -67,7 +67,7 @@
   .modal-btns button { padding: var(--space-150) var(--space-card-padding); border-radius: var(--radius-200); border: none; cursor: pointer; font-size: var(--font-size-75); }
   .modal-btns .save { background: var(--interactive-primary); color: white; }
   .modal-btns .cancel { background: var(--border-default); color: var(--text-secondary); }
-  .info-panel { position: fixed; bottom: var(--space-300); right: var(--space-300); background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300) var(--space-card-padding); font-size: 10px; z-index: 10; max-width: 320px; max-height: 40vh; overflow-y: auto; display: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .info-panel { position: absolute; bottom: var(--space-300); right: var(--space-300); background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300) var(--space-card-padding); font-size: 10px; z-index: 20; max-width: 320px; max-height: calc(100% - 80px); overflow-y: auto; display: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
   .info-panel.show { display: block; }
   .info-panel h4 { color: var(--interactive-primary); font-size: var(--font-size-75); margin-bottom: var(--space-100); }
   .info-panel p { color: var(--text-secondary); line-height: 1.5; }
@@ -799,14 +799,7 @@
       <p id="info-desc"></p>
     </div>
     <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563EB"/></marker>
-        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#059669"/></marker>
-        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#DC2626"/></marker>
-        <marker id="arrow-orange" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#D97706"/></marker>
-        <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6B7280"/></marker>
-        <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7C3AED"/></marker>
-      </defs>
+      <defs></defs>
     </svg>
     </div>
   </div>
@@ -1730,11 +1723,13 @@ function drawConn(g, c, lblLayer) {
   var R = 6; // corner radius
   var GAP = 12; // min clearance from box edges
   var x1, y1, x2, y2, mx, my, d;
+  var arrowDir = 'down'; // direction arrowhead points at endpoint
 
   var fromCx = from.x + from.w/2, fromCy = from.y + from.h/2;
   var toCx = to.x + to.w/2, toCy = to.y + to.h/2;
 
   if (from.y + from.h <= to.y) {
+    arrowDir = 'down';
     // Normal: source above target — exit bottom, enter top
     x1 = fromCx; y1 = from.y + from.h;
     x2 = toCx;   y2 = to.y;
@@ -1753,6 +1748,7 @@ function drawConn(g, c, lblLayer) {
         +' L'+x2+','+y2;
     }
   } else if (from.y >= to.y + to.h) {
+    arrowDir = 'up';
     // Reverse: source below target — exit top, enter bottom
     x1 = fromCx; y1 = from.y;
     x2 = toCx;   y2 = to.y + to.h;
@@ -1771,6 +1767,7 @@ function drawConn(g, c, lblLayer) {
   } else {
     // Same row: exit right/left, route around
     var goRight = fromCx <= toCx;
+    arrowDir = goRight ? 'right' : 'left';
     x1 = goRight ? from.x + from.w : from.x;
     y1 = fromCy;
     x2 = goRight ? to.x : to.x + to.w;
@@ -1852,10 +1849,24 @@ function drawConn(g, c, lblLayer) {
   var hit = createSvgEl('path', { class: 'conn-hit', d: d });
   grp.appendChild(hit);
 
-  // Visible connection path
-  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'marker-end': 'url(#'+ct.marker+')' });
+  // Visible connection path (no marker — arrowhead drawn as inline polygon)
+  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2' });
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
   grp.appendChild(path);
+
+  // Inline arrowhead polygon (inherits group opacity, unlike SVG markers)
+  var AW = 3, AH = 7;
+  var arrowPts;
+  if (arrowDir === 'down') {
+    arrowPts = (x2-AW)+','+(y2-AH)+' '+x2+','+y2+' '+(x2+AW)+','+(y2-AH);
+  } else if (arrowDir === 'up') {
+    arrowPts = (x2-AW)+','+(y2+AH)+' '+x2+','+y2+' '+(x2+AW)+','+(y2+AH);
+  } else if (arrowDir === 'right') {
+    arrowPts = (x2-AH)+','+(y2-AW)+' '+x2+','+y2+' '+(x2-AH)+','+(y2+AW);
+  } else {
+    arrowPts = (x2+AH)+','+(y2-AW)+' '+x2+','+y2+' '+(x2+AH)+','+(y2+AW);
+  }
+  grp.appendChild(createSvgEl('polygon', { class: 'conn-arrow', points: arrowPts, fill: ct.color }));
 
   g.appendChild(grp);
 
