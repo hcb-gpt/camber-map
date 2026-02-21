@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T22:20:59Z",
-  "git_sha": "35b544734ab19ae460b43cae4e5b426c33e582f9",
+  "updated_at": "2026-02-21T22:21:44Z",
+  "git_sha": "0b02e2e1df981725808749c94d091c906c694e3f",
   "capabilities": [
     {
       "id": "call-ingestion",

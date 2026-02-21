@@ -42,6 +42,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-21T22:20:59Z
-Git SHA: 35b544734ab19ae460b43cae4e5b426c33e582f9
+Generated: 2026-02-21T22:21:44Z
+Git SHA: 0b02e2e1df981725808749c94d091c906c694e3f
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
