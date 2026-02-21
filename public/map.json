@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T19:09:13Z",
-  "git_sha": "7820540b0858e06be9ed80e52a1a208aa6e0a9e0",
+  "updated_at": "2026-02-21T19:42:52Z",
+  "git_sha": "f8793ff4576b760c9c00eab2b8e150be89ff4075",
   "mode": "live",
   "nodes": [
     {
@@ -833,6 +833,14 @@
       "schema": "public",
       "name": "tram_messages",
       "title": "public.tram_messages",
+      "group": "db"
+    },
+    {
+      "id": "table:public.tram_presence",
+      "kind": "table",
+      "schema": "public",
+      "name": "tram_presence",
+      "title": "public.tram_presence",
       "group": "db"
     },
     {
@@ -1876,6 +1884,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.check_session_conflict(p_role text, p_origin_session text, p_threshold_minutes integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "check_session_conflict",
+      "title": "public.check_session_conflict(p_role text, p_origin_session text, p_threshold_minutes integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.ci_gate_multi_span_required()",
       "kind": "fn",
       "schema": "public",
@@ -2484,6 +2500,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.tram_presence_online(p_threshold_minutes integer, p_role text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_presence_online",
+      "title": "public.tram_presence_online(p_threshold_minutes integer, p_role text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_auto_assign_project_fn()",
       "kind": "fn",
       "schema": "public",
@@ -2633,6 +2657,14 @@
       "schema": "public",
       "name": "upsert_system_lineage_edge",
       "title": "public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_tram_presence",
+      "title": "public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)",
       "group": "db"
     },
     {

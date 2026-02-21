@@ -422,6 +422,10 @@
       <data key="d0">public.tram_messages</data>
       <data key="d1">table</data>
     </node>
+    <node id="table:public.tram_presence">
+      <data key="d0">public.tram_presence</data>
+      <data key="d1">table</data>
+    </node>
     <node id="table:public.tram_read_receipts">
       <data key="d0">public.tram_read_receipts</data>
       <data key="d1">table</data>
@@ -942,6 +946,10 @@
       <data key="d0">public.check_review_queue_claim_exists()</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.check_session_conflict(p_role text, p_origin_session text, p_threshold_minutes integer)">
+      <data key="d0">public.check_session_conflict(p_role text, p_origin_session text, p_threshold_minutes integer)</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.ci_gate_multi_span_required()">
       <data key="d0">public.ci_gate_multi_span_required()</data>
       <data key="d1">fn</data>
@@ -1246,6 +1254,10 @@
       <data key="d0">public.tg_set_updated_at()</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.tram_presence_online(p_threshold_minutes integer, p_role text)">
+      <data key="d0">public.tram_presence_online(p_threshold_minutes integer, p_role text)</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.trg_auto_assign_project_fn()">
       <data key="d0">public.trg_auto_assign_project_fn()</data>
       <data key="d1">fn</data>
@@ -1320,6 +1332,10 @@
     </node>
     <node id="fn:public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)">
       <data key="d0">public.upsert_system_lineage_edge(p_from text, p_to text, p_type text, p_evidence_event_id uuid, p_meta jsonb)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)">
+      <data key="d0">public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.validate_keywords_jsonb()">
