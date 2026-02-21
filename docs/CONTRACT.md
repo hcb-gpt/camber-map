@@ -44,6 +44,7 @@ Edges:
 Edge function inventory semantics:
 - `facts.edge_functions = null` means inventory is not enabled (missing Supabase management credentials).
 - `facts.edge_functions = { "enabled": true, "count": N }` means inventory is enabled.
+- `facts.edge_functions = { "enabled": true, "count": null }` means inventory was enabled but listing failed.
 - `facts.edge_functions_error` appears only when inventory was enabled but listing failed.
 
 ## Freshness

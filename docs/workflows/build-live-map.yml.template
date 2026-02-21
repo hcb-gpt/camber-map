@@ -53,5 +53,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add public/facts.json public/map.json public/map.md public/map.graphml public/vp.json public/vp.md public/vp.prev.json public/changes.json public/changes.md
+          if [ -f public/diagram.nodes.json ]; then git add public/diagram.nodes.json; fi
+          if [ -f public/diagram.connections.json ]; then git add public/diagram.connections.json; fi
           git commit -m "chore: update live camber map"
           git push

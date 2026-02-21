@@ -56,7 +56,12 @@
               "required": ["enabled", "count"],
               "properties": {
                 "enabled": { "type": "boolean", "const": true },
-                "count": { "type": "integer", "minimum": 0 }
+                "count": {
+                  "oneOf": [
+                    { "type": "integer", "minimum": 0 },
+                    { "type": "null" }
+                  ]
+                }
               },
               "additionalProperties": true
             }

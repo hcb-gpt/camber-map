@@ -289,6 +289,7 @@ async function build() {
 
     let fns = [];
     let edgeFunctionsEnabled = false;
+    let edgeFunctionsFetchFailed = false;
     try {
       const result = await fetchSupabaseFunctions();
       edgeFunctionsEnabled = result.enabled;
@@ -296,11 +297,15 @@ async function build() {
     } catch (e) {
       fns = [];
       edgeFunctionsEnabled = true;
+      edgeFunctionsFetchFailed = true;
       facts.edge_functions_error = String(e?.message || e);
     }
 
     if (edgeFunctionsEnabled) {
-      facts.edge_functions = { enabled: true, count: fns.length };
+      facts.edge_functions = {
+        enabled: true,
+        count: edgeFunctionsFetchFailed ? null : fns.length,
+      };
       for (const f of fns) {
         const id = nodeId('edge', '', f.slug || f.name || 'unknown');
         map.nodes.push({
