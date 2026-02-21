@@ -145,7 +145,7 @@ async function dbMap(client) {
   }
 
   const viewDeps = await client.query(`
-    select v.oid as view_oid,
+    select distinct v.oid as view_oid,
            d.refobjid as to_oid
     from pg_class v
     join pg_namespace vn on vn.oid=v.relnamespace
@@ -157,7 +157,7 @@ async function dbMap(client) {
   `);
 
   const fnDeps = await client.query(`
-    select p.oid as fn_oid,
+    select distinct p.oid as fn_oid,
            d.refobjid as to_oid
     from pg_proc p
     join pg_namespace n on n.oid=p.pronamespace
@@ -166,9 +166,13 @@ async function dbMap(client) {
       and d.refclassid='pg_class'::regclass;
   `);
 
+  const edgeSet = new Set();
   const addEdge = (from, to, type) => {
     if (!from || !to) return;
     if (from === to) return;
+    const key = `${from}\0${to}\0${type}`;
+    if (edgeSet.has(key)) return;
+    edgeSet.add(key);
     edges.push({ from, to, type });
   };
 

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T20:59:19Z",
-  "git_sha": "7469105c22e4291f9e7d3d0fe1ca21d13d0c4fa7",
+  "updated_at": "2026-02-21T21:13:36Z",
+  "git_sha": "a324f348f487711b6b9009f8377d9183954e49cc",
   "mode": "live",
   "nodes": [
     {
@@ -2794,561 +2794,22 @@
       "name": "vector",
       "title": "extension:vector",
       "group": "db"
-    },
-    {
-      "id": "edge:review-resolve",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-resolve",
-      "title": "review-resolve",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 32,
-        "updated_at": 1771391779694
-      }
-    },
-    {
-      "id": "edge:sync-google-contacts",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sync-google-contacts",
-      "title": "sync-google-contacts",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1768880323144
-      }
-    },
-    {
-      "id": "edge:test-tma-fetch",
-      "kind": "edge",
-      "group": "edge",
-      "name": "test-tma-fetch",
-      "title": "test-tma-fetch",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1769203551168
-      }
-    },
-    {
-      "id": "edge:transcribe-audio",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-audio",
-      "title": "transcribe-audio",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 35,
-        "updated_at": 1769204461909
-      }
-    },
-    {
-      "id": "edge:transcribe-whisper",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-whisper",
-      "title": "transcribe-whisper",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 30,
-        "updated_at": 1769205468082
-      }
-    },
-    {
-      "id": "edge:transcribe-claude",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-claude",
-      "title": "transcribe-claude",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 31,
-        "updated_at": 1769205580692
-      }
-    },
-    {
-      "id": "edge:transcribe-assemblyai",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-assemblyai",
-      "title": "transcribe-assemblyai",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769206316340
-      }
-    },
-    {
-      "id": "edge:transcribe-deepgram",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-deepgram",
-      "title": "transcribe-deepgram",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 37,
-        "updated_at": 1771391787859
-      }
-    },
-    {
-      "id": "edge:process-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "process-call",
-      "title": "process-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771696015641
-      }
-    },
-    {
-      "id": "edge:segment-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-call",
-      "title": "segment-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 46,
-        "updated_at": 1771211112299
-      }
-    },
-    {
-      "id": "edge:dlq-enqueue",
-      "kind": "edge",
-      "group": "edge",
-      "name": "dlq-enqueue",
-      "title": "dlq-enqueue",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769753728479
-      }
-    },
-    {
-      "id": "edge:context-assembly",
-      "kind": "edge",
-      "group": "edge",
-      "name": "context-assembly",
-      "title": "context-assembly",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771451177801
-      }
-    },
-    {
-      "id": "edge:ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "ai-router",
-      "title": "ai-router",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 93,
-        "updated_at": 1771395842810
-      }
-    },
-    {
-      "id": "edge:eval-ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "eval-ai-router",
-      "title": "eval-ai-router",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769784329255
-      }
-    },
-    {
-      "id": "edge:segment-llm",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-llm",
-      "title": "segment-llm",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771391791148
-      }
-    },
-    {
-      "id": "edge:admin-reseed",
-      "kind": "edge",
-      "group": "edge",
-      "name": "admin-reseed",
-      "title": "admin-reseed",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 45,
-        "updated_at": 1771452430588
-      }
-    },
-    {
-      "id": "edge:zapier-call-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "zapier-call-ingest",
-      "title": "zapier-call-ingest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 25,
-        "updated_at": 1771356167367
-      }
-    },
-    {
-      "id": "edge:striking-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "striking-detect",
-      "title": "striking-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356183310
-      }
-    },
-    {
-      "id": "edge:journal-extract",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-extract",
-      "title": "journal-extract",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 33,
-        "updated_at": 1771356166018
-      }
-    },
-    {
-      "id": "edge:journal-consolidate",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-consolidate",
-      "title": "journal-consolidate",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771356169648
-      }
-    },
-    {
-      "id": "edge:chain-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chain-detect",
-      "title": "chain-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356167842
-      }
-    },
-    {
-      "id": "edge:generate-summary",
-      "kind": "edge",
-      "group": "edge",
-      "name": "generate-summary",
-      "title": "generate-summary",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1771391778600
-      }
-    },
-    {
-      "id": "edge:gmail-context-lookup",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gmail-context-lookup",
-      "title": "gmail-context-lookup",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771391792771
-      }
-    },
-    {
-      "id": "edge:shadow-replay",
-      "kind": "edge",
-      "group": "edge",
-      "name": "shadow-replay",
-      "title": "shadow-replay",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356167075
-      }
-    },
-    {
-      "id": "edge:morning-digest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-digest",
-      "title": "morning-digest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771356163677
-      }
-    },
-    {
-      "id": "edge:loop-closure",
-      "kind": "edge",
-      "group": "edge",
-      "name": "loop-closure",
-      "title": "loop-closure",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771391784096
-      }
-    },
-    {
-      "id": "edge:review-triage",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-triage",
-      "title": "review-triage",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771111081237
-      }
-    },
-    {
-      "id": "edge:journal-embed-backfill",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-embed-backfill",
-      "title": "journal-embed-backfill",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356182542
-      }
-    },
-    {
-      "id": "edge:gt-apply",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gt-apply",
-      "title": "gt-apply",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771356178888
-      }
-    },
-    {
-      "id": "edge:alias-review",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-review",
-      "title": "alias-review",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771356164279
-      }
-    },
-    {
-      "id": "edge:alias-hygiene",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-hygiene",
-      "title": "alias-hygiene",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343823377
-      }
-    },
-    {
-      "id": "edge:alias-scout",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-scout",
-      "title": "alias-scout",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343815540
-      }
-    },
-    {
-      "id": "edge:chat-proxy",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chat-proxy",
-      "title": "chat-proxy",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771565626910
-      }
     }
   ],
   "edges": [
     {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_external_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
+      "from": "view:public.cost_code_taxonomy_current",
       "to": "table:public.cost_code_taxonomy",
       "type": "depends_on"
     },
     {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
+      "from": "view:public.v_vendor_inference_summary",
       "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "matview:public.vendor_cost_code_summary",
-      "to": "table:public.contacts",
+      "from": "view:public.v_vendor_inference_summary",
+      "to": "table:public.vendor_cost_code_map",
       "type": "depends_on"
     },
     {
@@ -3357,78 +2818,93 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
-      "to": "table:public.inference_config",
+      "from": "view:public.vw_cost_code_doc_export",
+      "to": "table:public.cost_code_taxonomy",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
+      "from": "matview:public.vendor_cost_code_summary",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "matview:public.vendor_cost_code_summary",
       "to": "table:public.vendor_cost_code_map",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
+      "from": "matview:public.vendor_cost_code_summary",
+      "to": "table:public.cost_code_taxonomy",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_alias_discovery_candidates",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.vendors_v",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.vendors_v",
       "to": "table:public.vendor_cost_code_map",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
+      "from": "view:public.contacts_notes_qa",
       "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
+      "from": "view:public.resolved_vendor_for_contact",
       "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
+      "from": "view:public.resolved_vendor_for_contact",
+      "to": "table:public.vendor_cost_code_map",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.resolved_vendor_for_contact",
+      "to": "table:public.cost_code_taxonomy",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.relationship_candidates_review",
       "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_vendor_inference_summary",
-      "to": "table:public.contacts",
+      "from": "view:public.relationship_candidates_review",
+      "to": "table:public.entity_relationship_candidates",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
+      "from": "view:public.v_scheduler_items_jsonl",
+      "to": "table:public.scheduler_items",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
+      "from": "view:public.v_scheduler_agent_items",
+      "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
+      "from": "view:public.v_scheduler_agent_items",
+      "to": "table:public.scheduler_items",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
+      "from": "view:public.v_call_tasks_as_scheduler_items",
+      "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_alias_discovery_candidates",
-      "to": "table:public.contacts",
+      "from": "view:public.v_call_tasks_as_scheduler_items",
+      "to": "table:public.call_tasks",
       "type": "depends_on"
     },
     {
@@ -3448,102 +2924,47 @@
     },
     {
       "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_candidate_coverage",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_metrics_candidate_coverage",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_candidate_coverage",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_candidate_coverage",
+      "to": "table:public.project_contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_override_rate",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_override_rate",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_phase1_summary",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_metrics_override_rate",
+      "from": "view:public.v_metrics_phase1_summary",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_phase1_summary",
       "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_override_rate",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_override_rate",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_override_rate",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_override_rate",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_override_rate",
-      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
@@ -3552,303 +2973,78 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.correspondent_project_affinity",
+      "from": "view:public.v_project_belief_snapshot",
+      "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.correspondent_project_affinity",
+      "from": "view:public.v_candidate_sources",
+      "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.correspondent_project_affinity",
+      "from": "view:public.v_candidate_sources",
+      "to": "table:public.journal_runs",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_metrics_phase1_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_agent_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scheduler_items_jsonl",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.call_tasks",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_tasks_as_scheduler_items",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_claim_type_alignment",
+      "from": "view:public.v_candidate_sources",
       "to": "table:public.journal_claims",
       "type": "depends_on"
     },
     {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.ground_truth_labels",
+      "from": "view:public.v_contamination_audit",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contamination_audit",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contamination_audit",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contamination_audit",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contamination_audit",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_external_contacts",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_projects_with_phase",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_projects_with_phase",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_projects_with_phase",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_projects_with_phase",
+      "to": "table:public.construction_phases",
       "type": "depends_on"
     },
     {
       "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.ground_truth_labels",
+      "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
@@ -3858,27 +3054,7 @@
     },
     {
       "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.scoring_dominant_topic",
-      "to": "table:public.interactions",
+      "to": "table:public.ground_truth_labels",
       "type": "depends_on"
     },
     {
@@ -3902,3218 +3078,8 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_belief_snapshot",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_belief_snapshot",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.scheduler_items",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_projects_with_phase",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
+      "from": "view:public.entity_drift_claim_type_alignment",
       "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_candidate_sources",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contamination_audit",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_system_state",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_system_state",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_system_state",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.kpi_review_reasons_entropy",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.kpi_new_roles_this_week",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.kpi_new_roles_this_week",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.kpi_contact_type_violations",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.journal_review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_needs_triage",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.kpi_role_alias_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_dashboard",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_dashboard",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_dashboard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_correction_patterns",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_belief_claims_canon",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_health",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_errors",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_errors",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_journal_runs_errors",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_last_10_sources",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_last_10_sources",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_last_10_sources",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_failures",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_failures",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_failures",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_failures",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_repair_failures",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_calls_raw_phone_backlog",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_state_snapshots",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_state_snapshots",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_state_snapshots",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_human_queue",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_reason_breakdown",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_reason_breakdown",
-      "to": "table:public.event_audit",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.journal_runs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_document_claims",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v3_v36_scoreboard",
-      "to": "table:public.v3_v36_comparison_set",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.project_documents",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_document_inventory",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.baseline_v3_calls_success",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.baseline_v3_calls_success",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.promotion_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.promotion_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_receipts_drilldown",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_promotion_funnel",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.evidence_events",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.evidence_events",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_claim_pointers_missing_evidence",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_production_scope",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_primary_project",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_primary_project",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.override_log",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_launch_review_correction_by_model_daily",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_coverage_gaps",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_active_conversation_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_scoreboard_retention_stats",
-      "to": "table:public.pipeline_scoreboard_snapshots",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_regression_detector_24h",
-      "to": "table:public.pipeline_scoreboard_snapshots",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_regression_detector_24h",
-      "to": "table:public.pipeline_scoreboard_snapshots",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_regression_detector_24h",
-      "to": "table:public.pipeline_scoreboard_snapshots",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_regression_detector_24h",
-      "to": "table:public.pipeline_scoreboard_snapshots",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_chunk_quality_distribution",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.ground_truth_labels",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_ground_truth_evaluable",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.corrections",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.evidence_events",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.evidence_events",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.evidence_events",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.claim_pointers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_claims_for_review",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_project_affinity",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.module_promotions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.module_promotions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.module_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.module_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_module_health",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.call_chains",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.enrichment_scorecard",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.transcription_vocab",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.transcription_vocab",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.transcription_vocab",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.transcription_vocab",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.local_monikers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.local_monikers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.local_monikers",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_alias_candidates",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.project_contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_contact_fanout",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_spans_missing_extraction",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_feed",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_morning_manifest",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.belief_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_attribution_recovery_candidates",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.cost_code_taxonomy_current",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vw_cost_code_doc_export",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.vendors_v",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.contacts_notes_qa",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.contacts_notes_qa",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.contacts_notes_qa",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.contacts_notes_qa",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.cost_code_taxonomy",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.vendor_cost_code_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.resolved_vendor_for_contact",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.entity_relationship_candidates",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.relationship_candidates_review",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_new_values_week",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_new_values_week",
-      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
@@ -7123,7 +3089,7 @@
     },
     {
       "from": "view:public.entity_drift_summary",
-      "to": "table:public.journal_claims",
+      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
@@ -7133,17 +3099,7 @@
     },
     {
       "from": "view:public.entity_drift_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.entity_drift_summary",
-      "to": "table:public.contacts",
+      "to": "table:public.journal_claims",
       "type": "depends_on"
     },
     {
@@ -7157,13 +3113,73 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_calls_raw_phone_backlog_summary",
-      "to": "view:public.v_calls_raw_phone_backlog",
+      "from": "view:public.kpi_review_reasons_entropy",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.kpi_new_roles_this_week",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.kpi_contact_type_violations",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.kpi_role_alias_candidates",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.entity_drift_dashboard",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.entity_drift_dashboard",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_calls_raw_phone_backlog",
+      "to": "table:public.calls_raw",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_calls_raw_phone_backlog_summary",
       "to": "view:public.v_calls_raw_phone_backlog",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_phone_parity_summary",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_phone_parity_summary",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_phone_parity_summary",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_recovery_candidates",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_repair_last_10_sources",
+      "to": "table:public.repair_payloads",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_repair_failures",
+      "to": "table:public.repair_payloads",
       "type": "depends_on"
     },
     {
@@ -7172,113 +3188,8 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phone_parity_summary",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_recovery_candidates",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
       "from": "view:public.v_daily_ops_dashboard",
-      "to": "table:public.repair_payloads",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_daily_ops_dashboard",
-      "to": "table:public.repair_payloads",
+      "to": "table:public.calls_raw",
       "type": "depends_on"
     },
     {
@@ -7288,17 +3199,7 @@
     },
     {
       "from": "view:public.v_daily_ops_dashboard",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_daily_ops_dashboard",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_event_audit_pass_rate",
-      "to": "table:public.event_audit",
+      "to": "table:public.repair_payloads",
       "type": "depends_on"
     },
     {
@@ -7312,218 +3213,128 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_lineage_coverage",
-      "to": "table:public.calls_raw",
+      "from": "view:public.v_event_audit_human_queue",
+      "to": "table:public.event_audit",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_lineage_coverage",
-      "to": "table:public.calls_raw",
+      "from": "view:public.v_event_audit_reason_breakdown",
+      "to": "table:public.event_audit",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
+      "from": "view:public.v3_v36_scoreboard",
+      "to": "table:public.v3_v36_comparison_set",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
+      "from": "view:public.baseline_v3_calls_success",
+      "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_enroute_mentions",
+      "from": "view:public.v_call_primary_project",
       "to": "table:public.conversation_spans",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_enroute_mentions",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.span_place_mentions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.geo_places",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.project_geo",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.project_geo",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.project_geo",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_span_enroute",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
+      "from": "view:public.v_call_primary_project",
       "to": "table:public.span_attributions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_review_queue_spans",
+      "from": "view:public.v_enroute_mentions",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_enroute_mentions",
+      "to": "table:public.geo_places",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_enroute_mentions",
+      "to": "table:public.span_place_mentions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_span_enroute",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_span_enroute",
+      "to": "table:public.project_geo",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_span_enroute",
+      "to": "table:public.geo_places",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_span_enroute",
+      "to": "table:public.span_place_mentions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_active_conversation_spans",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_coverage_gaps",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_coverage_gaps",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_coverage_gaps",
       "to": "table:public.span_attributions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_review_queue_spans",
+      "from": "view:public.v_regression_detector_24h",
+      "to": "table:public.pipeline_scoreboard_snapshots",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scoreboard_retention_stats",
+      "to": "table:public.pipeline_scoreboard_snapshots",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_chunk_quality_distribution",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_chunk_quality_distribution",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_chunk_quality_distribution",
       "to": "table:public.conversation_spans",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
+      "from": "view:public.v_module_health",
       "to": "table:public.review_queue",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
+      "from": "view:public.v_module_health",
+      "to": "table:public.module_claims",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_review_queue_spans",
-      "to": "table:public.review_queue",
+      "from": "view:public.v_module_health",
+      "to": "table:public.module_promotions",
       "type": "depends_on"
     },
     {
@@ -7533,62 +3344,172 @@
     },
     {
       "from": "view:public.v_review_queue_spans",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_queue_spans",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_queue_spans",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_launch_review_correction_daily",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_launch_review_correction_daily",
+      "to": "table:public.override_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_launch_review_correction_by_model_daily",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_launch_review_correction_by_model_daily",
+      "to": "table:public.override_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_launch_review_correction_by_model_daily",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_fanout",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_fanout",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_fanout",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_fanout",
+      "to": "table:public.project_contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_system_state",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_state_snapshots",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_ground_truth_evaluable",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_ground_truth_evaluable",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_ground_truth_evaluable",
+      "to": "table:public.ground_truth_labels",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_document_claims",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_document_claims",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_document_claims",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_document_claims",
+      "to": "table:public.project_documents",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_document_inventory",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_document_inventory",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_document_inventory",
+      "to": "table:public.project_documents",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.enrichment_scorecard",
+      "to": "table:public.call_chains",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_project_feed",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.striking_signals",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.journal_open_loops",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.journal_open_loops",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.journal_claims",
+      "to": "table:public.projects",
       "type": "depends_on"
     },
     {
@@ -7598,77 +3519,312 @@
     },
     {
       "from": "view:public.v_project_feed",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_needs_triage",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_needs_triage",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_needs_triage",
+      "to": "table:public.journal_review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_needs_triage",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.override_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
       "to": "table:public.belief_claims",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.claim_pointers",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.promotion_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_receipts_drilldown",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_claim_promotion_funnel",
       "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.projects",
+      "from": "view:public.v_claim_promotion_funnel",
+      "to": "table:public.belief_claims",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.projects",
+      "from": "view:public.v_claim_promotion_funnel",
+      "to": "table:public.claim_pointers",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.projects",
+      "from": "view:public.v_claim_promotion_funnel",
+      "to": "table:public.journal_claims",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
-      "to": "table:public.projects",
+      "from": "view:public.entity_drift_alias_candidates",
+      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
+      "from": "view:public.entity_drift_alias_candidates",
+      "to": "table:public.local_monikers",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.entity_drift_alias_candidates",
+      "to": "table:public.transcription_vocab",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_correction_patterns",
+      "to": "table:public.belief_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_correction_patterns",
+      "to": "table:public.corrections",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
+      "from": "view:public.v_morning_manifest",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
+      "to": "table:public.belief_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
+      "to": "view:public.v_call_primary_project",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_morning_manifest",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_belief_claims_canon",
+      "to": "table:public.belief_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_interactions_routing",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_feed",
+      "from": "view:public.v_interactions_routing",
+      "to": "view:public.v_call_primary_project",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_recovery_candidates",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_recovery_candidates",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_recovery_candidates",
+      "to": "table:public.belief_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_recovery_candidates",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_journal_runs_health",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_journal_runs_errors",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_claim_pointers_missing_evidence",
+      "to": "table:public.claim_pointers",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_claim_pointers_missing_evidence",
+      "to": "table:public.evidence_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_claims_for_review",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_claims_for_review",
+      "to": "table:public.belief_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_claims_for_review",
+      "to": "table:public.claim_pointers",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_claims_for_review",
+      "to": "table:public.evidence_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_claims_for_review",
+      "to": "table:public.corrections",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_production_scope",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_project_affinity",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_project_affinity",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_spans_missing_extraction",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_spans_missing_extraction",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_spans_missing_extraction",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_spans_missing_extraction",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.gt_review_feed",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.gt_review_feed",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.gt_review_feed",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.gt_review_feed",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.gt_review_queue",
       "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
       "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.span_attributions",
+      "to": "table:public.projects",
       "type": "depends_on"
     },
     {
@@ -7678,147 +3834,27 @@
     },
     {
       "from": "view:public.gt_review_queue",
-      "to": "table:public.conversation_spans",
+      "to": "table:public.span_attributions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.conversation_spans",
+      "from": "view:public.v_phase_pulse",
+      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
+      "from": "view:public.v_phase_pulse",
       "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.gt_review_queue",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_canonical_transcripts",
-      "to": "table:public.transcripts_comparison",
+      "from": "view:public.v_phase_pulse",
+      "to": "table:public.calls_raw",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_phase_pulse",
-      "to": "table:public.trade_phase_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.trade_phase_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.trade_phase_map",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.construction_phases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.construction_phases",
+      "to": "table:public.correspondent_project_affinity",
       "type": "depends_on"
     },
     {
@@ -7828,287 +3864,27 @@
     },
     {
       "from": "view:public.v_phase_pulse",
-      "to": "table:public.ground_truth_labels",
+      "to": "table:public.construction_phases",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_phase_pulse",
-      "to": "table:public.correspondent_project_affinity",
+      "to": "table:public.trade_phase_map",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.correspondent_project_affinity",
+      "from": "view:public.v_phase_pulse_summary",
+      "to": "view:public.v_phase_pulse",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
+      "from": "view:public.v_project_alias_lookup",
       "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_phase_pulse_summary",
-      "to": "view:public.v_phase_pulse",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_call_ledger",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "view:public.v_call_primary_project",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interactions_routing",
-      "to": "table:public.interactions",
+      "from": "view:public.v_project_alias_lookup",
+      "to": "table:public.project_aliases",
       "type": "depends_on"
     },
     {
@@ -8117,78 +3893,58 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.project_attribution_blocklist",
+      "from": "view:public.v_canonical_transcripts",
+      "to": "table:public.transcripts_comparison",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.project_aliases",
+      "from": "view:public.v_call_ledger",
+      "to": "table:public.interactions",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.project_aliases",
+      "from": "view:public.v_call_ledger",
+      "to": "table:public.contacts",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.project_aliases",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_alias_lookup",
+      "from": "view:public.v_call_ledger",
       "to": "table:public.projects",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.projects",
+      "from": "view:public.v_call_ledger",
+      "to": "table:public.calls_raw",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_project_alias_lookup",
-      "to": "table:public.projects",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interaction_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interaction_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interaction_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interaction_primary_project",
-      "to": "table:public.span_attributions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.v_interaction_primary_project",
+      "from": "view:public.v_call_ledger",
       "to": "table:public.conversation_spans",
       "type": "depends_on"
     },
     {
-      "from": "view:public.v_interaction_primary_project",
-      "to": "table:public.conversation_spans",
+      "from": "view:public.v_call_ledger",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_call_ledger",
+      "to": "view:public.v_call_primary_project",
       "type": "depends_on"
     },
     {
       "from": "view:public.v_interaction_primary_project",
       "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_interaction_primary_project",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_interaction_primary_project",
+      "to": "table:public.span_attributions",
       "type": "depends_on"
     },
     {
@@ -8212,15 +3968,6 @@
     {
       "from": "edge:transcribe-deepgram",
       "to": "table:public.transcripts_comparison",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:segment-llm",
-      "to": "table:public.call_spans",
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
@@ -8333,6 +4080,447 @@
       "meta": {
         "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
         "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.conversation_spans",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:segment-llm",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:context-assembly",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:ai-router",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:striking-detect",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:journal-extract",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "edge:generate-summary",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:44.673Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.contact_fanout",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.journal_claims",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.journal_open_loops",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "edge:gmail-context-lookup",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:49.492Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:ai-router",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:ai-router",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:ai-router",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.diagnostic_logs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:striking-detect",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:striking-detect",
+      "to": "table:public.striking_signals",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:chain-detect",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:chain-detect",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:chain-detect",
+      "to": "table:public.call_chains",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.journal_claims",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.journal_conflicts",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:loop-closure",
+      "to": "table:public.journal_open_loops",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:loop-closure",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:loop-closure",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:loop-closure",
+      "to": "table:public.journal_open_loops",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:10:59.932Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gmail-context-lookup",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-embed-backfill",
+      "to": "table:public.journal_claims",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-embed-backfill",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-extract",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-extract",
+      "to": "table:public.journal_open_loops",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:transcribe-deepgram",
+      "to": "table:public.api_keys",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:transcribe-deepgram",
+      "to": "table:public.transcription_vocab",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:zapier-call-ingest",
+      "to": "table:public.diagnostic_logs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:zapier-call-ingest",
+      "to": "edge:process-call",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
       }
     }
   ],
