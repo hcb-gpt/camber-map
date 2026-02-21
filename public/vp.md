@@ -10,7 +10,7 @@
 |--------|------------|-------|----------|-----------|---------------|
 | WARN | Call Ingestion | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 | WARN | Transcription | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
-| OK | Segmentation | chad | 100% | 0m ago | 2026-02-21 21:15:39Z |
+| OK | Segmentation | chad | 100% | 6m ago | 2026-02-21 21:15:39Z |
 | OK | Context Assembly | chad | 100% | 6m ago | 2026-02-21 21:10:49Z |
 | OK | Project Attribution | chad | 100% | 6h ago | 2026-02-21 15:40:30Z |
 | OK | Knowledge Extraction | chad | 100% | 6h ago | 2026-02-21 15:40:38Z |
@@ -44,6 +44,6 @@
 ```
 
 ---
-Generated: 2026-02-21T21:18:09Z
-Git SHA: dc3e375a78f55f950b1ad922ece90553ea7d6d73
+Generated: 2026-02-21T21:18:47Z
+Git SHA: 459f55921bdafe8fce76991349a312f56cc12558
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`

@@ -2224,197 +2224,233 @@
     <edge id="e229" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e230" source="edge:smoke_test" target="table:public.evidence_events">
+    <edge id="e230" source="edge:zapier-call-ingest" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e231" source="edge:zapier-call-ingest" target="table:public.calls_raw">
+    <edge id="e231" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e232" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e233" source="edge:ai-router" target="table:public.projects">
+    <edge id="e232" source="edge:ai-router" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e234" source="edge:journal-extract" target="table:public.journal_claims">
+    <edge id="e233" source="edge:journal-extract" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e235" source="edge:embed-facts" target="table:public.project_facts">
+    <edge id="e234" source="edge:process-call" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e236" source="edge:process-call" target="table:public.review_queue">
+    <edge id="e235" source="edge:process-call" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e237" source="edge:process-call" target="table:public.calls_raw">
+    <edge id="e236" source="edge:process-call" target="table:public.interactions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e238" source="edge:process-call" target="table:public.interactions">
+    <edge id="e237" source="edge:process-call" target="table:public.event_audit">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e239" source="edge:process-call" target="table:public.event_audit">
+    <edge id="e238" source="edge:process-call" target="table:public.idempotency_keys">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e240" source="edge:process-call" target="table:public.idempotency_keys">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e241" source="edge:process-call" target="table:public.project_contacts">
+    <edge id="e239" source="edge:process-call" target="table:public.project_contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e242" source="edge:process-call" target="table:public.projects">
+    <edge id="e240" source="edge:process-call" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e243" source="edge:process-call" target="table:public.correspondent_project_affinity">
+    <edge id="e241" source="edge:process-call" target="table:public.correspondent_project_affinity">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e244" source="edge:process-call" target="edge:segment-call">
+    <edge id="e242" source="edge:process-call" target="edge:segment-call">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e245" source="edge:segment-call" target="table:public.conversation_spans">
+    <edge id="e243" source="edge:segment-call" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e246" source="edge:segment-call" target="table:public.interactions">
+    <edge id="e244" source="edge:segment-call" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e247" source="edge:segment-call" target="table:public.calls_raw">
+    <edge id="e245" source="edge:segment-call" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e248" source="edge:segment-call" target="table:public.conversation_spans">
+    <edge id="e246" source="edge:segment-call" target="table:public.conversation_spans">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e249" source="edge:segment-call" target="edge:segment-llm">
+    <edge id="e247" source="edge:segment-call" target="edge:segment-llm">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e250" source="edge:segment-call" target="edge:context-assembly">
+    <edge id="e248" source="edge:segment-call" target="edge:context-assembly">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e251" source="edge:segment-call" target="edge:ai-router">
+    <edge id="e249" source="edge:segment-call" target="edge:ai-router">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e252" source="edge:segment-call" target="edge:striking-detect">
+    <edge id="e250" source="edge:segment-call" target="edge:striking-detect">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e253" source="edge:segment-call" target="edge:journal-extract">
+    <edge id="e251" source="edge:segment-call" target="edge:journal-extract">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e254" source="edge:segment-call" target="edge:generate-summary">
+    <edge id="e252" source="edge:segment-call" target="edge:generate-summary">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e255" source="edge:context-assembly" target="table:public.conversation_spans">
+    <edge id="e253" source="edge:context-assembly" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e256" source="edge:context-assembly" target="table:public.projects">
+    <edge id="e254" source="edge:context-assembly" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e257" source="edge:context-assembly" target="table:public.project_aliases">
+    <edge id="e255" source="edge:context-assembly" target="table:public.project_aliases">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e258" source="edge:context-assembly" target="table:public.contacts">
+    <edge id="e256" source="edge:context-assembly" target="table:public.contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e259" source="edge:context-assembly" target="table:public.contact_fanout">
+    <edge id="e257" source="edge:context-assembly" target="table:public.contact_fanout">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e260" source="edge:context-assembly" target="table:public.journal_claims">
+    <edge id="e258" source="edge:context-assembly" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e261" source="edge:context-assembly" target="table:public.journal_open_loops">
+    <edge id="e259" source="edge:context-assembly" target="table:public.journal_open_loops">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e262" source="edge:context-assembly" target="table:public.calls_raw">
+    <edge id="e260" source="edge:context-assembly" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e263" source="edge:context-assembly" target="table:public.interactions">
+    <edge id="e261" source="edge:context-assembly" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e264" source="edge:context-assembly" target="edge:gmail-context-lookup">
+    <edge id="e262" source="edge:context-assembly" target="edge:gmail-context-lookup">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e265" source="edge:ai-router" target="table:public.span_attributions">
+    <edge id="e263" source="edge:ai-router" target="table:public.span_attributions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e266" source="edge:ai-router" target="table:public.span_attributions">
+    <edge id="e264" source="edge:ai-router" target="table:public.span_attributions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e267" source="edge:ai-router" target="table:public.review_queue">
+    <edge id="e265" source="edge:ai-router" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e268" source="edge:generate-summary" target="table:public.conversation_spans">
+    <edge id="e266" source="edge:generate-summary" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e269" source="edge:generate-summary" target="table:public.span_attributions">
+    <edge id="e267" source="edge:generate-summary" target="table:public.span_attributions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e270" source="edge:generate-summary" target="table:public.diagnostic_logs">
+    <edge id="e268" source="edge:generate-summary" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e271" source="edge:striking-detect" target="table:public.calls_raw">
+    <edge id="e269" source="edge:striking-detect" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e272" source="edge:striking-detect" target="table:public.striking_signals">
+    <edge id="e270" source="edge:striking-detect" target="table:public.striking_signals">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e273" source="edge:chain-detect" target="table:public.calls_raw">
+    <edge id="e271" source="edge:chain-detect" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e274" source="edge:chain-detect" target="table:public.interactions">
+    <edge id="e272" source="edge:chain-detect" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e275" source="edge:chain-detect" target="table:public.call_chains">
+    <edge id="e273" source="edge:chain-detect" target="table:public.call_chains">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e276" source="edge:journal-consolidate" target="table:public.journal_claims">
+    <edge id="e274" source="edge:journal-consolidate" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e277" source="edge:journal-consolidate" target="table:public.journal_claims">
+    <edge id="e275" source="edge:journal-consolidate" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e278" source="edge:journal-consolidate" target="table:public.journal_conflicts">
+    <edge id="e276" source="edge:journal-consolidate" target="table:public.journal_conflicts">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e279" source="edge:journal-consolidate" target="table:public.review_queue">
+    <edge id="e277" source="edge:journal-consolidate" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e280" source="edge:loop-closure" target="table:public.journal_open_loops">
+    <edge id="e278" source="edge:loop-closure" target="table:public.journal_open_loops">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e281" source="edge:loop-closure" target="table:public.calls_raw">
+    <edge id="e279" source="edge:loop-closure" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e282" source="edge:loop-closure" target="table:public.interactions">
+    <edge id="e280" source="edge:loop-closure" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e283" source="edge:loop-closure" target="table:public.journal_open_loops">
+    <edge id="e281" source="edge:loop-closure" target="table:public.journal_open_loops">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e284" source="edge:gmail-context-lookup" target="table:public.project_aliases">
+    <edge id="e282" source="edge:gmail-context-lookup" target="table:public.project_aliases">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e285" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+    <edge id="e283" source="edge:journal-embed-backfill" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e286" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+    <edge id="e284" source="edge:journal-embed-backfill" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e287" source="edge:journal-extract" target="table:public.conversation_spans">
+    <edge id="e285" source="edge:journal-extract" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e288" source="edge:journal-extract" target="table:public.journal_open_loops">
+    <edge id="e286" source="edge:journal-extract" target="table:public.journal_open_loops">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e289" source="edge:embed-facts" target="table:public.project_facts">
+    <edge id="e287" source="edge:transcribe-deepgram" target="table:public.api_keys">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e290" source="edge:transcribe-deepgram" target="table:public.api_keys">
+    <edge id="e288" source="edge:transcribe-deepgram" target="table:public.transcription_vocab">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e291" source="edge:transcribe-deepgram" target="table:public.transcription_vocab">
-      <data key="d2">reads</data>
-    </edge>
-    <edge id="e292" source="edge:zapier-call-ingest" target="table:public.diagnostic_logs">
+    <edge id="e289" source="edge:zapier-call-ingest" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e293" source="edge:zapier-call-ingest" target="edge:process-call">
+    <edge id="e290" source="edge:zapier-call-ingest" target="edge:process-call">
       <data key="d2">calls</data>
+    </edge>
+    <edge id="e291" source="edge:context-assembly" target="table:public.transcripts_comparison">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e292" source="edge:context-assembly" target="table:public.correspondent_project_affinity">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e293" source="edge:context-assembly" target="table:public.span_place_mentions">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e294" source="edge:generate-summary" target="table:public.event_audit">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e295" source="edge:generate-summary" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e296" source="edge:generate-summary" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e297" source="edge:generate-summary" target="table:public.projects">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e298" source="edge:generate-summary" target="table:public.event_audit">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e299" source="edge:segment-call" target="table:public.span_attributions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e300" source="edge:segment-call" target="table:public.diagnostic_logs">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e301" source="edge:striking-detect" target="table:public.conversation_spans">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e302" source="edge:journal-consolidate" target="table:public.journal_runs">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e303" source="edge:gmail-context-lookup" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e304" source="edge:gmail-context-lookup" target="table:public.contacts">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e305" source="edge:segment-llm" target="table:public.calls_raw">
+      <data key="d2">reads</data>
     </edge>
   </graph>
 </graphml>

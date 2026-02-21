@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T21:18:09Z",
-  "git_sha": "dc3e375a78f55f950b1ad922ece90553ea7d6d73",
+  "updated_at": "2026-02-21T21:18:47Z",
+  "git_sha": "459f55921bdafe8fce76991349a312f56cc12558",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -12,7 +12,7 @@
         "pipeline"
       ],
       "tech_node_count": 4,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -39,7 +39,7 @@
         "pipeline"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -68,14 +68,14 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.1,
         "status": "fresh"
       },
       "health": {
@@ -97,7 +97,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 0,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -127,7 +127,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -156,7 +156,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -185,7 +185,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -214,7 +214,7 @@
         "pipeline"
       ],
       "tech_node_count": 4,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 4,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -243,7 +243,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -272,7 +272,7 @@
         "search"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 0,
