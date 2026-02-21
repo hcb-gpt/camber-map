@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "camber-map.diagram.schema.json",
+  "title": "Camber Map Diagram JSON Artifacts",
+  "definitions": {
+    "DiagramNode": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "layer": { "type": "string" },
+        "desc": { "type": "string" },
+        "friendly": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramNodes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramNode" }
+    },
+    "DiagramConnection": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "type": { "type": "string" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramConnections": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramConnection" }
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/DiagramNodes" },
+    { "$ref": "#/definitions/DiagramConnections" }
+  ]
+}

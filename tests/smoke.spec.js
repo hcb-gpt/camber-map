@@ -29,6 +29,7 @@ test('load diagnostics and screenshots', async ({ page }) => {
     '/public/map.json',
     '/public/diagram.nodes.json',
     '/public/diagram.connections.json',
+    '/public/diagram.schema.json',
     '/public/map.schema.json',
     '/public/ajv.min.js',
   ]);

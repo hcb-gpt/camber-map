@@ -3265,44 +3265,52 @@ function ensureValidationContext() {
   if (validationContext) return Promise.resolve(validationContext);
   if (validationContextPromise) return validationContextPromise;
 
-  validationContextPromise = fetchJsonRequired('./public/map.schema.json', 'map schema')
-    .then(function(mapSchema) {
-      var AjvCtor = getAjvCtor();
-      if (!AjvCtor) throw new Error('Ajv runtime unavailable');
+  validationContextPromise = Promise.all([
+    fetchJsonRequired('./public/map.schema.json', 'map schema'),
+    fetchJsonRequired('./public/diagram.schema.json', 'diagram schema')
+  ]).then(function(schemas) {
+    var mapSchema = schemas[0];
+    var diagramSchema = schemas[1];
+    var AjvCtor = getAjvCtor();
+    if (!AjvCtor) throw new Error('Ajv runtime unavailable');
 
-      var ajv = new AjvCtor({ allErrors: true, strict: false });
-      var defs = mapSchema && mapSchema.definitions ? mapSchema.definitions : {};
-
-      validationContext = {
-        facts: ajv.compile({ $ref: '#/definitions/Facts', definitions: defs }),
-        map: ajv.compile({ $ref: '#/definitions/Map', definitions: defs }),
-        vp: ajv.compile({ $ref: '#/definitions/VP', definitions: defs }),
-        changes: ajv.compile({ $ref: '#/definitions/Changes', definitions: defs }),
-        diagramNodes: ajv.compile({
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['id'],
-            properties: { id: { type: 'string' } },
-            additionalProperties: true
-          }
-        }),
-        diagramConnections: ajv.compile({
-          type: 'array',
-          items: {
-            type: 'object',
-            required: ['from', 'to'],
-            properties: {
-              from: { type: 'string' },
-              to: { type: 'string' }
-            },
-            additionalProperties: true
-          }
-        })
+    var ajv = new AjvCtor({ allErrors: true, strict: false });
+    var defs = mapSchema && mapSchema.definitions ? mapSchema.definitions : {};
+    var diagramDefs = diagramSchema && diagramSchema.definitions ? diagramSchema.definitions : {};
+    var diagramNodeSchema = diagramDefs.DiagramNodes
+      ? { $ref: '#/definitions/DiagramNodes', definitions: diagramDefs }
+      : {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['id'],
+          properties: { id: { type: 'string' } },
+          additionalProperties: true
+        }
+      };
+    var diagramConnectionSchema = diagramDefs.DiagramConnections
+      ? { $ref: '#/definitions/DiagramConnections', definitions: diagramDefs }
+      : {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['from', 'to'],
+          properties: { from: { type: 'string' }, to: { type: 'string' } },
+          additionalProperties: true
+        }
       };
 
-      return validationContext;
-    })
+    validationContext = {
+      facts: ajv.compile({ $ref: '#/definitions/Facts', definitions: defs }),
+      map: ajv.compile({ $ref: '#/definitions/Map', definitions: defs }),
+      vp: ajv.compile({ $ref: '#/definitions/VP', definitions: defs }),
+      changes: ajv.compile({ $ref: '#/definitions/Changes', definitions: defs }),
+      diagramNodes: ajv.compile(diagramNodeSchema),
+      diagramConnections: ajv.compile(diagramConnectionSchema)
+    };
+
+    return validationContext;
+  })
     .catch(function(e) {
       validationContextPromise = null;
       throw e;

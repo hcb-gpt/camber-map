@@ -10,6 +10,7 @@ All outputs live under `public/` and are overwritten by the build.
 - `public/facts.json` — live inventory + counts + build metadata
 - `public/map.json` — canonical graph (nodes/edges)
 - `public/map.schema.json` — JSON Schema (supports validating each generated file)
+- `public/diagram.schema.json` — JSON Schema for `public/diagram.nodes.json` and `public/diagram.connections.json`
 - `public/map.md` — human-readable summary (counts, top nodes, notable edges)
 - `public/map.graphml` — GraphML export for tooling (yEd, Gephi)
 - `public/vp.json` — capability health overlay
@@ -17,6 +18,10 @@ All outputs live under `public/` and are overwritten by the build.
 - `public/vp.md` — human-readable capability report
 - `public/changes.json` — structured VP delta
 - `public/changes.md` — human-readable VP delta
+- `public/diagram.nodes.json` — static flow diagram nodes
+- `public/diagram.connections.json` — static flow diagram connections
+
+`public/diagram.schema.json` defines how flow JSON artifacts are validated in both UI runtime and local smoke checks.
 
 ## Canonical identifiers
 Node IDs are stable:

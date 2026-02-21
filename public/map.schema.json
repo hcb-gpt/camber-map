@@ -2,7 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "camber-map.schema.json",
   "title": "Camber Map Generated Outputs",
-  "type": "object",
   "definitions": {
     "IsoDateTime": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$" },
     "Node": {
@@ -29,6 +28,42 @@
         "meta": { "type": ["object", "null"], "additionalProperties": true }
       },
       "additionalProperties": true
+    },
+    "DiagramNode": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "layer": { "type": "string" },
+        "desc": { "type": "string" },
+        "friendly": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramNodes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramNode" }
+    },
+    "DiagramConnection": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "type": { "type": "string" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramConnections": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramConnection" }
     },
     "Facts": {
       "type": "object",
@@ -173,6 +208,8 @@
     { "$ref": "#/definitions/Facts" },
     { "$ref": "#/definitions/Map" },
     { "$ref": "#/definitions/VP" },
-    { "$ref": "#/definitions/Changes" }
+    { "$ref": "#/definitions/Changes" },
+    { "$ref": "#/definitions/DiagramNodes" },
+    { "$ref": "#/definitions/DiagramConnections" }
   ]
 }
