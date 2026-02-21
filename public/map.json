@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T03:07:31Z",
-  "git_sha": "703f63d1af26fd129e1c57f8e90e27678ac032e0",
+  "updated_at": "2026-02-21T03:16:53Z",
+  "git_sha": "3f232573fd75d406e735ff9074735c3a7fbc5864",
   "mode": "live",
   "nodes": [
     {
@@ -8165,8 +8165,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T17:23:40.074Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "4657a699-1493-433d-bef9-773c7db439bf"
+        "seen_count": "1"
       }
     },
     {
@@ -8175,8 +8174,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     },
     {
@@ -8185,8 +8183,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     },
     {
@@ -8195,8 +8192,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     },
     {
@@ -8205,8 +8201,7 @@
       "type": "reads",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     },
     {
@@ -8215,8 +8210,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     },
     {
@@ -8225,8 +8219,7 @@
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1",
-        "last_evidence_event_id": "ba23db1d-d802-4967-92ce-7edacb1b0f0a"
+        "seen_count": "1"
       }
     }
   ],
