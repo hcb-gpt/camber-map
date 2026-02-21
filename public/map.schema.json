@@ -49,9 +49,24 @@
           "additionalProperties": true
         },
         "edge_functions": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["enabled", "count"],
+              "properties": {
+                "enabled": { "type": "boolean", "const": true },
+                "count": { "type": "integer", "minimum": 0 }
+              },
+              "additionalProperties": true
+            }
+          ]
+        },
+        "edge_functions_error": { "type": ["string", "null"] },
+        "runtime_lineage": {
           "type": ["object", "null"],
           "properties": {
-            "count": { "type": "integer" }
+            "count": { "type": "integer", "minimum": 0 }
           },
           "additionalProperties": true
         }
@@ -149,11 +164,10 @@
       "additionalProperties": true
     }
   },
-  "properties": {
-    "facts": { "$ref": "#/definitions/Facts" },
-    "map": { "$ref": "#/definitions/Map" },
-    "vp": { "$ref": "#/definitions/VP" },
-    "changes": { "$ref": "#/definitions/Changes" }
-  },
-  "additionalProperties": true
+  "oneOf": [
+    { "$ref": "#/definitions/Facts" },
+    { "$ref": "#/definitions/Map" },
+    { "$ref": "#/definitions/VP" },
+    { "$ref": "#/definitions/Changes" }
+  ]
 }

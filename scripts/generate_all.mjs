@@ -7,16 +7,32 @@ One-shot generator:
   4) render_vp.mjs         -> public/vp.md, public/changes.json, public/changes.md
 
 Use this as the single build entry.
+
+Mode behavior:
+  - If DATABASE_URL is present, defaults to LIVE_MODE=live.
+  - If DATABASE_URL is absent, defaults to LIVE_MODE=repo.
+  - Set LIVE_MODE explicitly to override.
 */
 
 import { spawnSync } from 'node:child_process';
 
-function run(cmd, args) {
-  const r = spawnSync(cmd, args, { stdio: 'inherit' });
+function run(cmd, args, env = {}) {
+  const r = spawnSync(cmd, args, {
+    stdio: 'inherit',
+    env: { ...process.env, ...env },
+  });
   if (r.status !== 0) process.exit(r.status || 1);
 }
 
-run('node', ['scripts/generate_live_map.mjs']);
+const hasDatabaseUrl = Boolean(process.env.DATABASE_URL);
+const liveMode = (process.env.LIVE_MODE || (hasDatabaseUrl ? 'live' : 'repo')).toLowerCase();
+
+run('node', ['scripts/generate_live_map.mjs'], { LIVE_MODE: liveMode });
 run('node', ['scripts/render_outputs.mjs']);
-run('node', ['scripts/generate_vp.mjs']);
-run('node', ['scripts/render_vp.mjs']);
+
+if (hasDatabaseUrl && liveMode !== 'repo') {
+  run('node', ['scripts/generate_vp.mjs']);
+  run('node', ['scripts/render_vp.mjs']);
+} else {
+  console.log('Skipping VP generation/render: DATABASE_URL missing or LIVE_MODE=repo.');
+}

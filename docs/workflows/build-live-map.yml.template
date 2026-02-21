@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: build-live-map-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -48,6 +52,6 @@ jobs:
           fi
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add public/facts.json public/map.json public/map.md public/map.graphml
+          git add public/facts.json public/map.json public/map.md public/map.graphml public/vp.json public/vp.md public/vp.prev.json public/changes.json public/changes.md
           git commit -m "chore: update live camber map"
           git push

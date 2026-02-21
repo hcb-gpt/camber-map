@@ -9,9 +9,14 @@ All outputs live under `public/` and are overwritten by the build.
 
 - `public/facts.json` — live inventory + counts + build metadata
 - `public/map.json` — canonical graph (nodes/edges)
-- `public/map.schema.json` — JSON Schema for `facts.json` + `map.json`
+- `public/map.schema.json` — JSON Schema (supports validating each generated file)
 - `public/map.md` — human-readable summary (counts, top nodes, notable edges)
 - `public/map.graphml` — GraphML export for tooling (yEd, Gephi)
+- `public/vp.json` — capability health overlay
+- `public/vp.prev.json` — previous VP snapshot for change detection
+- `public/vp.md` — human-readable capability report
+- `public/changes.json` — structured VP delta
+- `public/changes.md` — human-readable VP delta
 
 ## Canonical identifiers
 Node IDs are stable:
@@ -35,6 +40,11 @@ Edges:
 2) **Deployed edge function inventory complete** (when Supabase management API credentials are provided).
 3) **Dependency edges complete** where determinable from Postgres catalog (`pg_depend`/`pg_rewrite`).
 4) Optional: **runtime edges** (edge-function → db objects, webhook → edge-function, etc.) via instrumentation/audit. These are additive and should never be inferred without evidence.
+
+Edge function inventory semantics:
+- `facts.edge_functions = null` means inventory is not enabled (missing Supabase management credentials).
+- `facts.edge_functions = { "enabled": true, "count": N }` means inventory is enabled.
+- `facts.edge_functions_error` appears only when inventory was enabled but listing failed.
 
 ## Freshness
 Freshness is determined by:

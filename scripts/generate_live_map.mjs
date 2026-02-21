@@ -75,21 +75,31 @@ async function dbConnect() {
   return client;
 }
 
-async function dbCounts(client) {
-  const q = async (sql) => (await client.query(sql)).rows[0];
+async function safeScalarQuery(client, sql) {
+  try {
+    const res = await client.query(sql);
+    if (!res.rows.length) return null;
+    const row = res.rows[0];
+    const key = Object.keys(row)[0];
+    return key ? row[key] : null;
+  } catch {
+    return null;
+  }
+}
 
-  const migrations = await q(`select count(*)::int as n from supabase_migrations.schema_migrations;`);
-  const tables = await q(`select count(*)::int as n from information_schema.tables where table_schema='public' and table_type='BASE TABLE';`);
-  const views = await q(`select count(*)::int as n from information_schema.tables where table_schema='public' and table_type='VIEW';`);
-  const functions = await q(`select count(*)::int as n from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public';`);
-  const extensions = await q(`select count(*)::int as n from pg_extension;`);
+async function dbCounts(client) {
+  const migrations = await safeScalarQuery(client, `select count(*)::int as n from supabase_migrations.schema_migrations;`);
+  const tables = await safeScalarQuery(client, `select count(*)::int as n from information_schema.tables where table_schema='public' and table_type='BASE TABLE';`);
+  const views = await safeScalarQuery(client, `select count(*)::int as n from information_schema.tables where table_schema='public' and table_type='VIEW';`);
+  const functions = await safeScalarQuery(client, `select count(*)::int as n from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public';`);
+  const extensions = await safeScalarQuery(client, `select count(*)::int as n from pg_extension;`);
 
   return {
-    applied_migrations: migrations.n,
-    tables: tables.n,
-    views: views.n,
-    functions: functions.n,
-    extensions: extensions.n,
+    applied_migrations: migrations,
+    tables,
+    views,
+    functions,
+    extensions,
   };
 }
 
@@ -187,7 +197,7 @@ async function runtimeLineage(client) {
              meta
       from public.system_lineage_edges;
     `);
-    return res.rows.map(r => ({
+    return res.rows.map((r) => ({
       from: r.from,
       to: r.to,
       type: r.type,
@@ -195,8 +205,7 @@ async function runtimeLineage(client) {
         last_seen_at_utc: r.last_seen_at_utc,
         seen_count: r.seen_count,
         last_evidence_event_id: r.last_evidence_event_id,
-        ...(r.meta || {})
-      }
+      },
     }));
   } catch {
     return [];
@@ -204,7 +213,9 @@ async function runtimeLineage(client) {
 }
 
 async function fetchSupabaseFunctions() {
-  if (!SUPABASE_PROJECT_REF || !SUPABASE_ACCESS_TOKEN) return [];
+  if (!SUPABASE_PROJECT_REF || !SUPABASE_ACCESS_TOKEN) {
+    return { enabled: false, functions: [] };
+  }
 
   const url = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/functions`;
   const resp = await fetch(url, {
@@ -220,7 +231,7 @@ async function fetchSupabaseFunctions() {
   }
 
   const data = await resp.json();
-  return Array.isArray(data) ? data : [];
+  return { enabled: true, functions: Array.isArray(data) ? data : [] };
 }
 
 async function build() {
@@ -277,15 +288,19 @@ async function build() {
     }
 
     let fns = [];
+    let edgeFunctionsEnabled = false;
     try {
-      fns = await fetchSupabaseFunctions();
+      const result = await fetchSupabaseFunctions();
+      edgeFunctionsEnabled = result.enabled;
+      fns = result.functions;
     } catch (e) {
       fns = [];
+      edgeFunctionsEnabled = true;
       facts.edge_functions_error = String(e?.message || e);
     }
 
-    if (fns.length) {
-      facts.edge_functions = { count: fns.length };
+    if (edgeFunctionsEnabled) {
+      facts.edge_functions = { enabled: true, count: fns.length };
       for (const f of fns) {
         const id = nodeId('edge', '', f.slug || f.name || 'unknown');
         map.nodes.push({
@@ -302,8 +317,6 @@ async function build() {
           },
         });
       }
-    } else {
-      facts.edge_functions = { count: 0 };
     }
 
     await fs.writeFile(path.join(ROOT, 'public', 'facts.json'), JSON.stringify(facts, null, 2) + '\n');

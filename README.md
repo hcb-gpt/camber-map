@@ -14,6 +14,11 @@ All outputs are generated into `public/`:
 - `public/map.schema.json`
 - `public/map.md`
 - `public/map.graphml`
+- `public/vp.json`
+- `public/vp.prev.json`
+- `public/vp.md`
+- `public/changes.json`
+- `public/changes.md`
 
 Do not hand-edit generated outputs.
 
@@ -28,11 +33,16 @@ SUPABASE_ACCESS_TOKEN=... \
 node scripts/generate_all.mjs
 ```
 
-## Automation
-A scheduled build is required to keep the map live.
+If `DATABASE_URL` is not set, `generate_all.mjs` still generates map outputs and skips VP/changes outputs.
 
-I cannot write `.github/workflows/*` from this environment due to GitHub restrictions.
-Create a workflow using the template in `docs/workflows/build-live-map.yml.template`.
+## Automation
+A scheduled build keeps artifacts live. The repository workflow is:
+
+- `.github/workflows/build-live-map.yml` (daily + on push to `main`)
+- uses workflow `concurrency` to avoid overlapping runs
+- commits refreshed `public/*` artifacts when outputs change
+
+Template copy for reuse in other repos: `docs/workflows/build-live-map.yml.template`.
 
 ## Architecture is source of truth
 
@@ -40,6 +50,13 @@ The Flow view in `index.html` renders pipeline dependencies from a single canoni
 
 ```
 config/architecture_flow.json
+```
+
+The node and connection datasets are loaded at runtime from machine-readable files:
+
+```
+public/diagram.nodes.json
+public/diagram.connections.json
 ```
 
 This file defines:
@@ -53,7 +70,7 @@ To add or remove a pipeline edge, edit `architecture_flow.json` and run:
 npm run audit:flow
 ```
 
-The audit script (`scripts/audit_flow_edges.mjs`) parses both the spec and `index.html`, then validates that every required edge exists and disconnected nodes remain disconnected. It exits non-zero on drift.
+The audit script (`scripts/audit_flow_edges.mjs`) parses `config/architecture_flow.json`, `public/diagram.nodes.json`, and `public/diagram.connections.json`, then validates that every required edge exists and disconnected nodes remain disconnected. It exits non-zero on drift.
 
 ## Contract
 See `docs/CONTRACT.md` for definitions of exhaustiveness, canonical IDs, and consumer guidance.

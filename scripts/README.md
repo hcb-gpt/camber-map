@@ -26,3 +26,13 @@ Repo-only (no DB) mode will generate an empty DB map but still produce files:
 npm ci
 npm run generate:live:repo
 ```
+
+## generate_all.mjs
+
+Runs the full build pipeline:
+- Always: `generate_live_map.mjs`, `render_outputs.mjs`
+- Only when `DATABASE_URL` is set: `generate_vp.mjs`, `render_vp.mjs`
+
+If `LIVE_MODE` is not set, `generate_all.mjs` defaults to:
+- `live` when `DATABASE_URL` is present
+- `repo` when `DATABASE_URL` is absent
