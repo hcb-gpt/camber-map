@@ -13,7 +13,7 @@
 | WARN | Segmentation | chad | 100% | 30h ago | 2026-02-19 18:32:33Z |
 | ??? | Context Assembly | chad | 0% | n/a | n/a |
 | WARN | Project Attribution | chad | 100% | 30h ago | 2026-02-19 18:32:33Z |
-| OK | Knowledge Extraction | chad | 100% | 5h ago | 2026-02-20 19:23:01Z |
+| OK | Knowledge Extraction | chad | 100% | 6h ago | 2026-02-20 19:23:01Z |
 | ??? | Call Summarization | chad | 0% | n/a | n/a |
 | ??? | Signal Detection | chad | 0% | n/a | n/a |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
@@ -46,6 +46,6 @@
 ```
 
 ---
-Generated: 2026-02-21T00:33:13Z
-Git SHA: 09aa669d4e42f52735d7ff6cdd0c4bfe4db84d77
+Generated: 2026-02-21T00:53:59Z
+Git SHA: 47c0c8e90903e3219972eb845ed76d2560fafb50
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
