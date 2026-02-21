@@ -22,3 +22,62 @@ test('diagram loads from fetched JSON artifacts', async ({ page, request }) => {
   const renderedNodeCount = await page.locator('svg#diagram .node-group').count();
   expect(renderedNodeCount).toBeGreaterThan(0);
 });
+
+test('load diagnostics and screenshots', async ({ page }) => {
+  const requiredPaths = new Set([
+    '/public/facts.json',
+    '/public/map.json',
+    '/public/diagram.nodes.json',
+    '/public/diagram.connections.json',
+    '/public/map.schema.json',
+    '/public/ajv.min.js',
+  ]);
+
+  const responseStatusByPath = new Map();
+  const consoleMessages = [];
+
+  page.on('response', (response) => {
+    const url = new URL(response.url());
+    const path = url.pathname;
+    if (requiredPaths.has(path) || path === '/index.html') {
+      responseStatusByPath.set(path, response.status());
+    }
+  });
+  page.on('console', (message) => {
+    consoleMessages.push(`[${message.type()}] ${message.text()}`);
+  });
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.waitForFunction(() => window.diagramLoadingState === 'ready', { timeout: 30000 });
+
+  const missingPaths = [];
+  for (const requiredPath of requiredPaths) {
+    const status = responseStatusByPath.get(requiredPath);
+    if (status !== 200) {
+      missingPaths.push(`${requiredPath}:${status || 'missing'}`);
+    }
+  }
+  expect(missingPaths).toEqual([]);
+
+  await page.screenshot({ path: test.info().outputPath('01-camber-map-desktop-full.png'), fullPage: true });
+
+  await page.locator('.canvas-zoom-btn').nth(1).click();
+  await page.waitForTimeout(250);
+  await page.screenshot({ path: test.info().outputPath('02-camber-map-zoomed.png'), fullPage: true });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.reload();
+  await page.waitForFunction(() => window.diagramLoadingState === 'ready', { timeout: 30000 });
+  await page.screenshot({ path: test.info().outputPath('03-camber-map-mobile-list.png'), fullPage: true });
+
+  const errorLogs = consoleMessages.filter((line) => line.startsWith('[error]')).slice(0, 20);
+  const warningLogs = consoleMessages.filter((line) => line.startsWith('[warning]')).slice(0, 20);
+  const summary = {
+    required: Object.fromEntries(Array.from(responseStatusByPath.entries())),
+    top_console_errors: errorLogs,
+    top_console_warnings: warningLogs,
+  };
+
+  console.log('DIAGNOSTIC_SUMMARY ' + JSON.stringify(summary));
+});

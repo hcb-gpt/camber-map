@@ -15,7 +15,7 @@
   .layout { display: grid; grid-template-columns: 300px 1fr; grid-template-rows: 1fr; height: 100vh; }
   .sidebar { grid-row: 1/3; background: var(--surface-raised); border-right: 1px solid var(--border-default); padding: var(--space-card-padding); overflow-y: auto; }
   .canvas-area { position: relative; overflow: hidden; background: var(--surface-base); touch-action: none; }
-  h2 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-primary); margin-bottom: var(--space-300); }
+  h2 { font-size: 17px; font-weight: 650; text-transform: none; letter-spacing: 0.2px; color: var(--text-primary); margin-bottom: var(--space-350); }
   h3 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); margin: var(--space-400) 0 var(--space-200); }
   .preset-btn { display: block; width: 100%; padding: var(--space-200) var(--space-300); margin-bottom: var(--space-100); background: var(--surface-overlay); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 12px; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.15s ease; font-family: 'DM Sans', system-ui, -apple-system, sans-serif; }
   .preset-btn:hover, .preset-btn:active { background: var(--surface-hover); border-color: var(--interactive-primary); transform: translateY(-1px); }
@@ -99,9 +99,11 @@
   .node-group.dimmed { opacity: 0.15; }
   .conn-group.dimmed { opacity: 0.05; }
 
-  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
+  .node-group { cursor: pointer; }
+  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
+  .node-hit { fill: transparent; }
+  .node-title, .node-sub, .node-badge, .node-badge-text { pointer-events: none; }
   .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
-  .node-rect:hover, .node-rect:active { stroke-width: 2.5; }
   .node-rect.commented { stroke-width: 2.5; }
   .node-title { font-family: 'DM Sans', system-ui; font-size: 12px; font-weight: 600; fill: #111318; pointer-events: none; }
   .node-sub { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; font-size: 9px; fill: var(--text-disabled); pointer-events: none; }
@@ -1391,6 +1393,7 @@ var diagramErrorMessage = '';
 var validationContext = null;
 var validationContextPromise = null;
 var connHoverTimer = null; // global: clears connection highlights after leaving ALL connections
+var nodeHoverTimer = null; // global: clears node highlights after leaving nodes
 
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
@@ -1772,6 +1775,14 @@ function renderDiagram() {
     // Wrap each node in a group so rect+text+badges move together
     var ng = createSvgEl('g', { class: 'node-group', 'data-node-id': n.id });
 
+    ng.appendChild(createSvgEl('rect', {
+      class: 'node-hit',
+      x: n.x,
+      y: n.y,
+      width: n.w,
+      height: n.h
+    }));
+
     var rect = createSvgEl('rect', {
       class: 'node-rect' + (hasComment ? ' commented' : ''),
       'data-base-fill': layer.color,
@@ -1791,8 +1802,16 @@ function renderDiagram() {
 
     if (hasComment) {
       var count = state.comments.filter(function(c) { return c.target === n.id; }).length;
-      ng.appendChild(createSvgEl('circle', { cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
-      ng.appendChild(createSvgEl('text', { x: n.x + n.w - 6, y: n.y + 9, 'text-anchor': 'middle', fill: '#FFFFFF', 'font-size': '7', 'font-weight': '700' }, String(count)));
+      ng.appendChild(createSvgEl('circle', { class: 'node-badge', cx: n.x + n.w - 6, cy: n.y + 6, r: 5, fill: '#D97706' }));
+      ng.appendChild(createSvgEl('text', {
+        class: 'node-badge-text',
+        x: n.x + n.w - 6,
+        y: n.y + 9,
+        'text-anchor': 'middle',
+        fill: '#FFFFFF',
+        'font-size': '7',
+        'font-weight': '700'
+      }, String(count)));
     }
 
     ng.addEventListener('click', function(e) {
@@ -1801,6 +1820,7 @@ function renderDiagram() {
       showInfo(n);
     });
     ng.addEventListener('mouseenter', function() {
+      if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); nodeHoverTimer = null; }
       if (!infoLocked) showInfo(n);
       // Dim everything first
       nodeLayer.querySelectorAll('.node-group').forEach(function(el) { el.classList.add('dimmed'); });
@@ -1835,15 +1855,19 @@ function renderDiagram() {
       lbls.forEach(function(l) { l.classList.add('label-active'); labelLayer.appendChild(l); });
     });
     ng.addEventListener('mouseleave', function() {
-      if (!infoLocked) hideInfo();
-      // Clear all dims, actives, labels
-      connLayer.querySelectorAll('.dimmed, .conn-active').forEach(function(el) { el.classList.remove('dimmed', 'conn-active'); });
-      nodeLayer.querySelectorAll('.dimmed, .node-active').forEach(function(el) {
-        el.classList.remove('dimmed', 'node-active');
-        var ar = el.querySelector('.node-rect');
-        if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
-      });
-      labelLayer.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
+      if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); }
+      nodeHoverTimer = setTimeout(function() {
+        nodeHoverTimer = null;
+        if (!infoLocked) hideInfo();
+        // Clear all dims, actives, labels
+        connLayer.querySelectorAll('.dimmed, .conn-active').forEach(function(el) { el.classList.remove('dimmed', 'conn-active'); });
+        nodeLayer.querySelectorAll('.dimmed, .node-active').forEach(function(el) {
+          el.classList.remove('dimmed', 'node-active');
+          var ar = el.querySelector('.node-rect');
+          if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
+        });
+        labelLayer.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
+      }, 120);
     });
 
     nodeLayer.appendChild(ng);
