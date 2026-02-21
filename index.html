@@ -949,6 +949,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/ajv@8.17.1/dist/ajv.min.js"></script>
 
 <script>
 // ── SUPABASE ──────────────────────────────────────────
@@ -1387,6 +1388,8 @@ var architectureSpec = null;
 var flowEdges = [];
 var diagramLoadingState = 'loading';
 var diagramErrorMessage = '';
+var validationContext = null;
+var validationContextPromise = null;
 var connHoverTimer = null; // global: clears connection highlights after leaving ALL connections
 
 // ── DOM HELPERS ────────────────────────────────────
@@ -3148,6 +3151,103 @@ function renderFlowNav() {
 }
 
 // ── DIAGRAM + VP DATA FETCHERS ─────────────────────
+function getAjvCtor() {
+  if (typeof window !== 'undefined') return window.Ajv || null;
+  return null;
+}
+
+function toValidationMessage(errors) {
+  if (!Array.isArray(errors) || errors.length === 0) return 'validation failed';
+  var first = errors[0];
+  var path = first.instancePath || '(root)';
+  var detail = first.message || 'invalid value';
+  return path + ' ' + detail;
+}
+
+function fetchJsonRequired(path, label) {
+  return fetch(path + '?t=' + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error(label + ' fetch failed (HTTP ' + r.status + ')');
+      return r.json();
+    })
+    .catch(function(e) {
+      throw new Error((e && e.message) ? e.message : (label + ' fetch failed'));
+    });
+}
+
+function fetchJsonOptional(path) {
+  return fetch(path + '?t=' + Date.now())
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .catch(function() { return null; });
+}
+
+function ensureValidationContext() {
+  if (validationContext) return Promise.resolve(validationContext);
+  if (validationContextPromise) return validationContextPromise;
+
+  validationContextPromise = fetchJsonRequired('./public/map.schema.json', 'map schema')
+    .then(function(mapSchema) {
+      var AjvCtor = getAjvCtor();
+      if (!AjvCtor) throw new Error('Ajv runtime unavailable');
+
+      var ajv = new AjvCtor({ allErrors: true, strict: false });
+      var defs = mapSchema && mapSchema.definitions ? mapSchema.definitions : {};
+
+      validationContext = {
+        facts: ajv.compile({ $ref: '#/definitions/Facts', definitions: defs }),
+        map: ajv.compile({ $ref: '#/definitions/Map', definitions: defs }),
+        vp: ajv.compile({ $ref: '#/definitions/VP', definitions: defs }),
+        changes: ajv.compile({ $ref: '#/definitions/Changes', definitions: defs }),
+        diagramNodes: ajv.compile({
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['id'],
+            properties: { id: { type: 'string' } },
+            additionalProperties: true
+          }
+        }),
+        diagramConnections: ajv.compile({
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['from', 'to'],
+            properties: {
+              from: { type: 'string' },
+              to: { type: 'string' }
+            },
+            additionalProperties: true
+          }
+        })
+      };
+
+      return validationContext;
+    })
+    .catch(function(e) {
+      validationContextPromise = null;
+      throw e;
+    });
+
+  return validationContextPromise;
+}
+
+function validateOrThrow(ctx, key, payload, fileLabel) {
+  var validate = ctx[key];
+  if (!validate) throw new Error(fileLabel + ' validator unavailable');
+  if (!validate(payload)) {
+    throw new Error(fileLabel + ' failed schema validation: ' + toValidationMessage(validate.errors));
+  }
+}
+
+function failDiagramLoad(message) {
+  diagramLoadingState = 'error';
+  diagramErrorMessage = message || 'Unknown diagram load failure';
+  nodes = [];
+  connections = [];
+  updateAll();
+  setDiagramStatusBanner();
+}
+
 function setDiagramStatusBanner() {
   var banner = document.getElementById('diagram-status-banner');
   var text = document.getElementById('diagram-status-banner-text');
@@ -3183,24 +3283,15 @@ function loadDiagramData() {
   setDiagramStatusBanner();
 
   return Promise.all([
-    fetch('./public/diagram.nodes.json?t=' + Date.now()).then(function(r) {
-      if (!r.ok) throw new Error('nodes fetch failed (HTTP ' + r.status + ')');
-      return r.json();
-    }).catch(function(e) {
-      throw new Error((e && e.message) ? e.message : 'nodes fetch failed');
-    }),
-    fetch('./public/diagram.connections.json?t=' + Date.now()).then(function(r) {
-      if (!r.ok) throw new Error('connections fetch failed (HTTP ' + r.status + ')');
-      return r.json();
-    }).catch(function(e) {
-      throw new Error((e && e.message) ? e.message : 'connections fetch failed');
-    })
+    ensureValidationContext(),
+    fetchJsonRequired('./public/diagram.nodes.json', 'diagram.nodes.json'),
+    fetchJsonRequired('./public/diagram.connections.json', 'diagram.connections.json')
   ]).then(function(results) {
-    var nextNodes = Array.isArray(results[0]) ? results[0] : null;
-    var nextConnections = Array.isArray(results[1]) ? results[1] : null;
-    if (!nextNodes || !nextConnections) {
-      throw new Error('Invalid diagram JSON payload; expected arrays');
-    }
+    var ctx = results[0];
+    var nextNodes = results[1];
+    var nextConnections = results[2];
+    validateOrThrow(ctx, 'diagramNodes', nextNodes, 'public/diagram.nodes.json');
+    validateOrThrow(ctx, 'diagramConnections', nextConnections, 'public/diagram.connections.json');
 
     nodes = nextNodes;
     connections = nextConnections;
@@ -3216,22 +3307,32 @@ function loadDiagramData() {
     updateAll();
     setDiagramStatusBanner();
   }).catch(function(e) {
-    diagramLoadingState = 'error';
-    diagramErrorMessage = (e && e.message) ? e.message : 'Unknown diagram load failure';
-    updateAll();
-    setDiagramStatusBanner();
+    failDiagramLoad((e && e.message) ? e.message : 'Unknown diagram load failure');
   });
 }
 
 function fetchVPData() {
   return Promise.all([
-    fetch('./public/vp.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/facts.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/changes.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    ensureValidationContext(),
+    fetchJsonOptional('./public/vp.json'),
+    fetchJsonRequired('./public/facts.json', 'facts.json'),
+    fetchJsonOptional('./public/changes.json'),
+    fetchJsonRequired('./public/map.json', 'map.json')
   ]).then(function(results) {
-    vpData = results[0];
-    factsData = results[1];
-    changesData = results[2];
+    var ctx = results[0];
+    var nextVp = results[1];
+    var nextFacts = results[2];
+    var nextChanges = results[3];
+    var nextMap = results[4];
+
+    validateOrThrow(ctx, 'facts', nextFacts, 'public/facts.json');
+    validateOrThrow(ctx, 'map', nextMap, 'public/map.json');
+    if (nextVp) validateOrThrow(ctx, 'vp', nextVp, 'public/vp.json');
+    if (nextChanges) validateOrThrow(ctx, 'changes', nextChanges, 'public/changes.json');
+
+    vpData = nextVp;
+    factsData = nextFacts;
+    changesData = nextChanges;
 
     renderNowBar();
     renderStatBar();
@@ -3240,6 +3341,8 @@ function fetchVPData() {
       if (typeof renderMobileView === 'function') renderMobileView();
       if (typeof renderFlowNav === 'function') renderFlowNav();
     }
+  }).catch(function(e) {
+    failDiagramLoad((e && e.message) ? e.message : 'JSON validation failed');
   });
 }
 
