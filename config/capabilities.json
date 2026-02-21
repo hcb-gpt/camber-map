@@ -67,8 +67,8 @@
       ],
       "expected_producers": ["edge:context-assembly"],
       "health_queries": {
-        "row_count": "SELECT count(*)::int AS n FROM public.assembler_diagnostics",
-        "last_insert": "SELECT max(created_at) AS ts FROM public.assembler_diagnostics"
+        "row_count": "SELECT count(*)::int AS n FROM public.span_attributions",
+        "last_insert": "SELECT max(attributed_at) AS ts FROM public.span_attributions"
       },
       "depends_on": ["segmentation", "embedding"]
     },
@@ -119,7 +119,7 @@
       "expected_producers": ["edge:generate-summary"],
       "health_queries": {
         "row_count": "SELECT count(*)::int AS n FROM public.interactions WHERE ai_scheduler_json IS NOT NULL",
-        "last_insert": "SELECT max(updated_at) AS ts FROM public.interactions WHERE ai_scheduler_json IS NOT NULL"
+        "last_insert": "SELECT max(created_at) AS ts FROM public.scheduler_items"
       },
       "depends_on": ["segmentation"]
     },
