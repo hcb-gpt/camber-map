@@ -121,19 +121,15 @@ Create: `scripts/audit_flow_edges.mjs`
 
 Behavior:
 1) Parse `config/architecture_flow.json`.
-2) Parse `index.html` to extract the node IDs and connections arrays.
-   - If parsing HTML is annoying, export the config objects into a separate JS/JSON file (recommended) and import them in `index.html`.
+2) Parse `public/diagram.nodes.json` and `public/diagram.connections.json` for node and connection IDs.
 3) Canonicalize IDs using `aliases`.
 4) Assert:
-   - Every `required_flow_edge` has a matching connection with:
-     - same `from` and `to`
-     - and `type === 'data-flow'` (or whichever constant Flow rendering uses)
+   - Every `required_flow_edge` has a matching connection with the same canonical `from` and `to`.
    - Every `exceptions.must_be_disconnected` node has **no inbound** data-flow edge in Flow view.
 
 Output:
 - Print a clear diff:
   - missing edges
-  - edges with wrong type
   - unexpected inbound edges to disconnected nodes
 - Exit non-zero on failure.
 

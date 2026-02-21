@@ -1,0 +1,602 @@
+[
+  {
+    "from": "openphone",
+    "to": "zapier",
+    "type": "data-flow",
+    "label": "call events"
+  },
+  {
+    "from": "zapier",
+    "to": "zapier-ingest",
+    "type": "data-flow",
+    "label": "webhook POST"
+  },
+  {
+    "from": "deepgram",
+    "to": "transcribe",
+    "type": "tool-call",
+    "label": "Nova-2 ASR"
+  },
+  {
+    "from": "openai",
+    "to": "segment-llm",
+    "type": "tool-call",
+    "label": "GPT-4o-mini"
+  },
+  {
+    "from": "openai",
+    "to": "embed-facts",
+    "type": "tool-call",
+    "label": "embed-3-sm"
+  },
+  {
+    "from": "openai",
+    "to": "journal-embed",
+    "type": "tool-call",
+    "label": "embed-3-sm"
+  },
+  {
+    "from": "anthropic",
+    "to": "ai-router",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "anthropic",
+    "to": "generate-summary",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "anthropic",
+    "to": "journal-extract",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "anthropic",
+    "to": "journal-consolidate",
+    "type": "tool-call",
+    "label": "Sonnet 4.5"
+  },
+  {
+    "from": "anthropic",
+    "to": "striking-detect",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "anthropic",
+    "to": "chain-detect",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "anthropic",
+    "to": "loop-closure",
+    "type": "tool-call",
+    "label": "Haiku"
+  },
+  {
+    "from": "gmail-api",
+    "to": "gmail-ctx",
+    "type": "tool-call",
+    "label": "OAuth search"
+  },
+  {
+    "from": "github",
+    "to": "gh-actions",
+    "type": "event",
+    "label": "push trigger"
+  },
+  {
+    "from": "sb-auth",
+    "to": "review-resolve",
+    "type": "tool-call",
+    "label": "JWT verify"
+  },
+  {
+    "from": "zapier-ingest",
+    "to": "process-call",
+    "type": "data-flow",
+    "label": "forward (blocking)"
+  },
+  {
+    "from": "process-call",
+    "to": "segment-call",
+    "type": "fire-forget",
+    "label": "fire & forget"
+  },
+  {
+    "from": "segment-call",
+    "to": "segment-llm",
+    "type": "data-flow",
+    "label": "get boundaries"
+  },
+  {
+    "from": "segment-call",
+    "to": "context-assembly",
+    "type": "data-flow",
+    "label": "per span (blocking)"
+  },
+  {
+    "from": "context-assembly",
+    "to": "ai-router",
+    "type": "data-flow",
+    "label": "context_package"
+  },
+  {
+    "from": "context-assembly",
+    "to": "gmail-ctx",
+    "type": "data-flow",
+    "label": "email fetch (fail-open)"
+  },
+  {
+    "from": "segment-call",
+    "to": "striking-detect",
+    "type": "fire-forget",
+    "label": "per span f&f"
+  },
+  {
+    "from": "segment-call",
+    "to": "journal-extract",
+    "type": "fire-forget",
+    "label": "if assign, f&f"
+  },
+  {
+    "from": "segment-call",
+    "to": "generate-summary",
+    "type": "fire-forget",
+    "label": "after all spans"
+  },
+  {
+    "from": "ai-router",
+    "to": "journal-extract",
+    "type": "fire-forget",
+    "label": "belt & suspenders"
+  },
+  {
+    "from": "journal-extract",
+    "to": "journal-consolidate",
+    "type": "fire-forget",
+    "label": "if claims>0"
+  },
+  {
+    "from": "ai-router",
+    "to": "review-triage",
+    "type": "event",
+    "label": "queue if review"
+  },
+  {
+    "from": "shared",
+    "to": "process-call",
+    "type": "dependency",
+    "label": "auth+id_guard"
+  },
+  {
+    "from": "shared",
+    "to": "segment-call",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "shared",
+    "to": "segment-llm",
+    "type": "dependency",
+    "label": "llm_json"
+  },
+  {
+    "from": "shared",
+    "to": "ai-router",
+    "type": "dependency",
+    "label": "auth+junk"
+  },
+  {
+    "from": "shared",
+    "to": "context-assembly",
+    "type": "dependency",
+    "label": "auth"
+  },
+  {
+    "from": "shared",
+    "to": "journal-extract",
+    "type": "dependency",
+    "label": "auth+llm_json"
+  },
+  {
+    "from": "shared",
+    "to": "generate-summary",
+    "type": "dependency",
+    "label": "auth+llm_json"
+  },
+  {
+    "from": "shared",
+    "to": "gt-apply",
+    "type": "dependency",
+    "label": "auth"
+  },
+  {
+    "from": "guardrails",
+    "to": "ai-router",
+    "type": "dependency",
+    "label": "8 guardrails"
+  },
+  {
+    "from": "ctx-retrievers",
+    "to": "context-assembly",
+    "type": "dependency",
+    "label": "6 retrievers"
+  },
+  {
+    "from": "pc-phone",
+    "to": "process-call",
+    "type": "dependency",
+    "label": "phone modules"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "segment-llm",
+    "type": "data-flow",
+    "label": "reseg"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "context-assembly",
+    "type": "data-flow",
+    "label": "reroute"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "ai-router",
+    "type": "data-flow",
+    "label": "reroute"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "striking-detect",
+    "type": "fire-forget",
+    "label": "redetect"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "journal-extract",
+    "type": "fire-forget",
+    "label": "reextract"
+  },
+  {
+    "from": "shadow-replay",
+    "to": "process-call",
+    "type": "event",
+    "label": "shadow replay"
+  },
+  {
+    "from": "process-call",
+    "to": "db-core",
+    "type": "data-flow",
+    "label": "upsert interactions+calls_raw"
+  },
+  {
+    "from": "process-call",
+    "to": "storage",
+    "type": "data-flow",
+    "label": "audio ref"
+  },
+  {
+    "from": "process-call",
+    "to": "db-pipeline-aux",
+    "type": "data-flow",
+    "label": "idempotency+event_audit"
+  },
+  {
+    "from": "transcribe",
+    "to": "db-pipeline-aux",
+    "type": "data-flow",
+    "label": "transcripts_comparison"
+  },
+  {
+    "from": "segment-call",
+    "to": "db-spans",
+    "type": "data-flow",
+    "label": "upsert spans"
+  },
+  {
+    "from": "ai-router",
+    "to": "db-spans",
+    "type": "data-flow",
+    "label": "upsert attributions"
+  },
+  {
+    "from": "ai-router",
+    "to": "db-review",
+    "type": "data-flow",
+    "label": "review_queue+alias_suggestions"
+  },
+  {
+    "from": "review-resolve",
+    "to": "db-spans",
+    "type": "rpc",
+    "label": "via resolve_review_item"
+  },
+  {
+    "from": "review-resolve",
+    "to": "db-review",
+    "type": "rpc",
+    "label": "resolve+override_log"
+  },
+  {
+    "from": "generate-summary",
+    "to": "db-core",
+    "type": "data-flow",
+    "label": "human_summary+scheduler"
+  },
+  {
+    "from": "generate-summary",
+    "to": "db-review",
+    "type": "data-flow",
+    "label": "event_audit"
+  },
+  {
+    "from": "striking-detect",
+    "to": "db-pipeline-aux",
+    "type": "data-flow",
+    "label": "striking_signals"
+  },
+  {
+    "from": "journal-extract",
+    "to": "db-journal",
+    "type": "rpc",
+    "label": "claims+runs+loops"
+  },
+  {
+    "from": "journal-consolidate",
+    "to": "db-journal",
+    "type": "data-flow",
+    "label": "relationships+conflicts"
+  },
+  {
+    "from": "chain-detect",
+    "to": "db-pipeline-aux",
+    "type": "data-flow",
+    "label": "call_chains"
+  },
+  {
+    "from": "loop-closure",
+    "to": "db-journal",
+    "type": "data-flow",
+    "label": "close loops"
+  },
+  {
+    "from": "gt-apply",
+    "to": "db-spans",
+    "type": "rpc",
+    "label": "via apply_gt_correction"
+  },
+  {
+    "from": "gt-apply",
+    "to": "db-review",
+    "type": "data-flow",
+    "label": "override_log"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "db-spans",
+    "type": "data-flow",
+    "label": "supersede+insert spans"
+  },
+  {
+    "from": "admin-reseed",
+    "to": "db-review",
+    "type": "data-flow",
+    "label": "cleanup+override_log"
+  },
+  {
+    "from": "alias-scout",
+    "to": "db-alias",
+    "type": "data-flow",
+    "label": "suggested_aliases"
+  },
+  {
+    "from": "alias-review",
+    "to": "db-alias",
+    "type": "data-flow",
+    "label": "approve/reject"
+  },
+  {
+    "from": "alias-hygiene",
+    "to": "db-alias",
+    "type": "data-flow",
+    "label": "retire+expire"
+  },
+  {
+    "from": "embed-facts",
+    "to": "world-model",
+    "type": "data-flow",
+    "label": "embeddings"
+  },
+  {
+    "from": "journal-embed",
+    "to": "db-journal",
+    "type": "data-flow",
+    "label": "claim embeddings"
+  },
+  {
+    "from": "gmail-ctx",
+    "to": "db-context",
+    "type": "data-flow",
+    "label": "gmail_context_cache"
+  },
+  {
+    "from": "context-assembly",
+    "to": "db-context",
+    "type": "data-flow",
+    "label": "span_place_mentions"
+  },
+  {
+    "from": "world-model",
+    "to": "guardrails",
+    "type": "data-flow",
+    "label": "project facts"
+  },
+  {
+    "from": "world-model",
+    "to": "ctx-retrievers",
+    "type": "data-flow",
+    "label": "fact embeddings"
+  },
+  {
+    "from": "db-alias",
+    "to": "ctx-retrievers",
+    "type": "data-flow",
+    "label": "alias lookup"
+  },
+  {
+    "from": "db-context",
+    "to": "ctx-retrievers",
+    "type": "data-flow",
+    "label": "fanout+affinity+geo"
+  },
+  {
+    "from": "db-journal",
+    "to": "ctx-retrievers",
+    "type": "data-flow",
+    "label": "claims+open_loops"
+  },
+  {
+    "from": "db-core",
+    "to": "process-call",
+    "type": "data-flow",
+    "label": "contacts+projects"
+  },
+  {
+    "from": "db-core",
+    "to": "generate-summary",
+    "type": "data-flow",
+    "label": "interactions+calls_raw"
+  },
+  {
+    "from": "rpc-resolve",
+    "to": "db-spans",
+    "type": "rpc",
+    "label": "atomic update"
+  },
+  {
+    "from": "rpc-resolve",
+    "to": "db-review",
+    "type": "rpc",
+    "label": "atomic update"
+  },
+  {
+    "from": "review-resolve",
+    "to": "rpc-resolve",
+    "type": "rpc",
+    "label": "call"
+  },
+  {
+    "from": "gt-apply",
+    "to": "rpc-gt",
+    "type": "rpc",
+    "label": "call"
+  },
+  {
+    "from": "rpc-gt",
+    "to": "db-spans",
+    "type": "rpc",
+    "label": "atomic update"
+  },
+  {
+    "from": "journal-extract",
+    "to": "rpc-journal",
+    "type": "rpc",
+    "label": "dedup insert"
+  },
+  {
+    "from": "process-call",
+    "to": "rpc-contact",
+    "type": "rpc",
+    "label": "4 RPCs"
+  },
+  {
+    "from": "trigger-lock",
+    "to": "db-spans",
+    "type": "rpc",
+    "label": "enforces on UPDATE"
+  },
+  {
+    "from": "migrations",
+    "to": "db-core",
+    "type": "dependency",
+    "label": "schema"
+  },
+  {
+    "from": "migrations",
+    "to": "db-spans",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "migrations",
+    "to": "db-review",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "migrations",
+    "to": "db-journal",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "migrations",
+    "to": "db-alias",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "migrations",
+    "to": "db-context",
+    "type": "dependency",
+    "label": ""
+  },
+  {
+    "from": "gh-actions",
+    "to": "db-core",
+    "type": "event",
+    "label": "deploy EFs"
+  },
+  {
+    "from": "cc-scripts",
+    "to": "admin-reseed",
+    "type": "event",
+    "label": "batch"
+  },
+  {
+    "from": "cc-scripts",
+    "to": "gt-apply",
+    "type": "event",
+    "label": "batch"
+  },
+  {
+    "from": "cc-scripts",
+    "to": "shadow-replay",
+    "type": "event",
+    "label": "batch"
+  },
+  {
+    "from": "smoke-test",
+    "to": "zapier-ingest",
+    "type": "event",
+    "label": "test all 13"
+  },
+  {
+    "from": "claim-guard",
+    "to": "cc-scripts",
+    "type": "dependency",
+    "label": "preflight"
+  },
+  {
+    "from": "tests",
+    "to": "guardrails",
+    "type": "event",
+    "label": "unit tests"
+  }
+]
