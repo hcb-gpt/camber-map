@@ -33,25 +33,16 @@
   .comment-meta { color: var(--text-disabled); font-size: 9px; margin-top: var(--space-050); }
   .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
-  .canvas-zoom-controls { position: absolute; bottom: 16px; left: 16px; z-index: 10; display: flex; gap: 4px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-300); padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .canvas-zoom-btn { width: 32px; height: 32px; border: none; background: transparent; border-radius: var(--radius-200); cursor: pointer; font-size: 16px; font-weight: 500; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; transition: background 0.12s ease, color 0.12s ease; font-family: 'DM Sans', system-ui, sans-serif; }
-  .canvas-zoom-btn:hover { background: var(--surface-hover); color: var(--text-primary); }
-  .canvas-zoom-btn:active { background: var(--interactive-muted); }
-  .canvas-zoom-fit { font-size: 11px; width: auto; padding: 0 10px; }
   /* ── Connection hover-to-reveal labels ── */
-  .conn-group { cursor: pointer; opacity: 0.15; transition: opacity 0.2s ease; }
+  .conn-group { cursor: pointer; transition: opacity 0.2s ease; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
-  .conn-group .conn-path { transition: stroke-width 0.15s ease; }
-  .conn-group:hover, .conn-group.conn-active { opacity: 1; }
-  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
-  .conn-label-group { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
-  .conn-label-group.label-active { opacity: 1; pointer-events: auto; }
-  .conn-label-pill { transition: fill 0.12s ease, stroke 0.12s ease; }
-  .conn-label-group:hover .conn-label-pill { fill: #F0F4FF; stroke: #93A3CF; }
+  .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
+  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
+  .conn-label-group { opacity: 0; transition: opacity 0.15s ease, transform 0.15s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+  .conn-label-group.label-active { opacity: 1; transform: scale(1.5); pointer-events: auto; cursor: pointer; }
 
   .node-group { transition: opacity 0.2s ease; }
-  .node-group.dimmed { opacity: 0.15; }
-  .conn-group.dimmed { opacity: 0.05; }
+  .node-group.dimmed, .conn-group.dimmed { opacity: 0.15; }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
   .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
@@ -69,13 +60,11 @@
   .modal-btns button { padding: var(--space-150) var(--space-card-padding); border-radius: var(--radius-200); border: none; cursor: pointer; font-size: var(--font-size-75); }
   .modal-btns .save { background: var(--interactive-primary); color: white; }
   .modal-btns .cancel { background: var(--border-default); color: var(--text-secondary); }
-  .sidebar-info { background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300); margin-bottom: var(--space-300); }
-  .sidebar-info-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-  .sidebar-info-header h4 { color: var(--interactive-primary); font-size: var(--font-size-75); margin: 0; flex: 1; }
-  .sidebar-info-close { background: none; border: none; color: var(--text-disabled); font-size: 18px; cursor: pointer; padding: 0; line-height: 1; min-width: 24px; min-height: 24px; }
-  .sidebar-info-close:hover { color: var(--text-primary); }
-  .sidebar-info p { color: var(--text-secondary); font-size: 11px; line-height: 1.5; margin: var(--space-100) 0 0; }
-  .sidebar-info .info-comment-btn {
+  .info-panel { position: absolute; bottom: var(--space-300); right: var(--space-300); background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-200); padding: var(--space-300) var(--space-card-padding); font-size: 10px; z-index: 10; max-width: 320px; max-height: 40vh; overflow-y: auto; display: none; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .info-panel.show { display: block; }
+  .info-panel h4 { color: var(--interactive-primary); font-size: var(--font-size-75); margin-bottom: var(--space-100); }
+  .info-panel p { color: var(--text-secondary); line-height: 1.5; }
+  .info-panel .info-comment-btn {
     margin-top: var(--space-200);
     padding: var(--space-150) var(--space-400);
     background: var(--interactive-primary);
@@ -86,7 +75,7 @@
     cursor: pointer;
     display: inline-block;
   }
-  .sidebar-info .info-comment-btn:hover, .sidebar-info .info-comment-btn:active { background: var(--interactive-hover); }
+  .info-panel .info-comment-btn:hover, .info-panel .info-comment-btn:active { background: var(--interactive-hover); }
   .empty-comments { font-size: 11px; color: var(--text-disabled); }
   .row-label { font-family: 'DM Sans', system-ui; font-size: 10px; fill: #8C8F99; letter-spacing: 1px; pointer-events: none; }
   .search-box { width: 100%; padding: var(--space-150) var(--space-300); background: var(--surface-base); border: 1px solid var(--border-default); border-radius: var(--radius-200); color: var(--text-primary); font-size: 13px; margin-bottom: var(--space-300); }
@@ -99,6 +88,24 @@
   input[type="checkbox"] {
     touch-action: manipulation;
   }
+  .info-panel .info-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 44px;
+    height: 44px;
+    background: var(--border-default);
+    border: none;
+    border-radius: var(--radius-200);
+    color: var(--text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+  .info-panel .info-close-btn:hover, .info-panel .info-close-btn:active { background: var(--surface-hover); color: var(--text-primary); }
 
   /* ── Hamburger menu button (hidden on desktop) ── */
   .hamburger {
@@ -446,11 +453,23 @@
       padding: 10px 20px;
       font-size: 13px;
     }
-    .sidebar-info .info-comment-btn {
+    .info-panel {
+      left: 8px;
+      right: 8px;
+      max-width: none;
+      bottom: 60px;
+      top: auto;
+      max-height: 45vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .info-panel .info-comment-btn {
       min-height: 44px;
       padding: 10px 16px;
       font-size: 13px;
     }
+    .info-panel .info-close-btn { display: flex; }
+    .info-panel h4 { padding-right: 36px; }
     .modal {
       width: calc(100vw - 32px);
       max-width: 420px;
@@ -473,9 +492,6 @@
       min-height: 44px;
       font-size: 14px;
     }
-    .canvas-zoom-controls { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); left: 12px; }
-    .canvas-zoom-btn { width: 44px; height: 44px; font-size: 20px; }
-    .canvas-zoom-fit { font-size: 13px; padding: 0 14px; }
   }
 
   /* ── Phone breakpoint ── */
@@ -509,6 +525,10 @@
       font-size: 13px;
     }
     .sidebar { width: 90vw; }
+    .info-panel {
+      bottom: 50px;
+      max-height: 35vh;
+    }
   }
 
   /* ── VP Instrument Panel ── */
@@ -674,6 +694,11 @@
 
 
   /* ── Product-designer copy + mobile explorer ───────────────────── */
+  #zoom-section { margin-top: var(--space-300); margin-bottom: var(--space-300); }
+  #zoom-section h3 { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); margin: var(--space-300) 0 var(--space-150); }
+  .zoom-row { display: flex; gap: var(--space-200); }
+  .small-btn { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border-default); color: var(--text-secondary); padding: var(--space-100) var(--space-200); border-radius: var(--radius-200); font-size: 12px; font-weight: 500; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+  .small-btn:active { transform: translateY(1px); }
 
   /* Mobile explorer (System view) */
   #mobile-explorer { display: none; height: calc(100dvh - 64px - var(--safe-t, 0px)); overflow: auto; padding: 0 var(--space-300) calc(96px + var(--safe-b, 0px)); }
@@ -729,7 +754,7 @@
   .chat-msg strong { color: var(--text-primary); }
 
   /* ── Transition consistency for interactive elements ── */
-  .chat-fab, .chat-header-btn, .chat-empty-chip, .ms-link { transition: all 0.15s ease; }
+  .chat-fab, .chat-header-btn, .chat-empty-chip, .small-btn, .ms-link { transition: all 0.15s ease; }
   .chat-panel { transition: transform 0.3s ease; }
   .mobile-sheet { transition: bottom 0.22s ease, height 0.22s ease; }
   .changes-drawer { transition: transform 0.3s ease; }
@@ -745,20 +770,21 @@
   <div class="sidebar">
     <div class="mode-toggle" id="sidebar-mode-toggle">
       <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+      <button data-mode="plain" onclick="applyViewMode('plain')">Plain</button>
       <button data-mode="system" onclick="applyViewMode('system')">System</button>
     </div>
     <h2>Camber Product Map</h2>
     <div class="stat-bar" id="stat-bar"></div>
     <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
-
-    <div id="sidebar-info" class="sidebar-info" style="display:none;">
-      <div class="sidebar-info-header">
-        <h4 id="sidebar-info-title"></h4>
-        <button class="sidebar-info-close" onclick="hideInfo()" aria-label="Close">&times;</button>
+    
+    <div id="zoom-section">
+      <h3>Zoom</h3>
+      <div class="zoom-row">
+        <button class="small-btn" onclick="zoomOut()">Smaller</button>
+        <button class="small-btn" onclick="fitToScreen()">Fit</button>
+        <button class="small-btn" onclick="zoomIn()">Bigger</button>
       </div>
-      <p id="sidebar-info-desc"></p>
     </div>
-
 <div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
     <div id="presets-section"><div id="presets"></div></div>
     <div id="layers-section"><h3>Areas</h3><div id="layer-toggles"></div></div>
@@ -767,10 +793,10 @@
   </div>
 
   <div class="canvas-area" id="canvas-area">
-    <div class="canvas-zoom-controls">
-      <button class="canvas-zoom-btn" onclick="zoomOut()" title="Zoom out">&minus;</button>
-      <button class="canvas-zoom-btn canvas-zoom-fit" onclick="fitToScreen()" title="Fit to screen">Fit</button>
-      <button class="canvas-zoom-btn" onclick="zoomIn()" title="Zoom in">&plus;</button>
+<div class="info-panel" id="info-panel">
+      <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
+      <h4 id="info-title"></h4>
+      <p id="info-desc"></p>
     </div>
     <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -790,6 +816,7 @@
 <!-- Mobile mode toggle (always visible on mobile, outside mobile-view) -->
 <div class="mode-toggle mobile-only" id="mobile-mode-toggle">
   <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+  <button data-mode="plain" onclick="applyViewMode('plain')">Plain</button>
   <button data-mode="system" onclick="applyViewMode('system')">System</button>
 </div>
 
@@ -1183,6 +1210,127 @@ var connections = [
   { from: 'tests',         to: 'guardrails',     type: 'event',     label: 'unit tests' },
 ];
 
+var CONNECTION_LABEL_DESC_MAP = {
+  'admin-reseed→ai-router|reroute': 'Reseed reruns routing on existing spans to test new router versions/config without silently overriding human locks.',
+  'admin-reseed→context-assembly|reroute': 'Reseed reruns context assembly to refresh candidates and retrieved facts for existing spans.',
+  'admin-reseed→db-review|cleanup+override_log': 'Cleans up review state and records reseed actions so human workflows stay coherent.',
+  'admin-reseed→db-spans|supersede+insert spans': 'Supersedes old spans and inserts regenerated ones during reseed, preserving lineage and preventing mixed-span states.',
+  'admin-reseed→journal-extract|reextract': 'Reseed re-extracts journal claims for spans to backfill new claim types or improved prompts.',
+  'admin-reseed→segment-llm|reseg': 'Reseed tooling reruns segmentation to rebuild spans when logic changes, while respecting locks that protect human decisions.',
+  'admin-reseed→striking-detect|redetect': 'Reseed re-scores striking signals for existing spans to keep urgency metrics consistent after model/prompt updates.',
+  'ai-router→db-review|review_queue+alias_suggestions': 'Creates review_queue items when attribution is uncertain and records potential alias suggestions discovered during routing.',
+  'ai-router→db-spans|upsert attributions': 'Writes span_attributions as the system-of-record for which project each span belongs to, including lock state and confidence.',
+  'ai-router→journal-extract|belt & suspenders': 'As a backup, ai-router also triggers journal-extract when it assigns a project, ensuring claim extraction still happens even if an earlier hook was skipped.',
+  'ai-router→journal-extract|belt_and_suspenders': 'As a backup, ai-router also triggers journal-extract when it assigns a project, ensuring claim extraction still happens even if an earlier hook was skipped.',
+  'ai-router→review-triage|queue if review': 'When routing is uncertain or blocked by guardrails, ai-router enqueues an item for human review rather than guessing.',
+  'ai-router→review-triage|queue_if_flagged': 'When routing is uncertain or blocked by guardrails, ai-router enqueues an item for human review rather than guessing.',
+  'alias-hygiene→db-alias|retire+expire': 'Retires aliases for closed/inactive projects to reduce drift and false matches.',
+  'alias-review→db-alias|approve/reject': 'Applies human decisions on alias suggestions, promoting good aliases and rejecting noisy ones.',
+  'alias-scout→db-alias|suggested_aliases': 'Writes candidate aliases discovered from text mining so humans can approve them and improve future routing.',
+  'anthropic→ai-router|Haiku': 'ai-router calls Haiku to assign each span to the correct project (or decide it needs review), using the assembled context and guardrails.',
+  'anthropic→chain-detect|Haiku': 'chain-detect uses Haiku to link related calls into threads so the system can reason over continuity across interactions.',
+  'anthropic→generate-summary|Haiku': 'generate-summary calls Haiku to produce a human-readable call summary and structured follow-up items.',
+  'anthropic→journal-consolidate|Sonnet 4.5': 'journal-consolidate uses Sonnet to merge new claims into the project record, resolving duplicates and flagging contradictions.',
+  'anthropic→journal-extract|Haiku': 'journal-extract calls Haiku to extract structured journal claims and open loops from an attributed span.',
+  'anthropic→loop-closure|Haiku': 'loop-closure uses Haiku to mark open loops as closed when later evidence confirms completion.',
+  'anthropic→striking-detect|Haiku': 'striking-detect calls Haiku to score urgency/risks and write striking signals used for ops prioritization.',
+  'cc-scripts→admin-reseed|batch': 'Operational scripts launch batch reseeds to reprocess many interactions under controlled conditions.',
+  'cc-scripts→gt-apply|batch': 'Batch scripts apply ground-truth corrections at scale for evaluation and model iteration.',
+  'cc-scripts→shadow-replay|batch': 'Batch shadow replays run historical traffic through the pipeline in a non-impacting mode to measure changes.',
+  'chain-detect→db-pipeline-aux|call_chains': 'Stores call-to-call linkage so the system can reason over ongoing threads with a contact.',
+  'claim-guard→cc-scripts|preflight': 'Claim guard enforces operator context and safety checks before any write-mode script can run.',
+  'context-assembly→ai-router|context_package': 'context-assembly hands ai-router a complete context package (span text + candidates + retrieved facts/claims) so routing can be decided consistently.',
+  'context-assembly→db-context|span_place_mentions': 'Persists detected place mentions from spans to support geo signals and later analysis.',
+  'context-assembly→gmail-ctx|email fetch (fail-open)': 'context-assembly optionally fetches cached email context; if Gmail is unavailable it proceeds without email so routing doesn’t stall.',
+  'context-assembly→gmail-ctx|email_fetch_fail_open': 'context-assembly optionally fetches cached email context; if Gmail is unavailable it proceeds without email so routing doesn’t stall.',
+  'ctx-retrievers→context-assembly|6 retrievers': 'Retrievers supply ranked signals (aliases, affinity, facts, claims, geo, email) that context-assembly packages for routing.',
+  'db-alias→ctx-retrievers|alias lookup': 'Retrievers load active project aliases so context-assembly can match spoken names to projects.',
+  'db-context→ctx-retrievers|fanout+affinity+geo': 'Retrievers use precomputed affinity, fanout classification, and geo proximity to rank candidate projects.',
+  'db-core→generate-summary|interactions+calls_raw': 'generate-summary reads stored interactions, transcripts, and routing outputs to produce the final summary and tasks.',
+  'db-core→process-call|contacts+projects': 'process-call reads core contacts/projects to resolve the caller identity and limit candidates to eligible projects.',
+  'db-journal→ctx-retrievers|claims+open_loops': 'Retrievers pull recent claims and unresolved loops so routing and summaries reflect current project state.',
+  'deepgram→transcribe|Nova-2 ASR': 'The transcribe step sends audio to Deepgram Nova-2 and receives the transcript (and timing metadata). This transcript becomes the primary text input for routing and extraction.',
+  'embed-facts→world-model|embeddings': 'Stores embeddings for project facts in the world model, enabling semantic retrieval and time-aware context.',
+  'generate-summary→db-core|human_summary+scheduler': 'Persists the call summary and materializes scheduler items/tasks for follow-up workflows.',
+  'generate-summary→db-review|event_audit': 'Logs summary generation outcomes to event_audit for ops visibility and replay/debug.',
+  'gh-actions→db-core|deploy EFs': 'CI deploys edge functions and related config to Supabase so production matches what’s in GitHub.',
+  'github→gh-actions|push trigger': 'A GitHub push triggers CI/CD workflows that test and deploy edge functions and schema changes.',
+  'gmail-api→gmail-ctx|OAuth search': 'gmail-ctx uses OAuth to search and summarize relevant Gmail threads, then returns/caches that context for the pipeline.',
+  'gmail-ctx→db-context|gmail_context_cache': 'Caches email context summaries with a TTL so repeated context-assembly runs don’t hammer Gmail.',
+  'gt-apply→db-review|override_log': 'Writes an audit entry for each GT change so evaluation and rollback analysis remain possible.',
+  'gt-apply→db-spans|via apply_gt_correction': 'Applies ground-truth corrections via RPC to lock the correct attribution permanently at the span level.',
+  'gt-apply→rpc-gt|call': 'gt-apply calls apply_gt_correction for each labeled segment so corrections are applied under database-enforced invariants.',
+  'guardrails→ai-router|8 guardrails': 'Guardrails provide hard constraints and sanity checks that ai-router must satisfy before assigning a project.',
+  'journal-consolidate→db-journal|relationships+conflicts': 'Writes consolidated relationships and conflict records so contradictory claims can be triaged and resolved.',
+  'journal-embed→db-journal|claim embeddings': 'Stores vector embeddings for journal claims to support semantic search and better dedup/conflict detection.',
+  'journal-extract→db-journal|claims+runs+loops': 'Uses deduping RPCs to insert extracted claims, journal run metadata, and any open loops linked to the span/project.',
+  'journal-extract→journal-consolidate|if claims>0': 'If extraction produced claims, journal-consolidate runs to merge them into project state and detect conflicts.',
+  'journal-extract→journal-consolidate|if_claims>0': 'If extraction produced claims, journal-consolidate runs to merge them into project state and detect conflicts.',
+  'journal-extract→rpc-journal|dedup insert': 'journal-extract calls insert_journal_claims_dedup so retries don’t create duplicate claims and reruns are safe.',
+  'loop-closure→db-journal|close loops': 'Marks open loops as closed and appends closure evidence so the morning digest stops surfacing resolved items.',
+  'migrations→db-core|schema': 'Migrations evolve schema and invariants; they must be applied before deploying code that depends on new tables/columns.',
+  'openai→embed-facts|embed-3-sm': 'embed-facts converts project facts into vector embeddings for similarity search. This powers retrieval in context-assembly and guardrails.',
+  'openai→journal-embed|embed-3-sm': 'journal-embed vectorizes journal claims so later queries can find relevant prior statements and support dedup/conflict detection.',
+  'openai→segment-llm|GPT-4o-mini': 'segment-llm asks GPT‑4o‑mini to propose topic boundaries so multi-topic calls can be split into independent spans.',
+  'openphone→zapier|call events': 'OpenPhone sends call and voicemail events (caller/callee, timestamps, recording link, metadata) into Zapier so the pipeline starts automatically.',
+  'pc-phone→process-call|phone modules': 'Phone normalization modules map raw from/to fields into consistent owner vs other-party roles for contact resolution and attribution.',
+  'process-call→db-core|upsert interactions+calls_raw': 'process-call upserts the interactions row and stores the normalized call in calls_raw, including contact resolution and candidate projects for downstream steps.',
+  'process-call→db-pipeline-aux|idempotency+event_audit': 'Writes idempotency keys and event_audit telemetry so duplicate webhooks are skipped and every run is traceable.',
+  'process-call→rpc-contact|4 RPCs': 'process-call uses a small set of contact/alias RPCs for phone lookup, transcript scanning, and candidate expansion—keeping matching logic centralized and auditable.',
+  'process-call→segment-call|fire & forget': 'After storing the call, process-call kicks off segmentation asynchronously so the webhook can return quickly; downstream failures are tracked separately.',
+  'process-call→segment-call|fire_forget': 'After storing the call, process-call kicks off segmentation asynchronously so the webhook can return quickly; downstream failures are tracked separately.',
+  'process-call→storage|audio ref': 'Stores a reference to the call recording location (usually a URL) so transcription can fetch audio later; the pipeline depends on this link staying valid.',
+  'review-resolve→db-review|resolve+override_log': 'Records the human decision and audit trail (override_log) so corrections are explainable and durable.',
+  'review-resolve→db-spans|via resolve_review_item': 'When a human resolves a review item, review-resolve calls an atomic RPC that updates span_attributions (and related span records) in one transaction.',
+  'review-resolve→rpc-resolve|call': 'review-resolve invokes resolve_review_item to apply a human decision safely and consistently.',
+  'rpc-gt→db-spans|atomic update': 'apply_gt_correction performs an atomic attribution update and enforces monotonic locks so later pipeline runs can’t override GT.',
+  'rpc-resolve→db-review|atomic update': 'The same transaction updates review_queue status and writes override logs so the audit trail always matches the attribution.',
+  'rpc-resolve→db-spans|atomic update': 'The resolve_review_item RPC updates span attribution atomically—either everything commits or nothing does.',
+  'sb-auth→review-resolve|JWT verify': 'review-resolve verifies the user’s Supabase JWT so only authorized reviewers can apply corrections.',
+  'segment-call→context-assembly|per span (blocking)': 'For each span, segment-call blocks on context-assembly to build the context_package needed for accurate routing.',
+  'segment-call→context-assembly|per_span': 'For each span, segment-call blocks on context-assembly to build the context_package needed for accurate routing.',
+  'segment-call→db-spans|upsert spans': 'Writes conversation_spans (char ranges + segment text) for the interaction. Spans are the stable unit-of-work for routing and extraction.',
+  'segment-call→generate-summary|after all spans': 'After all spans are processed, segment-call triggers generate-summary once to produce the call-level summary and task list (fire-and-forget).',
+  'segment-call→generate-summary|after_spans': 'After all spans are processed, segment-call triggers generate-summary once to produce the call-level summary and task list (fire-and-forget).',
+  'segment-call→journal-extract|if assign, f&f': 'When a span is assigned to a project, segment-call fires journal-extract in the background to extract claims and follow-ups; failures don’t block attribution.',
+  'segment-call→journal-extract|if_assigned': 'When a span is assigned to a project, segment-call fires journal-extract in the background to extract claims and follow-ups; failures don’t block attribution.',
+  'segment-call→segment-llm|get boundaries': 'segment-call requests span boundaries from segment-llm so the transcript can be split into topic-focused chunks within size limits.',
+  'segment-call→segment-llm|get_boundaries': 'segment-call requests span boundaries from segment-llm so the transcript can be split into topic-focused chunks within size limits.',
+  'segment-call→striking-detect|per span f&f': 'Each span triggers striking-detect asynchronously to compute urgency/risk signals without blocking the routing path.',
+  'segment-call→striking-detect|per_span': 'Each span triggers striking-detect asynchronously to compute urgency/risk signals without blocking the routing path.',
+  'shadow-replay→process-call|shadow replay': 'Shadow replay re-ingests historical calls through process-call in an isolated mode to test changes without impacting production truth.',
+  'shared→ai-router|auth+junk': 'Shared code applies the same auth checks and low-signal/junk-call filtering so routing doesn’t waste compute or create review pressure.',
+  'shared→context-assembly|auth': 'Shared auth wrappers ensure only internal callers can assemble context packages.',
+  'shared→generate-summary|auth+llm_json': 'Shared auth + schema helpers enforce consistent summary/task formats.',
+  'shared→gt-apply|auth': 'Shared auth ensures only privileged operators can apply ground-truth corrections.',
+  'shared→journal-extract|auth+llm_json': 'Shared auth + JSON schema helpers make claim extraction safer and easier to validate.',
+  'shared→process-call|auth+id_guard': 'Shared utilities enforce authentication, input normalization, and idempotency rules so process-call can safely accept retried webhooks.',
+  'shared→segment-llm|llm_json': 'Shared helpers standardize prompt/response JSON handling and schema validation so segmentation outputs stay structured and reliable.',
+  'smoke-test→zapier-ingest|test all 13': 'Smoke tests simulate inbound webhooks across pipeline endpoints to confirm auth and basic health after deploy.',
+  'striking-detect→db-pipeline-aux|striking_signals': 'Stores per-span striking/urgency signals so dashboards and alerts can prioritize what needs attention.',
+  'tests→guardrails|unit tests': 'Unit/regression tests validate guardrail behavior so routing constraints don’t drift as prompts and data evolve.',
+  'transcribe→db-pipeline-aux|transcripts_comparison': 'Persists transcript variants and quality metadata so you can compare ASR engines and track regressions over time.',
+  'trigger-lock→db-spans|enforces on UPDATE': 'A database trigger enforces monotonic attribution locks on updates, preventing any code path from downgrading a human correction.',
+  'world-model→ctx-retrievers|fact embeddings': 'Retrievers query fact embeddings to pull the most relevant project facts for the current span.',
+  'world-model→guardrails|project facts': 'Guardrails reads authoritative project facts to block impossible assignments and validate extracted outputs.',
+  'zapier-ingest→process-call|forward (blocking)': 'Ingestion forwards the call payload to process-call and waits for a response. This is the synchronous entry that validates, deduplicates, and persists the call.',
+  'zapier-ingest→process-call|forward_blocking': 'Ingestion forwards the call payload to process-call and waits for a response. This is the synchronous entry that validates, deduplicates, and persists the call.',
+  'zapier→zapier-ingest|webhook POST': 'Zapier POSTs the normalized event payload into the ingestion endpoint, including call IDs and recording URL, so it can be validated and stored.'
+};
+
+function _connKey(from, to, label) {
+  return String(from || '') + '→' + String(to || '') + '|' + String(label || '');
+}
+function attachConnectionDescs(list) {
+  if (!Array.isArray(list)) return;
+  list.forEach(function(c) {
+    var k = _connKey(c.from, c.to, c.label);
+    if (!c.desc && CONNECTION_LABEL_DESC_MAP[k]) c.desc = CONNECTION_LABEL_DESC_MAP[k];
+  });
+}
+attachConnectionDescs(connections);
+
+
 var PRESETS = [
   { id: 'full',       label: 'Full System',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
   { id: 'pipeline',   label: 'Call Pipeline Chain',      layers: ['external','pipeline'],                          conns: ['data-flow','fire-forget','tool-call'] },
@@ -1288,8 +1436,163 @@ var VIEW_MODES = {
     showControls: true,
     showPrompt: true,
     showComments: true
+  },
+  plain: {
+    preset: 'full',
+    layers: Object.keys(LAYERS),
+    conns: Object.keys(CONN_TYPES),
+    hideNodes: [],
+    showControls: true,
+    showPrompt: true,
+    showComments: true
   }
 };
+
+// ── PLAIN (APPROACHABLE) COPY ─────────────────────
+var FRIENDLY_COPY = {
+  'openphone':      { label: 'Phone system',            subtitle: 'Where calls start' },
+  'zapier':         { label: 'Automation bridge',       subtitle: 'Forwards call events' },
+  'deepgram':       { label: 'Speech-to-text',          subtitle: 'Makes transcripts' },
+  'openai':         { label: 'OpenAI tools',            subtitle: 'Splits calls + embeddings' },
+  'anthropic':      { label: 'Claude (Anthropic)',      subtitle: 'Decisions + summaries' },
+  'gmail-api':      { label: 'Email lookup',            subtitle: 'Recent email context' },
+  'github':         { label: 'Code repo + CI',          subtitle: 'Builds and deploys' },
+  'sb-auth':        { label: 'User sign-in',            subtitle: 'JWT auth for the UI' },
+
+  'zapier-ingest':  { label: 'Webhook intake',          subtitle: 'Receives Zapier payload' },
+  'process-call':   { label: 'Call intake',             subtitle: 'Validates + queues work' },
+  'transcribe':     { label: 'Transcribe call',         subtitle: 'Audio → text' },
+  'pc-phone':       { label: 'Phone helpers',           subtitle: 'Normalizes phone details' },
+
+  'segment-call':   { label: 'Split into topics',       subtitle: 'Turns a call into spans' },
+  'segment-llm':    { label: 'Boundary finder',         subtitle: 'AI finds topic changes' },
+  'shared':         { label: 'Shared utilities',        subtitle: 'Common helpers + auth' },
+
+  'context-assembly': { label: 'Build evidence packet', subtitle: 'Collects context per span' },
+  'gmail-ctx':      { label: 'Email context fetch',     subtitle: 'Pulls recent threads' },
+  'ctx-retrievers': { label: 'Context retrievers',      subtitle: 'Small fetchers (CRM, history, …)' },
+
+  'ai-router':      { label: 'Project picker',          subtitle: 'AI assigns a span to a project' },
+  'guardrails':     { label: 'Safety checks',           subtitle: 'Rules that prevent bad picks' },
+  'review-resolve': { label: 'Apply human fix',         subtitle: 'Writes review decisions' },
+  'review-triage':  { label: 'Review queue API',        subtitle: 'Browse/manage pending items' },
+
+  'generate-summary':   { label: 'Create call summary',     subtitle: 'Writes digest + follow-ups' },
+  'striking-detect':    { label: 'Find notable signals',    subtitle: 'Flags important moments' },
+  'journal-extract':    { label: 'Extract knowledge',       subtitle: 'Turns text into claims' },
+  'journal-consolidate':{ label: 'Update knowledge base',   subtitle: 'Merges new claims safely' },
+  'chain-detect':       { label: 'Detect call chains',      subtitle: 'Links related calls' },
+  'loop-closure':       { label: 'Close open loops',        subtitle: 'Resolves outstanding items' },
+
+  'admin-reseed':   { label: 'Reseed / re-run',         subtitle: 'Fix bad segmentation/routing' },
+  'shadow-replay':  { label: 'Shadow replay',           subtitle: 'Test changes on real calls' },
+  'gt-apply':       { label: 'Apply ground truth',      subtitle: 'Batch human corrections' },
+  'morning-digest': { label: 'Daily status report',     subtitle: 'Health + signals at a glance' },
+
+  'alias-scout':    { label: 'Alias finder',            subtitle: 'Suggests new project names' },
+  'alias-review':   { label: 'Alias approval',          subtitle: 'Approve/reject suggestions' },
+  'alias-hygiene':  { label: 'Alias cleanup',           subtitle: 'Dedup + blocklist' },
+  'embed-facts':    { label: 'Embed project facts',     subtitle: 'Vectorize facts for search' },
+  'journal-embed':  { label: 'Embed journal claims',    subtitle: 'Vectorize claims for search' },
+
+  'db-core':        { label: 'Core records',            subtitle: 'Calls, contacts, projects' },
+  'db-spans':       { label: 'Spans + routing',         subtitle: 'Per-topic pieces + attribution' },
+  'db-review':      { label: 'Review & audit',          subtitle: 'Queue + overrides + logs' },
+  'db-pipeline-aux':{ label: 'Pipeline telemetry',      subtitle: 'Idempotency + events' },
+  'db-journal':     { label: 'Journal storage',         subtitle: 'Claims + relationships' },
+  'db-context':     { label: 'Context caches',          subtitle: 'Email + derived context' },
+  'db-alias':       { label: 'Project aliases',         subtitle: 'Known names + suggestions' },
+  'world-model':    { label: 'World model',             subtitle: 'Facts + embeddings store' },
+  'storage':        { label: 'File storage',            subtitle: 'Audio + artifacts' },
+
+  'rpc-resolve':    { label: 'Review resolver (DB)',    subtitle: 'Atomic review write' },
+  'rpc-gt':         { label: 'Ground-truth RPCs',       subtitle: 'Safe batch updates' },
+  'rpc-journal':    { label: 'Journal RPCs',            subtitle: 'Insert/dedup claims' },
+  'rpc-contact':    { label: 'Contact RPCs',            subtitle: 'Identity helpers' },
+  'trigger-lock':   { label: 'Lock enforcement',        subtitle: 'Prevents downgrades' },
+
+  'gh-actions':     { label: 'CI workflows',            subtitle: 'Automated builds/deploys' },
+  'tests':          { label: 'Test suite',              subtitle: 'Checks pipeline behavior' },
+  'smoke-test':     { label: 'Smoke test script',       subtitle: 'Quick endpoint checks' },
+  'claim-guard':    { label: 'Write-safety gate',       subtitle: 'Prevents script collisions' },
+  'cc-scripts':     { label: 'Ops scripts',             subtitle: 'Backfills, replays, audits' },
+  'migrations':     { label: 'Schema migrations',       subtitle: 'Database change history' }
+};
+
+function isPlainMode() {
+  return state && state.viewMode === 'plain';
+}
+
+function _plainLayerLabel(layerId) {
+  var map = {
+    external: 'Outside service',
+    pipeline: 'Pipeline step',
+    module: 'Building block',
+    data: 'Stored data',
+    devops: 'Tooling'
+  };
+  return map[layerId] || layerLabel(layerId);
+}
+
+function _deJargon(s) {
+  return (s || '')
+    .replace(/Supabase Edge Function/gi, 'backend step')
+    .replace(/Edge Function/gi, 'backend step')
+    .replace(/RPC/gi, 'database function')
+    .replace(/webhook/gi, 'automated callback')
+    .replace(/cron job/gi, 'scheduled job')
+    .replace(/JSON/gi, 'structured data')
+    .replace(/Postgres/gi, 'database')
+    .replace(/SQL/gi, 'database query');
+}
+
+function derivePlainDesc(n) {
+  if (!n) return '';
+  var t = (n.desc || '').replace(/\s+/g, ' ').trim();
+
+  // Remove common "version / line count" parentheticals to keep it human.
+  t = t.replace(/\(v[^\)]*\)/g, '').replace(/\(\d{1,3}(,\d{3})* lines\)/gi, '');
+
+  // Keep it short + readable.
+  var first = _sentenceFirst(t);
+  first = _deJargon(first);
+
+  // If the first sentence is tiny, append a second short chunk.
+  if (first && first.length < 90) {
+    var rest = t.slice(first.length).trim();
+    if (rest) {
+      var second = _sentenceFirst(rest);
+      second = _deJargon(second);
+      if (second && second.toLowerCase() !== first.toLowerCase()) {
+        first = (first + ' ' + second).trim();
+      }
+    }
+  }
+  return first;
+}
+
+function viewNode(n) {
+  if (!n) return n;
+  if (!isPlainMode()) return n;
+
+  var c = FRIENDLY_COPY[n.id] || {};
+  var v = Object.assign({}, n);
+
+  // Preserve technical detail for toggles / power users.
+  v._technicalLabel = n.label;
+  v._technicalSubtitle = n.subtitle;
+  v._technicalDesc = n.desc;
+
+  v.label = c.label || n.label;
+  v.subtitle = c.subtitle || (_plainLayerLabel(n.layer) + ' · ' + n.id);
+
+  // Plain view shows a short, approachable description by default.
+  v.summary = c.summary || derivePlainDesc(n);
+  v.desc = c.desc || v.summary || '';
+
+  return v;
+}
+
 
 // ── CACHE VARS ────────────────────────────────────
 var vpData = null;
@@ -1339,9 +1642,17 @@ function isNodeVisible(n) {
   if (vm && vm.hideNodes && vm.hideNodes.indexOf(n.id) >= 0) return false;
 
   if (!state.layers[n.layer]) return false;
-  if (state.searchFilter && n.label.toLowerCase().indexOf(state.searchFilter) < 0 &&
-      n.subtitle.toLowerCase().indexOf(state.searchFilter) < 0 &&
-      (n.desc || '').toLowerCase().indexOf(state.searchFilter) < 0) return false;
+
+  // Search should match both technical and plain-English copy.
+  if (state.searchFilter) {
+    var vn = viewNode(n);
+    var hay = [
+      vn.label || '', vn.subtitle || '', vn.desc || '',
+      n.label || '', n.subtitle || '', n.desc || ''
+    ].join(' ').toLowerCase();
+    if (hay.indexOf(state.searchFilter) < 0) return false;
+  }
+
   return true;
 }
 
@@ -1479,9 +1790,12 @@ function drawConn(g, c, lblLayer) {
   }
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
+  var hoverOutTimer = null; // lets label pills stay clickable when moving from line → pill
+
 
   // Hover: highlight this route, dim everything else
   grp.addEventListener('mouseenter', function() {
+    if (hoverOutTimer) { clearTimeout(hoverOutTimer); hoverOutTimer = null; }
     grp.parentNode.appendChild(grp);
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
@@ -1507,6 +1821,8 @@ function drawConn(g, c, lblLayer) {
     }
   });
   grp.addEventListener('mouseleave', function() {
+    if (hoverOutTimer) { clearTimeout(hoverOutTimer); }
+    hoverOutTimer = setTimeout(function() {
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
     var ll = root.querySelector('.label-layer');
@@ -1519,7 +1835,8 @@ function drawConn(g, c, lblLayer) {
         el.classList.remove('node-active');
         var r = el.querySelector('.node-rect');
         if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
-      });
+    }, 150);
+  });
     }
     if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
   });
@@ -1529,7 +1846,7 @@ function drawConn(g, c, lblLayer) {
   grp.appendChild(hit);
 
   // Visible connection path
-  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'marker-end': 'url(#'+ct.marker+')' });
+  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.15', 'marker-end': 'url(#'+ct.marker+')' });
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
   grp.appendChild(path);
 
@@ -1537,20 +1854,28 @@ function drawConn(g, c, lblLayer) {
 
   // Connection labels render in the top label layer (above nodes)
   if (c.label && lblLayer) {
-    var labelGrp = createSvgEl('g', { class: 'conn-label-group', 'data-from': c.from, 'data-to': c.to, style: 'cursor:pointer;pointer-events:auto;' });
-    var pillW = c.label.length * 6.5 + 14;
-    var pillH = 18;
-    var ly = my - 18;
-    labelGrp.appendChild(createSvgEl('rect', { class: 'conn-label-pill', x: mx - pillW/2, y: ly - pillH/2, width: pillW, height: pillH, rx: '4', ry: '4', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '0.75' }));
-    labelGrp.appendChild(createSvgEl('text', { x: mx, y: ly, 'text-anchor': 'middle', fill: ct.color, 'font-size': '10', 'font-weight': '500', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
+    var labelGrp = createSvgEl('g', { class: 'conn-label-group', 'data-from': c.from, 'data-to': c.to });
+    var pillW = c.label.length * 5 + 8;
+    var pillH = 14;
+    labelGrp.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: my - 4 - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '1' }));
+    labelGrp.appendChild(createSvgEl('text', { x: mx, y: my - 4, 'text-anchor': 'middle', fill: ct.color, 'font-size': '8', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
+    lblLayer.appendChild(labelGrp);
+
+    // Make pills clickable without flicker when moving from the line to the pill.
+    labelGrp.addEventListener('mouseenter', function(e) {
+      e.stopPropagation();
+      if (hoverOutTimer) { clearTimeout(hoverOutTimer); hoverOutTimer = null; }
+      labelGrp.classList.add('label-active');
+    });
+    labelGrp.addEventListener('mouseleave', function() {
+      // Delegate cleanup to the same handler as the line hover-out
+      try { grp.dispatchEvent(new Event('mouseleave')); } catch (e) {}
+    });
     labelGrp.addEventListener('click', function(e) {
       e.stopPropagation();
-      var desc = (c.desc || c.label) + '\n\n' + c.from + ' → ' + c.to + '  (' + (ct.label || c.type) + ')';
-      var fromNode = nodes.find(function(n) { return n.id === c.from; });
-      var toNode = nodes.find(function(n) { return n.id === c.to; });
-      showInfo({ label: c.label, subtitle: c.from + ' → ' + c.to, desc: c.desc || 'Connection: ' + (ct.label || c.type) });
+      infoLocked = true;
+      showEdgeInfo(c);
     });
-    lblLayer.appendChild(labelGrp);
   }
 }
 
@@ -1577,7 +1902,8 @@ function renderDiagram() {
 
   var visibleNodes = nodes.filter(isNodeVisible);
   var visibleIds = {};
-  visibleNodes.forEach(function(n) { visibleIds[n.id] = true; });
+  visibleNodes.forEach(function(n0) {
+    var n = viewNode(n0); visibleIds[n.id] = true; });
 
   // Three layers: lines behind, nodes middle, labels on top (SVG z-order = DOM order)
   var connLayer = createSvgEl('g', { class: 'conn-layer' });
@@ -1610,7 +1936,8 @@ function renderDiagram() {
   }
 
   // Draw nodes (into upper layer — always in front of connections)
-  visibleNodes.forEach(function(n) {
+  visibleNodes.forEach(function(n0) {
+    var n = viewNode(n0);
     var layer = LAYERS[n.layer];
     var hasComment = state.comments.some(function(c) { return c.target === n.id; });
     var isSearchMatch = state.searchFilter && (n.label.toLowerCase().indexOf(state.searchFilter) >= 0);
@@ -1700,39 +2027,77 @@ function renderDiagram() {
 
 var infoLocked = false; // sticky panel state
 var infoNode = null;    // which node is shown
+var infoEdge = null;    // which connection is shown
 
-function showInfo(n) {
-  infoNode = n;
-  var panel = document.getElementById('sidebar-info');
-  var titleEl = document.getElementById('sidebar-info-title');
-  var descEl = document.getElementById('sidebar-info-desc');
-  titleEl.textContent = n.label + ' — ' + n.subtitle;
+function showEdgeInfo(c) {
+  infoEdge = c;
+  infoNode = null;
+
+  var fromNode = nodes.find(function(n) { return n.id === c.from; });
+  var toNode = nodes.find(function(n) { return n.id === c.to; });
+  var fromLabel = fromNode ? viewNode(fromNode).label : c.from;
+  var toLabel = toNode ? viewNode(toNode).label : c.to;
+
+  var titleEl = document.getElementById('info-title');
+  var descEl = document.getElementById('info-desc');
+  titleEl.textContent = (c.label || 'Link') + ' — ' + fromLabel + ' → ' + toLabel;
 
   clearChildren(descEl);
-  descEl.appendChild(document.createTextNode(n.desc || 'No description'));
+  var body = c.desc || CONNECTION_LABEL_DESC_MAP[_connKey(c.from, c.to, c.label)] || 'No description yet.';
+  descEl.appendChild(document.createTextNode(body));
 
-  if (infoLocked) {
-    var btn = createEl('button', { className: 'info-comment-btn' }, '+ Comment');
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      hideInfo();
-      openModal(n);
-    });
-    descEl.appendChild(btn);
+  document.getElementById('info-panel').classList.add('show');
+}
+
+function showInfo(n0) {
+  infoNode = n0;
+  var n = viewNode(n0);
+  var titleEl = document.getElementById('info-title');
+  var descEl = document.getElementById('info-desc');
+  titleEl.textContent = (n.label || n.id) + ' — ' + (n.subtitle || '');
+
+  function renderBody(showTech) {
+    clearChildren(descEl);
+
+    var mainText = '';
+    if (isPlainMode()) {
+      mainText = showTech ? (n._technicalDesc || n.desc || '') : (n.desc || '');
+    } else {
+      mainText = n.desc || '';
+    }
+    descEl.appendChild(document.createTextNode(mainText || 'No description'));
+
+    if (isPlainMode() && (n._technicalDesc || '').trim()) {
+      var more = createEl('button', {
+        style: 'color:var(--interactive-primary);background:none;border:none;font-size:12px;cursor:pointer;padding:6px 0;display:inline-block;'
+      }, showTech ? 'Hide technical details' : 'Show technical details');
+      more.addEventListener('click', function(e) {
+        e.stopPropagation();
+        renderBody(!showTech);
+      });
+      descEl.appendChild(more);
+    }
+
+    if (infoLocked && infoNode) {
+      var btn = createEl('button', { className: 'info-comment-btn' }, '+ Comment');
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hideInfo();
+        openModal(n0);
+      });
+      descEl.appendChild(btn);
+    }
   }
 
-  panel.style.display = 'block';
-  // On mobile, open the sidebar so the user sees it
-  if (window.innerWidth <= 768 && infoLocked) {
-    document.querySelector('.sidebar').classList.add('open');
-    document.getElementById('sidebar-overlay').classList.add('show');
-  }
+  renderBody(false);
+  document.getElementById('info-panel').classList.add('show');
 }
 
 function hideInfo() {
   infoLocked = false;
   infoNode = null;
-  document.getElementById('sidebar-info').style.display = 'none';
+  infoEdge = null;
+  document.getElementById('info-panel').classList.remove('show');
 }
 
 function updateAll() { renderControls(); renderDiagram(); }
@@ -1879,10 +2244,11 @@ requestAnimationFrame(function() {
 });
 
 var modalNode = null;
-function openModal(n) {
+function openModal(n0) {
+  var n = viewNode(n0);
   modalNode = n;
-  document.getElementById('modal-title').textContent = n.label;
-  document.getElementById('modal-path').textContent = n.subtitle;
+  document.getElementById('modal-title').textContent = n.label || n.id;
+  document.getElementById('modal-path').textContent = n.subtitle || '';
   document.getElementById('modal-text').value = '';
   document.getElementById('modal').classList.add('show');
   document.body.classList.add('overlay-open');
@@ -1929,7 +2295,7 @@ function showOfflineBanner() {
 
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
-    if (infoLocked) { hideInfo(); return; }
+    if (infoLocked && infoNode) { hideInfo(); return; }
     if (document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
     closeModal();
   }
@@ -2441,7 +2807,8 @@ function filterNodesMobile(query) {
 }
 
 function getNodeById(id) {
-  return nodes.find(function(n) { return n.id === id; }) || null;
+  var n = nodes.find(function(n) { return n.id === id; }) || null;
+  return viewNode(n);
 }
 
 function visibleNodeIds() {
@@ -2618,7 +2985,8 @@ function renderMobileExplorer() {
       return bDeg - aDeg;
     });
 
-    group.forEach(function(n) {
+    group.forEach(function(n0) {
+      var n = viewNode(n0);
       var item = createEl('div', { className: 'mx-item ' + modeClass, role: 'button', tabindex: '0' });
       var titleEl = createEl('div', { className: 'mx-item-title' });
       if (state.searchFilter) {
@@ -2657,7 +3025,8 @@ function renderMobileExplorer() {
   }
 }
 
-function openMobileSheet(node) {
+function openMobileSheet(node0) {
+  var node = viewNode(node0);
   var sheet = document.getElementById('mobile-node-sheet');
   var titleEl = document.getElementById('mobile-sheet-title');
   var bodyEl = document.getElementById('mobile-sheet-body');
@@ -2671,28 +3040,29 @@ function openMobileSheet(node) {
   var mode = state.viewMode || 'flow';
   var summary = (node.summary || deriveSummary(node) || '').trim();
   var desc = (node.desc || '').trim();
+  var fullDesc = (mode === 'plain') ? ((node._technicalDesc || '').trim()) : desc;
 
   if (summary) {
     var p = createEl('div', { className: 'ms-desc' }, summary);
     bodyEl.appendChild(p);
   }
 
-  // System view: expandable full details
-  if (mode === 'system' && desc) {
+  // System view: expandable full details (also used for Plain view)
+  if ((mode === 'system' || mode === 'plain') && (fullDesc || summary)) {
     var expanded = false;
     var more = createEl('button', {
       style: 'color:var(--interactive-primary);background:none;border:none;font-size:12px;cursor:pointer;padding:4px 0;display:inline-block;margin-top:6px;'
     });
-    more.textContent = 'Show full details';
+    more.textContent = (mode === 'plain') ? 'Show technical details' : 'Show full details';
     more.onclick = function() {
       expanded = !expanded;
       if (!summary) {
-        p = createEl('div', { className: 'ms-desc' }, expanded ? desc : '');
+        p = createEl('div', { className: 'ms-desc' }, expanded ? fullDesc : '');
         bodyEl.insertBefore(p, more);
       } else {
-        p.textContent = expanded ? desc : summary;
+        p.textContent = expanded ? fullDesc : summary;
       }
-      more.textContent = expanded ? 'Hide details' : 'Show full details';
+      more.textContent = expanded ? 'Hide details' : ((mode === 'plain') ? 'Show technical details' : 'Show full details');
     };
     bodyEl.appendChild(more);
   }
@@ -2726,7 +3096,7 @@ function openMobileSheet(node) {
     bodyEl.appendChild(block);
   }
 
-  var isSystem = state.viewMode === 'system';
+  var isSystem = (state.viewMode === 'system' || state.viewMode === 'plain');
   var upTitle = isSystem ? 'What leads here' : 'Upstream';
   var downTitle = isSystem ? 'What happens next' : 'Downstream';
   renderLinks(upTitle, incoming, 'in');
@@ -2986,6 +3356,8 @@ function fetchArchitectureSpec() {
       flowEdges = (spec.required_flow_edges || []).map(function(e) {
         return { from: canon(e.from), to: canon(e.to), type: 'data-flow', label: e.label };
       });
+      attachConnectionDescs(flowEdges);
+
       if (state.viewMode === 'flow') renderDiagram();
     })
     .catch(function() { /* graceful degradation — flowEdges stays empty */ });
