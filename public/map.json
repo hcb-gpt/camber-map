@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T01:39:08Z",
-  "git_sha": "27ea28b8787d7e1903d119cfca01f1ad82109c92",
+  "updated_at": "2026-02-21T01:45:26Z",
+  "git_sha": "871209ffba32da26422d0efd9ab64b05ad537740",
   "mode": "live",
   "nodes": [
     {
@@ -6135,6 +6135,36 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_daily_health",
+      "to": "view:public.enrichment_scorecard",
+      "type": "depends_on"
+    },
+    {
       "from": "view:public.enrichment_scorecard",
       "to": "table:public.call_chains",
       "type": "depends_on"
@@ -6202,31 +6232,6 @@
     {
       "from": "view:public.enrichment_scorecard",
       "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.pipeline_daily_health",
-      "to": "view:public.enrichment_scorecard",
       "type": "depends_on"
     },
     {

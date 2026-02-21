@@ -3282,64 +3282,64 @@
     <edge id="e587" source="view:public.v_module_health" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e588" source="view:public.enrichment_scorecard" target="table:public.call_chains">
+    <edge id="e588" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e589" source="view:public.enrichment_scorecard" target="table:public.striking_signals">
+    <edge id="e589" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e590" source="view:public.enrichment_scorecard" target="table:public.span_attributions">
+    <edge id="e590" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e591" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
+    <edge id="e591" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e592" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
+    <edge id="e592" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e593" source="view:public.enrichment_scorecard" target="table:public.journal_claims">
+    <edge id="e593" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e594" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
+    <edge id="e594" source="view:public.enrichment_scorecard" target="table:public.call_chains">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e595" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
+    <edge id="e595" source="view:public.enrichment_scorecard" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e596" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e596" source="view:public.enrichment_scorecard" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e597" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e597" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e598" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e598" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e599" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e599" source="view:public.enrichment_scorecard" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e600" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e600" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e601" source="view:public.enrichment_scorecard" target="table:public.interactions">
+    <edge id="e601" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e602" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
+    <edge id="e602" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e603" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
+    <edge id="e603" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e604" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
+    <edge id="e604" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e605" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
+    <edge id="e605" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e606" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
+    <edge id="e606" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e607" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
+    <edge id="e607" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e608" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
@@ -3351,7 +3351,7 @@
     <edge id="e610" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e611" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
+    <edge id="e611" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e612" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
@@ -3360,13 +3360,13 @@
     <edge id="e613" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e614" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
+    <edge id="e614" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e615" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e616" source="view:public.v_contact_fanout" target="table:public.project_contacts">
+    <edge id="e616" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e617" source="view:public.v_contact_fanout" target="table:public.project_contacts">
@@ -3375,7 +3375,7 @@
     <edge id="e618" source="view:public.v_contact_fanout" target="table:public.project_contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e619" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
+    <edge id="e619" source="view:public.v_contact_fanout" target="table:public.project_contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e620" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
@@ -3384,7 +3384,7 @@
     <edge id="e621" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e622" source="view:public.v_contact_fanout" target="table:public.projects">
+    <edge id="e622" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e623" source="view:public.v_contact_fanout" target="table:public.projects">
@@ -3393,7 +3393,7 @@
     <edge id="e624" source="view:public.v_contact_fanout" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e625" source="view:public.v_contact_fanout" target="table:public.contacts">
+    <edge id="e625" source="view:public.v_contact_fanout" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e626" source="view:public.v_contact_fanout" target="table:public.contacts">
@@ -3408,7 +3408,7 @@
     <edge id="e629" source="view:public.v_contact_fanout" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e630" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
+    <edge id="e630" source="view:public.v_contact_fanout" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e631" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
@@ -3426,7 +3426,7 @@
     <edge id="e635" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e636" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
+    <edge id="e636" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e637" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
@@ -3438,19 +3438,19 @@
     <edge id="e639" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e640" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
+    <edge id="e640" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e641" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e642" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
+    <edge id="e642" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e643" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e644" source="view:public.gt_review_feed" target="table:public.span_attributions">
+    <edge id="e644" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e645" source="view:public.gt_review_feed" target="table:public.span_attributions">
@@ -3489,7 +3489,7 @@
     <edge id="e656" source="view:public.gt_review_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e657" source="view:public.gt_review_feed" target="table:public.conversation_spans">
+    <edge id="e657" source="view:public.gt_review_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e658" source="view:public.gt_review_feed" target="table:public.conversation_spans">
@@ -3513,13 +3513,13 @@
     <edge id="e664" source="view:public.gt_review_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e665" source="view:public.gt_review_feed" target="table:public.projects">
+    <edge id="e665" source="view:public.gt_review_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e666" source="view:public.gt_review_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e667" source="view:public.gt_review_feed" target="table:public.interactions">
+    <edge id="e667" source="view:public.gt_review_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e668" source="view:public.gt_review_feed" target="table:public.interactions">
@@ -3534,7 +3534,7 @@
     <edge id="e671" source="view:public.gt_review_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e672" source="view:public.v_morning_manifest" target="table:public.striking_signals">
+    <edge id="e672" source="view:public.gt_review_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e673" source="view:public.v_morning_manifest" target="table:public.striking_signals">
@@ -3543,19 +3543,19 @@
     <edge id="e674" source="view:public.v_morning_manifest" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e675" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
+    <edge id="e675" source="view:public.v_morning_manifest" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e676" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e677" source="view:public.v_morning_manifest" target="table:public.journal_claims">
+    <edge id="e677" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e678" source="view:public.v_morning_manifest" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e679" source="view:public.v_morning_manifest" target="table:public.belief_claims">
+    <edge id="e679" source="view:public.v_morning_manifest" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e680" source="view:public.v_morning_manifest" target="table:public.belief_claims">
@@ -3564,7 +3564,7 @@
     <edge id="e681" source="view:public.v_morning_manifest" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e682" source="view:public.v_morning_manifest" target="table:public.review_queue">
+    <edge id="e682" source="view:public.v_morning_manifest" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e683" source="view:public.v_morning_manifest" target="table:public.review_queue">
@@ -3576,7 +3576,7 @@
     <edge id="e685" source="view:public.v_morning_manifest" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e686" source="view:public.v_morning_manifest" target="table:public.projects">
+    <edge id="e686" source="view:public.v_morning_manifest" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e687" source="view:public.v_morning_manifest" target="table:public.projects">
@@ -3585,7 +3585,7 @@
     <edge id="e688" source="view:public.v_morning_manifest" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e689" source="view:public.v_morning_manifest" target="table:public.interactions">
+    <edge id="e689" source="view:public.v_morning_manifest" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e690" source="view:public.v_morning_manifest" target="table:public.interactions">
@@ -3594,13 +3594,13 @@
     <edge id="e691" source="view:public.v_morning_manifest" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e692" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
+    <edge id="e692" source="view:public.v_morning_manifest" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e693" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e694" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
+    <edge id="e694" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e695" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
@@ -3612,13 +3612,13 @@
     <edge id="e697" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e698" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
+    <edge id="e698" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e699" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e700" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
+    <edge id="e700" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e701" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
@@ -3636,7 +3636,7 @@
     <edge id="e705" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e706" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
+    <edge id="e706" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e707" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
@@ -3687,7 +3687,7 @@
     <edge id="e722" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e723" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
+    <edge id="e723" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e724" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
@@ -3711,7 +3711,7 @@
     <edge id="e730" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e731" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
+    <edge id="e731" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e732" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
@@ -3720,7 +3720,7 @@
     <edge id="e733" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e734" source="view:public.vendors_v" target="table:public.contacts">
+    <edge id="e734" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e735" source="view:public.vendors_v" target="table:public.contacts">
@@ -3750,7 +3750,7 @@
     <edge id="e743" source="view:public.vendors_v" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e744" source="view:public.contacts_notes_qa" target="table:public.contacts">
+    <edge id="e744" source="view:public.vendors_v" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e745" source="view:public.contacts_notes_qa" target="table:public.contacts">
@@ -3762,19 +3762,19 @@
     <edge id="e747" source="view:public.contacts_notes_qa" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e748" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
+    <edge id="e748" source="view:public.contacts_notes_qa" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e749" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e750" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
+    <edge id="e750" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e751" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e752" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
+    <edge id="e752" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e753" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
@@ -3801,7 +3801,7 @@
     <edge id="e760" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e761" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
+    <edge id="e761" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e762" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
@@ -3834,7 +3834,7 @@
     <edge id="e771" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e772" source="view:public.relationship_candidates_review" target="table:public.contacts">
+    <edge id="e772" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e773" source="view:public.relationship_candidates_review" target="table:public.contacts">
@@ -3843,7 +3843,7 @@
     <edge id="e774" source="view:public.relationship_candidates_review" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e775" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
+    <edge id="e775" source="view:public.relationship_candidates_review" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e776" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
@@ -3852,13 +3852,13 @@
     <edge id="e777" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e778" source="view:public.entity_drift_summary" target="table:public.journal_claims">
+    <edge id="e778" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e779" source="view:public.entity_drift_summary" target="table:public.projects">
+    <edge id="e779" source="view:public.entity_drift_summary" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e780" source="view:public.entity_drift_summary" target="table:public.contacts">
+    <edge id="e780" source="view:public.entity_drift_summary" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e781" source="view:public.entity_drift_summary" target="table:public.contacts">
@@ -3867,22 +3867,22 @@
     <edge id="e782" source="view:public.entity_drift_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e783" source="view:public.kpi_role_entropy" target="table:public.contacts">
+    <edge id="e783" source="view:public.entity_drift_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e784" source="view:public.kpi_trade_entropy" target="table:public.contacts">
+    <edge id="e784" source="view:public.kpi_role_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e785" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
+    <edge id="e785" source="view:public.kpi_trade_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e786" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e787" source="view:public.v_calls_raw_zapier_lineage" target="table:public.calls_raw">
+    <edge id="e787" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e788" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
+    <edge id="e788" source="view:public.v_calls_raw_zapier_lineage" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e789" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
@@ -3897,13 +3897,13 @@
     <edge id="e792" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e793" source="view:public.v_phone_parity_summary" target="table:public.contacts">
+    <edge id="e793" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e794" source="view:public.v_phone_parity_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e795" source="view:public.v_phone_parity_summary" target="table:public.interactions">
+    <edge id="e795" source="view:public.v_phone_parity_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e796" source="view:public.v_phone_parity_summary" target="table:public.interactions">
@@ -3915,7 +3915,7 @@
     <edge id="e798" source="view:public.v_phone_parity_summary" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e799" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
+    <edge id="e799" source="view:public.v_phone_parity_summary" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e800" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
@@ -3942,28 +3942,28 @@
     <edge id="e807" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e808" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
+    <edge id="e808" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e809" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e810" source="view:public.v_daily_ops_dashboard" target="view:public.v_calls_raw_phone_backlog">
+    <edge id="e810" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e811" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
+    <edge id="e811" source="view:public.v_daily_ops_dashboard" target="view:public.v_calls_raw_phone_backlog">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e812" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e813" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
+    <edge id="e813" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e814" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e815" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
+    <edge id="e815" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e816" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
@@ -3972,7 +3972,7 @@
     <edge id="e817" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e818" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
+    <edge id="e818" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e819" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
@@ -3993,19 +3993,19 @@
     <edge id="e824" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e825" source="view:public.v_enroute_mentions" target="table:public.geo_places">
+    <edge id="e825" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e826" source="view:public.v_enroute_mentions" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e827" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
+    <edge id="e827" source="view:public.v_enroute_mentions" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e828" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e829" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
+    <edge id="e829" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e830" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
@@ -4023,7 +4023,7 @@
     <edge id="e834" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e835" source="view:public.v_span_enroute" target="table:public.geo_places">
+    <edge id="e835" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e836" source="view:public.v_span_enroute" target="table:public.geo_places">
@@ -4035,7 +4035,7 @@
     <edge id="e838" source="view:public.v_span_enroute" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e839" source="view:public.v_span_enroute" target="table:public.project_geo">
+    <edge id="e839" source="view:public.v_span_enroute" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e840" source="view:public.v_span_enroute" target="table:public.project_geo">
@@ -4044,7 +4044,7 @@
     <edge id="e841" source="view:public.v_span_enroute" target="table:public.project_geo">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e842" source="view:public.v_span_enroute" target="table:public.projects">
+    <edge id="e842" source="view:public.v_span_enroute" target="table:public.project_geo">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e843" source="view:public.v_span_enroute" target="table:public.projects">
@@ -4053,19 +4053,19 @@
     <edge id="e844" source="view:public.v_span_enroute" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e845" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
+    <edge id="e845" source="view:public.v_span_enroute" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e846" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e847" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
+    <edge id="e847" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e848" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e849" source="view:public.v_review_queue_spans" target="table:public.review_queue">
+    <edge id="e849" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e850" source="view:public.v_review_queue_spans" target="table:public.review_queue">
@@ -4095,19 +4095,19 @@
     <edge id="e858" source="view:public.v_review_queue_spans" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e859" source="view:public.v_review_queue_spans" target="table:public.interactions">
+    <edge id="e859" source="view:public.v_review_queue_spans" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e860" source="view:public.v_review_queue_spans" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e861" source="view:public.v_project_feed" target="table:public.striking_signals">
+    <edge id="e861" source="view:public.v_review_queue_spans" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e862" source="view:public.v_project_feed" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e863" source="view:public.v_project_feed" target="table:public.span_attributions">
+    <edge id="e863" source="view:public.v_project_feed" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e864" source="view:public.v_project_feed" target="table:public.span_attributions">
@@ -4116,31 +4116,31 @@
     <edge id="e865" source="view:public.v_project_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e866" source="view:public.v_project_feed" target="table:public.conversation_spans">
+    <edge id="e866" source="view:public.v_project_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e867" source="view:public.v_project_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e868" source="view:public.v_project_feed" target="table:public.journal_open_loops">
+    <edge id="e868" source="view:public.v_project_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e869" source="view:public.v_project_feed" target="table:public.journal_open_loops">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e870" source="view:public.v_project_feed" target="table:public.journal_claims">
+    <edge id="e870" source="view:public.v_project_feed" target="table:public.journal_open_loops">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e871" source="view:public.v_project_feed" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e872" source="view:public.v_project_feed" target="table:public.belief_claims">
+    <edge id="e872" source="view:public.v_project_feed" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e873" source="view:public.v_project_feed" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e874" source="view:public.v_project_feed" target="table:public.projects">
+    <edge id="e874" source="view:public.v_project_feed" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e875" source="view:public.v_project_feed" target="table:public.projects">
@@ -4155,7 +4155,7 @@
     <edge id="e878" source="view:public.v_project_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e879" source="view:public.v_project_feed" target="table:public.interactions">
+    <edge id="e879" source="view:public.v_project_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e880" source="view:public.v_project_feed" target="table:public.interactions">
@@ -4164,7 +4164,7 @@
     <edge id="e881" source="view:public.v_project_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e882" source="view:public.gt_review_queue" target="table:public.span_attributions">
+    <edge id="e882" source="view:public.v_project_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e883" source="view:public.gt_review_queue" target="table:public.span_attributions">
@@ -4182,7 +4182,7 @@
     <edge id="e887" source="view:public.gt_review_queue" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e888" source="view:public.gt_review_queue" target="table:public.conversation_spans">
+    <edge id="e888" source="view:public.gt_review_queue" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e889" source="view:public.gt_review_queue" target="table:public.conversation_spans">
@@ -4194,13 +4194,13 @@
     <edge id="e891" source="view:public.gt_review_queue" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e892" source="view:public.gt_review_queue" target="table:public.projects">
+    <edge id="e892" source="view:public.gt_review_queue" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e893" source="view:public.gt_review_queue" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e894" source="view:public.gt_review_queue" target="table:public.interactions">
+    <edge id="e894" source="view:public.gt_review_queue" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e895" source="view:public.gt_review_queue" target="table:public.interactions">
@@ -4215,7 +4215,7 @@
     <edge id="e898" source="view:public.gt_review_queue" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e899" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
+    <edge id="e899" source="view:public.gt_review_queue" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e900" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
@@ -4251,7 +4251,7 @@
     <edge id="e910" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e911" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
+    <edge id="e911" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e912" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
@@ -4260,7 +4260,7 @@
     <edge id="e913" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e914" source="view:public.v_phase_pulse" target="table:public.construction_phases">
+    <edge id="e914" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e915" source="view:public.v_phase_pulse" target="table:public.construction_phases">
@@ -4272,13 +4272,13 @@
     <edge id="e917" source="view:public.v_phase_pulse" target="table:public.construction_phases">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e918" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
+    <edge id="e918" source="view:public.v_phase_pulse" target="table:public.construction_phases">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e919" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e920" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
+    <edge id="e920" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e921" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
@@ -4287,7 +4287,7 @@
     <edge id="e922" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e923" source="view:public.v_phase_pulse" target="table:public.calls_raw">
+    <edge id="e923" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e924" source="view:public.v_phase_pulse" target="table:public.calls_raw">
@@ -4299,13 +4299,13 @@
     <edge id="e926" source="view:public.v_phase_pulse" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e927" source="view:public.v_phase_pulse" target="table:public.projects">
+    <edge id="e927" source="view:public.v_phase_pulse" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e928" source="view:public.v_phase_pulse" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e929" source="view:public.v_phase_pulse" target="table:public.contacts">
+    <edge id="e929" source="view:public.v_phase_pulse" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e930" source="view:public.v_phase_pulse" target="table:public.contacts">
@@ -4317,7 +4317,7 @@
     <edge id="e932" source="view:public.v_phase_pulse" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e933" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
+    <edge id="e933" source="view:public.v_phase_pulse" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e934" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
@@ -4341,13 +4341,13 @@
     <edge id="e940" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e941" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
+    <edge id="e941" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e942" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e943" source="view:public.v_call_ledger" target="table:public.span_attributions">
+    <edge id="e943" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e944" source="view:public.v_call_ledger" target="table:public.span_attributions">
@@ -4362,7 +4362,7 @@
     <edge id="e947" source="view:public.v_call_ledger" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e948" source="view:public.v_call_ledger" target="table:public.conversation_spans">
+    <edge id="e948" source="view:public.v_call_ledger" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e949" source="view:public.v_call_ledger" target="table:public.conversation_spans">
@@ -4371,7 +4371,7 @@
     <edge id="e950" source="view:public.v_call_ledger" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e951" source="view:public.v_call_ledger" target="table:public.calls_raw">
+    <edge id="e951" source="view:public.v_call_ledger" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e952" source="view:public.v_call_ledger" target="table:public.calls_raw">
@@ -4389,13 +4389,13 @@
     <edge id="e956" source="view:public.v_call_ledger" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e957" source="view:public.v_call_ledger" target="table:public.projects">
+    <edge id="e957" source="view:public.v_call_ledger" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e958" source="view:public.v_call_ledger" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e959" source="view:public.v_call_ledger" target="table:public.contacts">
+    <edge id="e959" source="view:public.v_call_ledger" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e960" source="view:public.v_call_ledger" target="table:public.contacts">
@@ -4407,7 +4407,7 @@
     <edge id="e962" source="view:public.v_call_ledger" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e963" source="view:public.v_call_ledger" target="table:public.interactions">
+    <edge id="e963" source="view:public.v_call_ledger" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e964" source="view:public.v_call_ledger" target="table:public.interactions">
@@ -4425,13 +4425,13 @@
     <edge id="e968" source="view:public.v_call_ledger" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e969" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
+    <edge id="e969" source="view:public.v_call_ledger" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e970" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e971" source="view:public.v_interactions_routing" target="table:public.interactions">
+    <edge id="e971" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e972" source="view:public.v_interactions_routing" target="table:public.interactions">
@@ -4446,13 +4446,13 @@
     <edge id="e975" source="view:public.v_interactions_routing" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e976" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
+    <edge id="e976" source="view:public.v_interactions_routing" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e977" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e978" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
+    <edge id="e978" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e979" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
@@ -4461,7 +4461,7 @@
     <edge id="e980" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e981" source="view:public.v_project_alias_lookup" target="table:public.projects">
+    <edge id="e981" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e982" source="view:public.v_project_alias_lookup" target="table:public.projects">
@@ -4473,7 +4473,7 @@
     <edge id="e984" source="view:public.v_project_alias_lookup" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e985" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
+    <edge id="e985" source="view:public.v_project_alias_lookup" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e986" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
@@ -4485,34 +4485,37 @@
     <edge id="e988" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e989" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
+    <edge id="e989" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
     <edge id="e990" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e991" source="view:public.v_interaction_primary_project" target="table:public.interactions">
+    <edge id="e991" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e992" source="edge:smoke_test" target="table:public.evidence_events">
+    <edge id="e992" source="view:public.v_interaction_primary_project" target="table:public.interactions">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e993" source="edge:smoke_test" target="table:public.evidence_events">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e993" source="edge:zapier-call-ingest" target="table:public.calls_raw">
+    <edge id="e994" source="edge:zapier-call-ingest" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e994" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
+    <edge id="e995" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e995" source="edge:segment-llm" target="table:public.call_spans">
+    <edge id="e996" source="edge:segment-llm" target="table:public.call_spans">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e996" source="edge:ai-router" target="table:public.projects">
+    <edge id="e997" source="edge:ai-router" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e997" source="edge:journal-extract" target="table:public.journal_claims">
+    <edge id="e998" source="edge:journal-extract" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e998" source="edge:embed-facts" target="table:public.project_facts">
+    <edge id="e999" source="edge:embed-facts" target="table:public.project_facts">
       <data key="d2">writes</data>
     </edge>
   </graph>

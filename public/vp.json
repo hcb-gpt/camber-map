@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T01:39:10Z",
-  "git_sha": "27ea28b8787d7e1903d119cfca01f1ad82109c92",
+  "updated_at": "2026-02-21T01:45:29Z",
+  "git_sha": "871209ffba32da26422d0efd9ab64b05ad537740",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31.1,
+        "hours_since_last_activity": 31.2,
         "status": "aging"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31.1,
+        "hours_since_last_activity": 31.2,
         "status": "aging"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 4.3,
+        "hours_since_last_activity": 4.4,
         "status": "fresh"
       },
       "health": {
@@ -104,13 +104,13 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": null,
-        "status": "unknown"
+        "hours_since_last_activity": 4.4,
+        "status": "fresh"
       },
       "health": {
-        "status": "unknown",
-        "row_count": null,
-        "last_activity_at": null
+        "status": "degraded",
+        "row_count": 1421,
+        "last_activity_at": "2026-02-20T21:19:32.682Z"
       },
       "depends_on": [
         "segmentation",
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 4.3,
+        "hours_since_last_activity": 4.4,
         "status": "fresh"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.3,
+        "hours_since_last_activity": 6.4,
         "status": "fresh"
       },
       "health": {
@@ -192,13 +192,13 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": null,
-        "status": "unknown"
+        "hours_since_last_activity": 4.4,
+        "status": "fresh"
       },
       "health": {
-        "status": "unknown",
+        "status": "degraded",
         "row_count": 865,
-        "last_activity_at": null
+        "last_activity_at": "2026-02-20T21:19:01.761Z"
       },
       "depends_on": [
         "segmentation"
@@ -221,7 +221,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.3,
+        "hours_since_last_activity": 4.4,
         "status": "fresh"
       },
       "health": {
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31.1,
+        "hours_since_last_activity": 31.2,
         "status": "aging"
       },
       "health": {
@@ -347,9 +347,9 @@
   "summary": {
     "total": 10,
     "healthy": 3,
-    "degraded": 4,
+    "degraded": 6,
     "stale": 0,
-    "unknown": 3,
+    "unknown": 1,
     "overall_coverage_pct": 0.6
   }
 }

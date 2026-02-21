@@ -1,29 +1,18 @@
 {
-  "updated_at": "2026-02-21T01:39:10Z",
+  "updated_at": "2026-02-21T01:45:29Z",
   "has_previous": true,
   "changes": [
     {
       "type": "health_change",
-      "capability": "segmentation",
-      "from": "degraded",
-      "to": "healthy"
-    },
-    {
-      "type": "health_change",
-      "capability": "attribution",
-      "from": "degraded",
-      "to": "healthy"
-    },
-    {
-      "type": "health_change",
-      "capability": "signal-detection",
+      "capability": "context-assembly",
       "from": "unknown",
       "to": "degraded"
     },
     {
-      "type": "node_count_change",
-      "from": 23,
-      "to": 26
+      "type": "health_change",
+      "capability": "summarization",
+      "from": "unknown",
+      "to": "degraded"
     }
   ]
 }

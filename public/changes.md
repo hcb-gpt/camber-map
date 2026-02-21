@@ -1,10 +1,8 @@
 # VP Changes (generated)
 
-- **segmentation**: health changed from `degraded` to `healthy`
-- **attribution**: health changed from `degraded` to `healthy`
-- **signal-detection**: health changed from `unknown` to `degraded`
-- Tech node count changed from 23 to 26
+- **context-assembly**: health changed from `unknown` to `degraded`
+- **summarization**: health changed from `unknown` to `degraded`
 
 ---
-Generated: 2026-02-21T01:39:10Z
+Generated: 2026-02-21T01:45:29Z
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
