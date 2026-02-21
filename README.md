@@ -74,3 +74,5 @@ The audit script (`scripts/audit_flow_edges.mjs`) parses `config/architecture_fl
 
 ## Contract
 See `docs/CONTRACT.md` for definitions of exhaustiveness, canonical IDs, and consumer guidance.
+
+<!-- last-rebuild-trigger: 2026-02-21T00:00Z -->
