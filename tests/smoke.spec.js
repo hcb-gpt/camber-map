@@ -91,6 +91,13 @@ test('selected flow highlight stays stable while scrolling with stationary point
   const firstStage = page.locator('#sidebar-flow-nav .flow-nav-item[data-stage="1"]').first();
   await firstStage.click();
 
+  const preState = await page.evaluate(() => {
+    return {
+      activeFlowStage: window.state && window.state.activeFlowStage,
+      dimmedNodes: document.querySelectorAll('svg#diagram .node-group.dimmed').length,
+    };
+  });
+
   await page.locator('svg#diagram .node-group').first().hover();
   await page.locator('#canvas-area').dispatchEvent('wheel', { deltaY: 200 });
   await page.waitForTimeout(200);
@@ -98,18 +105,27 @@ test('selected flow highlight stays stable while scrolling with stationary point
   const postState = await page.evaluate(() => {
     const activeNav = document.querySelectorAll('#sidebar-flow-nav .flow-nav-item[data-active="1"]').length;
     const dimmedNodes = document.querySelectorAll('svg#diagram .node-group.dimmed').length;
+    const connActive = document.querySelectorAll('svg#diagram .conn-group.conn-active').length;
     return {
       activeNav,
       dimmedNodes,
+      connActive,
       activeFlowStage: window.state && window.state.activeFlowStage,
+      hoveredNodeId: window.hoveredNodeId ?? null,
+      hoveredConnKey: window.hoveredConnKey ?? null,
       diagramLoadingState: window.diagramLoadingState,
       diagramErrorMessage: window.diagramErrorMessage || '',
     };
   });
 
+  expect(preState.activeFlowStage).toBe(1);
   expect(postState.diagramLoadingState).toBe('ready');
   expect(postState.diagramErrorMessage).toBe('');
   expect(postState.activeFlowStage).toBe(1);
   expect(postState.activeNav).toBe(1);
+  expect(postState.connActive).toBe(0);
+  expect(postState.hoveredNodeId).toBe(null);
+  expect(postState.hoveredConnKey).toBe(null);
+  expect(postState.dimmedNodes).toBe(preState.dimmedNodes);
   expect(postState.dimmedNodes).toBeGreaterThan(0);
 });

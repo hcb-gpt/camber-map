@@ -92,6 +92,8 @@
   .conn-group .conn-path { transition: stroke-width 0.15s ease; }
   .conn-group:hover, .conn-group.conn-active { opacity: 1; }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
+  svg[data-flow-stage-active="1"] .conn-group:hover { opacity: inherit; }
+  svg[data-flow-stage-active="1"] .conn-group:hover .conn-path { stroke-width: 2; }
   .conn-label-group { opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
   .conn-label-group.label-active { opacity: 1; transform: scale(1.15); pointer-events: auto; cursor: pointer; }
 
@@ -1399,6 +1401,13 @@ var nodeHoverTimer = null; // global: clears node highlights after leaving nodes
 var hoveredNodeId = null;  // stable hover state — survives re-renders
 var hoveredConnKey = null; // tracks hovered connection "from→to"
 
+function resetHoverInteractionState() {
+  if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
+  if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); nodeHoverTimer = null; }
+  hoveredNodeId = null;
+  hoveredConnKey = null;
+}
+
 // ── Hover highlight functions (centralized, idempotent) ──
 function applyHoverState() {
   var svg = document.getElementById('diagram');
@@ -1681,6 +1690,7 @@ function drawConn(g, c, lblLayer) {
   // Uses global connHoverTimer so moving between connections doesn't flicker.
   grp.addEventListener('pointerenter', function() {
     if (state.activeFlowStage) {
+      resetHoverInteractionState();
       if (!infoLocked) showEdgeInfo(c);
       return;
     }
@@ -1692,7 +1702,10 @@ function drawConn(g, c, lblLayer) {
     if (!infoLocked) showEdgeInfo(c);
   });
   grp.addEventListener('pointerleave', function() {
-    if (state.activeFlowStage) return;
+    if (state.activeFlowStage) {
+      if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
+      return;
+    }
     if (connHoverTimer) { clearTimeout(connHoverTimer); }
     var capturedKey = c.from + '\u2192' + c.to;
     connHoverTimer = setTimeout(function() {
@@ -1746,10 +1759,12 @@ function drawConn(g, c, lblLayer) {
     // Make pills clickable without flicker when moving from the line to the pill.
     labelGrp.addEventListener('pointerenter', function(e) {
       e.stopPropagation();
+      if (state.activeFlowStage) return;
       if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
       labelGrp.classList.add('label-active');
     });
     labelGrp.addEventListener('pointerleave', function() {
+      if (state.activeFlowStage) return;
       try { grp.dispatchEvent(new PointerEvent('pointerleave')); } catch (e) {}
     });
     labelGrp.addEventListener('click', function(e) {
@@ -1872,6 +1887,7 @@ function renderDiagram() {
     });
     ng.addEventListener('pointerenter', function() {
       if (state.activeFlowStage) {
+        resetHoverInteractionState();
         if (!infoLocked) showInfo(n);
         return;
       }
@@ -1882,7 +1898,10 @@ function renderDiagram() {
       applyHoverState();
     });
     ng.addEventListener('pointerleave', function() {
-      if (state.activeFlowStage) return;
+      if (state.activeFlowStage) {
+        if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); nodeHoverTimer = null; }
+        return;
+      }
       if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); }
       var capturedId = n.id;
       nodeHoverTimer = setTimeout(function() {
@@ -1898,7 +1917,7 @@ function renderDiagram() {
   });
 
   svg.appendChild(g);
-  if (hoveredNodeId || hoveredConnKey) applyHoverState();
+  if (!state.activeFlowStage && (hoveredNodeId || hoveredConnKey)) applyHoverState();
   applyActiveFlowStage();
 }
 
@@ -3166,6 +3185,9 @@ function renderFlowNav() {
 function clearFlowStageFocus() {
   var svg = document.getElementById('diagram');
   if (!svg) return;
+  svg.removeAttribute('data-flow-stage-active');
+  resetHoverInteractionState();
+  clearHoverState();
   var nl = svg.querySelector('.node-layer');
   var cl = svg.querySelector('.conn-layer');
   var ll = svg.querySelector('.label-layer');
@@ -3195,10 +3217,14 @@ function applyActiveFlowStage() {
 
   var svg = document.getElementById('diagram');
   if (!svg) return;
+  svg.setAttribute('data-flow-stage-active', '1');
   var nl = svg.querySelector('.node-layer');
   var cl = svg.querySelector('.conn-layer');
   var ll = svg.querySelector('.label-layer');
   if (!nl || !cl) return;
+
+  resetHoverInteractionState();
+  clearHoverState();
 
   nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); ng.classList.remove('node-active'); });
   cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
