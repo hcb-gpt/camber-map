@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T01:30:04Z",
-  "git_sha": "40b89fb8add2923b91147468ce460dbea28be698",
+  "updated_at": "2026-02-21T01:39:10Z",
+  "git_sha": "27ea28b8787d7e1903d119cfca01f1ad82109c92",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31,
+        "hours_since_last_activity": 31.1,
         "status": "aging"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31,
+        "hours_since_last_activity": 31.1,
         "status": "aging"
       },
       "health": {
@@ -68,20 +68,20 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31,
-        "status": "aging"
+        "hours_since_last_activity": 4.3,
+        "status": "fresh"
       },
       "health": {
-        "status": "degraded",
-        "row_count": null,
-        "last_activity_at": "2026-02-19T18:32:33.994Z"
+        "status": "healthy",
+        "row_count": 504,
+        "last_activity_at": "2026-02-20T21:19:24.408Z"
       },
       "depends_on": [
         "transcription"
@@ -134,13 +134,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31,
-        "status": "aging"
+        "hours_since_last_activity": 4.3,
+        "status": "fresh"
       },
       "health": {
-        "status": "degraded",
-        "row_count": 22,
-        "last_activity_at": "2026-02-19T18:32:33.994Z"
+        "status": "healthy",
+        "row_count": 1421,
+        "last_activity_at": "2026-02-20T21:19:32.682Z"
       },
       "depends_on": [
         "context-assembly"
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.1,
+        "hours_since_last_activity": 6.3,
         "status": "fresh"
       },
       "health": {
@@ -184,8 +184,8 @@
         "core",
         "pipeline"
       ],
-      "tech_node_count": 1,
-      "tech_nodes_in_graph": 1,
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -197,7 +197,7 @@
       },
       "health": {
         "status": "unknown",
-        "row_count": null,
+        "row_count": 865,
         "last_activity_at": null
       },
       "depends_on": [
@@ -213,21 +213,21 @@
         "perception",
         "pipeline"
       ],
-      "tech_node_count": 3,
-      "tech_nodes_in_graph": 3,
+      "tech_node_count": 4,
+      "tech_nodes_in_graph": 4,
       "coverage": {
         "expected": 1,
         "observed": 0,
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": null,
-        "status": "unknown"
+        "hours_since_last_activity": 4.3,
+        "status": "fresh"
       },
       "health": {
-        "status": "unknown",
-        "row_count": null,
-        "last_activity_at": null
+        "status": "degraded",
+        "row_count": 1236,
+        "last_activity_at": "2026-02-20T21:19:37.610Z"
       },
       "depends_on": [
         "journal"
@@ -242,8 +242,8 @@
         "core",
         "pipeline"
       ],
-      "tech_node_count": 1,
-      "tech_nodes_in_graph": 1,
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 0,
@@ -255,7 +255,7 @@
       },
       "health": {
         "status": "unknown",
-        "row_count": null,
+        "row_count": 0,
         "last_activity_at": null
       },
       "depends_on": [
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 31,
+        "hours_since_last_activity": 31.1,
         "status": "aging"
       },
       "health": {
@@ -346,10 +346,10 @@
   ],
   "summary": {
     "total": 10,
-    "healthy": 1,
-    "degraded": 5,
+    "healthy": 3,
+    "degraded": 4,
     "stale": 0,
-    "unknown": 4,
+    "unknown": 3,
     "overall_coverage_pct": 0.6
   }
 }
