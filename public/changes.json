@@ -1,18 +1,5 @@
 {
-  "updated_at": "2026-02-21T01:45:29Z",
+  "updated_at": "2026-02-21T02:35:12Z",
   "has_previous": true,
-  "changes": [
-    {
-      "type": "health_change",
-      "capability": "context-assembly",
-      "from": "unknown",
-      "to": "degraded"
-    },
-    {
-      "type": "health_change",
-      "capability": "summarization",
-      "from": "unknown",
-      "to": "degraded"
-    }
-  ]
+  "changes": []
 }

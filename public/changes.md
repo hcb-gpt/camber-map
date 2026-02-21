@@ -1,8 +1,7 @@
 # VP Changes (generated)
 
-- **context-assembly**: health changed from `unknown` to `degraded`
-- **summarization**: health changed from `unknown` to `degraded`
+No changes detected since last build.
 
 ---
-Generated: 2026-02-21T01:45:29Z
+Generated: 2026-02-21T02:35:12Z
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
