@@ -1534,3031 +1534,886 @@
       <data key="d0">chat-proxy</data>
       <data key="d1">edge</data>
     </node>
-    <edge id="e0" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e0" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e1" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e1" source="view:public.v_vendor_inference_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e2" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e2" source="view:public.v_vendor_inference_summary" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e3" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e3" source="view:public.v_vendor_inference_summary" target="table:public.inference_config">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e4" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e4" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e5" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e5" source="matview:public.vendor_cost_code_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e6" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e6" source="matview:public.vendor_cost_code_summary" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e7" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e7" source="matview:public.vendor_cost_code_summary" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e8" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e8" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e9" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e9" source="view:public.vendors_v" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e10" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e10" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e11" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e11" source="view:public.contacts_notes_qa" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e12" source="view:public.v_external_contacts" target="table:public.contacts">
+    <edge id="e12" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e13" source="matview:public.vendor_cost_code_summary" target="table:public.cost_code_taxonomy">
+    <edge id="e13" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e14" source="matview:public.vendor_cost_code_summary" target="table:public.cost_code_taxonomy">
+    <edge id="e14" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e15" source="matview:public.vendor_cost_code_summary" target="table:public.cost_code_taxonomy">
+    <edge id="e15" source="view:public.relationship_candidates_review" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e16" source="matview:public.vendor_cost_code_summary" target="table:public.cost_code_taxonomy">
+    <edge id="e16" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e17" source="matview:public.vendor_cost_code_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e17" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e18" source="matview:public.vendor_cost_code_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e18" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e19" source="matview:public.vendor_cost_code_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e19" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e20" source="matview:public.vendor_cost_code_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e20" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e21" source="matview:public.vendor_cost_code_summary" target="table:public.contacts">
+    <edge id="e21" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e22" source="matview:public.vendor_cost_code_summary" target="table:public.contacts">
+    <edge id="e22" source="view:public.v_metrics_attribution_confidence" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e23" source="matview:public.vendor_cost_code_summary" target="table:public.contacts">
+    <edge id="e23" source="view:public.v_metrics_needs_review" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e24" source="matview:public.vendor_cost_code_summary" target="table:public.contacts">
+    <edge id="e24" source="view:public.v_metrics_scheduler_attribution" target="table:public.scheduler_items">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e25" source="view:public.v_vendor_inference_summary" target="table:public.inference_config">
+    <edge id="e25" source="view:public.v_metrics_candidate_coverage" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e26" source="view:public.v_vendor_inference_summary" target="table:public.inference_config">
+    <edge id="e26" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e27" source="view:public.v_vendor_inference_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e27" source="view:public.v_metrics_candidate_coverage" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e28" source="view:public.v_vendor_inference_summary" target="table:public.vendor_cost_code_map">
+    <edge id="e28" source="view:public.v_metrics_candidate_coverage" target="table:public.project_contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e29" source="view:public.v_vendor_inference_summary" target="table:public.contacts">
+    <edge id="e29" source="view:public.v_metrics_override_rate" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e30" source="view:public.v_vendor_inference_summary" target="table:public.contacts">
+    <edge id="e30" source="view:public.v_metrics_override_rate" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e31" source="view:public.v_vendor_inference_summary" target="table:public.contacts">
+    <edge id="e31" source="view:public.v_metrics_phase1_summary" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e32" source="view:public.v_vendor_inference_summary" target="table:public.contacts">
+    <edge id="e32" source="view:public.v_metrics_phase1_summary" target="table:public.scheduler_items">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e33" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e33" source="view:public.v_metrics_phase1_summary" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e34" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e34" source="view:public.v_metrics_phase1_summary" target="table:public.project_contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e35" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e35" source="view:public.v_project_belief_snapshot" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e36" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e36" source="view:public.v_candidate_sources" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e37" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e37" source="view:public.v_candidate_sources" target="table:public.journal_runs">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e38" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e38" source="view:public.v_candidate_sources" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e39" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e39" source="view:public.v_contamination_audit" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e40" source="view:public.v_alias_discovery_candidates" target="table:public.contacts">
+    <edge id="e40" source="view:public.v_contamination_audit" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e41" source="view:public.v_metrics_attribution_confidence" target="table:public.interactions">
+    <edge id="e41" source="view:public.v_contamination_audit" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e42" source="view:public.v_metrics_needs_review" target="table:public.interactions">
+    <edge id="e42" source="view:public.v_contamination_audit" target="table:public.journal_runs">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e43" source="view:public.v_metrics_scheduler_attribution" target="table:public.scheduler_items">
+    <edge id="e43" source="view:public.v_contamination_audit" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e44" source="view:public.v_metrics_candidate_coverage" target="table:public.project_contacts">
+    <edge id="e44" source="view:public.v_external_contacts" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e45" source="view:public.v_metrics_candidate_coverage" target="table:public.project_contacts">
+    <edge id="e45" source="view:public.v_projects_with_phase" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e46" source="view:public.v_metrics_candidate_coverage" target="table:public.project_contacts">
+    <edge id="e46" source="view:public.v_projects_with_phase" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e47" source="view:public.v_metrics_candidate_coverage" target="table:public.correspondent_project_affinity">
+    <edge id="e47" source="view:public.v_projects_with_phase" target="table:public.scheduler_items">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e48" source="view:public.v_metrics_candidate_coverage" target="table:public.correspondent_project_affinity">
+    <edge id="e48" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e49" source="view:public.v_metrics_candidate_coverage" target="table:public.correspondent_project_affinity">
+    <edge id="e49" source="view:public.scoring_dominant_topic" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e50" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e50" source="view:public.scoring_dominant_topic" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e51" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e51" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e52" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e52" source="view:public.entity_drift_role_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e53" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e53" source="view:public.entity_drift_trade_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e54" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e54" source="view:public.entity_drift_review_reasons_entropy" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e55" source="view:public.v_metrics_candidate_coverage" target="table:public.contacts">
+    <edge id="e55" source="view:public.entity_drift_contact_type_violations" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e56" source="view:public.v_metrics_candidate_coverage" target="table:public.interactions">
+    <edge id="e56" source="view:public.entity_drift_claim_type_alignment" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e57" source="view:public.v_metrics_candidate_coverage" target="table:public.interactions">
+    <edge id="e57" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e58" source="view:public.v_metrics_override_rate" target="table:public.correspondent_project_affinity">
+    <edge id="e58" source="view:public.entity_drift_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e59" source="view:public.v_metrics_override_rate" target="table:public.correspondent_project_affinity">
+    <edge id="e59" source="view:public.entity_drift_summary" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e60" source="view:public.v_metrics_override_rate" target="table:public.correspondent_project_affinity">
+    <edge id="e60" source="view:public.entity_drift_summary" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e61" source="view:public.v_metrics_override_rate" target="table:public.contacts">
+    <edge id="e61" source="view:public.kpi_role_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e62" source="view:public.v_metrics_override_rate" target="table:public.contacts">
+    <edge id="e62" source="view:public.kpi_trade_entropy" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e63" source="view:public.v_metrics_override_rate" target="table:public.contacts">
+    <edge id="e63" source="view:public.kpi_review_reasons_entropy" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e64" source="view:public.v_metrics_phase1_summary" target="table:public.project_contacts">
+    <edge id="e64" source="view:public.kpi_new_roles_this_week" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e65" source="view:public.v_metrics_phase1_summary" target="table:public.correspondent_project_affinity">
+    <edge id="e65" source="view:public.kpi_contact_type_violations" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e66" source="view:public.v_metrics_phase1_summary" target="table:public.correspondent_project_affinity">
+    <edge id="e66" source="view:public.kpi_role_alias_candidates" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e67" source="view:public.v_metrics_phase1_summary" target="table:public.correspondent_project_affinity">
+    <edge id="e67" source="view:public.entity_drift_dashboard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e68" source="view:public.v_metrics_phase1_summary" target="table:public.scheduler_items">
+    <edge id="e68" source="view:public.entity_drift_dashboard" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e69" source="view:public.v_metrics_phase1_summary" target="table:public.interactions">
+    <edge id="e69" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e70" source="view:public.v_metrics_phase1_summary" target="table:public.interactions">
+    <edge id="e70" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e71" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e71" source="view:public.v_phone_parity_summary" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e72" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e72" source="view:public.v_phone_parity_summary" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e73" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e73" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e74" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e74" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e75" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e75" source="view:public.v_repair_last_10_sources" target="table:public.repair_payloads">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e76" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e76" source="view:public.v_repair_failures" target="table:public.repair_payloads">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e77" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e77" source="view:public.v_calls_raw_zapier_lineage" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e78" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e78" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e79" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e79" source="view:public.v_daily_ops_dashboard" target="view:public.v_calls_raw_phone_backlog">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e80" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e80" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e81" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e81" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e82" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e82" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e83" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e83" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e84" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e84" source="view:public.v_event_audit_reason_breakdown" target="table:public.event_audit">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e85" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e85" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e86" source="view:public.v_scheduler_agent_items" target="table:public.scheduler_items">
+    <edge id="e86" source="view:public.baseline_v3_calls_success" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e87" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e87" source="view:public.v_call_primary_project" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e88" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e88" source="view:public.v_call_primary_project" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e89" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e89" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e90" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e90" source="view:public.v_enroute_mentions" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e91" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e91" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e92" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e92" source="view:public.v_span_enroute" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e93" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e93" source="view:public.v_span_enroute" target="table:public.project_geo">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e94" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e94" source="view:public.v_span_enroute" target="table:public.geo_places">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e95" source="view:public.v_scheduler_agent_items" target="table:public.interactions">
+    <edge id="e95" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e96" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e96" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e97" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e97" source="view:public.v_review_coverage_gaps" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e98" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e98" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e99" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e99" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e100" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e100" source="view:public.v_regression_detector_24h" target="table:public.pipeline_scoreboard_snapshots">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e101" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e101" source="view:public.v_scoreboard_retention_stats" target="table:public.pipeline_scoreboard_snapshots">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e102" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e102" source="view:public.v_chunk_quality_distribution" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e103" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e103" source="view:public.v_chunk_quality_distribution" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e104" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e104" source="view:public.v_chunk_quality_distribution" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e105" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e105" source="view:public.v_module_health" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e106" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e106" source="view:public.v_module_health" target="table:public.module_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e107" source="view:public.v_scheduler_items_jsonl" target="table:public.scheduler_items">
+    <edge id="e107" source="view:public.v_module_health" target="table:public.module_promotions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e108" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e108" source="view:public.v_review_queue_spans" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e109" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e109" source="view:public.v_review_queue_spans" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e110" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e110" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e111" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e111" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e112" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e112" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e113" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e113" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e114" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e114" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e115" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e115" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e116" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.call_tasks">
+    <edge id="e116" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e117" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.interactions">
+    <edge id="e117" source="view:public.v_contact_fanout" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e118" source="view:public.v_call_tasks_as_scheduler_items" target="table:public.interactions">
+    <edge id="e118" source="view:public.v_contact_fanout" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e119" source="view:public.entity_drift_claim_type_alignment" target="table:public.journal_claims">
+    <edge id="e119" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e120" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
+    <edge id="e120" source="view:public.v_contact_fanout" target="table:public.project_contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e121" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
+    <edge id="e121" source="view:public.v_project_system_state" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e122" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
+    <edge id="e122" source="view:public.v_project_state_snapshots" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e123" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
+    <edge id="e123" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e124" source="view:public.scoring_dominant_topic" target="table:public.ground_truth_labels">
+    <edge id="e124" source="view:public.v_ground_truth_evaluable" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e125" source="view:public.scoring_dominant_topic" target="table:public.projects">
+    <edge id="e125" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e126" source="view:public.scoring_dominant_topic" target="table:public.projects">
+    <edge id="e126" source="view:public.v_document_claims" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e127" source="view:public.scoring_dominant_topic" target="table:public.interactions">
+    <edge id="e127" source="view:public.v_document_claims" target="table:public.journal_runs">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e128" source="view:public.scoring_dominant_topic" target="table:public.interactions">
+    <edge id="e128" source="view:public.v_document_claims" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e129" source="view:public.scoring_dominant_topic" target="table:public.interactions">
+    <edge id="e129" source="view:public.v_document_claims" target="table:public.project_documents">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e130" source="view:public.scoring_dominant_topic" target="table:public.interactions">
+    <edge id="e130" source="view:public.v_project_document_inventory" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e131" source="view:public.entity_drift_role_entropy" target="table:public.contacts">
+    <edge id="e131" source="view:public.v_project_document_inventory" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e132" source="view:public.entity_drift_trade_entropy" target="table:public.contacts">
+    <edge id="e132" source="view:public.v_project_document_inventory" target="table:public.project_documents">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e133" source="view:public.entity_drift_review_reasons_entropy" target="table:public.interactions">
+    <edge id="e133" source="view:public.enrichment_scorecard" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e134" source="view:public.entity_drift_contact_type_violations" target="table:public.contacts">
+    <edge id="e134" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e135" source="view:public.v_project_belief_snapshot" target="table:public.projects">
+    <edge id="e135" source="view:public.enrichment_scorecard" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e136" source="view:public.v_project_belief_snapshot" target="table:public.projects">
+    <edge id="e136" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e137" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e137" source="view:public.enrichment_scorecard" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e138" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e138" source="view:public.enrichment_scorecard" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e139" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e139" source="view:public.enrichment_scorecard" target="table:public.call_chains">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e140" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e140" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e141" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e141" source="view:public.v_project_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e142" source="view:public.v_projects_with_phase" target="table:public.construction_phases">
+    <edge id="e142" source="view:public.v_project_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e143" source="view:public.v_projects_with_phase" target="table:public.scheduler_items">
+    <edge id="e143" source="view:public.v_project_feed" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e144" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e144" source="view:public.v_project_feed" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e145" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e145" source="view:public.v_project_feed" target="table:public.journal_open_loops">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e146" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e146" source="view:public.v_project_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e147" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e147" source="view:public.v_project_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e148" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e148" source="view:public.v_project_feed" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e149" source="view:public.v_projects_with_phase" target="table:public.projects">
+    <edge id="e149" source="view:public.v_needs_triage" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e150" source="view:public.v_projects_with_phase" target="table:public.interactions">
+    <edge id="e150" source="view:public.v_needs_triage" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e151" source="view:public.v_projects_with_phase" target="table:public.interactions">
+    <edge id="e151" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e152" source="view:public.v_candidate_sources" target="table:public.journal_claims">
+    <edge id="e152" source="view:public.v_needs_triage" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e153" source="view:public.v_candidate_sources" target="table:public.journal_claims">
+    <edge id="e153" source="view:public.v_receipts_drilldown" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e154" source="view:public.v_candidate_sources" target="table:public.journal_claims">
+    <edge id="e154" source="view:public.v_receipts_drilldown" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e155" source="view:public.v_candidate_sources" target="table:public.journal_runs">
+    <edge id="e155" source="view:public.v_receipts_drilldown" target="table:public.override_log">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e156" source="view:public.v_candidate_sources" target="table:public.journal_runs">
+    <edge id="e156" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e157" source="view:public.v_candidate_sources" target="table:public.journal_runs">
+    <edge id="e157" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e158" source="view:public.v_candidate_sources" target="table:public.journal_runs">
+    <edge id="e158" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e159" source="view:public.v_candidate_sources" target="table:public.projects">
+    <edge id="e159" source="view:public.v_receipts_drilldown" target="table:public.promotion_log">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e160" source="view:public.v_candidate_sources" target="table:public.projects">
+    <edge id="e160" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e161" source="view:public.v_contamination_audit" target="table:public.journal_claims">
+    <edge id="e161" source="view:public.v_claim_promotion_funnel" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e162" source="view:public.v_contamination_audit" target="table:public.journal_runs">
+    <edge id="e162" source="view:public.v_claim_promotion_funnel" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e163" source="view:public.v_contamination_audit" target="table:public.journal_runs">
+    <edge id="e163" source="view:public.v_claim_promotion_funnel" target="table:public.claim_pointers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e164" source="view:public.v_contamination_audit" target="table:public.calls_raw">
+    <edge id="e164" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e165" source="view:public.v_contamination_audit" target="table:public.calls_raw">
+    <edge id="e165" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e166" source="view:public.v_contamination_audit" target="table:public.projects">
+    <edge id="e166" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e167" source="view:public.v_contamination_audit" target="table:public.projects">
+    <edge id="e167" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e168" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e168" source="view:public.v_correction_patterns" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e169" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e169" source="view:public.v_correction_patterns" target="table:public.corrections">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e170" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e170" source="view:public.v_morning_manifest" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e171" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e171" source="view:public.v_morning_manifest" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e172" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e172" source="view:public.v_morning_manifest" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e173" source="view:public.v_contamination_audit" target="table:public.interactions">
+    <edge id="e173" source="view:public.v_morning_manifest" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e174" source="view:public.v_project_system_state" target="table:public.projects">
+    <edge id="e174" source="view:public.v_morning_manifest" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e175" source="view:public.v_project_system_state" target="table:public.projects">
+    <edge id="e175" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e176" source="view:public.v_project_system_state" target="table:public.projects">
+    <edge id="e176" source="view:public.v_morning_manifest" target="table:public.striking_signals">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e177" source="view:public.kpi_review_reasons_entropy" target="table:public.interactions">
+    <edge id="e177" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e178" source="view:public.kpi_new_roles_this_week" target="table:public.contacts">
+    <edge id="e178" source="view:public.v_interactions_routing" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e179" source="view:public.kpi_new_roles_this_week" target="table:public.contacts">
+    <edge id="e179" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e180" source="view:public.kpi_contact_type_violations" target="table:public.contacts">
+    <edge id="e180" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e181" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e181" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e182" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e182" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e183" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e183" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e184" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e184" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e185" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e185" source="view:public.v_journal_runs_errors" target="table:public.journal_runs">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e186" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e186" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e187" source="view:public.v_needs_triage" target="table:public.span_attributions">
+    <edge id="e187" source="view:public.v_claim_pointers_missing_evidence" target="table:public.evidence_events">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e188" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e188" source="view:public.v_project_claims_for_review" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e189" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e189" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e190" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e190" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e191" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e191" source="view:public.v_project_claims_for_review" target="table:public.evidence_events">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e192" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e192" source="view:public.v_project_claims_for_review" target="table:public.corrections">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e193" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e193" source="view:public.v_production_scope" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e194" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e194" source="view:public.v_contact_project_affinity" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e195" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e195" source="view:public.v_contact_project_affinity" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e196" source="view:public.v_needs_triage" target="table:public.journal_review_queue">
+    <edge id="e196" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e197" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e197" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e198" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e198" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e199" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e199" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e200" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e200" source="view:public.gt_review_feed" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e201" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e201" source="view:public.gt_review_feed" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e202" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e202" source="view:public.gt_review_feed" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e203" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e203" source="view:public.gt_review_feed" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e204" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e204" source="view:public.gt_review_queue" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e205" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e205" source="view:public.gt_review_queue" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e206" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e206" source="view:public.gt_review_queue" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e207" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e207" source="view:public.gt_review_queue" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e208" source="view:public.v_needs_triage" target="table:public.review_queue">
+    <edge id="e208" source="view:public.v_phase_pulse" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e209" source="view:public.v_needs_triage" target="table:public.projects">
+    <edge id="e209" source="view:public.v_phase_pulse" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e210" source="view:public.v_needs_triage" target="table:public.projects">
+    <edge id="e210" source="view:public.v_phase_pulse" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e211" source="view:public.kpi_role_alias_candidates" target="table:public.contacts">
+    <edge id="e211" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e212" source="view:public.entity_drift_dashboard" target="table:public.contacts">
+    <edge id="e212" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e213" source="view:public.entity_drift_dashboard" target="table:public.contacts">
+    <edge id="e213" source="view:public.v_phase_pulse" target="table:public.construction_phases">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e214" source="view:public.entity_drift_dashboard" target="table:public.interactions">
+    <edge id="e214" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e215" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e215" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e216" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e216" source="view:public.v_project_alias_lookup" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e217" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e217" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e218" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e218" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e219" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e219" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e220" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e220" source="view:public.v_call_ledger" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e221" source="view:public.v_correction_patterns" target="table:public.corrections">
+    <edge id="e221" source="view:public.v_call_ledger" target="table:public.contacts">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e222" source="view:public.v_correction_patterns" target="table:public.belief_claims">
+    <edge id="e222" source="view:public.v_call_ledger" target="table:public.projects">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e223" source="view:public.v_correction_patterns" target="table:public.belief_claims">
+    <edge id="e223" source="view:public.v_call_ledger" target="table:public.calls_raw">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e224" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e224" source="view:public.v_call_ledger" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e225" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e225" source="view:public.v_call_ledger" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e226" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e226" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e227" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e227" source="view:public.v_interaction_primary_project" target="table:public.interactions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e228" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e228" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e229" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
+    <edge id="e229" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e230" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e231" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e232" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e233" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e234" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e235" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e236" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e237" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e238" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e239" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e240" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e241" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e242" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e243" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e244" source="view:public.v_belief_claims_canon" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e245" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e246" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e247" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e248" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e249" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e250" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e251" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e252" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e253" source="view:public.v_journal_runs_health" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e254" source="view:public.v_journal_runs_errors" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e255" source="view:public.v_journal_runs_errors" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e256" source="view:public.v_journal_runs_errors" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e257" source="view:public.v_repair_last_10_sources" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e258" source="view:public.v_repair_last_10_sources" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e259" source="view:public.v_repair_last_10_sources" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e260" source="view:public.v_repair_failures" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e261" source="view:public.v_repair_failures" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e262" source="view:public.v_repair_failures" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e263" source="view:public.v_repair_failures" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e264" source="view:public.v_repair_failures" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e265" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e266" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e267" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e268" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e269" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e270" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e271" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e272" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e273" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e274" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e275" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e276" source="view:public.v_calls_raw_phone_backlog" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e277" source="view:public.v_project_state_snapshots" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e278" source="view:public.v_project_state_snapshots" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e279" source="view:public.v_project_state_snapshots" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e280" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e281" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e282" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e283" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e284" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e285" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e286" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e287" source="view:public.v_event_audit_human_queue" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e288" source="view:public.v_event_audit_reason_breakdown" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e289" source="view:public.v_event_audit_reason_breakdown" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e290" source="view:public.v_document_claims" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e291" source="view:public.v_document_claims" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e292" source="view:public.v_document_claims" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e293" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e294" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e295" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e296" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e297" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e298" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e299" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e300" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e301" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e302" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e303" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e304" source="view:public.v_document_claims" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e305" source="view:public.v_document_claims" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e306" source="view:public.v_document_claims" target="table:public.journal_runs">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e307" source="view:public.v_document_claims" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e308" source="view:public.v_document_claims" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e309" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e310" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e311" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e312" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e313" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e314" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e315" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e316" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e317" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e318" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e319" source="view:public.v3_v36_scoreboard" target="table:public.v3_v36_comparison_set">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e320" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e321" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e322" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e323" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e324" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e325" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e326" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e327" source="view:public.v_project_document_inventory" target="table:public.project_documents">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e328" source="view:public.v_project_document_inventory" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e329" source="view:public.v_project_document_inventory" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e330" source="view:public.v_project_document_inventory" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e331" source="view:public.v_project_document_inventory" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e332" source="view:public.v_project_document_inventory" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e333" source="view:public.v_project_document_inventory" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e334" source="view:public.v_project_document_inventory" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e335" source="view:public.baseline_v3_calls_success" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e336" source="view:public.baseline_v3_calls_success" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e337" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e338" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e339" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e340" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e341" source="view:public.v_receipts_drilldown" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e342" source="view:public.v_receipts_drilldown" target="table:public.promotion_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e343" source="view:public.v_receipts_drilldown" target="table:public.promotion_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e344" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e345" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e346" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e347" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e348" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e349" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e350" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e351" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e352" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e353" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e354" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e355" source="view:public.v_receipts_drilldown" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e356" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e357" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e358" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e359" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e360" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e361" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e362" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e363" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e364" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e365" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e366" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e367" source="view:public.v_receipts_drilldown" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e368" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e369" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e370" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e371" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e372" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e373" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e374" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e375" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e376" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e377" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e378" source="view:public.v_receipts_drilldown" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e379" source="view:public.v_receipts_drilldown" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e380" source="view:public.v_receipts_drilldown" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e381" source="view:public.v_receipts_drilldown" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e382" source="view:public.v_receipts_drilldown" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e383" source="view:public.v_receipts_drilldown" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e384" source="view:public.v_receipts_drilldown" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e385" source="view:public.v_receipts_drilldown" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e386" source="view:public.v_receipts_drilldown" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e387" source="view:public.v_receipts_drilldown" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e388" source="view:public.v_receipts_drilldown" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e389" source="view:public.v_receipts_drilldown" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e390" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e391" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e392" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e393" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e394" source="view:public.v_claim_promotion_funnel" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e395" source="view:public.v_claim_promotion_funnel" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e396" source="view:public.v_claim_promotion_funnel" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e397" source="view:public.v_claim_promotion_funnel" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e398" source="view:public.v_claim_promotion_funnel" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e399" source="view:public.v_claim_promotion_funnel" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e400" source="view:public.v_claim_pointers_missing_evidence" target="table:public.evidence_events">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e401" source="view:public.v_claim_pointers_missing_evidence" target="table:public.evidence_events">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e402" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e403" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e404" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e405" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e406" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e407" source="view:public.v_claim_pointers_missing_evidence" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e408" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e409" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e410" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e411" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e412" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e413" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e414" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e415" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e416" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e417" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e418" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e419" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e420" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e421" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e422" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e423" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e424" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e425" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e426" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e427" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e428" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e429" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e430" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e431" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e432" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e433" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e434" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e435" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e436" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e437" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e438" source="view:public.v_production_scope" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e439" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e440" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e441" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e442" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e443" source="view:public.v_launch_review_correction_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e444" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e445" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e446" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e447" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e448" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e449" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e450" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e451" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e452" source="view:public.v_launch_review_correction_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e453" source="view:public.v_call_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e454" source="view:public.v_call_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e455" source="view:public.v_call_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e456" source="view:public.v_call_primary_project" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e457" source="view:public.v_call_primary_project" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e458" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e459" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e460" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e461" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e462" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e463" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e464" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e465" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e466" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.override_log">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e467" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e468" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e469" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e470" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e471" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e472" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e473" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e474" source="view:public.v_launch_review_correction_by_model_daily" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e475" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e476" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e477" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e478" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e479" source="view:public.v_review_coverage_gaps" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e480" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e481" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e482" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e483" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e484" source="view:public.v_review_coverage_gaps" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e485" source="view:public.v_review_coverage_gaps" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e486" source="view:public.v_review_coverage_gaps" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e487" source="view:public.v_review_coverage_gaps" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e488" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e489" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e490" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e491" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e492" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e493" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e494" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e495" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e496" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e497" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e498" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e499" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e500" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e501" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e502" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e503" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e504" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e505" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e506" source="view:public.v_active_conversation_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e507" source="view:public.v_scoreboard_retention_stats" target="table:public.pipeline_scoreboard_snapshots">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e508" source="view:public.v_regression_detector_24h" target="table:public.pipeline_scoreboard_snapshots">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e509" source="view:public.v_regression_detector_24h" target="table:public.pipeline_scoreboard_snapshots">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e510" source="view:public.v_regression_detector_24h" target="table:public.pipeline_scoreboard_snapshots">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e511" source="view:public.v_regression_detector_24h" target="table:public.pipeline_scoreboard_snapshots">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e512" source="view:public.v_chunk_quality_distribution" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e513" source="view:public.v_chunk_quality_distribution" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e514" source="view:public.v_chunk_quality_distribution" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e515" source="view:public.v_chunk_quality_distribution" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e516" source="view:public.v_chunk_quality_distribution" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e517" source="view:public.v_chunk_quality_distribution" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e518" source="view:public.v_chunk_quality_distribution" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e519" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e520" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e521" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e522" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e523" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e524" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e525" source="view:public.v_ground_truth_evaluable" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e526" source="view:public.v_ground_truth_evaluable" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e527" source="view:public.v_ground_truth_evaluable" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e528" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e529" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e530" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e531" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e532" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e533" source="view:public.v_ground_truth_evaluable" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e534" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e535" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e536" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e537" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e538" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e539" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e540" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e541" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e542" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e543" source="view:public.v_project_claims_for_review" target="table:public.corrections">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e544" source="view:public.v_project_claims_for_review" target="table:public.evidence_events">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e545" source="view:public.v_project_claims_for_review" target="table:public.evidence_events">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e546" source="view:public.v_project_claims_for_review" target="table:public.evidence_events">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e547" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e548" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e549" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e550" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e551" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e552" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e553" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e554" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e555" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e556" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e557" source="view:public.v_project_claims_for_review" target="table:public.claim_pointers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e558" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e559" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e560" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e561" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e562" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e563" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e564" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e565" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e566" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e567" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e568" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e569" source="view:public.v_project_claims_for_review" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e570" source="view:public.v_project_claims_for_review" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e571" source="view:public.v_project_claims_for_review" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e572" source="view:public.v_contact_project_affinity" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e573" source="view:public.v_contact_project_affinity" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e574" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e575" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e576" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e577" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e578" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e579" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e580" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e581" source="view:public.v_contact_project_affinity" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e582" source="view:public.v_module_health" target="table:public.module_promotions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e583" source="view:public.v_module_health" target="table:public.module_promotions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e584" source="view:public.v_module_health" target="table:public.module_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e585" source="view:public.v_module_health" target="table:public.module_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e586" source="view:public.v_module_health" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e587" source="view:public.v_module_health" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e588" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e589" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e590" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e591" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e592" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e593" source="view:public.pipeline_daily_health" target="view:public.enrichment_scorecard">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e594" source="view:public.enrichment_scorecard" target="table:public.call_chains">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e595" source="view:public.enrichment_scorecard" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e596" source="view:public.enrichment_scorecard" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e597" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e598" source="view:public.enrichment_scorecard" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e599" source="view:public.enrichment_scorecard" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e600" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e601" source="view:public.enrichment_scorecard" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e602" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e603" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e604" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e605" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e606" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e607" source="view:public.enrichment_scorecard" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e608" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e609" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e610" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e611" source="view:public.entity_drift_alias_candidates" target="table:public.transcription_vocab">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e612" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e613" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e614" source="view:public.entity_drift_alias_candidates" target="table:public.local_monikers">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e615" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e616" source="view:public.entity_drift_alias_candidates" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e617" source="view:public.v_contact_fanout" target="table:public.project_contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e618" source="view:public.v_contact_fanout" target="table:public.project_contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e619" source="view:public.v_contact_fanout" target="table:public.project_contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e620" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e621" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e622" source="view:public.v_contact_fanout" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e623" source="view:public.v_contact_fanout" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e624" source="view:public.v_contact_fanout" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e625" source="view:public.v_contact_fanout" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e626" source="view:public.v_contact_fanout" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e627" source="view:public.v_contact_fanout" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e628" source="view:public.v_contact_fanout" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e629" source="view:public.v_contact_fanout" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e630" source="view:public.v_contact_fanout" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e631" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e632" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e633" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e634" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e635" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e636" source="view:public.v_review_spans_missing_extraction" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e637" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e638" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e639" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e640" source="view:public.v_review_spans_missing_extraction" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e641" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e642" source="view:public.v_review_spans_missing_extraction" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e643" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e644" source="view:public.v_review_spans_missing_extraction" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e645" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e646" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e647" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e648" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e649" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e650" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e651" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e652" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e653" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e654" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e655" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e656" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e657" source="view:public.gt_review_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e658" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e659" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e660" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e661" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e662" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e663" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e664" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e665" source="view:public.gt_review_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e666" source="view:public.gt_review_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e667" source="view:public.gt_review_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e668" source="view:public.gt_review_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e669" source="view:public.gt_review_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e670" source="view:public.gt_review_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e671" source="view:public.gt_review_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e672" source="view:public.gt_review_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e673" source="view:public.v_morning_manifest" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e674" source="view:public.v_morning_manifest" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e675" source="view:public.v_morning_manifest" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e676" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e677" source="view:public.v_morning_manifest" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e678" source="view:public.v_morning_manifest" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e679" source="view:public.v_morning_manifest" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e680" source="view:public.v_morning_manifest" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e681" source="view:public.v_morning_manifest" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e682" source="view:public.v_morning_manifest" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e683" source="view:public.v_morning_manifest" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e684" source="view:public.v_morning_manifest" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e685" source="view:public.v_morning_manifest" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e686" source="view:public.v_morning_manifest" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e687" source="view:public.v_morning_manifest" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e688" source="view:public.v_morning_manifest" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e689" source="view:public.v_morning_manifest" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e690" source="view:public.v_morning_manifest" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e691" source="view:public.v_morning_manifest" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e692" source="view:public.v_morning_manifest" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e693" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e694" source="view:public.v_attribution_recovery_candidates" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e695" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e696" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e697" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e698" source="view:public.v_attribution_recovery_candidates" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e699" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e700" source="view:public.v_attribution_recovery_candidates" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e701" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e702" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e703" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e704" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e705" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e706" source="view:public.v_attribution_recovery_candidates" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e707" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e708" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e709" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e710" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e711" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e712" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e713" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e714" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e715" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e716" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e717" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e718" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e719" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e720" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e721" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e722" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e723" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e724" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e725" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e726" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e727" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e728" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e729" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e730" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e731" source="view:public.vw_cost_code_doc_export" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e732" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e733" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e734" source="view:public.vendors_v" target="table:public.vendor_cost_code_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e735" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e736" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e737" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e738" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e739" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e740" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e741" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e742" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e743" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e744" source="view:public.vendors_v" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e745" source="view:public.contacts_notes_qa" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e746" source="view:public.contacts_notes_qa" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e747" source="view:public.contacts_notes_qa" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e748" source="view:public.contacts_notes_qa" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e749" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e750" source="view:public.resolved_vendor_for_contact" target="table:public.cost_code_taxonomy">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e751" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e752" source="view:public.resolved_vendor_for_contact" target="table:public.vendor_cost_code_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e753" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e754" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e755" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e756" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e757" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e758" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e759" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e760" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e761" source="view:public.resolved_vendor_for_contact" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e762" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e763" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e764" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e765" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e766" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e767" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e768" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e769" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e770" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e771" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e772" source="view:public.relationship_candidates_review" target="table:public.entity_relationship_candidates">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e773" source="view:public.relationship_candidates_review" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e774" source="view:public.relationship_candidates_review" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e775" source="view:public.relationship_candidates_review" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e776" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e777" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e778" source="view:public.entity_drift_new_values_week" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e779" source="view:public.entity_drift_summary" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e780" source="view:public.entity_drift_summary" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e781" source="view:public.entity_drift_summary" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e782" source="view:public.entity_drift_summary" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e783" source="view:public.entity_drift_summary" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e784" source="view:public.kpi_role_entropy" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e785" source="view:public.kpi_trade_entropy" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e786" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e787" source="view:public.v_calls_raw_phone_backlog_summary" target="view:public.v_calls_raw_phone_backlog">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e788" source="view:public.v_calls_raw_zapier_lineage" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e789" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e790" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e791" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e792" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e793" source="view:public.v_phone_parity_summary" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e794" source="view:public.v_phone_parity_summary" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e795" source="view:public.v_phone_parity_summary" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e796" source="view:public.v_phone_parity_summary" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e797" source="view:public.v_phone_parity_summary" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e798" source="view:public.v_phone_parity_summary" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e799" source="view:public.v_phone_parity_summary" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e800" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e801" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e802" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e803" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e804" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e805" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e806" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e807" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e808" source="view:public.v_recovery_candidates" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e809" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e810" source="view:public.v_daily_ops_dashboard" target="table:public.repair_payloads">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e811" source="view:public.v_daily_ops_dashboard" target="view:public.v_calls_raw_phone_backlog">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e812" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e813" source="view:public.v_daily_ops_dashboard" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e814" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e815" source="view:public.v_event_audit_pass_rate" target="table:public.event_audit">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e816" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e817" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e818" source="view:public.v_lineage_coverage" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e819" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e820" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e821" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e822" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e823" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e824" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e825" source="view:public.v_enroute_mentions" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e826" source="view:public.v_enroute_mentions" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e827" source="view:public.v_enroute_mentions" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e828" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e829" source="view:public.v_enroute_mentions" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e830" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e831" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e832" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e833" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e834" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e835" source="view:public.v_span_enroute" target="table:public.span_place_mentions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e836" source="view:public.v_span_enroute" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e837" source="view:public.v_span_enroute" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e838" source="view:public.v_span_enroute" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e839" source="view:public.v_span_enroute" target="table:public.geo_places">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e840" source="view:public.v_span_enroute" target="table:public.project_geo">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e841" source="view:public.v_span_enroute" target="table:public.project_geo">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e842" source="view:public.v_span_enroute" target="table:public.project_geo">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e843" source="view:public.v_span_enroute" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e844" source="view:public.v_span_enroute" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e845" source="view:public.v_span_enroute" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e846" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e847" source="view:public.v_review_queue_spans" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e848" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e849" source="view:public.v_review_queue_spans" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e850" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e851" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e852" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e853" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e854" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e855" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e856" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e857" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e858" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e859" source="view:public.v_review_queue_spans" target="table:public.review_queue">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e860" source="view:public.v_review_queue_spans" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e861" source="view:public.v_review_queue_spans" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e862" source="view:public.v_project_feed" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e863" source="view:public.v_project_feed" target="table:public.striking_signals">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e864" source="view:public.v_project_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e865" source="view:public.v_project_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e866" source="view:public.v_project_feed" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e867" source="view:public.v_project_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e868" source="view:public.v_project_feed" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e869" source="view:public.v_project_feed" target="table:public.journal_open_loops">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e870" source="view:public.v_project_feed" target="table:public.journal_open_loops">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e871" source="view:public.v_project_feed" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e872" source="view:public.v_project_feed" target="table:public.journal_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e873" source="view:public.v_project_feed" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e874" source="view:public.v_project_feed" target="table:public.belief_claims">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e875" source="view:public.v_project_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e876" source="view:public.v_project_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e877" source="view:public.v_project_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e878" source="view:public.v_project_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e879" source="view:public.v_project_feed" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e880" source="view:public.v_project_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e881" source="view:public.v_project_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e882" source="view:public.v_project_feed" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e883" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e884" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e885" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e886" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e887" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e888" source="view:public.gt_review_queue" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e889" source="view:public.gt_review_queue" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e890" source="view:public.gt_review_queue" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e891" source="view:public.gt_review_queue" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e892" source="view:public.gt_review_queue" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e893" source="view:public.gt_review_queue" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e894" source="view:public.gt_review_queue" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e895" source="view:public.gt_review_queue" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e896" source="view:public.gt_review_queue" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e897" source="view:public.gt_review_queue" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e898" source="view:public.gt_review_queue" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e899" source="view:public.gt_review_queue" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e900" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e901" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e902" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e903" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e904" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e905" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e906" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e907" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e908" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e909" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e910" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e911" source="view:public.v_canonical_transcripts" target="table:public.transcripts_comparison">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e912" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e913" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e914" source="view:public.v_phase_pulse" target="table:public.trade_phase_map">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e915" source="view:public.v_phase_pulse" target="table:public.construction_phases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e916" source="view:public.v_phase_pulse" target="table:public.construction_phases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e917" source="view:public.v_phase_pulse" target="table:public.construction_phases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e918" source="view:public.v_phase_pulse" target="table:public.construction_phases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e919" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e920" source="view:public.v_phase_pulse" target="table:public.ground_truth_labels">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e921" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e922" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e923" source="view:public.v_phase_pulse" target="table:public.correspondent_project_affinity">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e924" source="view:public.v_phase_pulse" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e925" source="view:public.v_phase_pulse" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e926" source="view:public.v_phase_pulse" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e927" source="view:public.v_phase_pulse" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e928" source="view:public.v_phase_pulse" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e929" source="view:public.v_phase_pulse" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e930" source="view:public.v_phase_pulse" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e931" source="view:public.v_phase_pulse" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e932" source="view:public.v_phase_pulse" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e933" source="view:public.v_phase_pulse" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e934" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e935" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e936" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e937" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e938" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e939" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e940" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e941" source="view:public.v_phase_pulse_summary" target="view:public.v_phase_pulse">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e942" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e943" source="view:public.v_call_ledger" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e944" source="view:public.v_call_ledger" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e945" source="view:public.v_call_ledger" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e946" source="view:public.v_call_ledger" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e947" source="view:public.v_call_ledger" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e948" source="view:public.v_call_ledger" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e949" source="view:public.v_call_ledger" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e950" source="view:public.v_call_ledger" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e951" source="view:public.v_call_ledger" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e952" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e953" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e954" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e955" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e956" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e957" source="view:public.v_call_ledger" target="table:public.calls_raw">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e958" source="view:public.v_call_ledger" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e959" source="view:public.v_call_ledger" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e960" source="view:public.v_call_ledger" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e961" source="view:public.v_call_ledger" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e962" source="view:public.v_call_ledger" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e963" source="view:public.v_call_ledger" target="table:public.contacts">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e964" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e965" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e966" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e967" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e968" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e969" source="view:public.v_call_ledger" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e970" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e971" source="view:public.v_interactions_routing" target="view:public.v_call_primary_project">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e972" source="view:public.v_interactions_routing" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e973" source="view:public.v_interactions_routing" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e974" source="view:public.v_interactions_routing" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e975" source="view:public.v_interactions_routing" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e976" source="view:public.v_interactions_routing" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e977" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e978" source="view:public.v_project_alias_lookup" target="table:public.project_attribution_blocklist">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e979" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e980" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e981" source="view:public.v_project_alias_lookup" target="table:public.project_aliases">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e982" source="view:public.v_project_alias_lookup" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e983" source="view:public.v_project_alias_lookup" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e984" source="view:public.v_project_alias_lookup" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e985" source="view:public.v_project_alias_lookup" target="table:public.projects">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e986" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e987" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e988" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e989" source="view:public.v_interaction_primary_project" target="table:public.span_attributions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e990" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e991" source="view:public.v_interaction_primary_project" target="table:public.conversation_spans">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e992" source="view:public.v_interaction_primary_project" target="table:public.interactions">
-      <data key="d2">depends_on</data>
-    </edge>
-    <edge id="e993" source="edge:smoke_test" target="table:public.evidence_events">
+    <edge id="e230" source="edge:smoke_test" target="table:public.evidence_events">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e994" source="edge:zapier-call-ingest" target="table:public.calls_raw">
+    <edge id="e231" source="edge:zapier-call-ingest" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e995" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
+    <edge id="e232" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e996" source="edge:segment-llm" target="table:public.call_spans">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e997" source="edge:ai-router" target="table:public.projects">
+    <edge id="e233" source="edge:ai-router" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e998" source="edge:journal-extract" target="table:public.journal_claims">
+    <edge id="e234" source="edge:journal-extract" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e999" source="edge:embed-facts" target="table:public.project_facts">
+    <edge id="e235" source="edge:embed-facts" target="table:public.project_facts">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1000" source="edge:process-call" target="table:public.review_queue">
+    <edge id="e236" source="edge:process-call" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1001" source="edge:process-call" target="table:public.calls_raw">
+    <edge id="e237" source="edge:process-call" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1002" source="edge:process-call" target="table:public.interactions">
+    <edge id="e238" source="edge:process-call" target="table:public.interactions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1003" source="edge:process-call" target="table:public.event_audit">
+    <edge id="e239" source="edge:process-call" target="table:public.event_audit">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1004" source="edge:process-call" target="table:public.idempotency_keys">
+    <edge id="e240" source="edge:process-call" target="table:public.idempotency_keys">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e1005" source="edge:process-call" target="table:public.project_contacts">
+    <edge id="e241" source="edge:process-call" target="table:public.project_contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e1006" source="edge:process-call" target="table:public.projects">
+    <edge id="e242" source="edge:process-call" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e1007" source="edge:process-call" target="table:public.correspondent_project_affinity">
+    <edge id="e243" source="edge:process-call" target="table:public.correspondent_project_affinity">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e1008" source="edge:process-call" target="edge:segment-call">
+    <edge id="e244" source="edge:process-call" target="edge:segment-call">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e245" source="edge:segment-call" target="table:public.conversation_spans">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e246" source="edge:segment-call" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e247" source="edge:segment-call" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e248" source="edge:segment-call" target="table:public.conversation_spans">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e249" source="edge:segment-call" target="edge:segment-llm">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e250" source="edge:segment-call" target="edge:context-assembly">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e251" source="edge:segment-call" target="edge:ai-router">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e252" source="edge:segment-call" target="edge:striking-detect">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e253" source="edge:segment-call" target="edge:journal-extract">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e254" source="edge:segment-call" target="edge:generate-summary">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e255" source="edge:context-assembly" target="table:public.conversation_spans">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e256" source="edge:context-assembly" target="table:public.projects">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e257" source="edge:context-assembly" target="table:public.project_aliases">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e258" source="edge:context-assembly" target="table:public.contacts">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e259" source="edge:context-assembly" target="table:public.contact_fanout">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e260" source="edge:context-assembly" target="table:public.journal_claims">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e261" source="edge:context-assembly" target="table:public.journal_open_loops">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e262" source="edge:context-assembly" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e263" source="edge:context-assembly" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e264" source="edge:context-assembly" target="edge:gmail-context-lookup">
+      <data key="d2">calls</data>
+    </edge>
+    <edge id="e265" source="edge:ai-router" target="table:public.span_attributions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e266" source="edge:ai-router" target="table:public.span_attributions">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e267" source="edge:ai-router" target="table:public.review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e268" source="edge:generate-summary" target="table:public.conversation_spans">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e269" source="edge:generate-summary" target="table:public.span_attributions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e270" source="edge:generate-summary" target="table:public.diagnostic_logs">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e271" source="edge:striking-detect" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e272" source="edge:striking-detect" target="table:public.striking_signals">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e273" source="edge:chain-detect" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e274" source="edge:chain-detect" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e275" source="edge:chain-detect" target="table:public.call_chains">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e276" source="edge:journal-consolidate" target="table:public.journal_claims">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e277" source="edge:journal-consolidate" target="table:public.journal_claims">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e278" source="edge:journal-consolidate" target="table:public.journal_conflicts">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e279" source="edge:journal-consolidate" target="table:public.review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e280" source="edge:loop-closure" target="table:public.journal_open_loops">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e281" source="edge:loop-closure" target="table:public.calls_raw">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e282" source="edge:loop-closure" target="table:public.interactions">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e283" source="edge:loop-closure" target="table:public.journal_open_loops">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e284" source="edge:gmail-context-lookup" target="table:public.project_aliases">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e285" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e286" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e287" source="edge:journal-extract" target="table:public.conversation_spans">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e288" source="edge:journal-extract" target="table:public.journal_open_loops">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e289" source="edge:embed-facts" target="table:public.project_facts">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e290" source="edge:transcribe-deepgram" target="table:public.api_keys">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e291" source="edge:transcribe-deepgram" target="table:public.transcription_vocab">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e292" source="edge:zapier-call-ingest" target="table:public.diagnostic_logs">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e293" source="edge:zapier-call-ingest" target="edge:process-call">
       <data key="d2">calls</data>
     </edge>
   </graph>

@@ -1,5 +1,66 @@
 {
-  "updated_at": "2026-02-21T20:59:22Z",
+  "updated_at": "2026-02-21T21:14:13Z",
   "has_previous": true,
-  "changes": []
+  "changes": [
+    {
+      "type": "health_change",
+      "capability": "segmentation",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "segmentation",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "type": "health_change",
+      "capability": "context-assembly",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "context-assembly",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "summarization",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "summarization",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "signal-detection",
+      "from": "degraded",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "signal-detection",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "type": "health_change",
+      "capability": "consolidation",
+      "from": "unknown",
+      "to": "healthy"
+    },
+    {
+      "type": "coverage_change",
+      "capability": "consolidation",
+      "from": 0,
+      "to": 1
+    }
+  ]
 }
