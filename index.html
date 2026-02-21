@@ -1823,22 +1823,22 @@ function drawConn(g, c, lblLayer) {
   grp.addEventListener('mouseleave', function() {
     if (hoverOutTimer) { clearTimeout(hoverOutTimer); }
     hoverOutTimer = setTimeout(function() {
-    var root = grp.parentNode.parentNode;
-    var nl = root.querySelector('.node-layer');
-    var ll = root.querySelector('.label-layer');
-    var cl = grp.parentNode;
-    // Remove all dims and active states
-    cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-    if (nl) {
-      nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-      nl.querySelectorAll('.node-active').forEach(function(el) {
-        el.classList.remove('node-active');
-        var r = el.querySelector('.node-rect');
-        if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
+      var root = grp.parentNode.parentNode;
+      var nl = root.querySelector('.node-layer');
+      var ll = root.querySelector('.label-layer');
+      var cl = grp.parentNode;
+      // Remove all dims and active states
+      cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+      if (nl) {
+        nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+        nl.querySelectorAll('.node-active').forEach(function(el) {
+          el.classList.remove('node-active');
+          var r = el.querySelector('.node-rect');
+          if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
+        });
+      }
+      if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
     }, 150);
-  });
-    }
-    if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
   });
 
   // Invisible wide hit-area for hover
