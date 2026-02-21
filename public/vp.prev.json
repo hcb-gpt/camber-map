@@ -1,6 +1,10 @@
 {
-  "updated_at": "2026-02-21T21:20:55Z",
-  "git_sha": "e0b7d7727f2ace0dfec335278861a6a05de4b133",
+<<<<<<< HEAD
+  "updated_at": "2026-02-21T21:50:51Z",
+=======
+  "updated_at": "2026-02-21T22:15:13Z",
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
+  "git_sha": "bbcccf779244e2c66ab4c164c2afa1508454e020",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,13 +23,18 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.8,
+<<<<<<< HEAD
+        "hours_since_last_activity": 51.3,
         "status": "aging"
+=======
+        "hours_since_last_activity": 6.6,
+        "status": "fresh"
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
       },
       "health": {
-        "status": "degraded",
+        "status": "healthy",
         "row_count": 1124,
-        "last_activity_at": "2026-02-19T18:32:33.994Z"
+        "last_activity_at": "2026-02-21T15:39:47.126Z"
       },
       "depends_on": []
     },
@@ -46,13 +55,18 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.8,
+<<<<<<< HEAD
+        "hours_since_last_activity": 51.3,
         "status": "aging"
+=======
+        "hours_since_last_activity": 1.1,
+        "status": "fresh"
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
       },
       "health": {
-        "status": "degraded",
+        "status": "healthy",
         "row_count": 559,
-        "last_activity_at": "2026-02-19T18:32:33.994Z"
+        "last_activity_at": "2026-02-21T21:11:06.452Z"
       },
       "depends_on": [
         "call-ingestion"
@@ -75,7 +89,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.1,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.6,
+=======
+        "hours_since_last_activity": 1,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -104,7 +122,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.7,
+=======
+        "hours_since_last_activity": 1.1,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -134,7 +156,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.7,
+<<<<<<< HEAD
+        "hours_since_last_activity": 6.2,
+=======
+        "hours_since_last_activity": 6.6,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -163,7 +189,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.7,
+<<<<<<< HEAD
+        "hours_since_last_activity": 6.2,
+=======
+        "hours_since_last_activity": 6.6,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -192,7 +222,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.7,
+=======
+        "hours_since_last_activity": 1.1,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -221,7 +255,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.7,
+=======
+        "hours_since_last_activity": 1.1,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -250,7 +288,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.7,
+=======
+        "hours_since_last_activity": 1.1,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -279,7 +321,11 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+<<<<<<< HEAD
+        "hours_since_last_activity": 0.5,
+=======
+        "hours_since_last_activity": 0.9,
+>>>>>>> f393d50 (Fix capability health freshness bindings for ingestion and transcription)
         "status": "fresh"
       },
       "health": {
@@ -346,8 +392,8 @@
   ],
   "summary": {
     "total": 10,
-    "healthy": 8,
-    "degraded": 2,
+    "healthy": 10,
+    "degraded": 0,
     "stale": 0,
     "unknown": 0,
     "overall_coverage_pct": 1
