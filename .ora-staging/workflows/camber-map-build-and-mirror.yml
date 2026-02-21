@@ -1,0 +1,107 @@
+# ora/.github/workflows/camber-map-build-and-mirror.yml
+# Builds live camber map artifacts, commits to ora, then publishes
+# a clean subtree mirror to hcb-gpt/camber-map (public).
+#
+# CRITICAL INVARIANT: Orbit MCP reads from hcb-gpt/camber-map/public/*.
+# This workflow keeps that mirror fresh WITHOUT giving it self-mutating
+# workflows (no scheduled builds, no auto-commits in the mirror).
+#
+# Required secrets (set in ora repo):
+#   DATABASE_URL           — Supabase connection string
+#   SUPABASE_PROJECT_REF   — Supabase project ref
+#   SUPABASE_ACCESS_TOKEN  — Supabase access token
+#   MIRROR_PUSH_TOKEN      — PAT or GitHub App token with push to hcb-gpt/camber-map
+
+name: Build Camber Map + Mirror Publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/camber-map/scripts/**'
+      - 'apps/camber-map/package.json'
+      - 'apps/camber-map/package-lock.json'
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * *'   # daily 05:23 UTC
+
+permissions:
+  contents: write
+
+concurrency:
+  group: camber-map-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for subtree split)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: apps/camber-map
+        run: npm ci
+
+      - name: Install psql
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Generate map outputs (live)
+        working-directory: apps/camber-map
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: node scripts/generate_all.mjs
+
+      # ── Commit generated artifacts to ora ──
+      - name: Commit generated outputs if changed
+        id: commit
+        run: |
+          if git diff --quiet -- apps/camber-map/public/; then
+            echo "No changes to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add apps/camber-map/public/
+          git commit -m "chore: update live camber map"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # ── Publish clean subtree mirror ──
+      # Runs after build so the mirror always includes fresh artifacts.
+      # Strips ALL .github/workflows/ from the split to keep mirror non-mutating.
+      - name: Publish to mirror (subtree split)
+        if: steps.commit.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          MIRROR_TOKEN: ${{ secrets.MIRROR_PUSH_TOKEN }}
+        run: |
+          # Split the camber-map subtree
+          SPLIT_SHA=$(git subtree split --prefix=apps/camber-map)
+
+          # Branch from the split, strip workflows
+          git checkout -B _mirror "$SPLIT_SHA"
+          if [ -d .github/workflows ]; then
+            rm -rf .github/workflows
+            git add -A
+            git commit -m "chore(mirror): strip ora-managed workflows"
+          fi
+
+          # Force push to public mirror (--force-with-lease for safety)
+          git push --force-with-lease \
+            "https://x-access-token:${MIRROR_TOKEN}@github.com/hcb-gpt/camber-map.git" \
+            _mirror:main
+
+          # Return to main
+          git checkout main
+          git branch -D _mirror
