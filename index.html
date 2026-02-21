@@ -40,7 +40,7 @@
   .canvas-zoom-fit { font-size: 11px; width: auto; padding: 0 10px; }
   /* ── Connection hover-to-reveal labels ── */
   .conn-group { cursor: pointer; opacity: 0.15; transition: opacity 0.2s ease; }
-  .conn-group .conn-hit { stroke: transparent; stroke-width: 20; fill: none; pointer-events: stroke; }
+  .conn-group .conn-hit { stroke: transparent; stroke-width: 30; fill: none; pointer-events: stroke; }
   .conn-group .conn-path { transition: stroke-width 0.15s ease; }
   .conn-group:hover, .conn-group.conn-active { opacity: 1; }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
@@ -1593,6 +1593,7 @@ var factsData = null;
 var changesData = null;
 var architectureSpec = null;
 var flowEdges = [];
+var connHoverTimer = null; // global: clears connection highlights after leaving ALL connections
 
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
@@ -1787,22 +1788,32 @@ function drawConn(g, c, lblLayer) {
   }
 
   var grp = createSvgEl('g', { class: 'conn-group', 'data-from': c.from, 'data-to': c.to });
-  var hoverOutTimer = null; // lets label pills stay clickable when moving from line → pill
 
-
-  // Hover: highlight this route, dim everything else
+  // Hover: highlight this route, dim everything else.
+  // Uses global connHoverTimer so moving between connections doesn't flicker.
   grp.addEventListener('mouseenter', function() {
-    if (hoverOutTimer) { clearTimeout(hoverOutTimer); hoverOutTimer = null; }
-    grp.parentNode.appendChild(grp);
+    if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
     var ll = root.querySelector('.label-layer');
     var cl = grp.parentNode;
-    // Dim all nodes and connections
+    // Clear any previous highlight first
+    cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+    if (nl) {
+      nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
+      nl.querySelectorAll('.node-active').forEach(function(el) {
+        el.classList.remove('node-active');
+        var r = el.querySelector('.node-rect');
+        if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
+      });
+    }
+    if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
+    // Dim everything
     if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
     cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
     // Un-dim this connection and its endpoints
     grp.classList.remove('dimmed');
+    grp.parentNode.appendChild(grp);
     if (nl) [c.from, c.to].forEach(function(nid) {
       var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
       if (!ng) return;
@@ -1819,13 +1830,15 @@ function drawConn(g, c, lblLayer) {
     if (!infoLocked) showEdgeInfo(c);
   });
   grp.addEventListener('mouseleave', function() {
-    if (hoverOutTimer) { clearTimeout(hoverOutTimer); }
-    hoverOutTimer = setTimeout(function() {
+    if (connHoverTimer) { clearTimeout(connHoverTimer); }
+    connHoverTimer = setTimeout(function() {
+      connHoverTimer = null;
       var root = grp.parentNode.parentNode;
+      if (!root) return;
       var nl = root.querySelector('.node-layer');
       var ll = root.querySelector('.label-layer');
       var cl = grp.parentNode;
-      // Remove all dims and active states
+      if (!cl) return;
       cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
       if (nl) {
         nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
@@ -1837,7 +1850,7 @@ function drawConn(g, c, lblLayer) {
       }
       if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
       if (!infoLocked) hideInfo();
-    }, 300);
+    }, 500);
   });
   grp.addEventListener('click', function(e) {
     e.stopPropagation();
@@ -1882,11 +1895,10 @@ function drawConn(g, c, lblLayer) {
     // Make pills clickable without flicker when moving from the line to the pill.
     labelGrp.addEventListener('mouseenter', function(e) {
       e.stopPropagation();
-      if (hoverOutTimer) { clearTimeout(hoverOutTimer); hoverOutTimer = null; }
+      if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
       labelGrp.classList.add('label-active');
     });
     labelGrp.addEventListener('mouseleave', function() {
-      // Delegate cleanup to the same handler as the line hover-out
       try { grp.dispatchEvent(new Event('mouseleave')); } catch (e) {}
     });
     labelGrp.addEventListener('click', function(e) {
