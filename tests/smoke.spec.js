@@ -81,3 +81,34 @@ test('load diagnostics and screenshots', async ({ page }) => {
 
   console.log('DIAGNOSTIC_SUMMARY ' + JSON.stringify(summary));
 });
+
+test('selected flow highlight stays stable while scrolling with stationary pointer', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.waitForFunction(() => window.diagramLoadingState === 'ready', { timeout: 30000 });
+
+  const firstStage = page.locator('#sidebar-flow-nav .flow-nav-item[data-stage="1"]').first();
+  await firstStage.click();
+
+  await page.locator('svg#diagram .node-group').first().hover();
+  await page.locator('#canvas-area').dispatchEvent('wheel', { deltaY: 200 });
+  await page.waitForTimeout(200);
+
+  const postState = await page.evaluate(() => {
+    const activeNav = document.querySelectorAll('#sidebar-flow-nav .flow-nav-item[data-active="1"]').length;
+    const dimmedNodes = document.querySelectorAll('svg#diagram .node-group.dimmed').length;
+    return {
+      activeNav,
+      dimmedNodes,
+      activeFlowStage: window.state && window.state.activeFlowStage,
+      diagramLoadingState: window.diagramLoadingState,
+      diagramErrorMessage: window.diagramErrorMessage || '',
+    };
+  });
+
+  expect(postState.diagramLoadingState).toBe('ready');
+  expect(postState.diagramErrorMessage).toBe('');
+  expect(postState.activeFlowStage).toBe(1);
+  expect(postState.activeNav).toBe(1);
+  expect(postState.dimmedNodes).toBeGreaterThan(0);
+});

@@ -1142,6 +1142,7 @@ var state = {
   panX: 0, panY: 0,
   searchFilter: '',
   viewMode: 'flow',
+  activeFlowStage: null,
 };
 Object.keys(CONN_TYPES).forEach(function(k) { state.conns[k] = true; });
 
@@ -1592,6 +1593,10 @@ function drawConn(g, c, lblLayer) {
   // Hover: highlight this route, dim everything else.
   // Uses global connHoverTimer so moving between connections doesn't flicker.
   grp.addEventListener('mouseenter', function() {
+    if (state.activeFlowStage) {
+      if (!infoLocked) showEdgeInfo(c);
+      return;
+    }
     if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
     var root = grp.parentNode.parentNode;
     var nl = root.querySelector('.node-layer');
@@ -1630,6 +1635,7 @@ function drawConn(g, c, lblLayer) {
     if (!infoLocked) showEdgeInfo(c);
   });
   grp.addEventListener('mouseleave', function() {
+    if (state.activeFlowStage) return;
     if (connHoverTimer) { clearTimeout(connHoverTimer); }
     connHoverTimer = setTimeout(function() {
       connHoverTimer = null;
@@ -1820,6 +1826,10 @@ function renderDiagram() {
       showInfo(n);
     });
     ng.addEventListener('mouseenter', function() {
+      if (state.activeFlowStage) {
+        if (!infoLocked) showInfo(n);
+        return;
+      }
       if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); nodeHoverTimer = null; }
       if (!infoLocked) showInfo(n);
       // Dim everything first
@@ -1855,6 +1865,7 @@ function renderDiagram() {
       lbls.forEach(function(l) { l.classList.add('label-active'); labelLayer.appendChild(l); });
     });
     ng.addEventListener('mouseleave', function() {
+      if (state.activeFlowStage) return;
       if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); }
       nodeHoverTimer = setTimeout(function() {
         nodeHoverTimer = null;
@@ -1874,6 +1885,7 @@ function renderDiagram() {
   });
 
   svg.appendChild(g);
+  applyActiveFlowStage();
 }
 
 var infoLocked = false; // sticky panel state
@@ -3114,54 +3126,17 @@ function renderFlowNav() {
     item.appendChild(healthLabel);
 
     item.addEventListener('click', function() {
-      var svg = document.getElementById('diagram');
-      var nl = svg.querySelector('.node-layer');
-      var cl = svg.querySelector('.conn-layer');
-      var ll = svg.querySelector('.label-layer');
-
       // Toggle off if already active
-      if (item.getAttribute('data-active') === '1') {
-        item.removeAttribute('data-active');
-        nav.querySelectorAll('.flow-nav-item').forEach(function(el) { el.style.borderColor = ''; });
-        if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.remove('dimmed', 'node-active'); });
-        if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.remove('dimmed'); });
-        if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.remove('dimmed'); });
+      if (state.activeFlowStage === stage.num) {
+        state.activeFlowStage = null;
+        clearFlowStageFocus();
         return;
       }
 
       var stageNodes = stage.nodes || [];
       if (!stageNodes.length) return;
-
-      // Dim everything, then un-dim stage nodes and their connections
-      if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); ng.classList.remove('node-active'); });
-      if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
-      if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.add('dimmed'); });
-
-      var stageSet = {};
-      stageNodes.forEach(function(nid) { stageSet[nid] = true; });
-      stageNodes.forEach(function(nid) {
-        if (nl) {
-          var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
-          if (ng) { ng.classList.remove('dimmed'); ng.classList.add('node-active'); }
-        }
-        if (cl) {
-          cl.querySelectorAll('.conn-group[data-from="'+nid+'"], .conn-group[data-to="'+nid+'"]').forEach(function(cg) {
-            var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
-            if (stageSet[f] || stageSet[t]) {
-              cg.classList.remove('dimmed');
-              if (ll) {
-                var lbl = ll.querySelector('.conn-label-group[data-from="'+f+'"][data-to="'+t+'"]');
-                if (lbl) lbl.classList.remove('dimmed');
-              }
-            }
-          });
-        }
-      });
-
-      // Highlight active nav item (toggle state)
-      nav.querySelectorAll('.flow-nav-item').forEach(function(el) { el.style.borderColor = ''; el.removeAttribute('data-active'); });
-      item.style.borderColor = 'var(--interactive-primary)';
-      item.setAttribute('data-active', '1');
+      state.activeFlowStage = stage.num;
+      applyActiveFlowStage();
 
       // Close sidebar on mobile
       if (window.innerWidth <= 768) {
@@ -3172,6 +3147,81 @@ function renderFlowNav() {
 
     nav.appendChild(item);
   });
+}
+
+function clearFlowStageFocus() {
+  var svg = document.getElementById('diagram');
+  if (!svg) return;
+  var nl = svg.querySelector('.node-layer');
+  var cl = svg.querySelector('.conn-layer');
+  var ll = svg.querySelector('.label-layer');
+  if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.remove('dimmed', 'node-active'); });
+  if (cl) cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.remove('dimmed'); });
+  if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.remove('dimmed'); });
+
+  var nav = document.getElementById('sidebar-flow-nav');
+  if (nav) nav.querySelectorAll('.flow-nav-item').forEach(function(el) {
+    el.style.borderColor = '';
+    el.removeAttribute('data-active');
+  });
+}
+
+function applyActiveFlowStage() {
+  if (!state.activeFlowStage || state.viewMode !== 'flow') {
+    clearFlowStageFocus();
+    return;
+  }
+
+  var stage = MOBILE_STAGES.find(function(s) { return s.num === state.activeFlowStage; });
+  if (!stage || !Array.isArray(stage.nodes) || stage.nodes.length === 0) {
+    state.activeFlowStage = null;
+    clearFlowStageFocus();
+    return;
+  }
+
+  var svg = document.getElementById('diagram');
+  if (!svg) return;
+  var nl = svg.querySelector('.node-layer');
+  var cl = svg.querySelector('.conn-layer');
+  var ll = svg.querySelector('.label-layer');
+  if (!nl || !cl) return;
+
+  nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); ng.classList.remove('node-active'); });
+  cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
+  if (ll) ll.querySelectorAll('.conn-label-group').forEach(function(lg) { lg.classList.add('dimmed'); });
+
+  var stageSet = {};
+  stage.nodes.forEach(function(nid) { stageSet[nid] = true; });
+  stage.nodes.forEach(function(nid) {
+    var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+    if (ng) { ng.classList.remove('dimmed'); ng.classList.add('node-active'); }
+
+    cl.querySelectorAll('.conn-group[data-from="'+nid+'"], .conn-group[data-to="'+nid+'"]').forEach(function(cg) {
+      var f = cg.getAttribute('data-from');
+      var t = cg.getAttribute('data-to');
+      if (stageSet[f] || stageSet[t]) {
+        cg.classList.remove('dimmed');
+        if (ll) {
+          var lbl = ll.querySelector('.conn-label-group[data-from="'+f+'"][data-to="'+t+'"]');
+          if (lbl) lbl.classList.remove('dimmed');
+        }
+      }
+    });
+  });
+
+  var nav = document.getElementById('sidebar-flow-nav');
+  if (nav) {
+    nav.querySelectorAll('.flow-nav-item').forEach(function(el) {
+      var isActive = el.getAttribute('data-stage') === String(stage.num);
+      if (isActive) {
+        el.style.borderColor = 'var(--interactive-primary)';
+        el.setAttribute('data-active', '1');
+      } else {
+        el.style.borderColor = '';
+        el.removeAttribute('data-active');
+      }
+    });
+  }
 }
 
 // ── DIAGRAM + VP DATA FETCHERS ─────────────────────
