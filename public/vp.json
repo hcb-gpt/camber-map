@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T22:16:49Z",
-  "git_sha": "a7d1e882f2415bbf973fcb2a9956ca62c64cba49",
+  "updated_at": "2026-02-21T22:20:59Z",
+  "git_sha": "35b544734ab19ae460b43cae4e5b426c33e582f9",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.6,
+        "hours_since_last_activity": 6.7,
         "status": "fresh"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 1.2,
         "status": "fresh"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1,
+        "hours_since_last_activity": 1.1,
         "status": "fresh"
       },
       "health": {
@@ -104,7 +104,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 1.2,
         "status": "fresh"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.6,
+        "hours_since_last_activity": 6.7,
         "status": "fresh"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.6,
+        "hours_since_last_activity": 6.7,
         "status": "fresh"
       },
       "health": {
@@ -192,7 +192,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 1.2,
         "status": "fresh"
       },
       "health": {
@@ -221,7 +221,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 1.2,
         "status": "fresh"
       },
       "health": {
@@ -250,7 +250,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 1.2,
         "status": "fresh"
       },
       "health": {
