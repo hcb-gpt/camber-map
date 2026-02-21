@@ -46,6 +46,6 @@
 ```
 
 ---
-Generated: 2026-02-21T01:09:45Z
-Git SHA: 1c1ffbd29a07152e9fd53f95e98c7e0002d018d3
+Generated: 2026-02-21T01:13:04Z
+Git SHA: 6be8d06ac9e03cd3d81d270e28c9b29338d679ed
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
