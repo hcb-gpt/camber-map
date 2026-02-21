@@ -3152,7 +3152,13 @@ function renderFlowNav() {
 
 // ── DIAGRAM + VP DATA FETCHERS ─────────────────────
 function getAjvCtor() {
-  if (typeof window !== 'undefined') return window.Ajv || null;
+  if (typeof window === 'undefined') return null;
+  if (window.Ajv) return window.Ajv;
+  if (window.ajv7) {
+    if (typeof window.ajv7 === 'function') return window.ajv7;
+    if (window.ajv7.default) return window.ajv7.default;
+    if (window.ajv7.Ajv) return window.ajv7.Ajv;
+  }
   return null;
 }
 
