@@ -10,12 +10,12 @@
 |--------|------------|-------|----------|-----------|---------------|
 | WARN | Call Ingestion | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 | WARN | Transcription | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
-| OK | Segmentation | chad | 100% | 4h ago | 2026-02-21 15:39:53Z |
-| WARN | Context Assembly | chad | 0% | 4h ago | 2026-02-21 15:40:30Z |
-| OK | Project Attribution | chad | 100% | 4h ago | 2026-02-21 15:40:30Z |
-| OK | Knowledge Extraction | chad | 100% | 4h ago | 2026-02-21 15:40:38Z |
-| WARN | Call Summarization | chad | 0% | 4h ago | 2026-02-21 15:40:41Z |
-| WARN | Signal Detection | chad | 0% | 4h ago | 2026-02-21 15:40:40Z |
+| OK | Segmentation | chad | 100% | 5h ago | 2026-02-21 15:39:53Z |
+| WARN | Context Assembly | chad | 0% | 5h ago | 2026-02-21 15:40:30Z |
+| OK | Project Attribution | chad | 100% | 5h ago | 2026-02-21 15:40:30Z |
+| OK | Knowledge Extraction | chad | 100% | 5h ago | 2026-02-21 15:40:38Z |
+| WARN | Call Summarization | chad | 0% | 5h ago | 2026-02-21 15:40:41Z |
+| WARN | Signal Detection | chad | 0% | 5h ago | 2026-02-21 15:40:40Z |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
 | WARN | Embedding & Search | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 
@@ -47,6 +47,6 @@
 ```
 
 ---
-Generated: 2026-02-21T19:42:55Z
-Git SHA: f8793ff4576b760c9c00eab2b8e150be89ff4075
+Generated: 2026-02-21T20:59:22Z
+Git SHA: 7469105c22e4291f9e7d3d0fe1ca21d13d0c4fa7
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
