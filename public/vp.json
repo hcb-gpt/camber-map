@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T21:20:55Z",
-  "git_sha": "e0b7d7727f2ace0dfec335278861a6a05de4b133",
+  "updated_at": "2026-02-21T21:50:51Z",
+  "git_sha": "bbcccf779244e2c66ab4c164c2afa1508454e020",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.8,
+        "hours_since_last_activity": 51.3,
         "status": "aging"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.8,
+        "hours_since_last_activity": 51.3,
         "status": "aging"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.1,
+        "hours_since_last_activity": 0.6,
         "status": "fresh"
       },
       "health": {
@@ -104,7 +104,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 0.7,
         "status": "fresh"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.7,
+        "hours_since_last_activity": 6.2,
         "status": "fresh"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.7,
+        "hours_since_last_activity": 6.2,
         "status": "fresh"
       },
       "health": {
@@ -192,7 +192,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 0.7,
         "status": "fresh"
       },
       "health": {
@@ -221,7 +221,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 0.7,
         "status": "fresh"
       },
       "health": {
@@ -250,7 +250,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 0.7,
         "status": "fresh"
       },
       "health": {
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 0.5,
         "status": "fresh"
       },
       "health": {
