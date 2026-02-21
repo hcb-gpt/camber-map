@@ -3583,8 +3583,9 @@ window.addEventListener('resize', function() {
 requestAnimationFrame(function() {
   ensureSummaries();
   applyViewMode('flow');
-  loadDiagramData();
-  fetchVPData();
+  loadDiagramData()
+    .then(function() { return fetchVPData(); })
+    .catch(function() { return fetchVPData(); });
   fetchArchitectureSpec();
 });
 // Refresh VP data every 5 minutes to pick up pipeline activity
