@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T02:35:12Z",
-  "git_sha": "0702d19ebe2214b1489570cc82cd146d94288f81",
+  "updated_at": "2026-02-21T02:52:41Z",
+  "git_sha": "450dc5aa5aac929ea043758a529b24458f6d37ea",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,7 +19,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 32,
+        "hours_since_last_activity": 32.3,
         "status": "aging"
       },
       "health": {
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 32,
+        "hours_since_last_activity": 32.3,
         "status": "aging"
       },
       "health": {
@@ -75,7 +75,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.3,
+        "hours_since_last_activity": 5.6,
         "status": "fresh"
       },
       "health": {
@@ -104,7 +104,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 5.3,
+        "hours_since_last_activity": 5.6,
         "status": "fresh"
       },
       "health": {
@@ -134,7 +134,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.3,
+        "hours_since_last_activity": 5.6,
         "status": "fresh"
       },
       "health": {
@@ -163,7 +163,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 7.2,
+        "hours_since_last_activity": 7.5,
         "status": "fresh"
       },
       "health": {
@@ -192,7 +192,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 5.3,
+        "hours_since_last_activity": 5.6,
         "status": "fresh"
       },
       "health": {
@@ -221,7 +221,7 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 5.3,
+        "hours_since_last_activity": 5.6,
         "status": "fresh"
       },
       "health": {
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 32,
+        "hours_since_last_activity": 32.3,
         "status": "aging"
       },
       "health": {
