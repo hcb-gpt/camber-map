@@ -1395,6 +1395,88 @@ var validationContext = null;
 var validationContextPromise = null;
 var connHoverTimer = null; // global: clears connection highlights after leaving ALL connections
 var nodeHoverTimer = null; // global: clears node highlights after leaving nodes
+var hoveredNodeId = null;  // stable hover state — survives re-renders
+var hoveredConnKey = null; // tracks hovered connection "from→to"
+
+// ── Hover highlight functions (centralized, idempotent) ──
+function applyHoverState() {
+  var svg = document.getElementById('diagram');
+  if (!svg) return;
+  var nl = svg.querySelector('.node-layer');
+  var cl = svg.querySelector('.conn-layer');
+  var ll = svg.querySelector('.label-layer');
+  if (!nl || !cl) return;
+
+  if (hoveredNodeId) {
+    var nid = hoveredNodeId;
+    nl.querySelectorAll('.node-group').forEach(function(el) { el.classList.add('dimmed'); });
+    cl.querySelectorAll('.conn-group').forEach(function(el) { el.classList.add('dimmed'); });
+    var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+    if (ng) {
+      ng.classList.remove('dimmed');
+      ng.classList.add('node-active');
+      var r = ng.querySelector('.node-rect');
+      if (r) r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
+    }
+    var connGroups = cl.querySelectorAll('.conn-group[data-from="'+nid+'"], .conn-group[data-to="'+nid+'"]');
+    var peerIds = {};
+    connGroups.forEach(function(cg) {
+      cg.classList.remove('dimmed');
+      cg.classList.add('conn-active');
+      var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
+      if (f && f !== nid) peerIds[f] = true;
+      if (t && t !== nid) peerIds[t] = true;
+    });
+    Object.keys(peerIds).forEach(function(pid) {
+      var pg = nl.querySelector('.node-group[data-node-id="'+pid+'"]');
+      if (!pg) return;
+      pg.classList.remove('dimmed');
+      pg.classList.add('node-active');
+      var pr = pg.querySelector('.node-rect');
+      if (pr) pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
+    });
+    if (ll) {
+      var lbls = ll.querySelectorAll('.conn-label-group[data-from="'+nid+'"], .conn-label-group[data-to="'+nid+'"]');
+      lbls.forEach(function(l) { l.classList.add('label-active'); });
+    }
+  } else if (hoveredConnKey) {
+    var parts = hoveredConnKey.split('\u2192');
+    var fromId = parts[0], toId = parts[1];
+    cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
+    nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
+    var cg = cl.querySelector('.conn-group[data-from="'+fromId+'"][data-to="'+toId+'"]');
+    if (cg) cg.classList.remove('dimmed');
+    [fromId, toId].forEach(function(nid) {
+      var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
+      if (!ng) return;
+      ng.classList.remove('dimmed');
+      ng.classList.add('node-active');
+      var r = ng.querySelector('.node-rect');
+      if (r) r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
+    });
+    if (ll) {
+      var lbl = ll.querySelector('.conn-label-group[data-from="'+fromId+'"][data-to="'+toId+'"]');
+      if (lbl) lbl.classList.add('label-active');
+    }
+  }
+}
+
+function clearHoverState() {
+  var svg = document.getElementById('diagram');
+  if (!svg) return;
+  var nl = svg.querySelector('.node-layer');
+  var cl = svg.querySelector('.conn-layer');
+  var ll = svg.querySelector('.label-layer');
+  if (cl) cl.querySelectorAll('.dimmed, .conn-active').forEach(function(el) { el.classList.remove('dimmed', 'conn-active'); });
+  if (nl) {
+    nl.querySelectorAll('.dimmed, .node-active').forEach(function(el) {
+      el.classList.remove('dimmed', 'node-active');
+      var ar = el.querySelector('.node-rect');
+      if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
+    });
+  }
+  if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
+}
 
 // ── DOM HELPERS ────────────────────────────────────
 function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
@@ -1592,69 +1674,27 @@ function drawConn(g, c, lblLayer) {
 
   // Hover: highlight this route, dim everything else.
   // Uses global connHoverTimer so moving between connections doesn't flicker.
-  grp.addEventListener('mouseenter', function() {
+  grp.addEventListener('pointerenter', function() {
     if (state.activeFlowStage) {
       if (!infoLocked) showEdgeInfo(c);
       return;
     }
     if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
-    var root = grp.parentNode.parentNode;
-    var nl = root.querySelector('.node-layer');
-    var ll = root.querySelector('.label-layer');
-    var cl = grp.parentNode;
-    // Clear any previous highlight first
-    cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-    if (nl) {
-      nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-      nl.querySelectorAll('.node-active').forEach(function(el) {
-        el.classList.remove('node-active');
-        var r = el.querySelector('.node-rect');
-        if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
-      });
-    }
-    if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
-    // Dim everything
-    if (nl) nl.querySelectorAll('.node-group').forEach(function(ng) { ng.classList.add('dimmed'); });
-    cl.querySelectorAll('.conn-group').forEach(function(cg) { cg.classList.add('dimmed'); });
-    // Un-dim this connection and its endpoints
-    grp.classList.remove('dimmed');
-    grp.parentNode.appendChild(grp);
-    if (nl) [c.from, c.to].forEach(function(nid) {
-      var ng = nl.querySelector('.node-group[data-node-id="'+nid+'"]');
-      if (!ng) return;
-      ng.classList.remove('dimmed');
-      ng.classList.add('node-active');
-      ng.parentNode.appendChild(ng);
-      var r = ng.querySelector('.node-rect');
-      if (r) r.setAttribute('fill', r.getAttribute('data-active-fill') || r.getAttribute('fill'));
-    });
-    if (ll) {
-      var lbl = ll.querySelector('.conn-label-group[data-from="'+c.from+'"][data-to="'+c.to+'"]');
-      if (lbl) { lbl.classList.add('label-active'); ll.appendChild(lbl); }
-    }
+    hoveredConnKey = c.from + '\u2192' + c.to;
+    hoveredNodeId = null;
+    clearHoverState();
+    applyHoverState();
     if (!infoLocked) showEdgeInfo(c);
   });
-  grp.addEventListener('mouseleave', function() {
+  grp.addEventListener('pointerleave', function() {
     if (state.activeFlowStage) return;
     if (connHoverTimer) { clearTimeout(connHoverTimer); }
+    var capturedKey = c.from + '\u2192' + c.to;
     connHoverTimer = setTimeout(function() {
       connHoverTimer = null;
-      var root = grp.parentNode.parentNode;
-      if (!root) return;
-      var nl = root.querySelector('.node-layer');
-      var ll = root.querySelector('.label-layer');
-      var cl = grp.parentNode;
-      if (!cl) return;
-      cl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-      if (nl) {
-        nl.querySelectorAll('.dimmed').forEach(function(el) { el.classList.remove('dimmed'); });
-        nl.querySelectorAll('.node-active').forEach(function(el) {
-          el.classList.remove('node-active');
-          var r = el.querySelector('.node-rect');
-          if (r) r.setAttribute('fill', r.getAttribute('data-base-fill') || r.getAttribute('fill'));
-        });
-      }
-      if (ll) ll.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
+      if (hoveredConnKey !== capturedKey) return;
+      hoveredConnKey = null;
+      clearHoverState();
       if (!infoLocked) hideInfo();
     }, 500);
   });
@@ -1699,13 +1739,13 @@ function drawConn(g, c, lblLayer) {
     lblLayer.appendChild(labelGrp);
 
     // Make pills clickable without flicker when moving from the line to the pill.
-    labelGrp.addEventListener('mouseenter', function(e) {
+    labelGrp.addEventListener('pointerenter', function(e) {
       e.stopPropagation();
       if (connHoverTimer) { clearTimeout(connHoverTimer); connHoverTimer = null; }
       labelGrp.classList.add('label-active');
     });
-    labelGrp.addEventListener('mouseleave', function() {
-      try { grp.dispatchEvent(new Event('mouseleave')); } catch (e) {}
+    labelGrp.addEventListener('pointerleave', function() {
+      try { grp.dispatchEvent(new PointerEvent('pointerleave')); } catch (e) {}
     });
     labelGrp.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -1825,59 +1865,27 @@ function renderDiagram() {
       infoLocked = true;
       showInfo(n);
     });
-    ng.addEventListener('mouseenter', function() {
+    ng.addEventListener('pointerenter', function() {
       if (state.activeFlowStage) {
         if (!infoLocked) showInfo(n);
         return;
       }
       if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); nodeHoverTimer = null; }
+      hoveredNodeId = n.id;
+      hoveredConnKey = null;
       if (!infoLocked) showInfo(n);
-      // Dim everything first
-      nodeLayer.querySelectorAll('.node-group').forEach(function(el) { el.classList.add('dimmed'); });
-      connLayer.querySelectorAll('.conn-group').forEach(function(el) { el.classList.add('dimmed'); });
-      // Un-dim this node
-      ng.classList.remove('dimmed');
-      ng.classList.add('node-active');
-      ng.parentNode.appendChild(ng);
-      rect.setAttribute('fill', rect.getAttribute('data-active-fill') || rect.getAttribute('fill'));
-      // Un-dim connected edges and peer nodes
-      var connGroups = connLayer.querySelectorAll('.conn-group[data-from="'+n.id+'"], .conn-group[data-to="'+n.id+'"]');
-      var peerIds = {};
-      connGroups.forEach(function(cg) {
-        cg.classList.remove('dimmed');
-        cg.classList.add('conn-active');
-        cg.parentNode.appendChild(cg);
-        var f = cg.getAttribute('data-from'), t = cg.getAttribute('data-to');
-        if (f && f !== n.id) peerIds[f] = true;
-        if (t && t !== n.id) peerIds[t] = true;
-      });
-      Object.keys(peerIds).forEach(function(pid) {
-        var pg = nodeLayer.querySelector('.node-group[data-node-id="'+pid+'"]');
-        if (!pg) return;
-        pg.classList.remove('dimmed');
-        pg.classList.add('node-active');
-        pg.parentNode.appendChild(pg);
-        var pr = pg.querySelector('.node-rect');
-        if (pr) pr.setAttribute('fill', pr.getAttribute('data-active-fill') || pr.getAttribute('fill'));
-      });
-      // Show related labels
-      var lbls = labelLayer.querySelectorAll('.conn-label-group[data-from="'+n.id+'"], .conn-label-group[data-to="'+n.id+'"]');
-      lbls.forEach(function(l) { l.classList.add('label-active'); labelLayer.appendChild(l); });
+      applyHoverState();
     });
-    ng.addEventListener('mouseleave', function() {
+    ng.addEventListener('pointerleave', function() {
       if (state.activeFlowStage) return;
       if (nodeHoverTimer) { clearTimeout(nodeHoverTimer); }
+      var capturedId = n.id;
       nodeHoverTimer = setTimeout(function() {
         nodeHoverTimer = null;
+        if (hoveredNodeId !== capturedId) return;
+        hoveredNodeId = null;
+        clearHoverState();
         if (!infoLocked) hideInfo();
-        // Clear all dims, actives, labels
-        connLayer.querySelectorAll('.dimmed, .conn-active').forEach(function(el) { el.classList.remove('dimmed', 'conn-active'); });
-        nodeLayer.querySelectorAll('.dimmed, .node-active').forEach(function(el) {
-          el.classList.remove('dimmed', 'node-active');
-          var ar = el.querySelector('.node-rect');
-          if (ar) ar.setAttribute('fill', ar.getAttribute('data-base-fill') || ar.getAttribute('fill'));
-        });
-        labelLayer.querySelectorAll('.label-active').forEach(function(l) { l.classList.remove('label-active'); });
       }, 120);
     });
 
@@ -1885,6 +1893,7 @@ function renderDiagram() {
   });
 
   svg.appendChild(g);
+  if (hoveredNodeId || hoveredConnKey) applyHoverState();
   applyActiveFlowStage();
 }
 
