@@ -4518,5 +4518,32 @@
     <edge id="e999" source="edge:embed-facts" target="table:public.project_facts">
       <data key="d2">writes</data>
     </edge>
+    <edge id="e1000" source="edge:process-call" target="table:public.review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e1001" source="edge:process-call" target="table:public.calls_raw">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e1002" source="edge:process-call" target="table:public.interactions">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e1003" source="edge:process-call" target="table:public.event_audit">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e1004" source="edge:process-call" target="table:public.idempotency_keys">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e1005" source="edge:process-call" target="table:public.project_contacts">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e1006" source="edge:process-call" target="table:public.projects">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e1007" source="edge:process-call" target="table:public.correspondent_project_affinity">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e1008" source="edge:process-call" target="edge:segment-call">
+      <data key="d2">calls</data>
+    </edge>
   </graph>
 </graphml>

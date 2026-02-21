@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T05:59:45Z",
-  "git_sha": "c0b7f631454d14126a598316966c52085d321240",
+  "updated_at": "2026-02-21T17:52:50Z",
+  "git_sha": "576037a7eabd9e0231ffa752a97a2e3b1a22cec9",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,12 +19,12 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 35.5,
+        "hours_since_last_activity": 47.3,
         "status": "aging"
       },
       "health": {
         "status": "degraded",
-        "row_count": 1123,
+        "row_count": 1124,
         "last_activity_at": "2026-02-19T18:32:33.994Z"
       },
       "depends_on": []
@@ -46,7 +46,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 35.5,
+        "hours_since_last_activity": 47.3,
         "status": "aging"
       },
       "health": {
@@ -75,13 +75,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 8.7,
+        "hours_since_last_activity": 0.1,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 504,
-        "last_activity_at": "2026-02-20T21:19:24.408Z"
+        "row_count": 510,
+        "last_activity_at": "2026-02-21T17:46:25.137Z"
       },
       "depends_on": [
         "transcription"
@@ -104,13 +104,13 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 8.7,
+        "hours_since_last_activity": 2.2,
         "status": "fresh"
       },
       "health": {
         "status": "degraded",
-        "row_count": 1421,
-        "last_activity_at": "2026-02-20T21:19:32.682Z"
+        "row_count": 1424,
+        "last_activity_at": "2026-02-21T15:40:30.424Z"
       },
       "depends_on": [
         "segmentation",
@@ -134,13 +134,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 8.7,
+        "hours_since_last_activity": 2.2,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1421,
-        "last_activity_at": "2026-02-20T21:19:32.682Z"
+        "row_count": 1424,
+        "last_activity_at": "2026-02-21T15:40:30.424Z"
       },
       "depends_on": [
         "context-assembly"
@@ -163,13 +163,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 10.6,
+        "hours_since_last_activity": 0.1,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 3380,
-        "last_activity_at": "2026-02-20T19:23:01.331Z"
+        "row_count": 3394,
+        "last_activity_at": "2026-02-21T17:46:35.385Z"
       },
       "depends_on": [
         "attribution"
@@ -192,13 +192,13 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 8.7,
+        "hours_since_last_activity": 2.2,
         "status": "fresh"
       },
       "health": {
         "status": "degraded",
-        "row_count": 865,
-        "last_activity_at": "2026-02-20T21:19:01.761Z"
+        "row_count": 869,
+        "last_activity_at": "2026-02-21T15:40:41.668Z"
       },
       "depends_on": [
         "segmentation"
@@ -221,13 +221,13 @@
         "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 8.7,
+        "hours_since_last_activity": 0.1,
         "status": "fresh"
       },
       "health": {
         "status": "degraded",
-        "row_count": 1236,
-        "last_activity_at": "2026-02-20T21:19:37.610Z"
+        "row_count": 1242,
+        "last_activity_at": "2026-02-21T17:46:37.244Z"
       },
       "depends_on": [
         "journal"
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 35.5,
+        "hours_since_last_activity": 47.3,
         "status": "aging"
       },
       "health": {
