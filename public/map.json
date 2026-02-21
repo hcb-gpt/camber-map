@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T21:14:12Z",
-  "git_sha": "8ab57500c9bc76a82b918708d363d3e78a06cf91",
+  "updated_at": "2026-02-21T21:18:05Z",
+  "git_sha": "dc3e375a78f55f950b1ad922ece90553ea7d6d73",
   "mode": "live",
   "nodes": [
     {
@@ -2794,435 +2794,6 @@
       "name": "vector",
       "title": "extension:vector",
       "group": "db"
-    },
-    {
-      "id": "edge:review-resolve",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-resolve",
-      "title": "review-resolve",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 32,
-        "updated_at": 1771391779694
-      }
-    },
-    {
-      "id": "edge:sync-google-contacts",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sync-google-contacts",
-      "title": "sync-google-contacts",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1768880323144
-      }
-    },
-    {
-      "id": "edge:test-tma-fetch",
-      "kind": "edge",
-      "group": "edge",
-      "name": "test-tma-fetch",
-      "title": "test-tma-fetch",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1769203551168
-      }
-    },
-    {
-      "id": "edge:transcribe-audio",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-audio",
-      "title": "transcribe-audio",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 35,
-        "updated_at": 1769204461909
-      }
-    },
-    {
-      "id": "edge:transcribe-whisper",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-whisper",
-      "title": "transcribe-whisper",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 30,
-        "updated_at": 1769205468082
-      }
-    },
-    {
-      "id": "edge:transcribe-claude",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-claude",
-      "title": "transcribe-claude",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 31,
-        "updated_at": 1769205580692
-      }
-    },
-    {
-      "id": "edge:transcribe-assemblyai",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-assemblyai",
-      "title": "transcribe-assemblyai",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769206316340
-      }
-    },
-    {
-      "id": "edge:transcribe-deepgram",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-deepgram",
-      "title": "transcribe-deepgram",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 37,
-        "updated_at": 1771391787859
-      }
-    },
-    {
-      "id": "edge:process-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "process-call",
-      "title": "process-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771696015641
-      }
-    },
-    {
-      "id": "edge:segment-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-call",
-      "title": "segment-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 46,
-        "updated_at": 1771211112299
-      }
-    },
-    {
-      "id": "edge:dlq-enqueue",
-      "kind": "edge",
-      "group": "edge",
-      "name": "dlq-enqueue",
-      "title": "dlq-enqueue",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769753728479
-      }
-    },
-    {
-      "id": "edge:context-assembly",
-      "kind": "edge",
-      "group": "edge",
-      "name": "context-assembly",
-      "title": "context-assembly",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771451177801
-      }
-    },
-    {
-      "id": "edge:ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "ai-router",
-      "title": "ai-router",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 93,
-        "updated_at": 1771395842810
-      }
-    },
-    {
-      "id": "edge:eval-ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "eval-ai-router",
-      "title": "eval-ai-router",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769784329255
-      }
-    },
-    {
-      "id": "edge:segment-llm",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-llm",
-      "title": "segment-llm",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771391791148
-      }
-    },
-    {
-      "id": "edge:admin-reseed",
-      "kind": "edge",
-      "group": "edge",
-      "name": "admin-reseed",
-      "title": "admin-reseed",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 45,
-        "updated_at": 1771452430588
-      }
-    },
-    {
-      "id": "edge:zapier-call-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "zapier-call-ingest",
-      "title": "zapier-call-ingest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 25,
-        "updated_at": 1771356167367
-      }
-    },
-    {
-      "id": "edge:striking-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "striking-detect",
-      "title": "striking-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356183310
-      }
-    },
-    {
-      "id": "edge:journal-extract",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-extract",
-      "title": "journal-extract",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 33,
-        "updated_at": 1771356166018
-      }
-    },
-    {
-      "id": "edge:journal-consolidate",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-consolidate",
-      "title": "journal-consolidate",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771356169648
-      }
-    },
-    {
-      "id": "edge:chain-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chain-detect",
-      "title": "chain-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356167842
-      }
-    },
-    {
-      "id": "edge:generate-summary",
-      "kind": "edge",
-      "group": "edge",
-      "name": "generate-summary",
-      "title": "generate-summary",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1771391778600
-      }
-    },
-    {
-      "id": "edge:gmail-context-lookup",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gmail-context-lookup",
-      "title": "gmail-context-lookup",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771391792771
-      }
-    },
-    {
-      "id": "edge:shadow-replay",
-      "kind": "edge",
-      "group": "edge",
-      "name": "shadow-replay",
-      "title": "shadow-replay",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356167075
-      }
-    },
-    {
-      "id": "edge:morning-digest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-digest",
-      "title": "morning-digest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771356163677
-      }
-    },
-    {
-      "id": "edge:loop-closure",
-      "kind": "edge",
-      "group": "edge",
-      "name": "loop-closure",
-      "title": "loop-closure",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771391784096
-      }
-    },
-    {
-      "id": "edge:review-triage",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-triage",
-      "title": "review-triage",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771111081237
-      }
-    },
-    {
-      "id": "edge:journal-embed-backfill",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-embed-backfill",
-      "title": "journal-embed-backfill",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356182542
-      }
-    },
-    {
-      "id": "edge:gt-apply",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gt-apply",
-      "title": "gt-apply",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771356178888
-      }
-    },
-    {
-      "id": "edge:alias-review",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-review",
-      "title": "alias-review",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771356164279
-      }
-    },
-    {
-      "id": "edge:alias-hygiene",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-hygiene",
-      "title": "alias-hygiene",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343823377
-      }
-    },
-    {
-      "id": "edge:alias-scout",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-scout",
-      "title": "alias-scout",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343815540
-      }
-    },
-    {
-      "id": "edge:chat-proxy",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chat-proxy",
-      "title": "chat-proxy",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771565626910
-      }
     }
   ],
   "edges": [
@@ -4377,15 +3948,6 @@
       "type": "depends_on"
     },
     {
-      "from": "edge:smoke_test",
-      "to": "table:public.evidence_events",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-19T17:23:40.074Z",
-        "seen_count": "1"
-      }
-    },
-    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -4415,15 +3977,6 @@
     {
       "from": "edge:journal-extract",
       "to": "table:public.journal_claims",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
@@ -4908,15 +4461,6 @@
       }
     },
     {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
-        "seen_count": "1"
-      }
-    },
-    {
       "from": "edge:transcribe-deepgram",
       "to": "table:public.api_keys",
       "type": "reads",
@@ -4949,6 +4493,141 @@
       "type": "calls",
       "meta": {
         "last_seen_at_utc": "2026-02-21T21:11:06.452Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.transcripts_comparison",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:context-assembly",
+      "to": "table:public.span_place_mentions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.event_audit",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:generate-summary",
+      "to": "table:public.event_audit",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.diagnostic_logs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:striking-detect",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.journal_runs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gmail-context-lookup",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gmail-context-lookup",
+      "to": "table:public.contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:12.751Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:segment-llm",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-21T21:15:39.465Z",
         "seen_count": "1"
       }
     }

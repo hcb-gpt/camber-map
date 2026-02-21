@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T21:14:13Z",
-  "git_sha": "8ab57500c9bc76a82b918708d363d3e78a06cf91",
+  "updated_at": "2026-02-21T21:18:09Z",
+  "git_sha": "dc3e375a78f55f950b1ad922ece90553ea7d6d73",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -12,14 +12,14 @@
         "pipeline"
       ],
       "tech_node_count": 4,
-      "tech_nodes_in_graph": 3,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.7,
+        "hours_since_last_activity": 50.8,
         "status": "aging"
       },
       "health": {
@@ -39,14 +39,14 @@
         "pipeline"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 3,
+      "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 50.7,
+        "hours_since_last_activity": 50.8,
         "status": "aging"
       },
       "health": {
@@ -68,20 +68,20 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
-        "observed": 0,
-        "pct": 0
+        "observed": 1,
+        "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 5.6,
+        "hours_since_last_activity": 0,
         "status": "fresh"
       },
       "health": {
-        "status": "degraded",
+        "status": "healthy",
         "row_count": 507,
-        "last_activity_at": "2026-02-21T15:39:53.453Z"
+        "last_activity_at": "2026-02-21T21:15:39.465Z"
       },
       "depends_on": [
         "transcription"
@@ -97,7 +97,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 1,
+      "tech_nodes_in_graph": 0,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -127,7 +127,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -156,7 +156,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -185,7 +185,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -214,7 +214,7 @@
         "pipeline"
       ],
       "tech_node_count": 4,
-      "tech_nodes_in_graph": 4,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -243,7 +243,7 @@
         "pipeline"
       ],
       "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
         "observed": 1,
@@ -272,20 +272,20 @@
         "search"
       ],
       "tech_node_count": 3,
-      "tech_nodes_in_graph": 2,
+      "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 50.7,
-        "status": "aging"
+        "hours_since_last_activity": 92.5,
+        "status": "stale"
       },
       "health": {
-        "status": "degraded",
+        "status": "stale",
         "row_count": 381,
-        "last_activity_at": "2026-02-19T18:32:33.994Z"
+        "last_activity_at": "2026-02-18T00:50:12.848Z"
       },
       "depends_on": [
         "journal"
@@ -346,9 +346,9 @@
   ],
   "summary": {
     "total": 10,
-    "healthy": 6,
-    "degraded": 4,
-    "stale": 0,
+    "healthy": 7,
+    "degraded": 2,
+    "stale": 1,
     "unknown": 0,
     "overall_coverage_pct": 0.9
   }

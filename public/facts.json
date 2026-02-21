@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T21:14:12Z",
-  "git_sha": "8ab57500c9bc76a82b918708d363d3e78a06cf91",
+  "updated_at": "2026-02-21T21:18:05Z",
+  "git_sha": "dc3e375a78f55f950b1ad922ece90553ea7d6d73",
   "mode": "live",
   "db": {
     "applied_migrations": 495,
@@ -9,11 +9,8 @@
     "functions": 125,
     "extensions": 12
   },
-  "edge_functions": {
-    "enabled": true,
-    "count": 33
-  },
+  "edge_functions": null,
   "runtime_lineage": {
-    "count": 64
+    "count": 76
   }
 }
