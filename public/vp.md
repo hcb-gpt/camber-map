@@ -8,8 +8,8 @@
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| WARN | Call Ingestion | chad | 100% | 48h ago | 2026-02-19 18:32:33Z |
-| WARN | Transcription | chad | 100% | 48h ago | 2026-02-19 18:32:33Z |
+| WARN | Call Ingestion | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
+| WARN | Transcription | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 | OK | Segmentation | chad | 100% | 3h ago | 2026-02-21 15:39:53Z |
 | WARN | Context Assembly | chad | 0% | 3h ago | 2026-02-21 15:40:30Z |
 | OK | Project Attribution | chad | 100% | 3h ago | 2026-02-21 15:40:30Z |
@@ -17,7 +17,7 @@
 | WARN | Call Summarization | chad | 0% | 3h ago | 2026-02-21 15:40:41Z |
 | WARN | Signal Detection | chad | 0% | 3h ago | 2026-02-21 15:40:40Z |
 | ??? | Journal Consolidation | chad | 0% | n/a | n/a |
-| WARN | Embedding & Search | chad | 100% | 48h ago | 2026-02-19 18:32:33Z |
+| WARN | Embedding & Search | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 
 ## Bottlenecks
 
@@ -47,6 +47,6 @@
 ```
 
 ---
-Generated: 2026-02-21T18:11:02Z
-Git SHA: eb6581d8f47845cc4857320e5773fe60e17cd2eb
+Generated: 2026-02-21T18:51:08Z
+Git SHA: bdd11aaffca70e4fea6a0b1b48b8fd68a9e086fc
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
