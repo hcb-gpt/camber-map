@@ -46,12 +46,12 @@
       "tags": ["core", "pipeline"],
       "tech_nodes": [
         "edge:segment-llm",
-        "table:public.call_spans"
+        "table:public.conversation_spans"
       ],
       "expected_producers": ["edge:segment-llm"],
       "health_queries": {
-        "row_count": "SELECT count(*)::int AS n FROM public.call_spans",
-        "last_insert": "SELECT max(created_at) AS ts FROM public.call_spans"
+        "row_count": "SELECT count(*)::int AS n FROM public.conversation_spans WHERE NOT is_superseded",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.conversation_spans WHERE NOT is_superseded"
       },
       "depends_on": ["transcription"]
     },
@@ -66,7 +66,10 @@
         "edge:context-assembly-v2"
       ],
       "expected_producers": ["edge:context-assembly"],
-      "health_queries": {},
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.assembler_diagnostics",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.assembler_diagnostics"
+      },
       "depends_on": ["segmentation", "embedding"]
     },
     {
@@ -77,12 +80,12 @@
       "tags": ["core", "pipeline"],
       "tech_nodes": [
         "edge:ai-router",
-        "table:public.projects"
+        "table:public.span_attributions"
       ],
       "expected_producers": ["edge:ai-router"],
       "health_queries": {
-        "row_count": "SELECT count(*)::int AS n FROM public.projects",
-        "last_insert": "SELECT max(created_at) AS ts FROM public.projects"
+        "row_count": "SELECT count(*)::int AS n FROM public.span_attributions",
+        "last_insert": "SELECT max(attributed_at) AS ts FROM public.span_attributions"
       },
       "depends_on": ["context-assembly"]
     },
@@ -110,10 +113,14 @@
       "owner": "chad",
       "tags": ["core", "pipeline"],
       "tech_nodes": [
-        "edge:generate-summary"
+        "edge:generate-summary",
+        "table:public.interactions"
       ],
       "expected_producers": ["edge:generate-summary"],
-      "health_queries": {},
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.interactions WHERE ai_scheduler_json IS NOT NULL",
+        "last_insert": "SELECT max(updated_at) AS ts FROM public.interactions WHERE ai_scheduler_json IS NOT NULL"
+      },
       "depends_on": ["segmentation"]
     },
     {
@@ -125,10 +132,14 @@
       "tech_nodes": [
         "edge:striking-detect",
         "edge:chain-detect",
-        "edge:loop-closure"
+        "edge:loop-closure",
+        "table:public.striking_signals"
       ],
       "expected_producers": ["edge:striking-detect"],
-      "health_queries": {},
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.striking_signals",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.striking_signals"
+      },
       "depends_on": ["journal"]
     },
     {
@@ -138,10 +149,14 @@
       "owner": "chad",
       "tags": ["core", "pipeline"],
       "tech_nodes": [
-        "edge:journal-consolidate"
+        "edge:journal-consolidate",
+        "table:public.belief_claims"
       ],
       "expected_producers": ["edge:journal-consolidate"],
-      "health_queries": {},
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.belief_claims",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.belief_claims"
+      },
       "depends_on": ["journal"]
     },
     {

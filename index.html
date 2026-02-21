@@ -1397,7 +1397,7 @@ var MOBILE_STAGES = [
     label: 'Daily Report',
     purpose: 'Morning digest with signals, queue pressure, and health metrics.',
     why: 'One glance tells you if the pipeline is healthy and what needs attention today.',
-    capabilities: [],
+    capabilities: ['summarization'],
     nodes: ['morning-digest']
   }
 ];
@@ -3356,9 +3356,9 @@ function renderFlowNav() {
 // ── VP DATA FETCHER ───────────────────────────────
 function fetchVPData() {
   return Promise.all([
-    fetch('./public/vp.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/facts.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
-    fetch('./public/changes.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    fetch('./public/vp.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/facts.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+    fetch('./public/changes.json?t=' + Date.now()).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
   ]).then(function(results) {
     vpData = results[0];
     factsData = results[1];
@@ -3610,6 +3610,8 @@ requestAnimationFrame(function() {
   fetchVPData();
   fetchArchitectureSpec();
 });
+// Refresh VP data every 5 minutes to pick up pipeline activity
+setInterval(fetchVPData, 5 * 60 * 1000);
 </script>
 </body>
 </html>
