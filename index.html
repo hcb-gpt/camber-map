@@ -949,7 +949,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdn.jsdelivr.net/npm/ajv@8.17.1/dist/ajv.min.js"></script>
+<script src="./public/ajv.min.js"></script>
 
 <script>
 // ── SUPABASE ──────────────────────────────────────────
@@ -3152,7 +3152,13 @@ function renderFlowNav() {
 
 // ── DIAGRAM + VP DATA FETCHERS ─────────────────────
 function getAjvCtor() {
-  if (typeof window !== 'undefined') return window.Ajv || null;
+  if (typeof window === 'undefined') return null;
+  if (window.Ajv) return window.Ajv;
+  if (window.ajv7) {
+    if (typeof window.ajv7 === 'function') return window.ajv7;
+    if (window.ajv7.default) return window.ajv7.default;
+    if (window.ajv7.Ajv) return window.ajv7.Ajv;
+  }
   return null;
 }
 
@@ -3583,8 +3589,9 @@ window.addEventListener('resize', function() {
 requestAnimationFrame(function() {
   ensureSummaries();
   applyViewMode('flow');
-  loadDiagramData();
-  fetchVPData();
+  loadDiagramData()
+    .then(function() { return fetchVPData(); })
+    .catch(function() { return fetchVPData(); });
   fetchArchitectureSpec();
 });
 // Refresh VP data every 5 minutes to pick up pipeline activity
