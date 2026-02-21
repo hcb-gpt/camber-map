@@ -39,15 +39,17 @@
   .canvas-zoom-btn:active { background: var(--interactive-muted); }
   .canvas-zoom-fit { font-size: 11px; width: auto; padding: 0 10px; }
   /* ── Connection hover-to-reveal labels ── */
-  .conn-group { cursor: pointer; transition: opacity 0.2s ease; }
+  .conn-group { cursor: pointer; opacity: 0.15; transition: opacity 0.2s ease; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
-  .conn-group .conn-path { transition: stroke-opacity 0.15s ease, stroke-width 0.15s ease; }
-  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-opacity: 1; stroke-width: 3; }
+  .conn-group .conn-path { transition: stroke-width 0.15s ease; }
+  .conn-group:hover, .conn-group.conn-active { opacity: 1; }
+  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
   .conn-label-group { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
   .conn-label-group.label-active { opacity: 1; }
 
   .node-group { transition: opacity 0.2s ease; }
-  .node-group.dimmed, .conn-group.dimmed { opacity: 0.15; }
+  .node-group.dimmed { opacity: 0.15; }
+  .conn-group.dimmed { opacity: 0.05; }
 
   .node-rect { rx: 8; ry: 8; stroke-width: 1.5; cursor: pointer; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
   .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
@@ -1525,7 +1527,7 @@ function drawConn(g, c, lblLayer) {
   grp.appendChild(hit);
 
   // Visible connection path
-  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'stroke-opacity': '0.15', 'marker-end': 'url(#'+ct.marker+')' });
+  var path = createSvgEl('path', { class: 'conn-path', d: d, fill: 'none', stroke: ct.color, 'stroke-width': '2', 'marker-end': 'url(#'+ct.marker+')' });
   if (ct.dash) path.setAttribute('stroke-dasharray', ct.dash);
   grp.appendChild(path);
 
