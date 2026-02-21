@@ -2452,5 +2452,11 @@
     <edge id="e305" source="edge:segment-llm" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
+    <edge id="e306" source="edge:embed-facts" target="table:public.project_facts">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e307" source="edge:embed-facts" target="table:public.project_facts">
+      <data key="d2">writes</data>
+    </edge>
   </graph>
 </graphml>

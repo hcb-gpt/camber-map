@@ -1,8 +1,7 @@
 # VP Changes (generated)
 
-- **embedding**: health changed from `stale` to `healthy`
-- **embedding**: coverage changed from 0% to 100%
+No changes detected since last build.
 
 ---
-Generated: 2026-02-21T21:20:17Z
+Generated: 2026-02-21T21:20:55Z
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
