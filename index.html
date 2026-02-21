@@ -33,6 +33,11 @@
   .comment-meta { color: var(--text-disabled); font-size: 9px; margin-top: var(--space-050); }
   .offline-banner { background: #FEF2F2; border: 1px solid var(--status-error)66; border-radius: var(--radius-200); padding: var(--space-150) var(--space-300); font-size: 10px; color: var(--status-error); margin-bottom: var(--space-200); }
   svg { width: 100%; height: 100%; touch-action: none; }
+  .canvas-zoom-controls { position: absolute; bottom: 16px; left: 16px; z-index: 10; display: flex; gap: 4px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: var(--radius-300); padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .canvas-zoom-btn { width: 32px; height: 32px; border: none; background: transparent; border-radius: var(--radius-200); cursor: pointer; font-size: 16px; font-weight: 500; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; transition: background 0.12s ease, color 0.12s ease; font-family: 'DM Sans', system-ui, sans-serif; }
+  .canvas-zoom-btn:hover { background: var(--surface-hover); color: var(--text-primary); }
+  .canvas-zoom-btn:active { background: var(--interactive-muted); }
+  .canvas-zoom-fit { font-size: 11px; width: auto; padding: 0 10px; }
   /* ── Connection hover-to-reveal labels ── */
   .conn-group { cursor: pointer; transition: opacity 0.2s ease; }
   .conn-group .conn-hit { stroke: transparent; stroke-width: 12; fill: none; pointer-events: stroke; }
@@ -690,15 +695,11 @@
     }
     .preset-btn { min-height: 44px; padding: 10px; margin-bottom: var(--space-200); }
     .search-box { min-height: 44px; font-size: var(--font-size-100); padding: var(--space-200) var(--space-300); }
+    .canvas-zoom-controls { bottom: calc(12px + env(safe-area-inset-bottom, 0px)); left: 12px; }
+    .canvas-zoom-btn { width: 44px; height: 44px; font-size: 20px; }
+    .canvas-zoom-fit { font-size: 13px; padding: 0 14px; }
   }
 
-
-  /* ── Product-designer copy + mobile explorer ───────────────────── */
-  #zoom-section { margin-top: var(--space-300); margin-bottom: var(--space-300); }
-  #zoom-section h3 { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-tertiary); margin: var(--space-300) 0 var(--space-150); }
-  .zoom-row { display: flex; gap: var(--space-200); }
-  .small-btn { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border-default); color: var(--text-secondary); padding: var(--space-100) var(--space-200); border-radius: var(--radius-200); font-size: 12px; font-weight: 500; min-height: 36px; display: flex; align-items: center; justify-content: center; }
-  .small-btn:active { transform: translateY(1px); }
 
   /* Mobile explorer (System view) */
   #mobile-explorer { display: none; height: calc(100dvh - 64px - var(--safe-t, 0px)); overflow: auto; padding: 0 var(--space-300) calc(96px + var(--safe-b, 0px)); }
@@ -754,7 +755,7 @@
   .chat-msg strong { color: var(--text-primary); }
 
   /* ── Transition consistency for interactive elements ── */
-  .chat-fab, .chat-header-btn, .chat-empty-chip, .small-btn, .ms-link { transition: all 0.15s ease; }
+  .chat-fab, .chat-header-btn, .chat-empty-chip, .ms-link { transition: all 0.15s ease; }
   .chat-panel { transition: transform 0.3s ease; }
   .mobile-sheet { transition: bottom 0.22s ease, height 0.22s ease; }
   .changes-drawer { transition: transform 0.3s ease; }
@@ -777,14 +778,6 @@
     <div class="stat-bar" id="stat-bar"></div>
     <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
     
-    <div id="zoom-section">
-      <h3>Zoom</h3>
-      <div class="zoom-row">
-        <button class="small-btn" onclick="zoomOut()">Smaller</button>
-        <button class="small-btn" onclick="fitToScreen()">Fit</button>
-        <button class="small-btn" onclick="zoomIn()">Bigger</button>
-      </div>
-    </div>
 <div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
     <div id="presets-section"><div id="presets"></div></div>
     <div id="layers-section"><h3>Areas</h3><div id="layer-toggles"></div></div>
@@ -793,6 +786,11 @@
   </div>
 
   <div class="canvas-area" id="canvas-area">
+    <div class="canvas-zoom-controls">
+      <button class="canvas-zoom-btn" onclick="zoomOut()" title="Zoom out">&minus;</button>
+      <button class="canvas-zoom-btn canvas-zoom-fit" onclick="fitToScreen()" title="Fit to screen">Fit</button>
+      <button class="canvas-zoom-btn" onclick="zoomIn()" title="Zoom in">&plus;</button>
+    </div>
 <div class="info-panel" id="info-panel">
       <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
       <h4 id="info-title"></h4>
