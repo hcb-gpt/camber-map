@@ -45,7 +45,9 @@
   .conn-group:hover, .conn-group.conn-active { opacity: 1; }
   .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
   .conn-label-group { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
-  .conn-label-group.label-active { opacity: 1; }
+  .conn-label-group.label-active { opacity: 1; pointer-events: auto; }
+  .conn-label-pill { transition: fill 0.12s ease, stroke 0.12s ease; }
+  .conn-label-group:hover .conn-label-pill { fill: #F0F4FF; stroke: #93A3CF; }
 
   .node-group { transition: opacity 0.2s ease; }
   .node-group.dimmed { opacity: 0.15; }
@@ -1535,12 +1537,19 @@ function drawConn(g, c, lblLayer) {
 
   // Connection labels render in the top label layer (above nodes)
   if (c.label && lblLayer) {
-    var labelGrp = createSvgEl('g', { class: 'conn-label-group', 'data-from': c.from, 'data-to': c.to });
-    var pillW = c.label.length * 4.5 + 6;
-    var pillH = 12;
-    var ly = my - 14;
-    labelGrp.appendChild(createSvgEl('rect', { x: mx - pillW/2, y: ly - pillH/2, width: pillW, height: pillH, rx: '3', ry: '3', fill: '#FFFFFF', 'fill-opacity': '0.9', stroke: '#D5D7DA', 'stroke-width': '0.5' }));
-    labelGrp.appendChild(createSvgEl('text', { x: mx, y: ly, 'text-anchor': 'middle', fill: ct.color, 'font-size': '7', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
+    var labelGrp = createSvgEl('g', { class: 'conn-label-group', 'data-from': c.from, 'data-to': c.to, style: 'cursor:pointer;pointer-events:auto;' });
+    var pillW = c.label.length * 6.5 + 14;
+    var pillH = 18;
+    var ly = my - 18;
+    labelGrp.appendChild(createSvgEl('rect', { class: 'conn-label-pill', x: mx - pillW/2, y: ly - pillH/2, width: pillW, height: pillH, rx: '4', ry: '4', fill: '#FFFFFF', stroke: '#D5D7DA', 'stroke-width': '0.75' }));
+    labelGrp.appendChild(createSvgEl('text', { x: mx, y: ly, 'text-anchor': 'middle', fill: ct.color, 'font-size': '10', 'font-weight': '500', 'font-family': 'system-ui', 'dominant-baseline': 'central' }, c.label));
+    labelGrp.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var desc = (c.desc || c.label) + '\n\n' + c.from + ' → ' + c.to + '  (' + (ct.label || c.type) + ')';
+      var fromNode = nodes.find(function(n) { return n.id === c.from; });
+      var toNode = nodes.find(function(n) { return n.id === c.to; });
+      showInfo({ label: c.label, subtitle: c.from + ' → ' + c.to, desc: c.desc || 'Connection: ' + (ct.label || c.type) });
+    });
     lblLayer.appendChild(labelGrp);
   }
 }
