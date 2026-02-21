@@ -2,7 +2,7 @@
 
 ## Overall Health
 
-**7 healthy, 2 degraded, 1 stale** out of 10 capabilities (coverage: 90%)
+**8 healthy, 2 degraded** out of 10 capabilities (coverage: 100%)
 
 ## Capabilities
 
@@ -11,19 +11,18 @@
 | WARN | Call Ingestion | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 | WARN | Transcription | chad | 100% | 2d ago | 2026-02-19 18:32:33Z |
 | OK | Segmentation | chad | 100% | 6m ago | 2026-02-21 21:15:39Z |
-| OK | Context Assembly | chad | 100% | 6m ago | 2026-02-21 21:10:49Z |
+| OK | Context Assembly | chad | 100% | 12m ago | 2026-02-21 21:10:49Z |
 | OK | Project Attribution | chad | 100% | 6h ago | 2026-02-21 15:40:30Z |
 | OK | Knowledge Extraction | chad | 100% | 6h ago | 2026-02-21 15:40:38Z |
-| OK | Call Summarization | chad | 100% | 6m ago | 2026-02-21 21:10:54Z |
-| OK | Signal Detection | chad | 100% | 6m ago | 2026-02-21 21:10:54Z |
-| OK | Journal Consolidation | chad | 100% | 6m ago | 2026-02-21 21:10:59Z |
-| ALERT | Embedding & Search | chad | 0% | 4d ago | 2026-02-18 00:50:12Z |
+| OK | Call Summarization | chad | 100% | 12m ago | 2026-02-21 21:10:54Z |
+| OK | Signal Detection | chad | 100% | 12m ago | 2026-02-21 21:10:54Z |
+| OK | Journal Consolidation | chad | 100% | 12m ago | 2026-02-21 21:10:59Z |
+| OK | Embedding & Search | chad | 100% | 0m ago | 2026-02-21 21:19:40Z |
 
 ## Bottlenecks
 
 - **WARN** Call Ingestion — blocks: transcription
 - **WARN** Transcription — blocks: segmentation
-- **ALERT** Embedding & Search — blocks: context-assembly
 
 ## Pipeline Flow
 
@@ -44,6 +43,6 @@
 ```
 
 ---
-Generated: 2026-02-21T21:18:47Z
-Git SHA: 459f55921bdafe8fce76991349a312f56cc12558
+Generated: 2026-02-21T21:20:17Z
+Git SHA: c3b5f867095c69d3e33bb0be85fe7f142092f12e
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
