@@ -2755,5 +2755,32 @@
     <edge id="e354" source="edge:segment-llm" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
+    <edge id="e355" source="edge:zapier-sms-ingest" target="table:public.sms_messages">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e356" source="edge:zapier-sms-ingest" target="table:public.diagnostic_logs">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e357" source="edge:brief-serve" target="table:public.brief_deliveries">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e358" source="edge:brief-serve" target="table:public.brief_events">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e359" source="edge:brief-serve" target="table:public.scheduler_items">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e360" source="edge:brief-serve" target="table:public.scheduler_items">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e361" source="edge:brief-serve" target="view:public.v_monday_brief_data">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e362" source="edge:brief-serve" target="view:public.v_scheduler_brief">
+      <data key="d2">reads</data>
+    </edge>
+    <edge id="e363" source="edge:brief-serve" target="edge:morning-digest">
+      <data key="d2">calls</data>
+    </edge>
   </graph>
 </graphml>

@@ -1,8 +1,8 @@
 # Camber Map (generated)
 
-Updated: 2026-02-22T18:10:09Z
+Updated: 2026-02-22T18:21:39Z
 Mode: live
-Git: 86d6071a2ddb15bc6fed6e3f2fcefcf69beba4af
+Git: eedc09ecb5748f0cb8258e5e79f92d9a0da58dde
 
 ## Live DB facts
 - Applied migrations: 534
@@ -16,7 +16,7 @@ Git: 86d6071a2ddb15bc6fed6e3f2fcefcf69beba4af
 
 ## Graph summary
 - Nodes: 421
-- Edges: 355
+- Edges: 364
 
 ### Node kinds
 - fn: 143
@@ -28,9 +28,9 @@ Git: 86d6071a2ddb15bc6fed6e3f2fcefcf69beba4af
 
 ### Edge types
 - depends_on: 279
-- reads: 42
-- writes: 25
-- calls: 9
+- reads: 45
+- writes: 30
+- calls: 10
 
 ## Notes
 - This file is generated. Do not edit.
