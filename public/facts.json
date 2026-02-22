@@ -1,19 +1,24 @@
 {
-  "updated_at": "2026-02-22T17:01:27Z",
-  "git_sha": "46207785109e266a46d918f9eb749361f7008044",
-  "mode": "live",
   "db": {
-    "applied_migrations": 530,
-    "tables": 116,
     "views": 111,
+    "tables": 116,
     "functions": 143,
-    "extensions": 12
+    "extensions": 12,
+    "applied_migrations": 534
+  },
+  "mode": "live_product",
+  "updated_at": "2026-02-22T18:08:54Z",
+  "runtime_lineage": {
+    "count": 85
   },
   "edge_functions": {
     "enabled": true,
-    "count": 37
+    "count": 38
   },
-  "runtime_lineage": {
-    "count": 76
+  "map_fidelity_patch": {
+    "id": "dev3_adoption_wedges_map_parity_20260222",
+    "zapier_sms_ingest_seeded": true,
+    "brief_serve_seeded": true,
+    "sms_openphone_sync_annotated": true
   }
 }
