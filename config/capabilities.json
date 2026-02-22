@@ -34,7 +34,7 @@
       "expected_producers": ["edge:transcribe-deepgram"],
       "health_queries": {
         "row_count": "SELECT count(*)::int AS n FROM public.transcripts_comparison",
-        "last_insert": "SELECT max(last_seen_at_utc) AS ts FROM public.system_lineage_edges WHERE from_node_id = 'edge:transcribe-deepgram'"
+        "last_insert": "SELECT max(ts) AS ts FROM (SELECT max(last_seen_at_utc) AS ts FROM public.system_lineage_edges WHERE from_node_id = 'edge:transcribe-deepgram' UNION ALL SELECT max(ingested_at_utc) AS ts FROM public.calls_raw WHERE transcript IS NOT NULL AND btrim(transcript) <> '') s"
       },
       "depends_on": ["call-ingestion"]
     },
@@ -150,12 +150,13 @@
       "tags": ["core", "pipeline"],
       "tech_nodes": [
         "edge:journal-consolidate",
-        "table:public.belief_claims"
+        "table:public.belief_claims",
+        "table:public.journal_runs"
       ],
       "expected_producers": ["edge:journal-consolidate"],
       "health_queries": {
-        "row_count": "SELECT count(*)::int AS n FROM public.belief_claims",
-        "last_insert": "SELECT max(created_at) AS ts FROM public.belief_claims"
+        "row_count": "SELECT count(*)::int AS n FROM public.journal_runs WHERE coalesce(config->>'mode','') = 'consolidate' AND status = 'success'",
+        "last_insert": "SELECT max(completed_at) AS ts FROM public.journal_runs WHERE coalesce(config->>'mode','') = 'consolidate' AND status = 'success'"
       },
       "depends_on": ["journal"]
     },
@@ -166,14 +167,15 @@
       "owner": "chad",
       "tags": ["core", "search"],
       "tech_nodes": [
-        "edge:embed-facts",
         "edge:journal-embed-backfill",
+        "edge:embed-facts",
+        "table:public.journal_claims",
         "table:public.project_facts"
       ],
-      "expected_producers": ["edge:embed-facts"],
+      "expected_producers": ["edge:journal-embed-backfill"],
       "health_queries": {
-        "row_count": "SELECT count(*)::int AS n FROM public.project_facts",
-        "last_insert": "SELECT max(created_at) AS ts FROM public.project_facts"
+        "row_count": "SELECT count(*)::int AS n FROM public.journal_claims WHERE embedding IS NOT NULL",
+        "last_insert": "SELECT COALESCE((SELECT max(created_at) FROM public.journal_claims WHERE embedding IS NOT NULL),(SELECT max(created_at) FROM public.project_facts)) AS ts"
       },
       "depends_on": ["journal"]
     }
