@@ -1686,6 +1686,10 @@
       <data key="d0">sms-openphone-sync</data>
       <data key="d1">edge</data>
     </node>
+    <node id="edge:zapier-sms-ingest">
+      <data key="d0">zapier-sms-ingest</data>
+      <data key="d1">edge</data>
+    </node>
     <edge id="e0" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
       <data key="d2">depends_on</data>
     </edge>
