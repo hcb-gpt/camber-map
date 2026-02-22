@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-22T06:07:09Z",
-  "git_sha": "1c2aaf0575f9d9d2dee7e4db7b2f5c39e10425f8",
+  "updated_at": "2026-02-22T17:01:27Z",
+  "git_sha": "46207785109e266a46d918f9eb749361f7008044",
   "mode": "live",
   "nodes": [
     {
@@ -1212,6 +1212,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_call_volume_daily",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_call_volume_daily",
+      "title": "public.v_call_volume_daily",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_calls_raw_phone_backlog",
       "kind": "view",
       "schema": "public",
@@ -1273,6 +1281,14 @@
       "schema": "public",
       "name": "v_claim_promotion_funnel",
       "title": "public.v_claim_promotion_funnel",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_contact_activity_summary",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_contact_activity_summary",
+      "title": "public.v_contact_activity_summary",
       "group": "db"
     },
     {
@@ -1361,6 +1377,14 @@
       "schema": "public",
       "name": "v_external_contacts",
       "title": "public.v_external_contacts",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_financial_exposure",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_financial_exposure",
+      "title": "public.v_financial_exposure",
       "group": "db"
     },
     {
@@ -1500,6 +1524,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_monday_brief_data",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_monday_brief_data",
+      "title": "public.v_monday_brief_data",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_morning_manifest",
       "kind": "view",
       "schema": "public",
@@ -1513,6 +1545,22 @@
       "schema": "public",
       "name": "v_needs_triage",
       "title": "public.v_needs_triage",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_overdue_tasks",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_overdue_tasks",
+      "title": "public.v_overdue_tasks",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_people_waiting",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_people_waiting",
+      "title": "public.v_people_waiting",
       "group": "db"
     },
     {
@@ -1540,11 +1588,27 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_pipeline_health",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_pipeline_health",
+      "title": "public.v_pipeline_health",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_production_scope",
       "kind": "view",
       "schema": "public",
       "name": "v_production_scope",
       "title": "public.v_production_scope",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_project_activity_timeline",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_project_activity_timeline",
+      "title": "public.v_project_activity_timeline",
       "group": "db"
     },
     {
@@ -1585,6 +1649,14 @@
       "schema": "public",
       "name": "v_project_feed",
       "title": "public.v_project_feed",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_project_risk_scorecard",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_project_risk_scorecard",
+      "title": "public.v_project_risk_scorecard",
       "group": "db"
     },
     {
@@ -1692,6 +1764,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_scheduler_brief",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_scheduler_brief",
+      "title": "public.v_scheduler_brief",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_scheduler_items_jsonl",
       "kind": "view",
       "schema": "public",
@@ -1724,6 +1804,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_who_needs_you_today",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_who_needs_you_today",
+      "title": "public.v_who_needs_you_today",
+      "group": "db"
+    },
+    {
       "id": "view:public.vendors_v",
       "kind": "view",
       "schema": "public",
@@ -1737,6 +1825,14 @@
       "schema": "public",
       "name": "vw_cost_code_doc_export",
       "title": "public.vw_cost_code_doc_export",
+      "group": "db"
+    },
+    {
+      "id": "fn:public._safe_amount(p_text text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "_safe_amount",
+      "title": "public._safe_amount(p_text text)",
       "group": "db"
     },
     {
@@ -1793,6 +1889,14 @@
       "schema": "public",
       "name": "batch_link_vendors_to_projects",
       "title": "public.batch_link_vendors_to_projects(p_links jsonb, p_source text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.bridge_sms_message_to_surfaces()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "bridge_sms_message_to_surfaces",
+      "title": "public.bridge_sms_message_to_surfaces()",
       "group": "db"
     },
     {
@@ -2020,6 +2124,46 @@
       "group": "db"
     },
     {
+      "id": "fn:public.cron_fire_auto_review_resolver()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_auto_review_resolver",
+      "title": "public.cron_fire_auto_review_resolver()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_brief_serve()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_brief_serve",
+      "title": "public.cron_fire_brief_serve()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_journal_consolidate_top_backlog()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_journal_consolidate_top_backlog",
+      "title": "public.cron_fire_journal_consolidate_top_backlog()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_journal_embed_backfill()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_journal_embed_backfill",
+      "title": "public.cron_fire_journal_embed_backfill()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_morning_digest()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_morning_digest",
+      "title": "public.cron_fire_morning_digest()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.decide_lane(claim journal_claims, context jsonb)",
       "kind": "fn",
       "schema": "public",
@@ -2156,6 +2300,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.get_pipeline_credential(p_key text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_pipeline_credential",
+      "title": "public.get_pipeline_credential(p_key text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.get_project_belief_snapshot(p_project_id uuid)",
       "kind": "fn",
       "schema": "public",
@@ -2209,6 +2361,22 @@
       "schema": "public",
       "name": "get_safety_scoreboard",
       "title": "public.get_safety_scoreboard(p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.get_supabase_functions_base_url()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_supabase_functions_base_url",
+      "title": "public.get_supabase_functions_base_url()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.get_supabase_ref_from_service_role()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_supabase_ref_from_service_role",
+      "title": "public.get_supabase_ref_from_service_role()",
       "group": "db"
     },
     {
@@ -2289,6 +2457,14 @@
       "schema": "public",
       "name": "materialize_scheduler_items",
       "title": "public.materialize_scheduler_items()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.normalize_scheduler_item_financial(p_item jsonb, p_interaction_financial jsonb, p_existing_financial jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "normalize_scheduler_item_financial",
+      "title": "public.normalize_scheduler_item_financial(p_item jsonb, p_interaction_financial jsonb, p_existing_financial jsonb)",
       "group": "db"
     },
     {
@@ -2529,6 +2705,14 @@
       "schema": "public",
       "name": "sync_tram_from_columns",
       "title": "public.sync_tram_from_columns()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.table_health_metric(p_table_name text, p_ts_col text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "table_health_metric",
+      "title": "public.table_health_metric(p_table_name text, p_ts_col text)",
       "group": "db"
     },
     {
@@ -3139,8 +3323,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 26,
-        "updated_at": 1771737036044
+        "version": 28,
+        "updated_at": 1771745819694
       }
     },
     {
@@ -3204,8 +3388,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771733489329
+        "version": 22,
+        "updated_at": 1771744659864
       }
     },
     {
@@ -3243,8 +3427,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771714247767
+        "version": 17,
+        "updated_at": 1771743817543
       }
     },
     {
@@ -3334,8 +3518,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771736302057
+        "version": 5,
+        "updated_at": 1771744770768
       }
     },
     {
@@ -3347,8 +3531,21 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771740409226
+        "version": 10,
+        "updated_at": 1771742497266
+      }
+    },
+    {
+      "id": "edge:sms-openphone-sync",
+      "kind": "edge",
+      "group": "edge",
+      "name": "sms-openphone-sync",
+      "title": "sms-openphone-sync",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1771779282343
       }
     }
   ],
@@ -4511,6 +4708,241 @@
     {
       "from": "view:public.v_governance_held",
       "to": "table:public.tram_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_overdue_tasks",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_overdue_tasks",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_exposure",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_exposure",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.project_contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_activity_timeline",
+      "to": "table:public.project_timeline_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_activity_summary",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_activity_summary",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_activity_summary",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_contact_activity_summary",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "view:public.v_review_queue_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_risk_scorecard",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_call_volume_daily",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_call_volume_daily",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_health",
+      "to": "table:public.call_chains",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduler_brief",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduler_brief",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_monday_brief_data",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_monday_brief_data",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_monday_brief_data",
+      "to": "view:public.v_project_risk_scorecard",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_monday_brief_data",
+      "to": "view:public.v_scheduler_brief",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_people_waiting",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_people_waiting",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_people_waiting",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_who_needs_you_today",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_who_needs_you_today",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_who_needs_you_today",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_who_needs_you_today",
+      "to": "view:public.v_monday_brief_data",
       "type": "depends_on"
     },
     {

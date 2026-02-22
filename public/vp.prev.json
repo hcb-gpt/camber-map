@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T22:21:44Z",
-  "git_sha": "0b02e2e1df981725808749c94d091c906c694e3f",
+  "updated_at": "2026-02-22T16:59:13Z",
+  "git_sha": "3cbb1acbe44a6050ab9d2d70aa86be094a390d20",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,13 +19,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.7,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1124,
-        "last_activity_at": "2026-02-21T15:39:47.126Z"
+        "row_count": 1176,
+        "last_activity_at": "2026-02-22T16:43:22.632Z"
       },
       "depends_on": []
     },
@@ -46,13 +46,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.2,
+        "hours_since_last_activity": 0.3,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
         "row_count": 559,
-        "last_activity_at": "2026-02-21T21:11:06.452Z"
+        "last_activity_at": "2026-02-22T16:43:22.632Z"
       },
       "depends_on": [
         "call-ingestion"
@@ -75,13 +75,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.1,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 507,
-        "last_activity_at": "2026-02-21T21:15:39.465Z"
+        "row_count": 509,
+        "last_activity_at": "2026-02-22T07:25:10.933Z"
       },
       "depends_on": [
         "transcription"
@@ -104,13 +104,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.2,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1424,
-        "last_activity_at": "2026-02-21T21:10:49.492Z"
+        "row_count": 1428,
+        "last_activity_at": "2026-02-22T07:25:17.675Z"
       },
       "depends_on": [
         "segmentation",
@@ -134,13 +134,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.7,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1424,
-        "last_activity_at": "2026-02-21T15:40:30.424Z"
+        "row_count": 1428,
+        "last_activity_at": "2026-02-22T07:25:17.675Z"
       },
       "depends_on": [
         "context-assembly"
@@ -163,13 +163,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 6.7,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 3390,
-        "last_activity_at": "2026-02-21T15:40:38.263Z"
+        "row_count": 3397,
+        "last_activity_at": "2026-02-22T07:25:24.910Z"
       },
       "depends_on": [
         "attribution"
@@ -192,13 +192,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.2,
+        "hours_since_last_activity": 17.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 866,
-        "last_activity_at": "2026-02-21T21:10:54.343Z"
+        "row_count": 867,
+        "last_activity_at": "2026-02-21T23:24:07.318Z"
       },
       "depends_on": [
         "segmentation"
@@ -221,13 +221,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.2,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1239,
-        "last_activity_at": "2026-02-21T21:10:54.343Z"
+        "row_count": 1243,
+        "last_activity_at": "2026-02-22T07:25:27.621Z"
       },
       "depends_on": [
         "journal"
@@ -242,21 +242,21 @@
         "core",
         "pipeline"
       ],
-      "tech_node_count": 2,
-      "tech_nodes_in_graph": 2,
+      "tech_node_count": 3,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.2,
+        "hours_since_last_activity": 9.5,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 0,
-        "last_activity_at": "2026-02-21T21:10:59.932Z"
+        "row_count": 357,
+        "last_activity_at": "2026-02-22T07:30:46.359Z"
       },
       "depends_on": [
         "journal"
@@ -271,21 +271,21 @@
         "core",
         "search"
       ],
-      "tech_node_count": 3,
-      "tech_nodes_in_graph": 2,
+      "tech_node_count": 4,
+      "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
         "observed": 1,
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1,
+        "hours_since_last_activity": 9.6,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 381,
-        "last_activity_at": "2026-02-21T21:19:40.872Z"
+        "row_count": 1643,
+        "last_activity_at": "2026-02-22T07:25:24.910Z"
       },
       "depends_on": [
         "journal"
