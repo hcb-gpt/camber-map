@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-22T18:21:39Z",
-  "git_sha": "eedc09ecb5748f0cb8258e5e79f92d9a0da58dde",
+  "updated_at": "2026-02-22T19:50:26Z",
+  "git_sha": "216d9bcd1c531c317ae70bcbe0fcef15eb2b8e8d",
   "mode": "live",
   "nodes": [
     {
@@ -321,6 +321,22 @@
       "schema": "public",
       "name": "evidence_types",
       "title": "public.evidence_types",
+      "group": "db"
+    },
+    {
+      "id": "table:public.financial_claim_receipts_v1",
+      "kind": "table",
+      "schema": "public",
+      "name": "financial_claim_receipts_v1",
+      "title": "public.financial_claim_receipts_v1",
+      "group": "db"
+    },
+    {
+      "id": "table:public.financial_claim_review_queue_v1",
+      "kind": "table",
+      "schema": "public",
+      "name": "financial_claim_review_queue_v1",
+      "title": "public.financial_claim_review_queue_v1",
       "group": "db"
     },
     {
@@ -764,6 +780,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.source_reliability",
+      "kind": "table",
+      "schema": "public",
+      "name": "source_reliability",
+      "title": "public.source_reliability",
+      "group": "db"
+    },
+    {
       "id": "table:public.span_attributions",
       "kind": "table",
       "schema": "public",
@@ -809,6 +833,14 @@
       "schema": "public",
       "name": "system_lineage_edges",
       "title": "public.system_lineage_edges",
+      "group": "db"
+    },
+    {
+      "id": "table:public.testimony_origin_crosswalk",
+      "kind": "table",
+      "schema": "public",
+      "name": "testimony_origin_crosswalk",
+      "title": "public.testimony_origin_crosswalk",
       "group": "db"
     },
     {
@@ -940,6 +972,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.warrant_level_crosswalk",
+      "kind": "table",
+      "schema": "public",
+      "name": "warrant_level_crosswalk",
+      "title": "public.warrant_level_crosswalk",
+      "group": "db"
+    },
+    {
       "id": "view:public.baseline_v3_calls_success",
       "kind": "view",
       "schema": "public",
@@ -1052,6 +1092,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.financial_claim_receipts_v1_assertions",
+      "kind": "view",
+      "schema": "public",
+      "name": "financial_claim_receipts_v1_assertions",
+      "title": "public.financial_claim_receipts_v1_assertions",
+      "group": "db"
+    },
+    {
       "id": "view:public.gt_review_feed",
       "kind": "view",
       "schema": "public",
@@ -1137,6 +1185,14 @@
       "schema": "public",
       "name": "resolved_vendor_for_contact",
       "title": "public.resolved_vendor_for_contact",
+      "group": "db"
+    },
+    {
+      "id": "view:public.review_queue_v1",
+      "kind": "view",
+      "schema": "public",
+      "name": "review_queue_v1",
+      "title": "public.review_queue_v1",
       "group": "db"
     },
     {
@@ -1324,6 +1380,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_cost_code_taxonomy_guardrail_violations",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_cost_code_taxonomy_guardrail_violations",
+      "title": "public.v_cost_code_taxonomy_guardrail_violations",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_daily_ops_dashboard",
       "kind": "view",
       "schema": "public",
@@ -1380,11 +1444,43 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_financial_claim_receipts_v1_ops",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_financial_claim_receipts_v1_ops",
+      "title": "public.v_financial_claim_receipts_v1_ops",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_financial_claim_receipts_v1_policy_audit",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_financial_claim_receipts_v1_policy_audit",
+      "title": "public.v_financial_claim_receipts_v1_policy_audit",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_financial_claim_v1_gate_readiness",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_financial_claim_v1_gate_readiness",
+      "title": "public.v_financial_claim_v1_gate_readiness",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_financial_exposure",
       "kind": "view",
       "schema": "public",
       "name": "v_financial_exposure",
       "title": "public.v_financial_exposure",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_financial_receipts_v1_ship_readiness",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_financial_receipts_v1_ship_readiness",
+      "title": "public.v_financial_receipts_v1_ship_readiness",
       "group": "db"
     },
     {
@@ -1548,6 +1644,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_open_loop_candidates",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_open_loop_candidates",
+      "title": "public.v_open_loop_candidates",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_overdue_tasks",
       "kind": "view",
       "schema": "public",
@@ -1684,6 +1788,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_promotable_claims",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_promotable_claims",
+      "title": "public.v_promotable_claims",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_receipts_drilldown",
       "kind": "view",
       "schema": "public",
@@ -1785,6 +1897,14 @@
       "schema": "public",
       "name": "v_scoreboard_retention_stats",
       "title": "public.v_scoreboard_retention_stats",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_source_reliability_ops",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_source_reliability_ops",
+      "title": "public.v_source_reliability_ops",
       "group": "db"
     },
     {
@@ -2124,6 +2244,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.cost_code_taxonomy_guardrail_issues(p_code text, p_name text, p_keywords text, p_row_type text, p_is_assignable boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cost_code_taxonomy_guardrail_issues",
+      "title": "public.cost_code_taxonomy_guardrail_issues(p_code text, p_name text, p_keywords text, p_row_type text, p_is_assignable boolean)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.cron_fire_auto_review_resolver()",
       "kind": "fn",
       "schema": "public",
@@ -2172,6 +2300,22 @@
       "group": "db"
     },
     {
+      "id": "fn:public.detect_journal_claim_conflict_candidates(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "detect_journal_claim_conflict_candidates",
+      "title": "public.detect_journal_claim_conflict_candidates(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.enforce_cost_code_taxonomy_semantic_guardrails()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "enforce_cost_code_taxonomy_semantic_guardrails",
+      "title": "public.enforce_cost_code_taxonomy_semantic_guardrails()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.enforce_payload_ref_write_once()",
       "kind": "fn",
       "schema": "public",
@@ -2209,6 +2353,22 @@
       "schema": "public",
       "name": "filter_overhead_matches",
       "title": "public.filter_overhead_matches(transcript_text text, matches jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.financial_claim_receipt_v1_apply_policy(p_receipt jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "financial_claim_receipt_v1_apply_policy",
+      "title": "public.financial_claim_receipt_v1_apply_policy(p_receipt jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.financial_claim_receipt_v1_dedupe_key(p_receipt jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "financial_claim_receipt_v1_dedupe_key",
+      "title": "public.financial_claim_receipt_v1_dedupe_key(p_receipt jsonb)",
       "group": "db"
     },
     {
@@ -2508,11 +2668,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.promote_successful_journal_runs_batch(p_limit integer, p_offset integer, p_only_unpromoted boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "promote_successful_journal_runs_batch",
+      "title": "public.promote_successful_journal_runs_batch(p_limit integer, p_offset integer, p_only_unpromoted boolean)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.proof_interaction_scoreboard(p_interaction_id text)",
       "kind": "fn",
       "schema": "public",
       "name": "proof_interaction_scoreboard",
       "title": "public.proof_interaction_scoreboard(p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.propose_belief_conflicts_from_journal_claims(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "propose_belief_conflicts_from_journal_claims",
+      "title": "public.propose_belief_conflicts_from_journal_claims(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)",
       "group": "db"
     },
     {
@@ -2668,6 +2844,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.seed_source_reliability_from_journal_claims(p_assessment_method text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "seed_source_reliability_from_journal_claims",
+      "title": "public.seed_source_reliability_from_journal_claims(p_assessment_method text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.since_last_session(p_operator text)",
       "kind": "fn",
       "schema": "public",
@@ -2676,11 +2860,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.source_reliability_set_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "source_reliability_set_updated_at",
+      "title": "public.source_reliability_set_updated_at()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.suggest_alias_additions(sample_text text)",
       "kind": "fn",
       "schema": "public",
       "name": "suggest_alias_additions",
       "title": "public.suggest_alias_additions(sample_text text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.sync_journal_runs_finished_completed_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "sync_journal_runs_finished_completed_at",
+      "title": "public.sync_journal_runs_finished_completed_at()",
       "group": "db"
     },
     {
@@ -2729,6 +2929,14 @@
       "schema": "public",
       "name": "tg_set_updated_at",
       "title": "public.tg_set_updated_at()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tg_set_updated_at_utc()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tg_set_updated_at_utc",
+      "title": "public.tg_set_updated_at_utc()",
       "group": "db"
     },
     {
@@ -2844,6 +3052,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_source_reliability_touch_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_source_reliability_touch_updated_at",
+      "title": "public.trg_source_reliability_touch_updated_at()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_span_attributions_lock_monotonic()",
       "kind": "fn",
       "schema": "public",
@@ -2913,6 +3129,22 @@
       "schema": "public",
       "name": "upsert_affinity_feedback",
       "title": "public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_financial_claim_receipt_v1(p_receipt jsonb, p_last_source_type text, p_last_source_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_financial_claim_receipt_v1",
+      "title": "public.upsert_financial_claim_receipt_v1(p_receipt jsonb, p_last_source_type text, p_last_source_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_financial_claim_receipt_v1_strict(p_receipt jsonb, p_last_source_type text, p_last_source_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_financial_claim_receipt_v1_strict",
+      "title": "public.upsert_financial_claim_receipt_v1_strict(p_receipt jsonb, p_last_source_type text, p_last_source_id text)",
       "group": "db"
     },
     {
@@ -3562,6 +3794,19 @@
         "status": "ACTIVE",
         "version": 3,
         "updated_at": 1771782497030
+      }
+    },
+    {
+      "id": "edge:financial-receipt-ingest",
+      "kind": "edge",
+      "group": "edge",
+      "name": "financial-receipt-ingest",
+      "title": "financial-receipt-ingest",
+      "meta": {
+        "verify_jwt": true,
+        "status": "ACTIVE",
+        "version": 2,
+        "updated_at": 1771789402546
       }
     }
   ],
@@ -4962,6 +5207,106 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.v_promotable_claims",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_promotable_claims",
+      "to": "view:public.claim_type_crosswalk",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_promotable_claims",
+      "to": "table:public.warrant_level_crosswalk",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_promotable_claims",
+      "to": "table:public.testimony_origin_crosswalk",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_open_loop_candidates",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_open_loop_candidates",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_open_loop_candidates",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_claim_receipts_v1_ops",
+      "to": "table:public.financial_claim_receipts_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_claim_receipts_v1_ops",
+      "to": "table:public.financial_claim_review_queue_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_claim_receipts_v1_policy_audit",
+      "to": "table:public.financial_claim_receipts_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.financial_claim_receipts_v1_assertions",
+      "to": "table:public.financial_claim_receipts_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.review_queue_v1",
+      "to": "table:public.financial_claim_review_queue_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_claim_v1_gate_readiness",
+      "to": "table:public.financial_claim_receipts_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_claim_v1_gate_readiness",
+      "to": "table:public.financial_claim_review_queue_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_source_reliability_ops",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_source_reliability_ops",
+      "to": "table:public.source_reliability",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_receipts_v1_ship_readiness",
+      "to": "table:public.financial_claim_receipts_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_receipts_v1_ship_readiness",
+      "to": "table:public.financial_claim_review_queue_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_financial_receipts_v1_ship_readiness",
+      "to": "view:public.v_financial_claim_v1_gate_readiness",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_cost_code_taxonomy_guardrail_violations",
+      "to": "table:public.cost_code_taxonomy",
+      "type": "depends_on"
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -5647,15 +5992,6 @@
     },
     {
       "from": "edge:zapier-sms-ingest",
-      "to": "table:public.sms_messages",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-22T18:10:22.840Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:zapier-sms-ingest",
       "to": "table:public.diagnostic_logs",
       "type": "writes",
       "meta": {
@@ -5664,20 +6000,11 @@
       }
     },
     {
-      "from": "edge:brief-serve",
-      "to": "table:public.brief_deliveries",
+      "from": "edge:zapier-sms-ingest",
+      "to": "table:public.sms_messages",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-22T18:10:23.152Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:brief-serve",
-      "to": "table:public.brief_events",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-22T18:10:23.245Z",
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
         "seen_count": "1"
       }
     },
@@ -5687,15 +6014,6 @@
       "type": "reads",
       "meta": {
         "last_seen_at_utc": "2026-02-22T18:10:23.334Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:brief-serve",
-      "to": "table:public.scheduler_items",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-22T18:10:23.426Z",
         "seen_count": "1"
       }
     },
@@ -5723,6 +6041,96 @@
       "type": "calls",
       "meta": {
         "last_seen_at_utc": "2026-02-22T18:10:23.694Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.brief_deliveries",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.brief_events",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.scheduler_items",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.promote_journal_claims_to_belief(p_run_id uuid)",
+      "to": "table:public.belief_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.promote_journal_claims_to_belief(p_run_id uuid)",
+      "to": "table:public.promotion_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.promote_journal_claims_to_belief(p_run_id uuid)",
+      "to": "table:public.journal_review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:journal-consolidate",
+      "to": "table:public.journal_review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.900Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.promote_journal_claims_to_belief(p_run_id uuid)",
+      "to": "table:public.claim_pointers",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.900Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "fn:public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)",
+      "to": "table:public.review_audit",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T19:22:14.900Z",
         "seen_count": "1"
       }
     }
