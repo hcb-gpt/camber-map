@@ -166,6 +166,14 @@
       <data key="d0">public.evidence_types</data>
       <data key="d1">table</data>
     </node>
+    <node id="table:public.financial_claim_receipts_v1">
+      <data key="d0">public.financial_claim_receipts_v1</data>
+      <data key="d1">table</data>
+    </node>
+    <node id="table:public.financial_claim_review_queue_v1">
+      <data key="d0">public.financial_claim_review_queue_v1</data>
+      <data key="d1">table</data>
+    </node>
     <node id="table:public.financial_overrides">
       <data key="d0">public.financial_overrides</data>
       <data key="d1">table</data>
@@ -386,6 +394,10 @@
       <data key="d0">public.sms_messages</data>
       <data key="d1">table</data>
     </node>
+    <node id="table:public.source_reliability">
+      <data key="d0">public.source_reliability</data>
+      <data key="d1">table</data>
+    </node>
     <node id="table:public.span_attributions">
       <data key="d0">public.span_attributions</data>
       <data key="d1">table</data>
@@ -408,6 +420,10 @@
     </node>
     <node id="table:public.system_lineage_edges">
       <data key="d0">public.system_lineage_edges</data>
+      <data key="d1">table</data>
+    </node>
+    <node id="table:public.testimony_origin_crosswalk">
+      <data key="d0">public.testimony_origin_crosswalk</data>
       <data key="d1">table</data>
     </node>
     <node id="table:public.trade_phase_map">
@@ -474,6 +490,10 @@
       <data key="d0">public.vocab_hits</data>
       <data key="d1">table</data>
     </node>
+    <node id="table:public.warrant_level_crosswalk">
+      <data key="d0">public.warrant_level_crosswalk</data>
+      <data key="d1">table</data>
+    </node>
     <node id="view:public.baseline_v3_calls_success">
       <data key="d0">public.baseline_v3_calls_success</data>
       <data key="d1">view</data>
@@ -530,6 +550,10 @@
       <data key="d0">public.entity_drift_trade_entropy</data>
       <data key="d1">view</data>
     </node>
+    <node id="view:public.financial_claim_receipts_v1_assertions">
+      <data key="d0">public.financial_claim_receipts_v1_assertions</data>
+      <data key="d1">view</data>
+    </node>
     <node id="view:public.gt_review_feed">
       <data key="d0">public.gt_review_feed</data>
       <data key="d1">view</data>
@@ -572,6 +596,10 @@
     </node>
     <node id="view:public.resolved_vendor_for_contact">
       <data key="d0">public.resolved_vendor_for_contact</data>
+      <data key="d1">view</data>
+    </node>
+    <node id="view:public.review_queue_v1">
+      <data key="d0">public.review_queue_v1</data>
       <data key="d1">view</data>
     </node>
     <node id="view:public.scoring_dominant_topic">
@@ -666,6 +694,10 @@
       <data key="d0">public.v_correction_patterns</data>
       <data key="d1">view</data>
     </node>
+    <node id="view:public.v_cost_code_taxonomy_guardrail_violations">
+      <data key="d0">public.v_cost_code_taxonomy_guardrail_violations</data>
+      <data key="d1">view</data>
+    </node>
     <node id="view:public.v_daily_ops_dashboard">
       <data key="d0">public.v_daily_ops_dashboard</data>
       <data key="d1">view</data>
@@ -694,8 +726,24 @@
       <data key="d0">public.v_external_contacts</data>
       <data key="d1">view</data>
     </node>
+    <node id="view:public.v_financial_claim_receipts_v1_ops">
+      <data key="d0">public.v_financial_claim_receipts_v1_ops</data>
+      <data key="d1">view</data>
+    </node>
+    <node id="view:public.v_financial_claim_receipts_v1_policy_audit">
+      <data key="d0">public.v_financial_claim_receipts_v1_policy_audit</data>
+      <data key="d1">view</data>
+    </node>
+    <node id="view:public.v_financial_claim_v1_gate_readiness">
+      <data key="d0">public.v_financial_claim_v1_gate_readiness</data>
+      <data key="d1">view</data>
+    </node>
     <node id="view:public.v_financial_exposure">
       <data key="d0">public.v_financial_exposure</data>
+      <data key="d1">view</data>
+    </node>
+    <node id="view:public.v_financial_receipts_v1_ship_readiness">
+      <data key="d0">public.v_financial_receipts_v1_ship_readiness</data>
       <data key="d1">view</data>
     </node>
     <node id="view:public.v_governance_dashboard">
@@ -778,6 +826,10 @@
       <data key="d0">public.v_needs_triage</data>
       <data key="d1">view</data>
     </node>
+    <node id="view:public.v_open_loop_candidates">
+      <data key="d0">public.v_open_loop_candidates</data>
+      <data key="d1">view</data>
+    </node>
     <node id="view:public.v_overdue_tasks">
       <data key="d0">public.v_overdue_tasks</data>
       <data key="d1">view</data>
@@ -846,6 +898,10 @@
       <data key="d0">public.v_projects_with_phase</data>
       <data key="d1">view</data>
     </node>
+    <node id="view:public.v_promotable_claims">
+      <data key="d0">public.v_promotable_claims</data>
+      <data key="d1">view</data>
+    </node>
     <node id="view:public.v_receipts_drilldown">
       <data key="d0">public.v_receipts_drilldown</data>
       <data key="d1">view</data>
@@ -896,6 +952,10 @@
     </node>
     <node id="view:public.v_scoreboard_retention_stats">
       <data key="d0">public.v_scoreboard_retention_stats</data>
+      <data key="d1">view</data>
+    </node>
+    <node id="view:public.v_source_reliability_ops">
+      <data key="d0">public.v_source_reliability_ops</data>
       <data key="d1">view</data>
     </node>
     <node id="view:public.v_span_enroute">
@@ -1066,6 +1126,10 @@
       <data key="d0">public.continuity_decision(prior_interaction_id text, prior_project_name text, prior_rare_referents text[], prior_event_at timestamp with time zone, current_event_at timestamp with time zone, current_transcript text, floater_involved boolean)</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.cost_code_taxonomy_guardrail_issues(p_code text, p_name text, p_keywords text, p_row_type text, p_is_assignable boolean)">
+      <data key="d0">public.cost_code_taxonomy_guardrail_issues(p_code text, p_name text, p_keywords text, p_row_type text, p_is_assignable boolean)</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.cron_fire_auto_review_resolver()">
       <data key="d0">public.cron_fire_auto_review_resolver()</data>
       <data key="d1">fn</data>
@@ -1090,6 +1154,14 @@
       <data key="d0">public.decide_lane(claim journal_claims, context jsonb)</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.detect_journal_claim_conflict_candidates(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)">
+      <data key="d0">public.detect_journal_claim_conflict_candidates(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.enforce_cost_code_taxonomy_semantic_guardrails()">
+      <data key="d0">public.enforce_cost_code_taxonomy_semantic_guardrails()</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.enforce_payload_ref_write_once()">
       <data key="d0">public.enforce_payload_ref_write_once()</data>
       <data key="d1">fn</data>
@@ -1108,6 +1180,14 @@
     </node>
     <node id="fn:public.filter_overhead_matches(transcript_text text, matches jsonb)">
       <data key="d0">public.filter_overhead_matches(transcript_text text, matches jsonb)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.financial_claim_receipt_v1_apply_policy(p_receipt jsonb)">
+      <data key="d0">public.financial_claim_receipt_v1_apply_policy(p_receipt jsonb)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.financial_claim_receipt_v1_dedupe_key(p_receipt jsonb)">
+      <data key="d0">public.financial_claim_receipt_v1_dedupe_key(p_receipt jsonb)</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.find_contact_by_name_or_alias(search_term text)">
@@ -1258,8 +1338,16 @@
       <data key="d0">public.promote_journal_claims_to_belief(p_run_id uuid)</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.promote_successful_journal_runs_batch(p_limit integer, p_offset integer, p_only_unpromoted boolean)">
+      <data key="d0">public.promote_successful_journal_runs_batch(p_limit integer, p_offset integer, p_only_unpromoted boolean)</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.proof_interaction_scoreboard(p_interaction_id text)">
       <data key="d0">public.proof_interaction_scoreboard(p_interaction_id text)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.propose_belief_conflicts_from_journal_claims(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)">
+      <data key="d0">public.propose_belief_conflicts_from_journal_claims(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.protect_phone_fields()">
@@ -1338,12 +1426,24 @@
       <data key="d0">public.score_project(p_project_id uuid)</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.seed_source_reliability_from_journal_claims(p_assessment_method text)">
+      <data key="d0">public.seed_source_reliability_from_journal_claims(p_assessment_method text)</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.since_last_session(p_operator text)">
       <data key="d0">public.since_last_session(p_operator text)</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.source_reliability_set_updated_at()">
+      <data key="d0">public.source_reliability_set_updated_at()</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.suggest_alias_additions(sample_text text)">
       <data key="d0">public.suggest_alias_additions(sample_text text)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.sync_journal_runs_finished_completed_at()">
+      <data key="d0">public.sync_journal_runs_finished_completed_at()</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.sync_orbit_docs_alias()">
@@ -1368,6 +1468,10 @@
     </node>
     <node id="fn:public.tg_set_updated_at()">
       <data key="d0">public.tg_set_updated_at()</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.tg_set_updated_at_utc()">
+      <data key="d0">public.tg_set_updated_at_utc()</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.tram_enforce_architecture_first()">
@@ -1426,6 +1530,10 @@
       <data key="d0">public.trg_review_queue_gt_notify()</data>
       <data key="d1">fn</data>
     </node>
+    <node id="fn:public.trg_source_reliability_touch_updated_at()">
+      <data key="d0">public.trg_source_reliability_touch_updated_at()</data>
+      <data key="d1">fn</data>
+    </node>
     <node id="fn:public.trg_span_attributions_lock_monotonic()">
       <data key="d0">public.trg_span_attributions_lock_monotonic()</data>
       <data key="d1">fn</data>
@@ -1460,6 +1568,14 @@
     </node>
     <node id="fn:public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text)">
       <data key="d0">public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.upsert_financial_claim_receipt_v1(p_receipt jsonb, p_last_source_type text, p_last_source_id text)">
+      <data key="d0">public.upsert_financial_claim_receipt_v1(p_receipt jsonb, p_last_source_type text, p_last_source_id text)</data>
+      <data key="d1">fn</data>
+    </node>
+    <node id="fn:public.upsert_financial_claim_receipt_v1_strict(p_receipt jsonb, p_last_source_type text, p_last_source_id text)">
+      <data key="d0">public.upsert_financial_claim_receipt_v1_strict(p_receipt jsonb, p_last_source_type text, p_last_source_id text)</data>
       <data key="d1">fn</data>
     </node>
     <node id="fn:public.upsert_idempotency_key(p_key text, p_interaction_id text, p_source text, p_payload_hash text, p_first_payload jsonb)">
@@ -1688,6 +1804,10 @@
     </node>
     <node id="edge:zapier-sms-ingest">
       <data key="d0">zapier-sms-ingest</data>
+      <data key="d1">edge</data>
+    </node>
+    <node id="edge:financial-receipt-ingest">
+      <data key="d0">financial-receipt-ingest</data>
       <data key="d1">edge</data>
     </node>
     <edge id="e0" source="view:public.cost_code_taxonomy_current" target="table:public.cost_code_taxonomy">
@@ -2527,260 +2647,341 @@
     <edge id="e278" source="view:public.v_who_needs_you_today" target="view:public.v_monday_brief_data">
       <data key="d2">depends_on</data>
     </edge>
-    <edge id="e279" source="edge:zapier-call-ingest" target="table:public.calls_raw">
+    <edge id="e279" source="view:public.v_promotable_claims" target="table:public.journal_claims">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e280" source="view:public.v_promotable_claims" target="view:public.claim_type_crosswalk">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e281" source="view:public.v_promotable_claims" target="table:public.warrant_level_crosswalk">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e282" source="view:public.v_promotable_claims" target="table:public.testimony_origin_crosswalk">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e283" source="view:public.v_open_loop_candidates" target="table:public.contacts">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e284" source="view:public.v_open_loop_candidates" target="table:public.projects">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e285" source="view:public.v_open_loop_candidates" target="table:public.journal_claims">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e286" source="view:public.v_financial_claim_receipts_v1_ops" target="table:public.financial_claim_receipts_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e287" source="view:public.v_financial_claim_receipts_v1_ops" target="table:public.financial_claim_review_queue_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e288" source="view:public.v_financial_claim_receipts_v1_policy_audit" target="table:public.financial_claim_receipts_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e289" source="view:public.financial_claim_receipts_v1_assertions" target="table:public.financial_claim_receipts_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e290" source="view:public.review_queue_v1" target="table:public.financial_claim_review_queue_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e291" source="view:public.v_financial_claim_v1_gate_readiness" target="table:public.financial_claim_receipts_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e292" source="view:public.v_financial_claim_v1_gate_readiness" target="table:public.financial_claim_review_queue_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e293" source="view:public.v_source_reliability_ops" target="table:public.contacts">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e294" source="view:public.v_source_reliability_ops" target="table:public.source_reliability">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e295" source="view:public.v_financial_receipts_v1_ship_readiness" target="table:public.financial_claim_receipts_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e296" source="view:public.v_financial_receipts_v1_ship_readiness" target="table:public.financial_claim_review_queue_v1">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e297" source="view:public.v_financial_receipts_v1_ship_readiness" target="view:public.v_financial_claim_v1_gate_readiness">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e298" source="view:public.v_cost_code_taxonomy_guardrail_violations" target="table:public.cost_code_taxonomy">
+      <data key="d2">depends_on</data>
+    </edge>
+    <edge id="e299" source="edge:zapier-call-ingest" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e280" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
+    <edge id="e300" source="edge:transcribe-deepgram" target="table:public.transcripts_comparison">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e281" source="edge:ai-router" target="table:public.projects">
+    <edge id="e301" source="edge:ai-router" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e282" source="edge:journal-extract" target="table:public.journal_claims">
+    <edge id="e302" source="edge:journal-extract" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e283" source="edge:process-call" target="table:public.review_queue">
+    <edge id="e303" source="edge:process-call" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e284" source="edge:process-call" target="table:public.calls_raw">
+    <edge id="e304" source="edge:process-call" target="table:public.calls_raw">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e285" source="edge:process-call" target="table:public.interactions">
+    <edge id="e305" source="edge:process-call" target="table:public.interactions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e286" source="edge:process-call" target="table:public.event_audit">
+    <edge id="e306" source="edge:process-call" target="table:public.event_audit">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e287" source="edge:process-call" target="table:public.idempotency_keys">
+    <edge id="e307" source="edge:process-call" target="table:public.idempotency_keys">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e288" source="edge:process-call" target="table:public.project_contacts">
+    <edge id="e308" source="edge:process-call" target="table:public.project_contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e289" source="edge:process-call" target="table:public.projects">
+    <edge id="e309" source="edge:process-call" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e290" source="edge:process-call" target="table:public.correspondent_project_affinity">
+    <edge id="e310" source="edge:process-call" target="table:public.correspondent_project_affinity">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e291" source="edge:process-call" target="edge:segment-call">
+    <edge id="e311" source="edge:process-call" target="edge:segment-call">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e292" source="edge:segment-call" target="table:public.conversation_spans">
+    <edge id="e312" source="edge:segment-call" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e293" source="edge:segment-call" target="table:public.interactions">
+    <edge id="e313" source="edge:segment-call" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e294" source="edge:segment-call" target="table:public.calls_raw">
+    <edge id="e314" source="edge:segment-call" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e295" source="edge:segment-call" target="table:public.conversation_spans">
+    <edge id="e315" source="edge:segment-call" target="table:public.conversation_spans">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e296" source="edge:segment-call" target="edge:segment-llm">
+    <edge id="e316" source="edge:segment-call" target="edge:segment-llm">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e297" source="edge:segment-call" target="edge:context-assembly">
+    <edge id="e317" source="edge:segment-call" target="edge:context-assembly">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e298" source="edge:segment-call" target="edge:ai-router">
+    <edge id="e318" source="edge:segment-call" target="edge:ai-router">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e299" source="edge:segment-call" target="edge:striking-detect">
+    <edge id="e319" source="edge:segment-call" target="edge:striking-detect">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e300" source="edge:segment-call" target="edge:journal-extract">
+    <edge id="e320" source="edge:segment-call" target="edge:journal-extract">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e301" source="edge:segment-call" target="edge:generate-summary">
+    <edge id="e321" source="edge:segment-call" target="edge:generate-summary">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e302" source="edge:context-assembly" target="table:public.conversation_spans">
+    <edge id="e322" source="edge:context-assembly" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e303" source="edge:context-assembly" target="table:public.projects">
+    <edge id="e323" source="edge:context-assembly" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e304" source="edge:context-assembly" target="table:public.project_aliases">
+    <edge id="e324" source="edge:context-assembly" target="table:public.project_aliases">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e305" source="edge:context-assembly" target="table:public.contacts">
+    <edge id="e325" source="edge:context-assembly" target="table:public.contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e306" source="edge:context-assembly" target="table:public.contact_fanout">
+    <edge id="e326" source="edge:context-assembly" target="table:public.contact_fanout">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e307" source="edge:context-assembly" target="table:public.journal_claims">
+    <edge id="e327" source="edge:context-assembly" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e308" source="edge:context-assembly" target="table:public.journal_open_loops">
+    <edge id="e328" source="edge:context-assembly" target="table:public.journal_open_loops">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e309" source="edge:context-assembly" target="table:public.calls_raw">
+    <edge id="e329" source="edge:context-assembly" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e310" source="edge:context-assembly" target="table:public.interactions">
+    <edge id="e330" source="edge:context-assembly" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e311" source="edge:context-assembly" target="edge:gmail-context-lookup">
+    <edge id="e331" source="edge:context-assembly" target="edge:gmail-context-lookup">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e312" source="edge:ai-router" target="table:public.span_attributions">
+    <edge id="e332" source="edge:ai-router" target="table:public.span_attributions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e313" source="edge:ai-router" target="table:public.span_attributions">
+    <edge id="e333" source="edge:ai-router" target="table:public.span_attributions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e314" source="edge:ai-router" target="table:public.review_queue">
+    <edge id="e334" source="edge:ai-router" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e315" source="edge:generate-summary" target="table:public.conversation_spans">
+    <edge id="e335" source="edge:generate-summary" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e316" source="edge:generate-summary" target="table:public.span_attributions">
+    <edge id="e336" source="edge:generate-summary" target="table:public.span_attributions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e317" source="edge:generate-summary" target="table:public.diagnostic_logs">
+    <edge id="e337" source="edge:generate-summary" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e318" source="edge:striking-detect" target="table:public.calls_raw">
+    <edge id="e338" source="edge:striking-detect" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e319" source="edge:striking-detect" target="table:public.striking_signals">
+    <edge id="e339" source="edge:striking-detect" target="table:public.striking_signals">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e320" source="edge:chain-detect" target="table:public.calls_raw">
+    <edge id="e340" source="edge:chain-detect" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e321" source="edge:chain-detect" target="table:public.interactions">
+    <edge id="e341" source="edge:chain-detect" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e322" source="edge:chain-detect" target="table:public.call_chains">
+    <edge id="e342" source="edge:chain-detect" target="table:public.call_chains">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e323" source="edge:journal-consolidate" target="table:public.journal_claims">
+    <edge id="e343" source="edge:journal-consolidate" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e324" source="edge:journal-consolidate" target="table:public.journal_claims">
+    <edge id="e344" source="edge:journal-consolidate" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e325" source="edge:journal-consolidate" target="table:public.journal_conflicts">
+    <edge id="e345" source="edge:journal-consolidate" target="table:public.journal_conflicts">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e326" source="edge:journal-consolidate" target="table:public.review_queue">
+    <edge id="e346" source="edge:journal-consolidate" target="table:public.review_queue">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e327" source="edge:loop-closure" target="table:public.journal_open_loops">
+    <edge id="e347" source="edge:loop-closure" target="table:public.journal_open_loops">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e328" source="edge:loop-closure" target="table:public.calls_raw">
+    <edge id="e348" source="edge:loop-closure" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e329" source="edge:loop-closure" target="table:public.interactions">
+    <edge id="e349" source="edge:loop-closure" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e330" source="edge:loop-closure" target="table:public.journal_open_loops">
+    <edge id="e350" source="edge:loop-closure" target="table:public.journal_open_loops">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e331" source="edge:gmail-context-lookup" target="table:public.project_aliases">
+    <edge id="e351" source="edge:gmail-context-lookup" target="table:public.project_aliases">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e332" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+    <edge id="e352" source="edge:journal-embed-backfill" target="table:public.journal_claims">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e333" source="edge:journal-embed-backfill" target="table:public.journal_claims">
+    <edge id="e353" source="edge:journal-embed-backfill" target="table:public.journal_claims">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e334" source="edge:journal-extract" target="table:public.conversation_spans">
+    <edge id="e354" source="edge:journal-extract" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e335" source="edge:journal-extract" target="table:public.journal_open_loops">
+    <edge id="e355" source="edge:journal-extract" target="table:public.journal_open_loops">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e336" source="edge:transcribe-deepgram" target="table:public.api_keys">
+    <edge id="e356" source="edge:transcribe-deepgram" target="table:public.api_keys">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e337" source="edge:transcribe-deepgram" target="table:public.transcription_vocab">
+    <edge id="e357" source="edge:transcribe-deepgram" target="table:public.transcription_vocab">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e338" source="edge:zapier-call-ingest" target="table:public.diagnostic_logs">
+    <edge id="e358" source="edge:zapier-call-ingest" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e339" source="edge:zapier-call-ingest" target="edge:process-call">
+    <edge id="e359" source="edge:zapier-call-ingest" target="edge:process-call">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e340" source="edge:context-assembly" target="table:public.transcripts_comparison">
+    <edge id="e360" source="edge:context-assembly" target="table:public.transcripts_comparison">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e341" source="edge:context-assembly" target="table:public.correspondent_project_affinity">
+    <edge id="e361" source="edge:context-assembly" target="table:public.correspondent_project_affinity">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e342" source="edge:context-assembly" target="table:public.span_place_mentions">
+    <edge id="e362" source="edge:context-assembly" target="table:public.span_place_mentions">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e343" source="edge:generate-summary" target="table:public.event_audit">
+    <edge id="e363" source="edge:generate-summary" target="table:public.event_audit">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e344" source="edge:generate-summary" target="table:public.interactions">
+    <edge id="e364" source="edge:generate-summary" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e345" source="edge:generate-summary" target="table:public.calls_raw">
+    <edge id="e365" source="edge:generate-summary" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e346" source="edge:generate-summary" target="table:public.projects">
+    <edge id="e366" source="edge:generate-summary" target="table:public.projects">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e347" source="edge:generate-summary" target="table:public.event_audit">
+    <edge id="e367" source="edge:generate-summary" target="table:public.event_audit">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e348" source="edge:segment-call" target="table:public.span_attributions">
+    <edge id="e368" source="edge:segment-call" target="table:public.span_attributions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e349" source="edge:segment-call" target="table:public.diagnostic_logs">
+    <edge id="e369" source="edge:segment-call" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e350" source="edge:striking-detect" target="table:public.conversation_spans">
+    <edge id="e370" source="edge:striking-detect" target="table:public.conversation_spans">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e351" source="edge:journal-consolidate" target="table:public.journal_runs">
+    <edge id="e371" source="edge:journal-consolidate" target="table:public.journal_runs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e352" source="edge:gmail-context-lookup" target="table:public.interactions">
+    <edge id="e372" source="edge:gmail-context-lookup" target="table:public.interactions">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e353" source="edge:gmail-context-lookup" target="table:public.contacts">
+    <edge id="e373" source="edge:gmail-context-lookup" target="table:public.contacts">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e354" source="edge:segment-llm" target="table:public.calls_raw">
+    <edge id="e374" source="edge:segment-llm" target="table:public.calls_raw">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e355" source="edge:zapier-sms-ingest" target="table:public.sms_messages">
+    <edge id="e375" source="edge:zapier-sms-ingest" target="table:public.diagnostic_logs">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e356" source="edge:zapier-sms-ingest" target="table:public.diagnostic_logs">
+    <edge id="e376" source="edge:zapier-sms-ingest" target="table:public.sms_messages">
       <data key="d2">writes</data>
     </edge>
-    <edge id="e357" source="edge:brief-serve" target="table:public.brief_deliveries">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e358" source="edge:brief-serve" target="table:public.brief_events">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e359" source="edge:brief-serve" target="table:public.scheduler_items">
+    <edge id="e377" source="edge:brief-serve" target="table:public.scheduler_items">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e360" source="edge:brief-serve" target="table:public.scheduler_items">
-      <data key="d2">writes</data>
-    </edge>
-    <edge id="e361" source="edge:brief-serve" target="view:public.v_monday_brief_data">
+    <edge id="e378" source="edge:brief-serve" target="view:public.v_monday_brief_data">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e362" source="edge:brief-serve" target="view:public.v_scheduler_brief">
+    <edge id="e379" source="edge:brief-serve" target="view:public.v_scheduler_brief">
       <data key="d2">reads</data>
     </edge>
-    <edge id="e363" source="edge:brief-serve" target="edge:morning-digest">
+    <edge id="e380" source="edge:brief-serve" target="edge:morning-digest">
       <data key="d2">calls</data>
+    </edge>
+    <edge id="e381" source="edge:brief-serve" target="table:public.brief_deliveries">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e382" source="edge:brief-serve" target="table:public.brief_events">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e383" source="edge:brief-serve" target="table:public.scheduler_items">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e384" source="fn:public.promote_journal_claims_to_belief(p_run_id uuid)" target="table:public.belief_claims">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e385" source="fn:public.promote_journal_claims_to_belief(p_run_id uuid)" target="table:public.promotion_log">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e386" source="fn:public.promote_journal_claims_to_belief(p_run_id uuid)" target="table:public.journal_review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e387" source="fn:public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)" target="table:public.review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e388" source="edge:journal-consolidate" target="table:public.journal_review_queue">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e389" source="fn:public.promote_journal_claims_to_belief(p_run_id uuid)" target="table:public.claim_pointers">
+      <data key="d2">writes</data>
+    </edge>
+    <edge id="e390" source="fn:public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)" target="table:public.review_audit">
+      <data key="d2">writes</data>
     </edge>
   </graph>
 </graphml>
