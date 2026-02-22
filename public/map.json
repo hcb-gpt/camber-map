@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-21T22:21:43Z",
-  "git_sha": "0b02e2e1df981725808749c94d091c906c694e3f",
+  "updated_at": "2026-02-22T06:07:09Z",
+  "git_sha": "1c2aaf0575f9d9d2dee7e4db7b2f5c39e10425f8",
   "mode": "live",
   "nodes": [
     {
@@ -57,6 +57,22 @@
       "schema": "public",
       "name": "belief_open_loops",
       "title": "public.belief_open_loops",
+      "group": "db"
+    },
+    {
+      "id": "table:public.brief_deliveries",
+      "kind": "table",
+      "schema": "public",
+      "name": "brief_deliveries",
+      "title": "public.brief_deliveries",
+      "group": "db"
+    },
+    {
+      "id": "table:public.brief_events",
+      "kind": "table",
+      "schema": "public",
+      "name": "brief_events",
+      "title": "public.brief_events",
       "group": "db"
     },
     {
@@ -700,6 +716,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.review_audit",
+      "kind": "table",
+      "schema": "public",
+      "name": "review_audit",
+      "title": "public.review_audit",
+      "group": "db"
+    },
+    {
       "id": "table:public.review_queue",
       "kind": "table",
       "schema": "public",
@@ -1337,6 +1361,22 @@
       "schema": "public",
       "name": "v_external_contacts",
       "title": "public.v_external_contacts",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_governance_dashboard",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_governance_dashboard",
+      "title": "public.v_governance_dashboard",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_governance_held",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_governance_held",
+      "title": "public.v_governance_held",
       "group": "db"
     },
     {
@@ -2396,6 +2436,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_auto_review_resolver",
+      "title": "public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.scan_transcript_for_projects(transcript_text text, similarity_threshold double precision, min_alias_length integer)",
       "kind": "fn",
       "schema": "public",
@@ -2497,6 +2545,46 @@
       "schema": "public",
       "name": "tg_set_updated_at",
       "title": "public.tg_set_updated_at()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_enforce_architecture_first()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_enforce_architecture_first",
+      "title": "public.tram_enforce_architecture_first()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_enforce_for_session_ack()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_enforce_for_session_ack",
+      "title": "public.tram_enforce_for_session_ack()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_enforce_milestone_authority()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_enforce_milestone_authority",
+      "title": "public.tram_enforce_milestone_authority()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_enforce_proof_gate()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_enforce_proof_gate",
+      "title": "public.tram_enforce_proof_gate()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_flag_task_requests()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_flag_task_requests",
+      "title": "public.tram_flag_task_requests()",
       "group": "db"
     },
     {
@@ -2804,8 +2892,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 32,
-        "updated_at": 1771391779694
+        "version": 33,
+        "updated_at": 1771714248532
       }
     },
     {
@@ -2895,8 +2983,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 37,
-        "updated_at": 1771391787859
+        "version": 39,
+        "updated_at": 1771717161085
       }
     },
     {
@@ -2908,8 +2996,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771696015641
+        "version": 73,
+        "updated_at": 1771714247270
       }
     },
     {
@@ -2921,8 +3009,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 46,
-        "updated_at": 1771211112299
+        "version": 47,
+        "updated_at": 1771716669934
       }
     },
     {
@@ -2960,8 +3048,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 93,
-        "updated_at": 1771395842810
+        "version": 94,
+        "updated_at": 1771714250082
       }
     },
     {
@@ -2986,8 +3074,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771391791148
+        "version": 40,
+        "updated_at": 1771717167044
       }
     },
     {
@@ -2999,8 +3087,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 45,
-        "updated_at": 1771452430588
+        "version": 46,
+        "updated_at": 1771714269945
       }
     },
     {
@@ -3012,8 +3100,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 25,
-        "updated_at": 1771356167367
+        "version": 26,
+        "updated_at": 1771717159123
       }
     },
     {
@@ -3025,8 +3113,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356183310
+        "version": 21,
+        "updated_at": 1771716671599
       }
     },
     {
@@ -3038,8 +3126,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 33,
-        "updated_at": 1771356166018
+        "version": 37,
+        "updated_at": 1771740270833
       }
     },
     {
@@ -3051,8 +3139,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771356169648
+        "version": 26,
+        "updated_at": 1771737036044
       }
     },
     {
@@ -3064,8 +3152,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771356167842
+        "version": 21,
+        "updated_at": 1771714246889
       }
     },
     {
@@ -3077,8 +3165,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1771391778600
+        "version": 20,
+        "updated_at": 1771716669457
       }
     },
     {
@@ -3090,8 +3178,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771391792771
+        "version": 14,
+        "updated_at": 1771714265708
       }
     },
     {
@@ -3103,8 +3191,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356167075
+        "version": 14,
+        "updated_at": 1771714246337
       }
     },
     {
@@ -3116,8 +3204,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771356163677
+        "version": 20,
+        "updated_at": 1771733489329
       }
     },
     {
@@ -3129,8 +3217,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771391784096
+        "version": 16,
+        "updated_at": 1771716690749
       }
     },
     {
@@ -3155,8 +3243,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771356182542
+        "version": 14,
+        "updated_at": 1771714247767
       }
     },
     {
@@ -3168,8 +3256,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771356178888
+        "version": 11,
+        "updated_at": 1771714268777
       }
     },
     {
@@ -3181,8 +3269,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771356164279
+        "version": 6,
+        "updated_at": 1771716692501
       }
     },
     {
@@ -3192,10 +3280,10 @@
       "name": "alias-hygiene",
       "title": "alias-hygiene",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343823377
+        "version": 5,
+        "updated_at": 1771714245730
       }
     },
     {
@@ -3205,10 +3293,10 @@
       "name": "alias-scout",
       "title": "alias-scout",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771343815540
+        "version": 5,
+        "updated_at": 1771716673250
       }
     },
     {
@@ -3222,6 +3310,45 @@
         "status": "ACTIVE",
         "version": 2,
         "updated_at": 1771565626910
+      }
+    },
+    {
+      "id": "edge:project-query",
+      "kind": "edge",
+      "group": "edge",
+      "name": "project-query",
+      "title": "project-query",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 2,
+        "updated_at": 1771729603182
+      }
+    },
+    {
+      "id": "edge:brief-serve",
+      "kind": "edge",
+      "group": "edge",
+      "name": "brief-serve",
+      "title": "brief-serve",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 4,
+        "updated_at": 1771736302057
+      }
+    },
+    {
+      "id": "edge:auto-review-resolver",
+      "kind": "edge",
+      "group": "edge",
+      "name": "auto-review-resolver",
+      "title": "auto-review-resolver",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 3,
+        "updated_at": 1771740409226
       }
     }
   ],
@@ -4377,6 +4504,16 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.v_governance_dashboard",
+      "to": "table:public.tram_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_governance_held",
+      "to": "table:public.tram_messages",
+      "type": "depends_on"
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -5057,24 +5194,6 @@
       "type": "reads",
       "meta": {
         "last_seen_at_utc": "2026-02-21T21:15:39.465Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T21:19:40.872Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T21:19:41.817Z",
         "seen_count": "1"
       }
     }

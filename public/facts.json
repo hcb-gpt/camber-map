@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-02-21T22:21:43Z",
-  "git_sha": "0b02e2e1df981725808749c94d091c906c694e3f",
+  "updated_at": "2026-02-22T06:07:09Z",
+  "git_sha": "1c2aaf0575f9d9d2dee7e4db7b2f5c39e10425f8",
   "mode": "live",
   "db": {
-    "applied_migrations": 495,
-    "tables": 113,
-    "views": 98,
-    "functions": 125,
+    "applied_migrations": 497,
+    "tables": 116,
+    "views": 100,
+    "functions": 131,
     "extensions": 12
   },
   "edge_functions": {
     "enabled": true,
-    "count": 33
+    "count": 36
   },
   "runtime_lineage": {
-    "count": 78
+    "count": 76
   }
 }
