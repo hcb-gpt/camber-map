@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-22T18:10:09Z",
-  "git_sha": "86d6071a2ddb15bc6fed6e3f2fcefcf69beba4af",
+  "updated_at": "2026-02-22T18:20:39Z",
+  "git_sha": "0d5383e72b72d410bfcdf8753c0717adce6e107f",
   "mode": "live",
   "nodes": [
     {
@@ -3543,9 +3543,12 @@
       "title": "sms-openphone-sync",
       "meta": {
         "verify_jwt": false,
-        "status": "ACTIVE",
+        "status": "DEPRECATED_410",
         "version": 2,
-        "updated_at": 1771780062497
+        "updated_at": 1771780062497,
+        "deprecated": true,
+        "replacement": "edge:zapier-sms-ingest",
+        "deprecation_note": "Legacy OpenPhone sync retired; use zapier-sms-ingest."
       }
     },
     {
@@ -5639,6 +5642,87 @@
       "type": "reads",
       "meta": {
         "last_seen_at_utc": "2026-02-21T21:15:39.465Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:zapier-sms-ingest",
+      "to": "table:public.sms_messages",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:22.840Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:zapier-sms-ingest",
+      "to": "table:public.diagnostic_logs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.062Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.brief_deliveries",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.152Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.brief_events",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.245Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.scheduler_items",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.334Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "table:public.scheduler_items",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.426Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "view:public.v_monday_brief_data",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.516Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "view:public.v_scheduler_brief",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.605Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:brief-serve",
+      "to": "edge:morning-digest",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-22T18:10:23.694Z",
         "seen_count": "1"
       }
     }

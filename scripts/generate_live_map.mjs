@@ -40,6 +40,7 @@ const DATABASE_URL = process.env.DATABASE_URL || '';
 
 const SUPABASE_PROJECT_REF = process.env.SUPABASE_PROJECT_REF || '';
 const SUPABASE_ACCESS_TOKEN = process.env.SUPABASE_ACCESS_TOKEN || '';
+const EDGE_NODE_OVERRIDES_PATH = path.join(ROOT, 'config', 'edge_node_overrides.json');
 
 function nowUtcIso() {
   return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
@@ -60,6 +61,19 @@ async function readGitSha() {
     return head;
   } catch {
     return 'unknown';
+  }
+}
+
+async function loadEdgeNodeOverrides() {
+  try {
+    const raw = await fs.readFile(EDGE_NODE_OVERRIDES_PATH, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return {};
+    }
+    return parsed;
+  } catch {
+    return {};
   }
 }
 
@@ -263,6 +277,8 @@ async function build() {
     },
   };
 
+  const edgeNodeOverrides = await loadEdgeNodeOverrides();
+
   let client = null;
   if (LIVE_MODE === 'live') {
     if (!DATABASE_URL) throw new Error('LIVE_MODE=live requires DATABASE_URL');
@@ -309,18 +325,25 @@ async function build() {
       };
       for (const f of fns) {
         const id = nodeId('edge', '', f.slug || f.name || 'unknown');
+        const baseMeta = {
+          verify_jwt: f.verify_jwt,
+          status: f.status,
+          version: f.version,
+          updated_at: f.updated_at,
+        };
+        const overrideMeta =
+          edgeNodeOverrides[id] &&
+          typeof edgeNodeOverrides[id] === 'object' &&
+          !Array.isArray(edgeNodeOverrides[id])
+            ? edgeNodeOverrides[id]
+            : null;
         map.nodes.push({
           id,
           kind: 'edge',
           group: 'edge',
           name: f.slug || f.name,
           title: f.name || f.slug,
-          meta: {
-            verify_jwt: f.verify_jwt,
-            status: f.status,
-            version: f.version,
-            updated_at: f.updated_at,
-          },
+          meta: overrideMeta ? { ...baseMeta, ...overrideMeta } : baseMeta,
         });
       }
     }

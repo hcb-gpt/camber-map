@@ -1,0 +1,8 @@
+{
+  "edge:sms-openphone-sync": {
+    "status": "DEPRECATED_410",
+    "deprecated": true,
+    "replacement": "edge:zapier-sms-ingest",
+    "deprecation_note": "Legacy OpenPhone sync retired; use zapier-sms-ingest."
+  }
+}
