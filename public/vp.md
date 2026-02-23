@@ -8,16 +8,16 @@
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| OK | Call Ingestion | chad | 100% | 12m ago | 2026-02-23 01:11:23Z |
-| OK | Transcription | chad | 100% | 12m ago | 2026-02-23 01:11:23Z |
-| OK | Segmentation | chad | 100% | 2h ago | 2026-02-22 23:35:47Z |
-| OK | Context Assembly | chad | 100% | 6m ago | 2026-02-23 01:14:47Z |
-| OK | Project Attribution | chad | 100% | 6m ago | 2026-02-23 01:14:47Z |
-| OK | Knowledge Extraction | chad | 100% | 2h ago | 2026-02-22 23:25:24Z |
-| OK | Call Summarization | chad | 100% | 2h ago | 2026-02-22 23:25:43Z |
-| OK | Signal Detection | chad | 100% | 2h ago | 2026-02-22 23:39:01Z |
-| OK | Journal Consolidation | chad | 100% | 6m ago | 2026-02-23 01:15:19Z |
-| OK | Embedding & Search | chad | 100% | 2h ago | 2026-02-22 23:25:24Z |
+| OK | Call Ingestion | chad | 100% | 4h ago | 2026-02-23 02:49:22Z |
+| OK | Transcription | chad | 100% | 4h ago | 2026-02-23 02:49:22Z |
+| OK | Segmentation | chad | 100% | 1h ago | 2026-02-23 05:32:05Z |
+| OK | Context Assembly | chad | 100% | 2h ago | 2026-02-23 04:57:19Z |
+| OK | Project Attribution | chad | 100% | 2h ago | 2026-02-23 04:57:19Z |
+| OK | Knowledge Extraction | chad | 100% | 2h ago | 2026-02-23 04:56:24Z |
+| OK | Call Summarization | chad | 100% | 4h ago | 2026-02-23 02:49:35Z |
+| OK | Signal Detection | chad | 100% | 3h ago | 2026-02-23 03:26:57Z |
+| OK | Journal Consolidation | chad | 100% | 6m ago | 2026-02-23 06:30:45Z |
+| OK | Embedding & Search | chad | 100% | 7h ago | 2026-02-22 23:25:24Z |
 
 ## Bottlenecks
 
@@ -42,6 +42,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-23T01:21:08Z
-Git SHA: cba12935293d8e72e96c78700a1879f74447b6a9
+Generated: 2026-02-23T06:38:13Z
+Git SHA: 547edf3875b74d276b0d891323fa8eb714b5e2de
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-23T01:21:08Z",
-  "git_sha": "cba12935293d8e72e96c78700a1879f74447b6a9",
+  "updated_at": "2026-02-23T06:38:13Z",
+  "git_sha": "547edf3875b74d276b0d891323fa8eb714b5e2de",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -19,13 +19,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 3.8,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1184,
-        "last_activity_at": "2026-02-23T01:11:23.819Z"
+        "row_count": 1195,
+        "last_activity_at": "2026-02-23T02:49:22.559Z"
       },
       "depends_on": []
     },
@@ -46,13 +46,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.2,
+        "hours_since_last_activity": 3.8,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
         "row_count": 559,
-        "last_activity_at": "2026-02-23T01:11:23.819Z"
+        "last_activity_at": "2026-02-23T02:49:22.559Z"
       },
       "depends_on": [
         "call-ingestion"
@@ -75,13 +75,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.8,
+        "hours_since_last_activity": 1.1,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 634,
-        "last_activity_at": "2026-02-22T23:35:47.457Z"
+        "row_count": 647,
+        "last_activity_at": "2026-02-23T05:32:05.079Z"
       },
       "depends_on": [
         "transcription"
@@ -104,13 +104,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.1,
+        "hours_since_last_activity": 1.7,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1563,
-        "last_activity_at": "2026-02-23T01:14:47.267Z"
+        "row_count": 1618,
+        "last_activity_at": "2026-02-23T04:57:19.569Z"
       },
       "depends_on": [
         "segmentation",
@@ -134,13 +134,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0.1,
+        "hours_since_last_activity": 1.7,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1563,
-        "last_activity_at": "2026-02-23T01:14:47.267Z"
+        "row_count": 1618,
+        "last_activity_at": "2026-02-23T04:57:19.569Z"
       },
       "depends_on": [
         "context-assembly"
@@ -163,13 +163,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.9,
+        "hours_since_last_activity": 1.7,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 3420,
-        "last_activity_at": "2026-02-22T23:25:24.758Z"
+        "row_count": 3534,
+        "last_activity_at": "2026-02-23T04:56:24.678Z"
       },
       "depends_on": [
         "attribution"
@@ -192,13 +192,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.9,
+        "hours_since_last_activity": 3.8,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 871,
-        "last_activity_at": "2026-02-22T23:25:43.468Z"
+        "row_count": 874,
+        "last_activity_at": "2026-02-23T02:49:35.945Z"
       },
       "depends_on": [
         "segmentation"
@@ -221,13 +221,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.7,
+        "hours_since_last_activity": 3.2,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 1345,
-        "last_activity_at": "2026-02-22T23:39:01.082Z"
+        "row_count": 1358,
+        "last_activity_at": "2026-02-23T03:26:57.646Z"
       },
       "depends_on": [
         "journal"
@@ -255,8 +255,8 @@
       },
       "health": {
         "status": "healthy",
-        "row_count": 371,
-        "last_activity_at": "2026-02-23T01:15:19.455Z"
+        "row_count": 410,
+        "last_activity_at": "2026-02-23T06:30:45.744Z"
       },
       "depends_on": [
         "journal"
@@ -279,7 +279,7 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 1.9,
+        "hours_since_last_activity": 7.2,
         "status": "fresh"
       },
       "health": {
