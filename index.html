@@ -1001,6 +1001,22 @@ var ROW_LABELS = [
 
 var nodes = [];
 var connections = [];
+var diagramNodesBase = [];
+var diagramConnectionsBase = [];
+var mapData = null;
+
+// Explicit map -> diagram aliases for customer-critical parity lanes.
+// This lets map-backed SMS/finance entities render through stable diagram nodes.
+var MAP_PARITY_ALIAS_POLICY = {
+  'edge:zapier-sms-ingest': 'zapier-sms-ingest',
+  'table:public.openphone_threads': 'sms-openphone-sync',
+  'view:public.v_calls_raw_zapier_lineage': 'zapier-ingest',
+  'table:public.sms_messages': 'db-core',
+  'table:public.cost_code_taxonomy': 'cost-code-taxonomy',
+  'matview:public.vendor_cost_code_summary': 'vendor-cost-code-summary',
+  'fn:public.check_postable_cost_code()': 'claim-guard'
+};
+var mapParityCoverage = { represented: [], missing: [] };
 
 var CONNECTION_LABEL_DESC_MAP = {
   'admin-reseed→ai-router|reroute': 'Reseed reruns routing on existing spans to test new router versions/config without silently overriding human locks.',
@@ -1031,6 +1047,7 @@ var CONNECTION_LABEL_DESC_MAP = {
   'cc-scripts→shadow-replay|batch': 'Batch shadow replays run historical traffic through the pipeline in a non-impacting mode to measure changes.',
   'chain-detect→db-pipeline-aux|call_chains': 'Stores call-to-call linkage so the system can reason over ongoing threads with a contact.',
   'claim-guard→cc-scripts|preflight': 'Claim guard enforces operator context and safety checks before any write-mode script can run.',
+  'process-call→claim-guard|finance_cost_code_preflight': 'Runs finance/cost-code preflight checks before downstream writes so classifications are explicit and auditable.',
   'context-assembly→ai-router|context_package': 'context-assembly hands ai-router a complete context package (span text + candidates + retrieved facts/claims) so routing can be decided consistently.',
   'context-assembly→db-context|span_place_mentions': 'Persists detected place mentions from spans to support geo signals and later analysis.',
   'context-assembly→gmail-ctx|email fetch (fail-open)': 'context-assembly optionally fetches cached email context; if Gmail is unavailable it proceeds without email so routing doesn’t stall.',
@@ -1121,6 +1138,78 @@ function attachConnectionDescs(list) {
   });
 }
 
+function mapParityAliasFor(nodeId) {
+  if (!nodeId) return nodeId;
+  return MAP_PARITY_ALIAS_POLICY[nodeId] || nodeId;
+}
+
+function mapEdgeToConnectionType(edgeType) {
+  if (edgeType === 'writes') return 'data-flow';
+  if (edgeType === 'reads') return 'rpc';
+  return 'dependency';
+}
+
+function syncRenderDataFromSources() {
+  var baseNodes = Array.isArray(diagramNodesBase) ? diagramNodesBase.slice() : [];
+  var baseConnections = Array.isArray(diagramConnectionsBase) ? diagramConnectionsBase.slice() : [];
+  var nodeIndex = {};
+  baseNodes.forEach(function(n) { nodeIndex[n.id] = true; });
+
+  // Normalize map-style IDs in diagram.connections into canonical render IDs.
+  // This keeps parity lanes visible when source JSON includes raw map IDs.
+  var canonicalConnectionSeen = new Set();
+  baseConnections = baseConnections
+    .map(function(c) {
+      return Object.assign({}, c, {
+        from: mapParityAliasFor(c.from),
+        to: mapParityAliasFor(c.to)
+      });
+    })
+    .filter(function(c) {
+      if (!nodeIndex[c.from] || !nodeIndex[c.to] || c.from === c.to) return false;
+      var k = _connKey(c.from, c.to, c.label);
+      if (canonicalConnectionSeen.has(k)) return false;
+      canonicalConnectionSeen.add(k);
+      return true;
+    });
+
+  mapParityCoverage = { represented: [], missing: [] };
+  Object.keys(MAP_PARITY_ALIAS_POLICY).forEach(function(mapNodeId) {
+    var alias = mapParityAliasFor(mapNodeId);
+    if (nodeIndex[alias]) mapParityCoverage.represented.push(mapNodeId + '→' + alias);
+    else mapParityCoverage.missing.push(mapNodeId + '→' + alias);
+  });
+
+  // Pull map-backed links into the rendered graph when both endpoints resolve.
+  // This keeps Flow/Plain parity resilient when diagram JSON lags map JSON.
+  if (mapData && Array.isArray(mapData.edges)) {
+    var existing = new Set(baseConnections.map(function(c) { return _connKey(c.from, c.to, c.label); }));
+    mapData.edges.forEach(function(e) {
+      var fromAlias = mapParityAliasFor(e.from);
+      var toAlias = mapParityAliasFor(e.to);
+      if (!nodeIndex[fromAlias] || !nodeIndex[toAlias] || fromAlias === toAlias) return;
+
+      var label = 'map:' + String(e.type || 'depends_on');
+      var key = _connKey(fromAlias, toAlias, label);
+      if (existing.has(key)) return;
+
+      baseConnections.push({
+        from: fromAlias,
+        to: toAlias,
+        type: mapEdgeToConnectionType(e.type),
+        label: label,
+        desc: 'Map parity edge from public/map.json (' + String(e.type || 'depends_on') + ')'
+      });
+      existing.add(key);
+    });
+  }
+
+  nodes = baseNodes;
+  connections = baseConnections;
+  attachConnectionDescs(connections);
+  window.__mapParityCoverage = mapParityCoverage;
+}
+
 
 var PRESETS = [
   { id: 'full',       label: 'Full System',             layers: ['external','pipeline','module','data','devops'], conns: Object.keys(CONN_TYPES) },
@@ -1201,6 +1290,30 @@ var MOBILE_STAGES = [
   }
 ];
 
+// Keep customer-critical lanes visible in simplified Flow mode.
+var FLOW_PARITY_NODE_ALLOWLIST = [
+  'openphone',
+  'sms-openphone-sync',
+  'zapier',
+  'zapier-ingest',
+  'zapier-sms-ingest',
+  'process-call',
+  'claim-guard',
+  'cost-code-taxonomy',
+  'vendor-cost-code-summary',
+  'db-core',
+  'table:public.openphone_threads',
+  'view:public.v_calls_raw_zapier_lineage',
+  'table:public.sms_messages',
+  'table:public.cost_code_taxonomy',
+  'matview:public.vendor_cost_code_summary',
+  'fn:public.check_postable_cost_code()'
+];
+
+function isFlowParityNode(nodeId) {
+  return FLOW_PARITY_NODE_ALLOWLIST.indexOf(nodeId) >= 0;
+}
+
 // ── VIEW MODES ────────────────────────────────────
 var VIEW_MODES = {
   flow: {
@@ -1211,10 +1324,10 @@ var VIEW_MODES = {
       'deepgram', 'openai', 'anthropic', 'gmail-api', 'github', 'sb-auth',
       'transcribe', 'admin-reseed', 'shadow-replay', 'gt-apply',
       'alias-scout', 'alias-review', 'alias-hygiene', 'embed-facts', 'journal-embed',
-      'db-core', 'db-spans', 'db-review',
+      'db-spans', 'db-review',
       'db-context', 'db-alias', 'world-model', 'storage',
       'rpc-resolve', 'rpc-gt', 'rpc-journal', 'rpc-contact', 'trigger-lock',
-      'gh-actions', 'tests', 'smoke-test', 'claim-guard', 'cc-scripts', 'migrations'
+      'gh-actions', 'tests', 'smoke-test', 'cc-scripts', 'migrations'
     ],
     showControls: false,
     showPrompt: false,
@@ -1296,6 +1409,12 @@ var FRIENDLY_COPY = {
   'db-alias':       { label: 'Project aliases',         subtitle: 'Known names + suggestions' },
   'world-model':    { label: 'World model',             subtitle: 'Facts + embeddings store' },
   'storage':        { label: 'File storage',            subtitle: 'Audio + artifacts' },
+  'table:public.openphone_threads': { label: 'SMS threads', subtitle: 'OpenPhone thread state' },
+  'table:public.sms_messages': { label: 'SMS messages', subtitle: 'Inbound/outbound message rows' },
+  'view:public.v_calls_raw_zapier_lineage': { label: 'Zapier lineage view', subtitle: 'Call/SMS ingest lineage' },
+  'table:public.cost_code_taxonomy': { label: 'Cost code taxonomy', subtitle: 'Canonical finance cost codes' },
+  'matview:public.vendor_cost_code_summary': { label: 'Vendor cost summary', subtitle: 'Cost-code rollup by vendor' },
+  'fn:public.check_postable_cost_code()': { label: 'Cost code guard', subtitle: 'Postability validation function' },
 
   'rpc-resolve':    { label: 'Review resolver (DB)',    subtitle: 'Atomic review write' },
   'rpc-gt':         { label: 'Ground-truth RPCs',       subtitle: 'Safe batch updates' },
@@ -1530,9 +1649,10 @@ function toggleSidebar() {
 function isNodeVisible(n) {
   // View-mode node exclusions
   var vm = VIEW_MODES[state.viewMode];
-  if (vm && vm.hideNodes && vm.hideNodes.indexOf(n.id) >= 0) return false;
+  var flowParityOverride = (state.viewMode === 'flow' && isFlowParityNode(n.id));
+  if (vm && vm.hideNodes && vm.hideNodes.indexOf(n.id) >= 0 && !flowParityOverride) return false;
 
-  if (!state.layers[n.layer]) return false;
+  if (!state.layers[n.layer] && !flowParityOverride) return false;
 
   // Search should match both technical and plain-English copy.
   if (state.searchFilter) {
@@ -3421,9 +3541,9 @@ function loadDiagramData() {
     validateOrThrow(ctx, 'diagramNodes', nextNodes, 'public/diagram.nodes.json');
     validateOrThrow(ctx, 'diagramConnections', nextConnections, 'public/diagram.connections.json');
 
-    nodes = nextNodes;
-    connections = nextConnections;
-    attachConnectionDescs(connections);
+    diagramNodesBase = nextNodes;
+    diagramConnectionsBase = nextConnections;
+    syncRenderDataFromSources();
 
     if (window.innerWidth <= 1024 && state.viewMode === 'flow' && typeof renderFlowNav === 'function') {
       renderFlowNav();
@@ -3461,6 +3581,8 @@ function fetchVPData() {
     vpData = nextVp;
     factsData = nextFacts;
     changesData = nextChanges;
+    mapData = nextMap;
+    syncRenderDataFromSources();
 
     renderNowBar();
     renderStatBar();

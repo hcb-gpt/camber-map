@@ -598,5 +598,119 @@
     "to": "guardrails",
     "type": "event",
     "label": "unit tests"
+  },
+  {
+    "from": "process-call",
+    "to": "claim-guard",
+    "type": "data-flow",
+    "label": "finance_cost_code_preflight"
+  },
+  {
+    "from": "claim-guard",
+    "to": "cost-code-taxonomy",
+    "type": "data-flow",
+    "label": "taxonomy validation read"
+  },
+  {
+    "from": "cost-code-taxonomy",
+    "to": "vendor-cost-code-summary",
+    "type": "data-flow",
+    "label": "vendor rollup source"
+  },
+  {
+    "from": "vendor-cost-code-summary",
+    "to": "claim-guard",
+    "type": "data-flow",
+    "label": "finance preflight evidence"
+  },
+  {
+    "from": "openphone",
+    "to": "sms-openphone-sync",
+    "type": "data-flow",
+    "label": "sms thread sync"
+  },
+  {
+    "from": "sms-openphone-sync",
+    "to": "zapier-sms-ingest",
+    "type": "data-flow",
+    "label": "sms payload forward"
+  },
+  {
+    "from": "process-call",
+    "to": "fn:public.check_postable_cost_code()",
+    "type": "data-flow",
+    "label": "cost code postability check"
+  },
+  {
+    "from": "fn:public.check_postable_cost_code()",
+    "to": "table:public.cost_code_taxonomy",
+    "type": "data-flow",
+    "label": "taxonomy validation read"
+  },
+  {
+    "from": "table:public.cost_code_taxonomy",
+    "to": "matview:public.vendor_cost_code_summary",
+    "type": "data-flow",
+    "label": "vendor rollup source"
+  },
+  {
+    "from": "zapier",
+    "to": "zapier-sms-ingest",
+    "type": "data-flow",
+    "label": "sms webhook POST"
+  },
+  {
+    "from": "zapier-sms-ingest",
+    "to": "table:public.sms_messages",
+    "type": "data-flow",
+    "label": "sms_messages write"
+  },
+  {
+    "from": "table:public.sms_messages",
+    "to": "table:public.openphone_threads",
+    "type": "data-flow",
+    "label": "thread state update"
+  },
+  {
+    "from": "zapier-ingest",
+    "to": "view:public.v_calls_raw_zapier_lineage",
+    "type": "data-flow",
+    "label": "lineage projection"
+  },
+  {
+    "from": "zapier-sms-ingest",
+    "to": "db-core",
+    "type": "data-flow",
+    "label": "sms_messages write"
+  },
+  {
+    "from": "journal-consolidate",
+    "to": "journal-promote",
+    "type": "fire-forget",
+    "label": "promotion trigger"
+  },
+  {
+    "from": "journal-promote",
+    "to": "world-model",
+    "type": "data-flow",
+    "label": "belief_claims + claim_pointers"
+  },
+  {
+    "from": "journal-promote",
+    "to": "db-review",
+    "type": "data-flow",
+    "label": "journal_review_queue writes"
+  },
+  {
+    "from": "process-call",
+    "to": "timeline-append",
+    "type": "data-flow",
+    "label": "timeline append"
+  },
+  {
+    "from": "timeline-append",
+    "to": "db-core",
+    "type": "data-flow",
+    "label": "project_timeline_events write"
   }
 ]

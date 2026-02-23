@@ -506,6 +506,72 @@
     "desc": "Audio file storage relies on external URLs rather than native Supabase Storage buckets. Call recordings arrive from OpenPhone (via Zapier) as recording_url fields in the webhook payload, stored directly in calls_raw. The transcribe-deepgram function fetches audio at runtime by making an HTTP GET to that URL and streaming it to the Deepgram API — the audio never lands in a Supabase bucket. This means the system depends on the telephony provider URL stability."
   },
   {
+    "id": "table:public.sms_messages",
+    "label": "SMS Messages",
+    "subtitle": "public.sms_messages",
+    "x": 1260,
+    "y": 820,
+    "w": 190,
+    "h": 48,
+    "layer": "data",
+    "desc": "Canonical inbound/outbound SMS ledger written by zapier-sms-ingest. This table is the durable source for text-message provenance used by reporting and timeline views."
+  },
+  {
+    "id": "table:public.openphone_threads",
+    "label": "OpenPhone Threads",
+    "subtitle": "public.openphone_threads",
+    "x": 1260,
+    "y": 880,
+    "w": 190,
+    "h": 48,
+    "layer": "data",
+    "desc": "Thread-level SMS state keyed to OpenPhone conversation threads. Used to group related messages and preserve phone-channel context."
+  },
+  {
+    "id": "view:public.v_calls_raw_zapier_lineage",
+    "label": "Zapier Lineage View",
+    "subtitle": "v_calls_raw_zapier_lineage",
+    "x": 1260,
+    "y": 940,
+    "w": 190,
+    "h": 48,
+    "layer": "data",
+    "desc": "Read model joining calls_raw payload lineage with Zapier metadata for operator traceability and ingest debugging."
+  },
+  {
+    "id": "table:public.cost_code_taxonomy",
+    "label": "Cost Code Taxonomy",
+    "subtitle": "public.cost_code_taxonomy",
+    "x": 1470,
+    "y": 820,
+    "w": 210,
+    "h": 48,
+    "layer": "data",
+    "desc": "Authoritative cost-code catalog for finance workflows. Cost-code assignments and validations must reconcile to this taxonomy."
+  },
+  {
+    "id": "matview:public.vendor_cost_code_summary",
+    "label": "Vendor Cost Summary",
+    "subtitle": "vendor_cost_code_summary",
+    "x": 1470,
+    "y": 880,
+    "w": 210,
+    "h": 48,
+    "layer": "data",
+    "desc": "Materialized rollup of vendor-to-cost-code usage patterns used in finance/cost-code analysis and reporting."
+  },
+  {
+    "id": "fn:public.check_postable_cost_code()",
+    "label": "Check Postable Cost Code",
+    "subtitle": "check_postable_cost_code()",
+    "x": 1470,
+    "y": 940,
+    "w": 210,
+    "h": 48,
+    "layer": "data",
+    "desc": "Validation function that blocks non-postable cost-code writes. This is the finance guardrail used in intake preflight."
+  },
+  {
     "id": "rpc-resolve",
     "label": "resolve_review_item",
     "subtitle": "RPC · single-txn",
@@ -625,5 +691,71 @@
     "h": 42,
     "layer": "devops",
     "desc": "498 SQL migration files (Dec 2025 - Feb 2026) managing the full schema evolution. December established core tables (interactions, contacts, projects, calls_raw). January built out journal tables, review_queue, override_log, fuzzy alias functions, and the affinity system. Late January/early February added conversation_spans, span_attributions, the enforce_lock_monotonic trigger, and close-loop machinery. February 2026 added the alias system, world model with vector embeddings, contact_fanout, and ground-truth RPCs."
+  },
+  {
+    "id": "zapier-sms-ingest",
+    "label": "zapier-sms-ingest",
+    "subtitle": "Edge Function v3",
+    "x": 960,
+    "y": 115,
+    "w": 190,
+    "h": 48,
+    "layer": "pipeline",
+    "desc": "Receives SMS payloads from Zapier and writes sms_messages plus diagnostic logs. Canonical SMS ingestion lane for Flow view evidence."
+  },
+  {
+    "id": "sms-openphone-sync",
+    "label": "sms-openphone-sync",
+    "subtitle": "openphone_threads bridge",
+    "x": 745,
+    "y": 115,
+    "w": 190,
+    "h": 48,
+    "layer": "pipeline",
+    "desc": "SMS parity bridge that represents openphone_threads lineage and normalized handoff into zapier-sms-ingest."
+  },
+  {
+    "id": "cost-code-taxonomy",
+    "label": "cost-code-taxonomy",
+    "subtitle": "public.cost_code_taxonomy",
+    "x": 1185,
+    "y": 820,
+    "w": 180,
+    "h": 48,
+    "layer": "data",
+    "desc": "Canonical finance taxonomy table used to validate postable cost codes before write paths continue."
+  },
+  {
+    "id": "vendor-cost-code-summary",
+    "label": "vendor-cost-code-summary",
+    "subtitle": "public.vendor_cost_code_summary",
+    "x": 1185,
+    "y": 910,
+    "w": 200,
+    "h": 48,
+    "layer": "data",
+    "desc": "Materialized vendor rollup for cost code posting checks and finance preflight guardrails."
+  },
+  {
+    "id": "journal-promote",
+    "label": "promote_journal_claims_to_belief",
+    "subtitle": "promotion + pointer writes",
+    "x": 900,
+    "y": 565,
+    "w": 250,
+    "h": 48,
+    "layer": "pipeline",
+    "desc": "Runs promote_journal_claims_to_belief and writes belief_claims, promotion_log, journal_review_queue, and claim_pointers."
+  },
+  {
+    "id": "timeline-append",
+    "label": "fn_timeline_append",
+    "subtitle": "project_timeline_events",
+    "x": 1160,
+    "y": 565,
+    "w": 180,
+    "h": 48,
+    "layer": "pipeline",
+    "desc": "Appends timeline events into project_timeline_events for activity timeline surfaces."
   }
 ]
