@@ -3978,6 +3978,13 @@
         "version": 3,
         "updated_at": 1771806548388
       }
+    },
+    {
+      "id": "ext:anthropic_api",
+      "kind": "ext",
+      "group": "runtime",
+      "name": "anthropic_api",
+      "title": "anthropic_api"
     }
   ],
   "edges": [
@@ -6347,6 +6354,87 @@
       "meta": {
         "last_seen_at_utc": "2026-02-22T19:22:14.900Z",
         "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_packet_assembly"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_packet_assembly"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.evidence_events",
+      "type": "reads",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_packet_assembly"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_packet_assembly"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.contacts",
+      "type": "reads",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_packet_assembly"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "writes",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_result_persistence"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "audit_result_persistence"
+      }
+    },
+    {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "ext:anthropic_api",
+      "type": "calls",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "packet_only_reviewer_llm_call"
+      }
+    },
+    {
+      "from": "edge:segment-call",
+      "to": "table:public.evidence_events",
+      "type": "writes",
+      "meta": {
+        "source": "map_declaration",
+        "reason": "lineage_evidence_emission"
       }
     }
   ],
