@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-22T19:50:51Z",
-  "git_sha": "fddf400ad871331370f22c209944ad1ccbf87224",
+  "updated_at": "2026-02-23T00:29:30Z",
+  "git_sha": "52c311b2f4a28084bff123e3fe85329295f0ff13",
   "mode": "live",
   "nodes": [
     {
@@ -25,6 +25,38 @@
       "schema": "public",
       "name": "api_keys",
       "title": "public.api_keys",
+      "group": "db"
+    },
+    {
+      "id": "table:public.attribution_audit_ledger",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_audit_ledger",
+      "title": "public.attribution_audit_ledger",
+      "group": "db"
+    },
+    {
+      "id": "table:public.attribution_audit_manifest",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_audit_manifest",
+      "title": "public.attribution_audit_manifest",
+      "group": "db"
+    },
+    {
+      "id": "table:public.attribution_audit_manifest_items",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_audit_manifest_items",
+      "title": "public.attribution_audit_manifest_items",
+      "group": "db"
+    },
+    {
+      "id": "table:public.attribution_falsifiability_snapshots",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_falsifiability_snapshots",
+      "title": "public.attribution_falsifiability_snapshots",
       "group": "db"
     },
     {
@@ -980,6 +1012,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.attribution_audit_failure_rollup_weekly",
+      "kind": "view",
+      "schema": "public",
+      "name": "attribution_audit_failure_rollup_weekly",
+      "title": "public.attribution_audit_failure_rollup_weekly",
+      "group": "db"
+    },
+    {
       "id": "view:public.baseline_v3_calls_success",
       "kind": "view",
       "schema": "public",
@@ -1225,6 +1265,38 @@
       "schema": "public",
       "name": "v_alias_discovery_candidates",
       "title": "public.v_alias_discovery_candidates",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_attribution_audit_disagreement_headline_7d",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_attribution_audit_disagreement_headline_7d",
+      "title": "public.v_attribution_audit_disagreement_headline_7d",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_attribution_audit_failure_buckets_daily",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_attribution_audit_failure_buckets_daily",
+      "title": "public.v_attribution_audit_failure_buckets_daily",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_attribution_audit_failure_deltas_weekly",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_attribution_audit_failure_deltas_weekly",
+      "title": "public.v_attribution_audit_failure_deltas_weekly",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_attribution_falsifiability_weekly_trend",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_attribution_falsifiability_weekly_trend",
+      "title": "public.v_attribution_falsifiability_weekly_trend",
       "group": "db"
     },
     {
@@ -1564,6 +1636,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_metrics_attribution_anchor_quality",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_metrics_attribution_anchor_quality",
+      "title": "public.v_metrics_attribution_anchor_quality",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_metrics_attribution_confidence",
       "kind": "view",
       "schema": "public",
@@ -1697,6 +1777,14 @@
       "schema": "public",
       "name": "v_pipeline_health",
       "title": "public.v_pipeline_health",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_prod_attrib_audit_dashboard_7d",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_prod_attrib_audit_dashboard_7d",
+      "title": "public.v_prod_attrib_audit_dashboard_7d",
       "group": "db"
     },
     {
@@ -2020,6 +2108,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.build_project_anchor_pack_v1(p_project_ids uuid[], p_call_at_utc timestamp with time zone, p_current_interaction_id text, p_alias_limit integer, p_scope_limit integer, p_vendor_limit integer, p_schedule_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "build_project_anchor_pack_v1",
+      "title": "public.build_project_anchor_pack_v1(p_project_ids uuid[], p_call_at_utc timestamp with time zone, p_current_interaction_id text, p_alias_limit integer, p_scope_limit integer, p_vendor_limit integer, p_schedule_limit integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.camber_auto_enable_rls()",
       "kind": "fn",
       "schema": "public",
@@ -2049,6 +2145,14 @@
       "schema": "public",
       "name": "canon_origin_kind",
       "title": "public.canon_origin_kind(live_val text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.capture_attribution_falsifiability_snapshot(p_disagreement_rate_fail_threshold numeric, p_captured_by text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "capture_attribution_falsifiability_snapshot",
+      "title": "public.capture_attribution_falsifiability_snapshot(p_disagreement_rate_fail_threshold numeric, p_captured_by text)",
       "group": "db"
     },
     {
@@ -2684,6 +2788,30 @@
       "group": "db"
     },
     {
+      "id": "fn:public.proof_prod_attrib_audit_latest(p_min_reviewed integer, p_require_mismatch boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "proof_prod_attrib_audit_latest",
+      "title": "public.proof_prod_attrib_audit_latest(p_min_reviewed integer, p_require_mismatch boolean)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.proof_prod_attrib_audit_latest_eligible(p_min_reviewed integer, p_require_mismatch boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "proof_prod_attrib_audit_latest_eligible",
+      "title": "public.proof_prod_attrib_audit_latest_eligible(p_min_reviewed integer, p_require_mismatch boolean)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.proof_prod_attrib_audit_run(p_eval_run_id uuid, p_min_reviewed integer, p_require_mismatch boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "proof_prod_attrib_audit_run",
+      "title": "public.proof_prod_attrib_audit_run(p_eval_run_id uuid, p_min_reviewed integer, p_require_mismatch boolean)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.propose_belief_conflicts_from_journal_claims(p_project_id uuid, p_since timestamp with time zone, p_max_distance double precision, p_min_contradiction_score double precision, p_result_limit integer)",
       "kind": "fn",
       "schema": "public",
@@ -2900,6 +3028,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.sync_span_needs_review_for_span(p_span_id uuid)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "sync_span_needs_review_for_span",
+      "title": "public.sync_span_needs_review_for_span(p_span_id uuid)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.sync_tram_from_columns()",
       "kind": "fn",
       "schema": "public",
@@ -3065,6 +3201,14 @@
       "schema": "public",
       "name": "trg_span_attributions_lock_monotonic",
       "title": "public.trg_span_attributions_lock_monotonic()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_sync_span_needs_review_from_review_queue()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_sync_span_needs_review_from_review_queue",
+      "title": "public.trg_sync_span_needs_review_from_review_queue()",
       "group": "db"
     },
     {
@@ -3425,8 +3569,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 47,
-        "updated_at": 1771716669934
+        "version": 53,
+        "updated_at": 1771806340414
       }
     },
     {
@@ -3451,8 +3595,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 72,
-        "updated_at": 1771451177801
+        "version": 73,
+        "updated_at": 1771806536323
       }
     },
     {
@@ -3464,8 +3608,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 94,
-        "updated_at": 1771714250082
+        "version": 97,
+        "updated_at": 1771806535648
       }
     },
     {
@@ -3542,8 +3686,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 37,
-        "updated_at": 1771740270833
+        "version": 38,
+        "updated_at": 1771806554537
       }
     },
     {
@@ -3555,8 +3699,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1771745819694
+        "version": 31,
+        "updated_at": 1771806529558
       }
     },
     {
@@ -3620,8 +3764,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 25,
-        "updated_at": 1771780978480
+        "version": 26,
+        "updated_at": 1771806532527
       }
     },
     {
@@ -3659,8 +3803,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 17,
-        "updated_at": 1771743817543
+        "version": 18,
+        "updated_at": 1771806553096
       }
     },
     {
@@ -3807,6 +3951,32 @@
         "status": "ACTIVE",
         "version": 2,
         "updated_at": 1771789402546
+      }
+    },
+    {
+      "id": "edge:audit-attribution",
+      "kind": "edge",
+      "group": "edge",
+      "name": "audit-attribution",
+      "title": "audit-attribution",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 16,
+        "updated_at": 1771806546472
+      }
+    },
+    {
+      "id": "edge:audit-attribution-reviewer",
+      "kind": "edge",
+      "group": "edge",
+      "name": "audit-attribution-reviewer",
+      "title": "audit-attribution-reviewer",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 3,
+        "updated_at": 1771806548388
       }
     }
   ],
@@ -5304,6 +5474,51 @@
     {
       "from": "view:public.v_cost_code_taxonomy_guardrail_violations",
       "to": "table:public.cost_code_taxonomy",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.attribution_audit_failure_rollup_weekly",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_prod_attrib_audit_dashboard_7d",
+      "to": "table:public.eval_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_prod_attrib_audit_dashboard_7d",
+      "to": "table:public.eval_samples",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_attribution_anchor_quality",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_metrics_attribution_anchor_quality",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_audit_disagreement_headline_7d",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_audit_failure_buckets_daily",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_audit_failure_deltas_weekly",
+      "to": "view:public.v_attribution_audit_failure_buckets_daily",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_attribution_falsifiability_weekly_trend",
+      "to": "table:public.attribution_falsifiability_snapshots",
       "type": "depends_on"
     },
     {
