@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-23T00:29:30Z",
-  "git_sha": "52c311b2f4a28084bff123e3fe85329295f0ff13",
+  "updated_at": "2026-02-23T01:21:06Z",
+  "git_sha": "cba12935293d8e72e96c78700a1879f74447b6a9",
   "mode": "live",
   "nodes": [
     {
@@ -44,6 +44,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.attribution_audit_manifest_item_corrections",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_audit_manifest_item_corrections",
+      "title": "public.attribution_audit_manifest_item_corrections",
+      "group": "db"
+    },
+    {
       "id": "table:public.attribution_audit_manifest_items",
       "kind": "table",
       "schema": "public",
@@ -52,11 +60,27 @@
       "group": "db"
     },
     {
+      "id": "table:public.attribution_audit_queue",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_audit_queue",
+      "title": "public.attribution_audit_queue",
+      "group": "db"
+    },
+    {
       "id": "table:public.attribution_falsifiability_snapshots",
       "kind": "table",
       "schema": "public",
       "name": "attribution_falsifiability_snapshots",
       "title": "public.attribution_falsifiability_snapshots",
+      "group": "db"
+    },
+    {
+      "id": "table:public.audit_eval_manifest",
+      "kind": "table",
+      "schema": "public",
+      "name": "audit_eval_manifest",
+      "title": "public.audit_eval_manifest",
       "group": "db"
     },
     {
@@ -353,6 +377,14 @@
       "schema": "public",
       "name": "evidence_types",
       "title": "public.evidence_types",
+      "group": "db"
+    },
+    {
+      "id": "table:public.failure_mode_buckets",
+      "kind": "table",
+      "schema": "public",
+      "name": "failure_mode_buckets",
+      "title": "public.failure_mode_buckets",
       "group": "db"
     },
     {
@@ -1137,6 +1169,14 @@
       "schema": "public",
       "name": "financial_claim_receipts_v1_assertions",
       "title": "public.financial_claim_receipts_v1_assertions",
+      "group": "db"
+    },
+    {
+      "id": "view:public.fleet_active",
+      "kind": "view",
+      "schema": "public",
+      "name": "fleet_active",
+      "title": "public.fleet_active",
       "group": "db"
     },
     {
@@ -2036,6 +2076,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.weekly_audit_rollup",
+      "kind": "view",
+      "schema": "public",
+      "name": "weekly_audit_rollup",
+      "title": "public.weekly_audit_rollup",
+      "group": "db"
+    },
+    {
       "id": "fn:public._safe_amount(p_text text)",
       "kind": "fn",
       "schema": "public",
@@ -2057,6 +2105,14 @@
       "schema": "public",
       "name": "apply_gt_correction",
       "title": "public.apply_gt_correction(p_span_id uuid, p_project_id uuid, p_corrected_by text, p_notes text, p_batch_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.apply_manifest_pointer_quality_fail_closed(p_manifest_name text, p_actor text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "apply_manifest_pointer_quality_fail_closed",
+      "title": "public.apply_manifest_pointer_quality_fail_closed(p_manifest_name text, p_actor text)",
       "group": "db"
     },
     {
@@ -2425,6 +2481,22 @@
       "schema": "public",
       "name": "enforce_payload_ref_write_once",
       "title": "public.enforce_payload_ref_write_once()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.enforce_span_attribution_requires_evidence_event()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "enforce_span_attribution_requires_evidence_event",
+      "title": "public.enforce_span_attribution_requires_evidence_event()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.ensure_call_evidence_for_span_interaction()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "ensure_call_evidence_for_span_interaction",
+      "title": "public.ensure_call_evidence_for_span_interaction()",
       "group": "db"
     },
     {
@@ -2921,6 +2993,14 @@
       "schema": "public",
       "name": "run_auto_review_resolver",
       "title": "public.run_auto_review_resolver(p_high_conf numeric, p_low_conf numeric, p_limit integer, p_actor text, p_dry_run boolean)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.run_daily_audit_sample_v1()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_daily_audit_sample_v1",
+      "title": "public.run_daily_audit_sample_v1()",
       "group": "db"
     },
     {
@@ -3543,8 +3623,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771717161085
+        "version": 40,
+        "updated_at": 1771808204762
       }
     },
     {
@@ -3556,8 +3636,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 73,
-        "updated_at": 1771714247270
+        "version": 74,
+        "updated_at": 1771806846266
       }
     },
     {
@@ -3569,8 +3649,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 53,
-        "updated_at": 1771806340414
+        "version": 56,
+        "updated_at": 1771807107535
       }
     },
     {
@@ -3595,8 +3675,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 73,
-        "updated_at": 1771806536323
+        "version": 74,
+        "updated_at": 1771807090513
       }
     },
     {
@@ -3608,8 +3688,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 97,
-        "updated_at": 1771806535648
+        "version": 104,
+        "updated_at": 1771809018464
       }
     },
     {
@@ -3647,8 +3727,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 46,
-        "updated_at": 1771714269945
+        "version": 47,
+        "updated_at": 1771808187142
       }
     },
     {
@@ -3686,8 +3766,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 38,
-        "updated_at": 1771806554537
+        "version": 39,
+        "updated_at": 1771806849625
       }
     },
     {
@@ -3699,8 +3779,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 31,
-        "updated_at": 1771806529558
+        "version": 32,
+        "updated_at": 1771806848254
       }
     },
     {
@@ -3764,8 +3844,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 26,
-        "updated_at": 1771806532527
+        "version": 27,
+        "updated_at": 1771806851509
       }
     },
     {
@@ -3803,8 +3883,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 18,
-        "updated_at": 1771806553096
+        "version": 19,
+        "updated_at": 1771808599734
       }
     },
     {
@@ -3868,8 +3948,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771565626910
+        "version": 3,
+        "updated_at": 1771807093223
       }
     },
     {
@@ -3881,8 +3961,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771729603182
+        "version": 3,
+        "updated_at": 1771806863259
       }
     },
     {
@@ -3894,8 +3974,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 9,
-        "updated_at": 1771780902065
+        "version": 13,
+        "updated_at": 1771809204824
       }
     },
     {
@@ -3907,8 +3987,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771742497266
+        "version": 11,
+        "updated_at": 1771806846490
       }
     },
     {
@@ -3962,8 +4042,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771806546472
+        "version": 27,
+        "updated_at": 1771808767112
       }
     },
     {
@@ -3975,16 +4055,61 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771806548388
+        "version": 13,
+        "updated_at": 1771808765784
       }
     },
     {
-      "id": "ext:anthropic_api",
-      "kind": "ext",
-      "group": "runtime",
-      "name": "anthropic_api",
-      "title": "anthropic_api"
+      "id": "edge:decision-auditor",
+      "kind": "edge",
+      "group": "edge",
+      "name": "decision-auditor",
+      "title": "decision-auditor",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1771806847734
+      }
+    },
+    {
+      "id": "edge:evidence-assembler",
+      "kind": "edge",
+      "group": "edge",
+      "name": "evidence-assembler",
+      "title": "evidence-assembler",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1771806863804
+      }
+    },
+    {
+      "id": "edge:embed-facts",
+      "kind": "edge",
+      "group": "edge",
+      "name": "embed-facts",
+      "title": "embed-facts",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1771808185950
+      }
+    },
+    {
+      "id": "edge:morning-manifest-ui",
+      "kind": "edge",
+      "group": "edge",
+      "name": "morning-manifest-ui",
+      "title": "morning-manifest-ui",
+      "meta": {
+        "verify_jwt": true,
+        "status": "ACTIVE",
+        "version": 6,
+        "updated_at": 1771809236472
+      }
     }
   ],
   "edges": [
@@ -5529,6 +5654,16 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.fleet_active",
+      "to": "table:public.tram_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.weekly_audit_rollup",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "depends_on"
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -5562,78 +5697,6 @@
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
         "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.review_queue",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:39:07.739Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.calls_raw",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.interactions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.event_audit",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.idempotency_keys",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.project_contacts",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.projects",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-21T17:46:35.847Z",
-        "seen_count": "2"
       }
     },
     {
@@ -5832,6 +5895,78 @@
       "meta": {
         "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
         "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:10:57.779Z",
+        "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.calls_raw",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.interactions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.event_audit",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.idempotency_keys",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.project_contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:11:24.475Z",
+        "seen_count": "4"
       }
     },
     {
@@ -6357,12 +6492,552 @@
       }
     },
     {
+      "from": "edge:gt-apply",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gt-apply",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gt-apply",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gt-apply",
+      "to": "table:public.override_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:gt-apply",
+      "to": "table:public.evidence_events",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-hygiene",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-hygiene",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-hygiene",
+      "to": "table:public.suggested_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-hygiene",
+      "to": "table:public.project_aliases",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-hygiene",
+      "to": "table:public.suggested_aliases",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-review",
+      "to": "table:public.suggested_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-review",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-review",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-review",
+      "to": "table:public.project_aliases",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-review",
+      "to": "table:public.suggested_aliases",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.suggested_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:alias-scout",
+      "to": "table:public.suggested_aliases",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.project_contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.journal_claims",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.project_facts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:evidence-assembler",
+      "to": "table:public.review_queue",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.override_log",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.conversation_spans",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.override_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.striking_signals",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:context-assembly",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:ai-router",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:striking-detect",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:journal-extract",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.eval_samples",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.eval_samples",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.eval_runs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:decision-auditor",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:decision-auditor",
+      "to": "table:public.project_aliases",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.review_queue",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.override_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.review_queue",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
+        "seen_count": "1"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.span_attributions",
       "type": "reads",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_packet_assembly"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "2"
       }
     },
     {
@@ -6370,8 +7045,8 @@
       "to": "table:public.conversation_spans",
       "type": "reads",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_packet_assembly"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6379,8 +7054,8 @@
       "to": "table:public.evidence_events",
       "type": "reads",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_packet_assembly"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6388,8 +7063,8 @@
       "to": "table:public.projects",
       "type": "reads",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_packet_assembly"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6397,8 +7072,8 @@
       "to": "table:public.contacts",
       "type": "reads",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_packet_assembly"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6406,8 +7081,8 @@
       "to": "table:public.attribution_audit_ledger",
       "type": "writes",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_result_persistence"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "2"
       }
     },
     {
@@ -6415,8 +7090,8 @@
       "to": "table:public.review_queue",
       "type": "writes",
       "meta": {
-        "source": "map_declaration",
-        "reason": "audit_result_persistence"
+        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6424,8 +7099,8 @@
       "to": "ext:anthropic_api",
       "type": "calls",
       "meta": {
-        "source": "map_declaration",
-        "reason": "packet_only_reviewer_llm_call"
+        "last_seen_at_utc": "2026-02-23T01:19:49.673Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6433,8 +7108,8 @@
       "to": "table:public.evidence_events",
       "type": "writes",
       "meta": {
-        "source": "map_declaration",
-        "reason": "lineage_evidence_emission"
+        "last_seen_at_utc": "2026-02-23T01:19:49.771Z",
+        "seen_count": "1"
       }
     }
   ],
