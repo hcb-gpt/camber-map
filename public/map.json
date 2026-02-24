@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-23T06:38:11Z",
-  "git_sha": "547edf3875b74d276b0d891323fa8eb714b5e2de",
+  "updated_at": "2026-02-24T06:16:14Z",
+  "git_sha": "511167d261eefa0d44a0431250cb9995d5ab0974",
   "mode": "live",
   "nodes": [
     {
@@ -73,6 +73,14 @@
       "schema": "public",
       "name": "attribution_falsifiability_snapshots",
       "title": "public.attribution_falsifiability_snapshots",
+      "group": "db"
+    },
+    {
+      "id": "table:public.attribution_history",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_history",
+      "title": "public.attribution_history",
       "group": "db"
     },
     {
@@ -2172,6 +2180,30 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_tuning_component_impact",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_tuning_component_impact",
+      "title": "public.v_tuning_component_impact",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_tuning_gatekeeper_analysis",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_tuning_gatekeeper_analysis",
+      "title": "public.v_tuning_gatekeeper_analysis",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_tuning_version_accuracy",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_tuning_version_accuracy",
+      "title": "public.v_tuning_version_accuracy",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_vendor_inference_summary",
       "kind": "view",
       "schema": "public",
@@ -2593,6 +2625,22 @@
       "schema": "public",
       "name": "cron_fire_morning_digest",
       "title": "public.cron_fire_morning_digest()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_review_swarm_scheduler()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_review_swarm_scheduler",
+      "title": "public.cron_fire_review_swarm_scheduler()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.cron_fire_sms_thread_assembler()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_sms_thread_assembler",
+      "title": "public.cron_fire_sms_thread_assembler()",
       "group": "db"
     },
     {
@@ -3388,6 +3436,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_attribution_history_on_change()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_attribution_history_on_change",
+      "title": "public.trg_attribution_history_on_change()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_auto_assign_project_fn()",
       "kind": "fn",
       "schema": "public",
@@ -3409,6 +3465,14 @@
       "schema": "public",
       "name": "trg_auto_generate_street_aliases",
       "title": "public.trg_auto_generate_street_aliases()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_close_review_queue_on_promotion()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_close_review_queue_on_promotion",
+      "title": "public.trg_close_review_queue_on_promotion()",
       "group": "db"
     },
     {
@@ -3820,8 +3884,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 80,
-        "updated_at": 1771816534752
+        "version": 82,
+        "updated_at": 1771853433116
       }
     },
     {
@@ -3833,8 +3897,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 73,
-        "updated_at": 1771825131885
+        "version": 79,
+        "updated_at": 1771881536923
       }
     },
     {
@@ -3859,8 +3923,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 76,
-        "updated_at": 1771811703615
+        "version": 79,
+        "updated_at": 1771893891082
       }
     },
     {
@@ -3872,8 +3936,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 121,
-        "updated_at": 1771818515335
+        "version": 123,
+        "updated_at": 1771881538735
       }
     },
     {
@@ -4226,8 +4290,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1771811132608
+        "version": 39,
+        "updated_at": 1771870808820
       }
     },
     {
@@ -4239,8 +4303,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 17,
-        "updated_at": 1771826895230
+        "version": 20,
+        "updated_at": 1771853607979
       }
     },
     {
@@ -4289,10 +4353,10 @@
       "name": "morning-manifest-ui",
       "title": "morning-manifest-ui",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1771824861750
+        "version": 38,
+        "updated_at": 1771872543613
       }
     },
     {
@@ -4304,8 +4368,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771825130208
+        "version": 25,
+        "updated_at": 1771870806338
       }
     },
     {
@@ -4317,8 +4381,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 8,
-        "updated_at": 1771825128104
+        "version": 13,
+        "updated_at": 1771893885782
       }
     },
     {
@@ -4330,8 +4394,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771822921908
+        "version": 5,
+        "updated_at": 1771853436306
       }
     },
     {
@@ -4341,10 +4405,10 @@
       "name": "operator-validation-ui",
       "title": "operator-validation-ui",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771826472793
+        "version": 5,
+        "updated_at": 1771853627534
       }
     },
     {
@@ -4356,8 +4420,86 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 1,
-        "updated_at": 1771826747160
+        "version": 10,
+        "updated_at": 1771858434851
+      }
+    },
+    {
+      "id": "edge:morning-manifest-d3",
+      "kind": "edge",
+      "group": "edge",
+      "name": "morning-manifest-d3",
+      "title": "morning-manifest-d3",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 2,
+        "updated_at": 1771893891602
+      }
+    },
+    {
+      "id": "edge:morning-brief",
+      "kind": "edge",
+      "group": "edge",
+      "name": "morning-brief",
+      "title": "morning-brief",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 27,
+        "updated_at": 1771893871835
+      }
+    },
+    {
+      "id": "edge:review-swarm-scheduler",
+      "kind": "edge",
+      "group": "edge",
+      "name": "review-swarm-scheduler",
+      "title": "review-swarm-scheduler",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 14,
+        "updated_at": 1771895100950
+      }
+    },
+    {
+      "id": "edge:sms-beside-batch-ingest",
+      "kind": "edge",
+      "group": "edge",
+      "name": "sms-beside-batch-ingest",
+      "title": "sms-beside-batch-ingest",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 6,
+        "updated_at": 1771861755584
+      }
+    },
+    {
+      "id": "edge:reattribute-spans",
+      "kind": "edge",
+      "group": "edge",
+      "name": "reattribute-spans",
+      "title": "reattribute-spans",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 3,
+        "updated_at": 1771893872331
+      }
+    },
+    {
+      "id": "edge:sms-thread-assembler",
+      "kind": "edge",
+      "group": "edge",
+      "name": "sms-thread-assembler",
+      "title": "sms-thread-assembler",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 3,
+        "updated_at": 1771896315160
       }
     }
   ],
@@ -6048,6 +6190,41 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.v_tuning_version_accuracy",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_version_accuracy",
+      "to": "table:public.attribution_validation_feedback",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_gatekeeper_analysis",
+      "to": "table:public.override_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_gatekeeper_analysis",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_gatekeeper_analysis",
+      "to": "table:public.attribution_validation_feedback",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_component_impact",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tuning_component_impact",
+      "to": "table:public.attribution_validation_feedback",
+      "type": "depends_on"
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -6081,6 +6258,15 @@
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
         "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.eval_runs",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
+        "seen_count": "7"
       }
     },
     {
@@ -7285,8 +7471,8 @@
       "to": "table:public.eval_samples",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
+        "seen_count": "7"
       }
     },
     {
@@ -7294,17 +7480,8 @@
       "to": "table:public.eval_samples",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:audit-attribution",
-      "to": "table:public.eval_runs",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
+        "seen_count": "7"
       }
     },
     {
@@ -7408,15 +7585,6 @@
     },
     {
       "from": "edge:audit-attribution",
-      "to": "table:public.span_attributions",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:audit-attribution",
       "to": "table:public.conversation_spans",
       "type": "reads",
       "meta": {
@@ -7453,15 +7621,6 @@
     },
     {
       "from": "edge:audit-attribution",
-      "to": "table:public.attribution_audit_ledger",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:19:49.424Z",
-        "seen_count": "2"
-      }
-    },
-    {
-      "from": "edge:audit-attribution",
       "to": "table:public.review_queue",
       "type": "writes",
       "meta": {
@@ -7488,6 +7647,15 @@
       }
     },
     {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T03:32:48.742Z",
+        "seen_count": "208"
+      }
+    },
+    {
       "from": "edge:process-call",
       "to": "edge:chain-detect",
       "type": "calls",
@@ -7497,12 +7665,21 @@
       }
     },
     {
-      "from": "edge:audit-attribution-reviewer",
-      "to": "edge:audit-attribution",
-      "type": "called_by",
+      "from": "edge:audit-attribution",
+      "to": "table:public.span_attributions",
+      "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T04:42:33.189Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
+        "seen_count": "8"
+      }
+    },
+    {
+      "from": "edge:audit-attribution",
+      "to": "table:public.attribution_audit_ledger",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
+        "seen_count": "8"
       }
     }
   ],

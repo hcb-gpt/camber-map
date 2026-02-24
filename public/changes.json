@@ -1,5 +1,30 @@
 {
-  "updated_at": "2026-02-23T06:38:13Z",
+  "updated_at": "2026-02-24T06:16:16Z",
   "has_previous": true,
-  "changes": []
+  "changes": [
+    {
+      "type": "health_change",
+      "capability": "journal",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "summarization",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "signal-detection",
+      "from": "healthy",
+      "to": "degraded"
+    },
+    {
+      "type": "health_change",
+      "capability": "embedding",
+      "from": "healthy",
+      "to": "degraded"
+    }
+  ]
 }

@@ -2,26 +2,29 @@
 
 ## Overall Health
 
-**10 healthy** out of 10 capabilities (coverage: 100%)
+**6 healthy, 4 degraded** out of 10 capabilities (coverage: 100%)
 
 ## Capabilities
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| OK | Call Ingestion | chad | 100% | 4h ago | 2026-02-23 02:49:22Z |
-| OK | Transcription | chad | 100% | 4h ago | 2026-02-23 02:49:22Z |
-| OK | Segmentation | chad | 100% | 1h ago | 2026-02-23 05:32:05Z |
-| OK | Context Assembly | chad | 100% | 2h ago | 2026-02-23 04:57:19Z |
-| OK | Project Attribution | chad | 100% | 2h ago | 2026-02-23 04:57:19Z |
-| OK | Knowledge Extraction | chad | 100% | 2h ago | 2026-02-23 04:56:24Z |
-| OK | Call Summarization | chad | 100% | 4h ago | 2026-02-23 02:49:35Z |
-| OK | Signal Detection | chad | 100% | 3h ago | 2026-02-23 03:26:57Z |
-| OK | Journal Consolidation | chad | 100% | 6m ago | 2026-02-23 06:30:45Z |
-| OK | Embedding & Search | chad | 100% | 7h ago | 2026-02-22 23:25:24Z |
+| OK | Call Ingestion | chad | 100% | 5h ago | 2026-02-24 01:27:11Z |
+| OK | Transcription | chad | 100% | 5h ago | 2026-02-24 01:27:11Z |
+| OK | Segmentation | chad | 100% | 5h ago | 2026-02-24 01:27:22Z |
+| OK | Context Assembly | chad | 100% | 5h ago | 2026-02-24 01:27:26Z |
+| OK | Project Attribution | chad | 100% | 5h ago | 2026-02-24 01:27:26Z |
+| WARN | Knowledge Extraction | chad | 100% | 25h ago | 2026-02-23 04:56:24Z |
+| WARN | Call Summarization | chad | 100% | 27h ago | 2026-02-23 02:49:35Z |
+| WARN | Signal Detection | chad | 100% | 27h ago | 2026-02-23 03:26:57Z |
+| OK | Journal Consolidation | chad | 100% | 0m ago | 2026-02-24 06:15:31Z |
+| WARN | Embedding & Search | chad | 100% | 31h ago | 2026-02-22 23:25:24Z |
 
 ## Bottlenecks
 
-No degraded or stale capabilities detected.
+- **WARN** Knowledge Extraction — blocks: signal-detection, consolidation, embedding
+- **WARN** Call Summarization — no downstream dependents
+- **WARN** Signal Detection — no downstream dependents
+- **WARN** Embedding & Search — blocks: context-assembly
 
 ## Pipeline Flow
 
@@ -42,6 +45,6 @@ No degraded or stale capabilities detected.
 ```
 
 ---
-Generated: 2026-02-23T06:38:13Z
-Git SHA: 547edf3875b74d276b0d891323fa8eb714b5e2de
+Generated: 2026-02-24T06:16:16Z
+Git SHA: 511167d261eefa0d44a0431250cb9995d5ab0974
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
