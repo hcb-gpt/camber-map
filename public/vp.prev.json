@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-24T06:16:16Z",
-  "git_sha": "511167d261eefa0d44a0431250cb9995d5ab0974",
+  "updated_at": "2026-02-25T06:36:27Z",
+  "git_sha": "1f5ffb0618a3247b7b408d3b84d9fe42993ed02c",
   "capabilities": [
     {
       "id": "call-ingestion",
@@ -15,15 +15,15 @@
       "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.8,
-        "status": "fresh"
+        "hours_since_last_activity": 29.2,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 1308,
         "last_activity_at": "2026-02-24T01:27:11.752Z"
       },
@@ -42,15 +42,15 @@
       "tech_nodes_in_graph": 3,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.8,
-        "status": "fresh"
+        "hours_since_last_activity": 29.2,
+        "status": "aging"
       },
       "health": {
-        "status": "healthy",
+        "status": "degraded",
         "row_count": 559,
         "last_activity_at": "2026-02-24T01:27:11.752Z"
       },
@@ -71,17 +71,17 @@
       "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.8,
+        "hours_since_last_activity": 9.2,
         "status": "fresh"
       },
       "health": {
-        "status": "healthy",
-        "row_count": 689,
-        "last_activity_at": "2026-02-24T01:27:22.864Z"
+        "status": "degraded",
+        "row_count": 690,
+        "last_activity_at": "2026-02-24T21:25:52.199Z"
       },
       "depends_on": [
         "transcription"
@@ -100,17 +100,17 @@
       "tech_nodes_in_graph": 1,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.8,
+        "hours_since_last_activity": 8.6,
         "status": "fresh"
       },
       "health": {
-        "status": "healthy",
-        "row_count": 1659,
-        "last_activity_at": "2026-02-24T01:27:26.171Z"
+        "status": "degraded",
+        "row_count": 1664,
+        "last_activity_at": "2026-02-24T22:02:56.475Z"
       },
       "depends_on": [
         "segmentation",
@@ -130,17 +130,17 @@
       "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 4.8,
+        "hours_since_last_activity": 8.6,
         "status": "fresh"
       },
       "health": {
-        "status": "healthy",
-        "row_count": 1659,
-        "last_activity_at": "2026-02-24T01:27:26.171Z"
+        "status": "degraded",
+        "row_count": 1664,
+        "last_activity_at": "2026-02-24T22:02:56.475Z"
       },
       "depends_on": [
         "context-assembly"
@@ -159,17 +159,17 @@
       "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 25.3,
-        "status": "aging"
+        "hours_since_last_activity": 8.6,
+        "status": "fresh"
       },
       "health": {
         "status": "degraded",
-        "row_count": 3534,
-        "last_activity_at": "2026-02-23T04:56:24.678Z"
+        "row_count": 3616,
+        "last_activity_at": "2026-02-24T21:59:10.329Z"
       },
       "depends_on": [
         "attribution"
@@ -188,11 +188,11 @@
       "tech_nodes_in_graph": 2,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 27.4,
+        "hours_since_last_activity": 51.8,
         "status": "aging"
       },
       "health": {
@@ -217,11 +217,11 @@
       "tech_nodes_in_graph": 4,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 26.8,
+        "hours_since_last_activity": 51.2,
         "status": "aging"
       },
       "health": {
@@ -250,13 +250,13 @@
         "pct": 1
       },
       "staleness": {
-        "hours_since_last_activity": 0,
+        "hours_since_last_activity": 4.1,
         "status": "fresh"
       },
       "health": {
         "status": "healthy",
-        "row_count": 501,
-        "last_activity_at": "2026-02-24T06:15:31.911Z"
+        "row_count": 591,
+        "last_activity_at": "2026-02-25T02:30:30.570Z"
       },
       "depends_on": [
         "journal"
@@ -275,17 +275,17 @@
       "tech_nodes_in_graph": 4,
       "coverage": {
         "expected": 1,
-        "observed": 1,
-        "pct": 1
+        "observed": 0,
+        "pct": 0
       },
       "staleness": {
-        "hours_since_last_activity": 30.8,
-        "status": "aging"
+        "hours_since_last_activity": 8.6,
+        "status": "fresh"
       },
       "health": {
         "status": "degraded",
-        "row_count": 3420,
-        "last_activity_at": "2026-02-22T23:25:24.758Z"
+        "row_count": 3616,
+        "last_activity_at": "2026-02-24T21:59:10.329Z"
       },
       "depends_on": [
         "journal"
@@ -346,10 +346,10 @@
   ],
   "summary": {
     "total": 10,
-    "healthy": 6,
-    "degraded": 4,
+    "healthy": 1,
+    "degraded": 9,
     "stale": 0,
     "unknown": 0,
-    "overall_coverage_pct": 1
+    "overall_coverage_pct": 0.1
   }
 }

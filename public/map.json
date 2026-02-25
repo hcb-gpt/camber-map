@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-25T06:36:24Z",
-  "git_sha": "1f5ffb0618a3247b7b408d3b84d9fe42993ed02c",
+  "updated_at": "2026-02-25T19:56:22Z",
+  "git_sha": "0f8476a966bbcc34afcd11bf37c0b819dc101d57",
   "mode": "live",
   "nodes": [
     {
@@ -185,6 +185,14 @@
       "schema": "public",
       "name": "city_county_lookup",
       "title": "public.city_county_lookup",
+      "group": "db"
+    },
+    {
+      "id": "table:public.claim_grades",
+      "kind": "table",
+      "schema": "public",
+      "name": "claim_grades",
+      "title": "public.claim_grades",
       "group": "db"
     },
     {
@@ -625,6 +633,22 @@
       "schema": "public",
       "name": "north_star_baselines",
       "title": "public.north_star_baselines",
+      "group": "db"
+    },
+    {
+      "id": "table:public.oauth_clients",
+      "kind": "table",
+      "schema": "public",
+      "name": "oauth_clients",
+      "title": "public.oauth_clients",
+      "group": "db"
+    },
+    {
+      "id": "table:public.oauth_tokens",
+      "kind": "table",
+      "schema": "public",
+      "name": "oauth_tokens",
+      "title": "public.oauth_tokens",
       "group": "db"
     },
     {
@@ -1276,11 +1300,67 @@
       "group": "db"
     },
     {
+      "id": "view:public.orbit_error_events_v1_30d",
+      "kind": "view",
+      "schema": "public",
+      "name": "orbit_error_events_v1_30d",
+      "title": "public.orbit_error_events_v1_30d",
+      "group": "db"
+    },
+    {
+      "id": "view:public.orbit_error_leaderboard_v1_7d",
+      "kind": "view",
+      "schema": "public",
+      "name": "orbit_error_leaderboard_v1_7d",
+      "title": "public.orbit_error_leaderboard_v1_7d",
+      "group": "db"
+    },
+    {
+      "id": "view:public.orbit_mcp_error_leaderboard_7d",
+      "kind": "view",
+      "schema": "public",
+      "name": "orbit_mcp_error_leaderboard_7d",
+      "title": "public.orbit_mcp_error_leaderboard_7d",
+      "group": "db"
+    },
+    {
       "id": "view:public.pipeline_daily_health",
       "kind": "view",
       "schema": "public",
       "name": "pipeline_daily_health",
       "title": "public.pipeline_daily_health",
+      "group": "db"
+    },
+    {
+      "id": "view:public.redline_contact_thread",
+      "kind": "view",
+      "schema": "public",
+      "name": "redline_contact_thread",
+      "title": "public.redline_contact_thread",
+      "group": "db"
+    },
+    {
+      "id": "view:public.redline_contacts",
+      "kind": "view",
+      "schema": "public",
+      "name": "redline_contacts",
+      "title": "public.redline_contacts",
+      "group": "db"
+    },
+    {
+      "id": "view:public.redline_sms_thread",
+      "kind": "view",
+      "schema": "public",
+      "name": "redline_sms_thread",
+      "title": "public.redline_sms_thread",
+      "group": "db"
+    },
+    {
+      "id": "view:public.redline_thread",
+      "kind": "view",
+      "schema": "public",
+      "name": "redline_thread",
+      "title": "public.redline_thread",
       "group": "db"
     },
     {
@@ -3188,6 +3268,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.register_orbit_error_v1(p_subsystem text, p_operation text, p_error_code text, p_http_status integer, p_request_id text, p_origin_platform text, p_origin_client text, p_origin_session text, p_role text, p_message text, p_extra_metadata jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "register_orbit_error_v1",
+      "title": "public.register_orbit_error_v1(p_subsystem text, p_operation text, p_error_code text, p_http_status integer, p_request_id text, p_origin_platform text, p_origin_client text, p_origin_session text, p_role text, p_message text, p_extra_metadata jsonb)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.resolve_journal_claim_speakers()",
       "kind": "fn",
       "schema": "public",
@@ -3604,19 +3692,19 @@
       "group": "db"
     },
     {
-      "id": "fn:public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
-      "kind": "fn",
-      "schema": "public",
-      "name": "update_affinity_on_override",
-      "title": "public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
-      "group": "db"
-    },
-    {
       "id": "fn:public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean)",
       "kind": "fn",
       "schema": "public",
       "name": "update_affinity_on_override",
       "title": "public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "update_affinity_on_override",
+      "title": "public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
       "group": "db"
     },
     {
@@ -3850,10 +3938,10 @@
       "name": "review-resolve",
       "title": "review-resolve",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 35,
-        "updated_at": 1771968393707
+        "version": 36,
+        "updated_at": 1772033681458
       }
     },
     {
@@ -3941,10 +4029,10 @@
       "name": "transcribe-deepgram",
       "title": "transcribe-deepgram",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 41,
-        "updated_at": 1771968395460
+        "version": 42,
+        "updated_at": 1772033705287
       }
     },
     {
@@ -4008,8 +4096,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 124,
-        "updated_at": 1771966040620
+        "version": 125,
+        "updated_at": 1772022661685
       }
     },
     {
@@ -4034,8 +4122,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 41,
-        "updated_at": 1771968398154
+        "version": 42,
+        "updated_at": 1772022655502
       }
     },
     {
@@ -4047,8 +4135,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 49,
-        "updated_at": 1771968396970
+        "version": 50,
+        "updated_at": 1772022643106
       }
     },
     {
@@ -4060,8 +4148,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 27,
-        "updated_at": 1771968392458
+        "version": 28,
+        "updated_at": 1772022662076
       }
     },
     {
@@ -4086,8 +4174,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 40,
-        "updated_at": 1771944816217
+        "version": 41,
+        "updated_at": 1772033682590
       }
     },
     {
@@ -4099,8 +4187,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 34,
-        "updated_at": 1771968450860
+        "version": 35,
+        "updated_at": 1772033678167
       }
     },
     {
@@ -4125,8 +4213,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771968382274
+        "version": 22,
+        "updated_at": 1772022642864
       }
     },
     {
@@ -4138,8 +4226,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771968386223
+        "version": 16,
+        "updated_at": 1772033695910
       }
     },
     {
@@ -4164,8 +4252,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1771968449515
+        "version": 30,
+        "updated_at": 1772022643629
       }
     },
     {
@@ -4177,8 +4265,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 18,
-        "updated_at": 1771968448208
+        "version": 19,
+        "updated_at": 1772022656356
       }
     },
     {
@@ -4203,8 +4291,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771968389354
+        "version": 21,
+        "updated_at": 1772022659288
       }
     },
     {
@@ -4216,8 +4304,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771968390799
+        "version": 14,
+        "updated_at": 1772022657782
       }
     },
     {
@@ -4268,8 +4356,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771968493548
+        "version": 6,
+        "updated_at": 1772022658666
       }
     },
     {
@@ -4294,8 +4382,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771968122778
+        "version": 15,
+        "updated_at": 1772022640502
       }
     },
     {
@@ -4362,8 +4450,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 41,
-        "updated_at": 1771968102210
+        "version": 43,
+        "updated_at": 1772033704917
       }
     },
     {
@@ -4375,8 +4463,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 22,
-        "updated_at": 1771968099564
+        "version": 23,
+        "updated_at": 1772022644575
       }
     },
     {
@@ -4388,8 +4476,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771968104348
+        "version": 5,
+        "updated_at": 1772033702044
       }
     },
     {
@@ -4401,8 +4489,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771968106348
+        "version": 6,
+        "updated_at": 1772033700062
       }
     },
     {
@@ -4414,8 +4502,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 8,
-        "updated_at": 1771968107980
+        "version": 9,
+        "updated_at": 1772033699698
       }
     },
     {
@@ -4425,10 +4513,10 @@
       "name": "morning-manifest-ui",
       "title": "morning-manifest-ui",
       "meta": {
-        "verify_jwt": true,
+        "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771967380842
+        "version": 40,
+        "updated_at": 1772022641287
       }
     },
     {
@@ -4453,8 +4541,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771968119691
+        "version": 16,
+        "updated_at": 1772022660150
       }
     },
     {
@@ -4466,8 +4554,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 7,
-        "updated_at": 1771968110994
+        "version": 8,
+        "updated_at": 1772022641746
       }
     },
     {
@@ -4479,8 +4567,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 7,
-        "updated_at": 1771968121004
+        "version": 8,
+        "updated_at": 1772022640273
       }
     },
     {
@@ -4492,8 +4580,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 12,
-        "updated_at": 1771968112301
+        "version": 13,
+        "updated_at": 1772033697509
       }
     },
     {
@@ -4505,8 +4593,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771968116948
+        "version": 5,
+        "updated_at": 1772033696207
       }
     },
     {
@@ -4518,8 +4606,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1771968115446
+        "version": 30,
+        "updated_at": 1772033679228
       }
     },
     {
@@ -4531,8 +4619,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771968114075
+        "version": 17,
+        "updated_at": 1772033682813
       }
     },
     {
@@ -4557,8 +4645,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771968109591
+        "version": 6,
+        "updated_at": 1772022660461
       }
     },
     {
@@ -4572,6 +4660,19 @@
         "status": "ACTIVE",
         "version": 3,
         "updated_at": 1771896315160
+      }
+    },
+    {
+      "id": "edge:redline-thread",
+      "kind": "edge",
+      "group": "edge",
+      "name": "redline-thread",
+      "title": "redline-thread",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 6,
+        "updated_at": 1772047283097
       }
     }
   ],
@@ -6324,6 +6425,96 @@
     {
       "from": "view:public.v_tram_presence_status",
       "to": "table:public.tram_presence",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.claim_grades",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_sms_thread",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_sms_thread",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_thread",
+      "to": "view:public.redline_contact_thread",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_thread",
+      "to": "view:public.redline_sms_thread",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.orbit_mcp_error_leaderboard_7d",
+      "to": "table:public.diagnostic_logs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.claim_grades",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.orbit_error_events_v1_30d",
+      "to": "table:public.diagnostic_logs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.orbit_error_leaderboard_v1_7d",
+      "to": "view:public.orbit_error_events_v1_30d",
       "type": "depends_on"
     },
     {
