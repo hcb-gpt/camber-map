@@ -2,25 +2,30 @@
 
 ## Overall Health
 
-**6 healthy, 4 degraded** out of 10 capabilities (coverage: 100%)
+**1 healthy, 9 degraded** out of 10 capabilities (coverage: 10%)
 
 ## Capabilities
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| OK | Call Ingestion | chad | 100% | 5h ago | 2026-02-24 01:27:11Z |
-| OK | Transcription | chad | 100% | 5h ago | 2026-02-24 01:27:11Z |
-| OK | Segmentation | chad | 100% | 5h ago | 2026-02-24 01:27:22Z |
-| OK | Context Assembly | chad | 100% | 5h ago | 2026-02-24 01:27:26Z |
-| OK | Project Attribution | chad | 100% | 5h ago | 2026-02-24 01:27:26Z |
-| WARN | Knowledge Extraction | chad | 100% | 25h ago | 2026-02-23 04:56:24Z |
-| WARN | Call Summarization | chad | 100% | 27h ago | 2026-02-23 02:49:35Z |
-| WARN | Signal Detection | chad | 100% | 27h ago | 2026-02-23 03:26:57Z |
-| OK | Journal Consolidation | chad | 100% | 0m ago | 2026-02-24 06:15:31Z |
-| WARN | Embedding & Search | chad | 100% | 31h ago | 2026-02-22 23:25:24Z |
+| WARN | Call Ingestion | chad | 0% | 29h ago | 2026-02-24 01:27:11Z |
+| WARN | Transcription | chad | 0% | 29h ago | 2026-02-24 01:27:11Z |
+| WARN | Segmentation | chad | 0% | 9h ago | 2026-02-24 21:25:52Z |
+| WARN | Context Assembly | chad | 0% | 9h ago | 2026-02-24 22:02:56Z |
+| WARN | Project Attribution | chad | 0% | 9h ago | 2026-02-24 22:02:56Z |
+| WARN | Knowledge Extraction | chad | 0% | 9h ago | 2026-02-24 21:59:10Z |
+| WARN | Call Summarization | chad | 0% | 2d ago | 2026-02-23 02:49:35Z |
+| WARN | Signal Detection | chad | 0% | 2d ago | 2026-02-23 03:26:57Z |
+| OK | Journal Consolidation | chad | 100% | 4h ago | 2026-02-25 02:30:30Z |
+| WARN | Embedding & Search | chad | 0% | 9h ago | 2026-02-24 21:59:10Z |
 
 ## Bottlenecks
 
+- **WARN** Call Ingestion — blocks: transcription
+- **WARN** Transcription — blocks: segmentation
+- **WARN** Segmentation — blocks: context-assembly, summarization
+- **WARN** Context Assembly — blocks: attribution
+- **WARN** Project Attribution — blocks: journal
 - **WARN** Knowledge Extraction — blocks: signal-detection, consolidation, embedding
 - **WARN** Call Summarization — no downstream dependents
 - **WARN** Signal Detection — no downstream dependents
@@ -45,6 +50,6 @@
 ```
 
 ---
-Generated: 2026-02-24T06:16:16Z
-Git SHA: 511167d261eefa0d44a0431250cb9995d5ab0974
+Generated: 2026-02-25T06:36:27Z
+Git SHA: 1f5ffb0618a3247b7b408d3b84d9fe42993ed02c
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`

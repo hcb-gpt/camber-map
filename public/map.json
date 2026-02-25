@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-24T06:16:14Z",
-  "git_sha": "511167d261eefa0d44a0431250cb9995d5ab0974",
+  "updated_at": "2026-02-25T06:36:24Z",
+  "git_sha": "1f5ffb0618a3247b7b408d3b84d9fe42993ed02c",
   "mode": "live",
   "nodes": [
     {
@@ -980,14 +980,6 @@
       "group": "db"
     },
     {
-      "id": "table:public.tram_index",
-      "kind": "table",
-      "schema": "public",
-      "name": "tram_index",
-      "title": "public.tram_index",
-      "group": "db"
-    },
-    {
       "id": "table:public.tram_messages",
       "kind": "table",
       "schema": "public",
@@ -1324,6 +1316,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.tram_index",
+      "kind": "view",
+      "schema": "public",
+      "name": "tram_index",
+      "title": "public.tram_index",
+      "group": "db"
+    },
+    {
       "id": "view:public.v3_v36_scoreboard",
       "kind": "view",
       "schema": "public",
@@ -1345,6 +1345,14 @@
       "schema": "public",
       "name": "v_alias_discovery_candidates",
       "title": "public.v_alias_discovery_candidates",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_assigned_spans_missing_journal",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_assigned_spans_missing_journal",
+      "title": "public.v_assigned_spans_missing_journal",
       "group": "db"
     },
     {
@@ -2180,6 +2188,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_tram_presence_status",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_tram_presence_status",
+      "title": "public.v_tram_presence_status",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_tuning_component_impact",
       "kind": "view",
       "schema": "public",
@@ -2964,6 +2980,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.is_shadow_interaction(p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "is_shadow_interaction",
+      "title": "public.is_shadow_interaction(p_interaction_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.link_vendor_to_project(p_contact_id uuid, p_project_id uuid, p_trade text, p_source text)",
       "kind": "fn",
       "schema": "public",
@@ -3388,6 +3412,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.tram_cleanup_expired()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_cleanup_expired",
+      "title": "public.tram_cleanup_expired()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.tram_enforce_architecture_first()",
       "kind": "fn",
       "schema": "public",
@@ -3428,11 +3460,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.tram_inherit_reply_context()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_inherit_reply_context",
+      "title": "public.tram_inherit_reply_context()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.tram_presence_online(p_threshold_minutes integer, p_role text)",
       "kind": "fn",
       "schema": "public",
       "name": "tram_presence_online",
       "title": "public.tram_presence_online(p_threshold_minutes integer, p_role text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.tram_set_default_ttl()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "tram_set_default_ttl",
+      "title": "public.tram_set_default_ttl()",
       "group": "db"
     },
     {
@@ -3548,6 +3596,22 @@
       "group": "db"
     },
     {
+      "id": "fn:public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "update_affinity_on_attribution",
+      "title": "public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text, p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "update_affinity_on_override",
+      "title": "public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean, p_interaction_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.update_affinity_on_override(p_contact_id uuid, p_project_id uuid, p_is_confirmation boolean)",
       "kind": "fn",
       "schema": "public",
@@ -3604,6 +3668,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_affinity_feedback",
+      "title": "public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.upsert_financial_claim_receipt_v1(p_receipt jsonb, p_last_source_type text, p_last_source_id text)",
       "kind": "fn",
       "schema": "public",
@@ -3636,11 +3708,11 @@
       "group": "db"
     },
     {
-      "id": "fn:public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)",
+      "id": "fn:public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean, p_platform_subtype text, p_capability_profile jsonb)",
       "kind": "fn",
       "schema": "public",
       "name": "upsert_tram_presence",
-      "title": "public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean)",
+      "title": "public.upsert_tram_presence(p_role text, p_origin_session text, p_origin_platform text, p_origin_client text, p_origin_agent text, p_capabilities_version text, p_capabilities text, p_nonstandard_session boolean, p_platform_subtype text, p_capability_profile jsonb)",
       "group": "db"
     },
     {
@@ -3778,10 +3850,10 @@
       "name": "review-resolve",
       "title": "review-resolve",
       "meta": {
-        "verify_jwt": false,
+        "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 34,
-        "updated_at": 1771810893813
+        "version": 35,
+        "updated_at": 1771968393707
       }
     },
     {
@@ -3869,10 +3941,10 @@
       "name": "transcribe-deepgram",
       "title": "transcribe-deepgram",
       "meta": {
-        "verify_jwt": false,
+        "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 40,
-        "updated_at": 1771808204762
+        "version": 41,
+        "updated_at": 1771968395460
       }
     },
     {
@@ -3936,8 +4008,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 123,
-        "updated_at": 1771881538735
+        "version": 124,
+        "updated_at": 1771966040620
       }
     },
     {
@@ -3962,8 +4034,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 40,
-        "updated_at": 1771717167044
+        "version": 41,
+        "updated_at": 1771968398154
       }
     },
     {
@@ -3975,8 +4047,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 48,
-        "updated_at": 1771810878825
+        "version": 49,
+        "updated_at": 1771968396970
       }
     },
     {
@@ -3988,8 +4060,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 26,
-        "updated_at": 1771717159123
+        "version": 27,
+        "updated_at": 1771968392458
       }
     },
     {
@@ -4001,8 +4073,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771716671599
+        "version": 22,
+        "updated_at": 1771968306949
       }
     },
     {
@@ -4014,8 +4086,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771806849625
+        "version": 40,
+        "updated_at": 1771944816217
       }
     },
     {
@@ -4027,8 +4099,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 32,
-        "updated_at": 1771806848254
+        "version": 34,
+        "updated_at": 1771968450860
       }
     },
     {
@@ -4040,8 +4112,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1771714246889
+        "version": 22,
+        "updated_at": 1771968380656
       }
     },
     {
@@ -4053,8 +4125,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771716669457
+        "version": 21,
+        "updated_at": 1771968382274
       }
     },
     {
@@ -4066,8 +4138,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771714265708
+        "version": 15,
+        "updated_at": 1771968386223
       }
     },
     {
@@ -4079,8 +4151,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771714246337
+        "version": 15,
+        "updated_at": 1771968387649
       }
     },
     {
@@ -4092,8 +4164,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 27,
-        "updated_at": 1771806851509
+        "version": 29,
+        "updated_at": 1771968449515
       }
     },
     {
@@ -4105,8 +4177,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771716690749
+        "version": 18,
+        "updated_at": 1771968448208
       }
     },
     {
@@ -4131,8 +4203,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1771808599734
+        "version": 20,
+        "updated_at": 1771968389354
       }
     },
     {
@@ -4144,8 +4216,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 12,
-        "updated_at": 1771810882188
+        "version": 13,
+        "updated_at": 1771968390799
       }
     },
     {
@@ -4196,8 +4268,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771807093223
+        "version": 5,
+        "updated_at": 1771968493548
       }
     },
     {
@@ -4209,8 +4281,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771806863259
+        "version": 4,
+        "updated_at": 1771968402154
       }
     },
     {
@@ -4222,8 +4294,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771809204824
+        "version": 14,
+        "updated_at": 1771968122778
       }
     },
     {
@@ -4290,8 +4362,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 39,
-        "updated_at": 1771870808820
+        "version": 41,
+        "updated_at": 1771968102210
       }
     },
     {
@@ -4303,8 +4375,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 20,
-        "updated_at": 1771853607979
+        "version": 22,
+        "updated_at": 1771968099564
       }
     },
     {
@@ -4316,8 +4388,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771811132290
+        "version": 4,
+        "updated_at": 1771968104348
       }
     },
     {
@@ -4329,8 +4401,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771810894928
+        "version": 4,
+        "updated_at": 1771968106348
       }
     },
     {
@@ -4342,8 +4414,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1771816775508
+        "version": 8,
+        "updated_at": 1771968107980
       }
     },
     {
@@ -4353,10 +4425,10 @@
       "name": "morning-manifest-ui",
       "title": "morning-manifest-ui",
       "meta": {
-        "verify_jwt": false,
+        "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 38,
-        "updated_at": 1771872543613
+        "version": 39,
+        "updated_at": 1771967380842
       }
     },
     {
@@ -4368,8 +4440,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 25,
-        "updated_at": 1771870806338
+        "version": 27,
+        "updated_at": 1771968118224
       }
     },
     {
@@ -4381,8 +4453,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1771893885782
+        "version": 15,
+        "updated_at": 1771968119691
       }
     },
     {
@@ -4394,8 +4466,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771853436306
+        "version": 7,
+        "updated_at": 1771968110994
       }
     },
     {
@@ -4407,8 +4479,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1771853627534
+        "version": 7,
+        "updated_at": 1771968121004
       }
     },
     {
@@ -4420,8 +4492,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771858434851
+        "version": 12,
+        "updated_at": 1771968112301
       }
     },
     {
@@ -4433,8 +4505,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771893891602
+        "version": 4,
+        "updated_at": 1771968116948
       }
     },
     {
@@ -4446,8 +4518,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 27,
-        "updated_at": 1771893871835
+        "version": 29,
+        "updated_at": 1771968115446
       }
     },
     {
@@ -4459,8 +4531,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771895100950
+        "version": 16,
+        "updated_at": 1771968114075
       }
     },
     {
@@ -4485,8 +4557,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771893872331
+        "version": 5,
+        "updated_at": 1771968109591
       }
     },
     {
@@ -6225,6 +6297,36 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.v_assigned_spans_missing_journal",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_assigned_spans_missing_journal",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_assigned_spans_missing_journal",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_assigned_spans_missing_journal",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.tram_index",
+      "to": "table:public.tram_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_tram_presence_status",
+      "to": "table:public.tram_presence",
+      "type": "depends_on"
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -7260,24 +7362,6 @@
       }
     },
     {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:embed-facts",
-      "to": "table:public.project_facts",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
       "from": "edge:evidence-assembler",
       "to": "table:public.span_attributions",
       "type": "reads",
@@ -7467,6 +7551,24 @@
       }
     },
     {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:30:35.867Z",
+        "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:embed-facts",
+      "to": "table:public.project_facts",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:30:35.867Z",
+        "seen_count": "2"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.eval_samples",
       "type": "reads",
@@ -7548,42 +7650,6 @@
       }
     },
     {
-      "from": "edge:auto-review-resolver",
-      "to": "table:public.review_queue",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:auto-review-resolver",
-      "to": "table:public.review_queue",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:auto-review-resolver",
-      "to": "table:public.span_attributions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:auto-review-resolver",
-      "to": "table:public.journal_claims",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
       "from": "edge:audit-attribution",
       "to": "table:public.conversation_spans",
       "type": "reads",
@@ -7647,21 +7713,48 @@
       }
     },
     {
-      "from": "edge:audit-attribution-reviewer",
-      "to": "edge:audit-attribution",
-      "type": "called_by",
-      "meta": {
-        "last_seen_at_utc": "2026-02-24T03:32:48.742Z",
-        "seen_count": "208"
-      }
-    },
-    {
       "from": "edge:process-call",
       "to": "edge:chain-detect",
       "type": "calls",
       "meta": {
         "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
         "seen_count": "6"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.review_queue",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:18:28.567Z",
+        "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:18:28.567Z",
+        "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:18:28.567Z",
+        "seen_count": "2"
+      }
+    },
+    {
+      "from": "edge:auto-review-resolver",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-24T21:18:28.567Z",
+        "seen_count": "2"
       }
     },
     {
@@ -7680,6 +7773,15 @@
       "meta": {
         "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
         "seen_count": "8"
+      }
+    },
+    {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T02:42:09.068Z",
+        "seen_count": "261"
       }
     }
   ],
