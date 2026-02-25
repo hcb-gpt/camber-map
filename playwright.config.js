@@ -10,9 +10,11 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'python3 -m http.server 4173',
+    command: 'npx vite --port 4173 --strictPort --host 127.0.0.1',
     port: 4173,
     reuseExistingServer: !Boolean(process.env.CI),
     timeout: 120000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
