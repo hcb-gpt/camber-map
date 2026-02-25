@@ -1,0 +1,30 @@
+/* diagram.css — SVG-specific: node groups, connection groups, labels, badges, row labels, hover/dimmed states */
+
+  svg { width: 100%; height: 100%; touch-action: none; }
+  /* ── Connection hover-to-reveal labels ── */
+  .conn-group { cursor: pointer; opacity: 0.25; transition: opacity 0.2s ease; }
+  .conn-group .conn-hit { stroke: transparent; stroke-width: 30; fill: none; pointer-events: stroke; }
+  .conn-group .conn-path { transition: stroke-width 0.15s ease; }
+  .conn-group:hover, .conn-group.conn-active { opacity: 1; }
+  .conn-group:hover .conn-path, .conn-group.conn-active .conn-path { stroke-width: 3; }
+  svg[data-flow-stage-active="1"] .conn-group:hover { opacity: inherit; }
+  svg[data-flow-stage-active="1"] .conn-group:hover .conn-path { stroke-width: 2; }
+  .conn-label-group { opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+  .conn-label-group.label-active { opacity: 1; transform: scale(1.15); pointer-events: auto; cursor: pointer; }
+
+  .node-group { transition: opacity 0.2s ease; }
+  .node-group.dimmed { opacity: 0.18; }
+  .conn-group.dimmed { opacity: 0.08; }
+
+  .node-group { cursor: pointer; }
+  .node-rect { rx: 8; ry: 8; stroke-width: 1.5; transition: stroke-opacity .15s ease, stroke-width .15s ease; }
+  .node-hit { fill: transparent; }
+  .node-title, .node-sub, .node-badge, .node-badge-text { pointer-events: none; }
+  .node-rect.node-active { stroke-opacity: 1; stroke-width: 2.5; }
+  .node-rect.commented { stroke-width: 2.5; }
+  .node-title { font-family: 'DM Sans', system-ui; font-size: 13px; font-weight: 600; fill: #111318; pointer-events: none; }
+  .node-sub { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; font-size: 10px; fill: var(--text-tertiary); pointer-events: none; }
+  .row-label { font-family: 'DM Sans', system-ui; font-size: 11px; font-weight: 500; fill: #8C8F99; letter-spacing: 0.8px; pointer-events: none; }
+
+  /* ── Transition consistency for interactive elements ── */
+  .node-rect { transition: all 0.15s ease; }
