@@ -1,18 +1,5 @@
 {
-  "updated_at": "2026-02-25T19:56:25Z",
+  "updated_at": "2026-02-26T06:15:09Z",
   "has_previous": true,
-  "changes": [
-    {
-      "type": "health_change",
-      "capability": "consolidation",
-      "from": "healthy",
-      "to": "degraded"
-    },
-    {
-      "type": "coverage_change",
-      "capability": "consolidation",
-      "from": 1,
-      "to": 0
-    }
-  ]
+  "changes": []
 }

@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-25T19:56:22Z",
-  "git_sha": "0f8476a966bbcc34afcd11bf37c0b819dc101d57",
+  "updated_at": "2026-02-26T06:15:05Z",
+  "git_sha": "127ef320e02ba1f68a85bf3139e21f1694ef9c44",
   "mode": "live",
   "nodes": [
     {
@@ -833,6 +833,14 @@
       "schema": "public",
       "name": "promotion_log",
       "title": "public.promotion_log",
+      "group": "db"
+    },
+    {
+      "id": "table:public.redline_settings",
+      "kind": "table",
+      "schema": "public",
+      "name": "redline_settings",
+      "title": "public.redline_settings",
       "group": "db"
     },
     {
@@ -4031,8 +4039,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 42,
-        "updated_at": 1772033705287
+        "version": 43,
+        "updated_at": 1772065829360
       }
     },
     {
@@ -4096,8 +4104,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 125,
-        "updated_at": 1772022661685
+        "version": 126,
+        "updated_at": 1772065810975
       }
     },
     {
@@ -4148,8 +4156,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1772022662076
+        "version": 29,
+        "updated_at": 1772065808236
       }
     },
     {
@@ -4200,8 +4208,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 22,
-        "updated_at": 1771968380656
+        "version": 23,
+        "updated_at": 1772065813472
       }
     },
     {
@@ -4463,8 +4471,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 23,
-        "updated_at": 1772022644575
+        "version": 24,
+        "updated_at": 1772065826998
       }
     },
     {
@@ -4528,8 +4536,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 27,
-        "updated_at": 1771968118224
+        "version": 28,
+        "updated_at": 1772065824247
       }
     },
     {
@@ -4671,8 +4679,21 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1772047283097
+        "version": 13,
+        "updated_at": 1772079019116
+      }
+    },
+    {
+      "id": "edge:bootstrap-review",
+      "kind": "edge",
+      "group": "edge",
+      "name": "bootstrap-review",
+      "title": "bootstrap-review",
+      "meta": {
+        "verify_jwt": false,
+        "status": "ACTIVE",
+        "version": 3,
+        "updated_at": 1772064771169
       }
     }
   ],
@@ -6508,6 +6529,11 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.redline_settings",
+      "type": "depends_on"
+    },
+    {
       "from": "view:public.orbit_error_events_v1_30d",
       "to": "table:public.diagnostic_logs",
       "type": "depends_on"
@@ -6762,74 +6788,11 @@
     },
     {
       "from": "edge:process-call",
-      "to": "table:public.calls_raw",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.interactions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.event_audit",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.idempotency_keys",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.project_contacts",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.projects",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "table:public.correspondent_project_affinity",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "14"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "edge:segment-call",
+      "to": "edge:chain-detect",
       "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "8"
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "26"
       }
     },
     {
@@ -7040,6 +7003,15 @@
       }
     },
     {
+      "from": "edge:admin-reseed",
+      "to": "edge:striking-detect",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
       "from": "edge:transcribe-deepgram",
       "to": "table:public.api_keys",
       "type": "reads",
@@ -7211,6 +7183,15 @@
       }
     },
     {
+      "from": "edge:admin-reseed",
+      "to": "edge:journal-extract",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
       "from": "edge:zapier-sms-ingest",
       "to": "table:public.diagnostic_logs",
       "type": "writes",
@@ -7226,6 +7207,15 @@
       "meta": {
         "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
         "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.transcripts_comparison",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "4"
       }
     },
     {
@@ -7553,6 +7543,24 @@
       }
     },
     {
+      "from": "edge:admin-reseed",
+      "to": "table:public.override_log",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.interactions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
       "from": "edge:evidence-assembler",
       "to": "table:public.span_attributions",
       "type": "reads",
@@ -7620,62 +7628,26 @@
       "to": "table:public.conversation_spans",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
       }
     },
     {
       "from": "edge:admin-reseed",
-      "to": "table:public.span_attributions",
-      "type": "reads",
+      "to": "edge:context-assembly",
+      "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
       }
     },
     {
       "from": "edge:admin-reseed",
-      "to": "table:public.override_log",
-      "type": "reads",
+      "to": "edge:ai-router",
+      "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.interactions",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.conversation_spans",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.span_attributions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.override_log",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
       }
     },
     {
@@ -7697,51 +7669,6 @@
       }
     },
     {
-      "from": "edge:admin-reseed",
-      "to": "table:public.review_queue",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:context-assembly",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:ai-router",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:striking-detect",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:journal-extract",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:03:16.291Z",
-        "seen_count": "1"
-      }
-    },
-    {
       "from": "edge:embed-facts",
       "to": "table:public.project_facts",
       "type": "reads",
@@ -7775,6 +7702,15 @@
       "meta": {
         "last_seen_at_utc": "2026-02-23T17:59:42.036Z",
         "seen_count": "7"
+      }
+    },
+    {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T04:55:44.022Z",
+        "seen_count": "350"
       }
     },
     {
@@ -7904,12 +7840,21 @@
       }
     },
     {
-      "from": "edge:process-call",
-      "to": "edge:chain-detect",
-      "type": "calls",
+      "from": "edge:admin-reseed",
+      "to": "table:public.span_attributions",
+      "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T02:49:29.786Z",
-        "seen_count": "6"
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "4"
       }
     },
     {
@@ -7949,6 +7894,51 @@
       }
     },
     {
+      "from": "edge:admin-reseed",
+      "to": "table:public.conversation_spans",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.override_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "5"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:segment-llm",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
+        "seen_count": "4"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.span_attributions",
       "type": "reads",
@@ -7967,12 +7957,75 @@
       }
     },
     {
-      "from": "edge:audit-attribution-reviewer",
-      "to": "edge:audit-attribution",
-      "type": "called_by",
+      "from": "edge:process-call",
+      "to": "table:public.calls_raw",
+      "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-25T02:42:09.068Z",
-        "seen_count": "261"
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.interactions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.event_audit",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.idempotency_keys",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.project_contacts",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.projects",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "35"
+      }
+    },
+    {
+      "from": "edge:process-call",
+      "to": "edge:segment-call",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
+        "seen_count": "28"
       }
     }
   ],

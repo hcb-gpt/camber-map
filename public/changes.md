@@ -1,8 +1,7 @@
 # VP Changes (generated)
 
-- **consolidation**: health changed from `healthy` to `degraded`
-- **consolidation**: coverage changed from 100% to 0%
+No changes detected since last build.
 
 ---
-Generated: 2026-02-25T19:56:25Z
+Generated: 2026-02-26T06:15:09Z
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`
