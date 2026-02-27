@@ -8,16 +8,16 @@
 
 | Status | Capability | Owner | Coverage | Staleness | Last Activity |
 |--------|------------|-------|----------|-----------|---------------|
-| WARN | Call Ingestion | chad | 0% | 2h ago | 2026-02-26 04:00:14Z |
-| WARN | Transcription | chad | 0% | 2h ago | 2026-02-26 04:00:14Z |
-| WARN | Segmentation | chad | 0% | 2h ago | 2026-02-26 04:01:37Z |
-| WARN | Context Assembly | chad | 0% | 2h ago | 2026-02-26 04:01:41Z |
-| WARN | Project Attribution | chad | 0% | 2h ago | 2026-02-26 04:01:41Z |
-| WARN | Knowledge Extraction | chad | 0% | 2h ago | 2026-02-26 04:01:26Z |
-| WARN | Call Summarization | chad | 0% | 2h ago | 2026-02-26 04:01:46Z |
-| WARN | Signal Detection | chad | 0% | 2h ago | 2026-02-26 04:01:46Z |
-| WARN | Journal Consolidation | chad | 0% | 2h ago | 2026-02-26 04:45:37Z |
-| WARN | Embedding & Search | chad | 0% | 2h ago | 2026-02-26 04:01:26Z |
+| WARN | Call Ingestion | chad | 0% | 2h ago | 2026-02-27 04:00:03Z |
+| WARN | Transcription | chad | 0% | 2h ago | 2026-02-27 04:00:03Z |
+| WARN | Segmentation | chad | 0% | 2h ago | 2026-02-27 04:00:10Z |
+| WARN | Context Assembly | chad | 0% | 2h ago | 2026-02-27 04:00:21Z |
+| WARN | Project Attribution | chad | 0% | 2h ago | 2026-02-27 04:00:21Z |
+| WARN | Knowledge Extraction | chad | 0% | 26h ago | 2026-02-26 04:01:26Z |
+| WARN | Call Summarization | chad | 0% | 26h ago | 2026-02-26 04:01:46Z |
+| WARN | Signal Detection | chad | 0% | 26h ago | 2026-02-26 04:01:46Z |
+| WARN | Journal Consolidation | chad | 0% | 25h ago | 2026-02-26 04:45:37Z |
+| WARN | Embedding & Search | chad | 0% | 26h ago | 2026-02-26 04:01:26Z |
 
 ## Bottlenecks
 
@@ -51,6 +51,6 @@
 ```
 
 ---
-Generated: 2026-02-26T06:15:09Z
-Git SHA: 127ef320e02ba1f68a85bf3139e21f1694ef9c44
+Generated: 2026-02-27T06:08:50Z
+Git SHA: c44f0359999620bd6caf11a5d1c5da49229a2ac5
 **Do not edit** — regenerate with `node scripts/render_vp.mjs`

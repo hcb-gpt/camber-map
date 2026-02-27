@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-02-26T06:15:05Z",
-  "git_sha": "127ef320e02ba1f68a85bf3139e21f1694ef9c44",
+  "updated_at": "2026-02-27T06:08:47Z",
+  "git_sha": "c44f0359999620bd6caf11a5d1c5da49229a2ac5",
   "mode": "live",
   "nodes": [
     {
@@ -9,6 +9,14 @@
       "schema": "public",
       "name": "vendor_cost_code_summary",
       "title": "public.vendor_cost_code_summary",
+      "group": "db"
+    },
+    {
+      "id": "table:public.access_codes",
+      "kind": "table",
+      "schema": "public",
+      "name": "access_codes",
+      "title": "public.access_codes",
       "group": "db"
     },
     {
@@ -684,6 +692,22 @@
       "group": "db"
     },
     {
+      "id": "table:public.owner_names",
+      "kind": "table",
+      "schema": "public",
+      "name": "owner_names",
+      "title": "public.owner_names",
+      "group": "db"
+    },
+    {
+      "id": "table:public.owner_phones",
+      "kind": "table",
+      "schema": "public",
+      "name": "owner_phones",
+      "title": "public.owner_phones",
+      "group": "db"
+    },
+    {
       "id": "table:public.permit_fee_schedule",
       "kind": "table",
       "schema": "public",
@@ -985,6 +1009,14 @@
       "schema": "public",
       "name": "trade_phase_map",
       "title": "public.trade_phase_map",
+      "group": "db"
+    },
+    {
+      "id": "table:public.training_data_snapshots",
+      "kind": "table",
+      "schema": "public",
+      "name": "training_data_snapshots",
+      "title": "public.training_data_snapshots",
       "group": "db"
     },
     {
@@ -1492,6 +1524,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_autosolve_candidates",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_autosolve_candidates",
+      "title": "public.v_autosolve_candidates",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_belief_claims_canon",
       "kind": "view",
       "schema": "public",
@@ -1652,6 +1692,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_daily_project_digest",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_daily_project_digest",
+      "title": "public.v_daily_project_digest",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_document_claims",
       "kind": "view",
       "schema": "public",
@@ -1740,6 +1788,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_floater_subcontractor_pulse",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_floater_subcontractor_pulse",
+      "title": "public.v_floater_subcontractor_pulse",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_governance_dashboard",
       "kind": "view",
       "schema": "public",
@@ -1793,6 +1849,22 @@
       "schema": "public",
       "name": "v_hard_drop_sla_monitor",
       "title": "public.v_hard_drop_sla_monitor",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_human_truth_attributions",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_human_truth_attributions",
+      "title": "public.v_human_truth_attributions",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_human_truth_daily_metrics",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_human_truth_daily_metrics",
+      "title": "public.v_human_truth_daily_metrics",
       "group": "db"
     },
     {
@@ -2065,6 +2137,14 @@
       "schema": "public",
       "name": "v_project_feed",
       "title": "public.v_project_feed",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_project_intelligence_coverage",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_project_intelligence_coverage",
+      "title": "public.v_project_intelligence_coverage",
       "group": "db"
     },
     {
@@ -2420,6 +2500,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.autosolve_orphan_interactions(p_apply boolean, p_rule text, p_contact_id uuid)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "autosolve_orphan_interactions",
+      "title": "public.autosolve_orphan_interactions(p_apply boolean, p_rule text, p_contact_id uuid)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.batch_link_vendors_to_projects(p_links jsonb, p_source text)",
       "kind": "fn",
       "schema": "public",
@@ -2748,11 +2836,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.cron_fire_training_data_export()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "cron_fire_training_data_export",
+      "title": "public.cron_fire_training_data_export()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.decide_lane(claim journal_claims, context jsonb)",
       "kind": "fn",
       "schema": "public",
       "name": "decide_lane",
       "title": "public.decide_lane(claim journal_claims, context jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.derive_affinity_weights(p_contact_id uuid, p_human_boost numeric, p_rejection_penalty numeric, p_decay_rate numeric, p_apply boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "derive_affinity_weights",
+      "title": "public.derive_affinity_weights(p_contact_id uuid, p_human_boost numeric, p_rejection_penalty numeric, p_decay_rate numeric, p_apply boolean)",
       "group": "db"
     },
     {
@@ -3089,6 +3193,14 @@
       "schema": "public",
       "name": "list_floaters",
       "title": "public.list_floaters(min_projects integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.looks_like_phone(p_val text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "looks_like_phone",
+      "title": "public.looks_like_phone(p_val text)",
       "group": "db"
     },
     {
@@ -3505,6 +3617,14 @@
       "schema": "public",
       "name": "tg_set_updated_at_utc",
       "title": "public.tg_set_updated_at_utc()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.training_data_snapshots_enforce_append_only()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "training_data_snapshots_enforce_append_only",
+      "title": "public.training_data_snapshots_enforce_append_only()",
       "group": "db"
     },
     {
@@ -4052,8 +4172,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 82,
-        "updated_at": 1771853433116
+        "version": 83,
+        "updated_at": 1772167950883
       }
     },
     {
@@ -4091,8 +4211,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 79,
-        "updated_at": 1771893891082
+        "version": 80,
+        "updated_at": 1772151007201
       }
     },
     {
@@ -4104,8 +4224,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 126,
-        "updated_at": 1772065810975
+        "version": 127,
+        "updated_at": 1772151009571
       }
     },
     {
@@ -4638,10 +4758,10 @@
       "name": "sms-beside-batch-ingest",
       "title": "sms-beside-batch-ingest",
       "meta": {
-        "verify_jwt": false,
+        "verify_jwt": true,
         "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1771861755584
+        "version": 10,
+        "updated_at": 1772167202121
       }
     },
     {
@@ -4679,8 +4799,8 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1772079019116
+        "version": 27,
+        "updated_at": 1772165226760
       }
     },
     {
@@ -4692,8 +4812,21 @@
       "meta": {
         "verify_jwt": false,
         "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1772064771169
+        "version": 9,
+        "updated_at": 1772165779462
+      }
+    },
+    {
+      "id": "edge:training-data-export",
+      "kind": "edge",
+      "group": "edge",
+      "name": "training-data-export",
+      "title": "training-data-export",
+      "meta": {
+        "verify_jwt": true,
+        "status": "ACTIVE",
+        "version": 1,
+        "updated_at": 1772160968462
       }
     }
   ],
@@ -6460,6 +6593,11 @@
     },
     {
       "from": "view:public.redline_contact_thread",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
       "to": "table:public.journal_claims",
       "type": "depends_on"
     },
@@ -6476,6 +6614,11 @@
     {
       "from": "view:public.redline_sms_thread",
       "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_sms_thread",
+      "to": "table:public.review_queue",
       "type": "depends_on"
     },
     {
@@ -6515,6 +6658,11 @@
     },
     {
       "from": "view:public.redline_contacts",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
       "to": "table:public.journal_claims",
       "type": "depends_on"
     },
@@ -6534,6 +6682,11 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.owner_phones",
+      "type": "depends_on"
+    },
+    {
       "from": "view:public.orbit_error_events_v1_30d",
       "to": "table:public.diagnostic_logs",
       "type": "depends_on"
@@ -6541,6 +6694,111 @@
     {
       "from": "view:public.orbit_error_leaderboard_v1_7d",
       "to": "view:public.orbit_error_events_v1_30d",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.override_log",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_attributions",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_human_truth_daily_metrics",
+      "to": "view:public.v_human_truth_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_daily_project_digest",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_daily_project_digest",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_daily_project_digest",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_intelligence_coverage",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_intelligence_coverage",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_floater_subcontractor_pulse",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_floater_subcontractor_pulse",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_floater_subcontractor_pulse",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_autosolve_candidates",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_autosolve_candidates",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_autosolve_candidates",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_autosolve_candidates",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_autosolve_candidates",
+      "to": "table:public.project_contacts",
       "type": "depends_on"
     },
     {
@@ -6580,6 +6838,15 @@
       }
     },
     {
+      "from": "edge:process-call",
+      "to": "edge:chain-detect",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "41"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.eval_runs",
       "type": "writes",
@@ -6589,12 +6856,30 @@
       }
     },
     {
+      "from": "edge:training-data-export",
+      "to": "view:public.v_human_truth_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T02:56:20.711Z",
+        "seen_count": "1"
+      }
+    },
+    {
       "from": "edge:process-call",
       "to": "table:public.review_queue",
       "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-23T02:41:12.539Z",
         "seen_count": "6"
+      }
+    },
+    {
+      "from": "edge:training-data-export",
+      "to": "table:public.training_data_snapshots",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T02:56:20.711Z",
+        "seen_count": "1"
       }
     },
     {
@@ -6784,15 +7069,6 @@
       "meta": {
         "last_seen_at_utc": "2026-02-21T21:10:54.343Z",
         "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:process-call",
-      "to": "edge:chain-detect",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "26"
       }
     },
     {
@@ -7705,15 +7981,6 @@
       }
     },
     {
-      "from": "edge:audit-attribution-reviewer",
-      "to": "edge:audit-attribution",
-      "type": "called_by",
-      "meta": {
-        "last_seen_at_utc": "2026-02-26T04:55:44.022Z",
-        "seen_count": "350"
-      }
-    },
-    {
       "from": "edge:decision-auditor",
       "to": "table:public.projects",
       "type": "reads",
@@ -7726,51 +7993,6 @@
       "from": "edge:decision-auditor",
       "to": "table:public.project_aliases",
       "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:review-resolve",
-      "to": "table:public.review_queue",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:review-resolve",
-      "to": "table:public.span_attributions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:review-resolve",
-      "to": "table:public.review_queue",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:review-resolve",
-      "to": "table:public.override_log",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
-        "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:review-resolve",
-      "to": "table:public.journal_claims",
-      "type": "writes",
       "meta": {
         "last_seen_at_utc": "2026-02-23T01:06:17.153Z",
         "seen_count": "1"
@@ -7939,6 +8161,60 @@
       }
     },
     {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T04:35:16.965Z",
+        "seen_count": "368"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.review_queue",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
+        "seen_count": "11"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.span_attributions",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
+        "seen_count": "11"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
+        "seen_count": "11"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.override_log",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
+        "seen_count": "11"
+      }
+    },
+    {
+      "from": "edge:review-resolve",
+      "to": "table:public.journal_claims",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
+        "seen_count": "11"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.span_attributions",
       "type": "reads",
@@ -7961,8 +8237,8 @@
       "to": "table:public.calls_raw",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -7970,8 +8246,8 @@
       "to": "table:public.interactions",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -7979,8 +8255,8 @@
       "to": "table:public.event_audit",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -7988,8 +8264,8 @@
       "to": "table:public.idempotency_keys",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -7997,8 +8273,8 @@
       "to": "table:public.project_contacts",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -8006,8 +8282,8 @@
       "to": "table:public.projects",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -8015,8 +8291,8 @@
       "to": "table:public.correspondent_project_affinity",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "35"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "50"
       }
     },
     {
@@ -8024,8 +8300,8 @@
       "to": "edge:segment-call",
       "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T03:57:19.983Z",
-        "seen_count": "28"
+        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
+        "seen_count": "43"
       }
     }
   ],
