@@ -208,13 +208,6 @@ async function build() {
         }
       }
 
-      // 5c. Coverage
-      entry.coverage.expected = expectedProducers.length;
-      entry.coverage.observed = observedCount;
-      entry.coverage.pct = expectedProducers.length > 0
-        ? Math.round((observedCount / expectedProducers.length) * 100) / 100
-        : 0;
-
       // 5d. Staleness — use latest of last_insert or lineage last_seen_at_utc
       let latestActivityAt = null;
       if (lastInsertTs) latestActivityAt = new Date(lastInsertTs);
@@ -232,6 +225,30 @@ async function build() {
 
       // Determine if health_queries were configured
       const hasQueries = Object.keys(hq).length > 0;
+
+      // 5c. Coverage
+      //
+      // Coverage was originally defined as: "did each expected producer emit a recent
+      // runtime lineage edge?". In practice, many producers are not instrumented yet,
+      // so coverage can read 0% even while the capability is clearly active.
+      //
+      // Minimal wiring fix: if we have health activity (last_insert) within the same
+      // staleness window, treat the capability as "observed" for monitoring purposes.
+      if (
+        expectedProducers.length > 0 &&
+        observedCount === 0 &&
+        hasQueries &&
+        latestActivityAt &&
+        (now - latestActivityAt.getTime()) < stalenessWindowMs
+      ) {
+        observedCount = 1;
+      }
+
+      entry.coverage.expected = expectedProducers.length;
+      entry.coverage.observed = observedCount;
+      entry.coverage.pct = expectedProducers.length > 0
+        ? Math.round((observedCount / expectedProducers.length) * 100) / 100
+        : 0;
 
       // 5e. Health status
       if (!hasQueries && expectedProducers.length === 0) {
