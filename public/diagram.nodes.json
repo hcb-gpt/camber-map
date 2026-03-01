@@ -74,7 +74,7 @@
     "w": 115,
     "h": 40,
     "layer": "external",
-    "desc": "GitHub hosts the camber-calls repository and provides four CI/CD workflows via Actions. deploy-edge-functions.yml auto-deploys all functions on push to main using Supabase CLI v2.76.8. deno-ci.yml enforces code quality (fmt + lint), runs a live pipeline replay proof-pack, and executes invariant gate checks. secret-scan.yml scans PR diffs for leaked credentials. camber-preflight.yml validates auth patterns and tool presence. Secrets like SUPABASE_ACCESS_TOKEN and EDGE_SHARED_SECRET are injected at runtime."
+    "desc": "GitHub hosts the camber repository and provides four CI/CD workflows via Actions. deploy-edge-functions.yml auto-deploys all functions on push to main using Supabase CLI v2.76.8. deno-ci.yml enforces code quality (fmt + lint), runs a live pipeline replay proof-pack, and executes invariant gate checks. secret-scan.yml scans PR diffs for leaked credentials. camber-preflight.yml validates auth patterns and tool presence. Secrets like SUPABASE_ACCESS_TOKEN and EDGE_SHARED_SECRET are injected at runtime."
   },
   {
     "id": "sb-auth",
