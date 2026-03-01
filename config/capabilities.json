@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "capabilities": [
+    {
+      "id": "call-ingestion",
+      "name": "Call Ingestion",
+      "description": "Ingest calls from OpenPhone via Zapier webhooks into calls_raw",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:zapier-call-ingest",
+        "edge:persist-call-event",
+        "edge:process-call",
+        "table:public.calls_raw"
+      ],
+      "expected_producers": ["edge:zapier-call-ingest"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.calls_raw",
+        "last_insert": "SELECT max(ingested_at_utc) AS ts FROM public.calls_raw"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "transcription",
+      "name": "Transcription",
+      "description": "Transcribe call audio via Deepgram Nova-2 ASR with dynamic vocabulary injection",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:transcribe-deepgram",
+        "table:public.transcripts_comparison",
+        "table:public.transcription_vocab"
+      ],
+      "expected_producers": ["edge:transcribe-deepgram"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.transcripts_comparison",
+        "last_insert": "SELECT max(ts) AS ts FROM (SELECT max(last_seen_at_utc) AS ts FROM public.system_lineage_edges WHERE from_node_id = 'edge:transcribe-deepgram' UNION ALL SELECT max(ingested_at_utc) AS ts FROM public.calls_raw WHERE transcript IS NOT NULL AND btrim(transcript) <> '') s"
+      },
+      "depends_on": ["call-ingestion"]
+    },
+    {
+      "id": "segmentation",
+      "name": "Segmentation",
+      "description": "Identify project-switch boundaries in call transcripts via GPT-4o-mini",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:segment-llm",
+        "table:public.conversation_spans"
+      ],
+      "expected_producers": ["edge:segment-llm"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.conversation_spans WHERE NOT is_superseded",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.conversation_spans WHERE NOT is_superseded"
+      },
+      "depends_on": ["transcription"]
+    },
+    {
+      "id": "context-assembly",
+      "name": "Context Assembly",
+      "description": "Assemble world-model context for attribution decisions",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:context-assembly",
+        "edge:context-assembly-v2"
+      ],
+      "expected_producers": ["edge:context-assembly"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.span_attributions",
+        "last_insert": "SELECT max(attributed_at) AS ts FROM public.span_attributions"
+      },
+      "depends_on": ["segmentation", "embedding"]
+    },
+    {
+      "id": "attribution",
+      "name": "Project Attribution",
+      "description": "Attribute call spans to construction projects via Claude Haiku",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:ai-router",
+        "table:public.span_attributions"
+      ],
+      "expected_producers": ["edge:ai-router"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.span_attributions",
+        "last_insert": "SELECT max(attributed_at) AS ts FROM public.span_attributions"
+      },
+      "depends_on": ["context-assembly"]
+    },
+    {
+      "id": "journal",
+      "name": "Knowledge Extraction",
+      "description": "Extract structured knowledge claims from call transcripts into the journal",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:journal-extract",
+        "table:public.journal_claims"
+      ],
+      "expected_producers": ["edge:journal-extract"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.journal_claims",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.journal_claims"
+      },
+      "depends_on": ["attribution"]
+    },
+    {
+      "id": "summarization",
+      "name": "Call Summarization",
+      "description": "Generate human-readable call summaries via Claude Haiku",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:generate-summary",
+        "table:public.interactions"
+      ],
+      "expected_producers": ["edge:generate-summary"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.interactions WHERE ai_scheduler_json IS NOT NULL",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.scheduler_items"
+      },
+      "depends_on": ["segmentation"]
+    },
+    {
+      "id": "signal-detection",
+      "name": "Signal Detection",
+      "description": "Detect striking signals, temporal chains, and loop closures in call data",
+      "owner": "chad",
+      "tags": ["perception", "pipeline"],
+      "tech_nodes": [
+        "edge:striking-detect",
+        "edge:chain-detect",
+        "edge:loop-closure",
+        "table:public.striking_signals"
+      ],
+      "expected_producers": ["edge:striking-detect"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.striking_signals",
+        "last_insert": "SELECT max(created_at) AS ts FROM public.striking_signals"
+      },
+      "depends_on": ["journal"]
+    },
+    {
+      "id": "consolidation",
+      "name": "Journal Consolidation",
+      "description": "Classify and consolidate journal claim relationships via Claude Sonnet",
+      "owner": "chad",
+      "tags": ["core", "pipeline"],
+      "tech_nodes": [
+        "edge:journal-consolidate",
+        "table:public.belief_claims",
+        "table:public.journal_runs"
+      ],
+      "expected_producers": ["edge:journal-consolidate"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.journal_runs WHERE coalesce(config->>'mode','') = 'consolidate' AND status = 'success'",
+        "last_insert": "SELECT max(completed_at) AS ts FROM public.journal_runs WHERE coalesce(config->>'mode','') = 'consolidate' AND status = 'success'"
+      },
+      "depends_on": ["journal"]
+    },
+    {
+      "id": "embedding",
+      "name": "Embedding & Search",
+      "description": "Generate vector embeddings for project facts and journal claims for semantic search",
+      "owner": "chad",
+      "tags": ["core", "search"],
+      "tech_nodes": [
+        "edge:journal-embed-backfill",
+        "edge:embed-facts",
+        "table:public.journal_claims",
+        "table:public.project_facts"
+      ],
+      "expected_producers": ["edge:journal-embed-backfill"],
+      "health_queries": {
+        "row_count": "SELECT count(*)::int AS n FROM public.journal_claims WHERE embedding IS NOT NULL",
+        "last_insert": "SELECT COALESCE((SELECT max(created_at) FROM public.journal_claims WHERE embedding IS NOT NULL),(SELECT max(created_at) FROM public.project_facts)) AS ts"
+      },
+      "depends_on": ["journal"]
+    }
+  ],
+  "capability_edges": [
+    { "from": "call-ingestion", "to": "transcription", "type": "feeds" },
+    { "from": "transcription", "to": "segmentation", "type": "feeds" },
+    { "from": "segmentation", "to": "context-assembly", "type": "feeds" },
+    { "from": "segmentation", "to": "summarization", "type": "feeds" },
+    { "from": "context-assembly", "to": "attribution", "type": "feeds" },
+    { "from": "attribution", "to": "journal", "type": "feeds" },
+    { "from": "journal", "to": "signal-detection", "type": "feeds" },
+    { "from": "journal", "to": "consolidation", "type": "feeds" },
+    { "from": "journal", "to": "embedding", "type": "feeds" },
+    { "from": "embedding", "to": "context-assembly", "type": "feeds" }
+  ],
+  "staleness_thresholds": {
+    "fresh_hours": 24,
+    "aging_hours": 72
+  }
+}

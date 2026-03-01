@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "camber-map.schema.json",
+  "title": "Camber Map Generated Outputs",
+  "definitions": {
+    "IsoDateTime": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$" },
+    "Node": {
+      "type": "object",
+      "required": ["id", "kind", "title"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string", "enum": ["table", "view", "matview", "fn", "ext", "edge"] },
+        "group": { "type": ["string", "null"] },
+        "schema": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "title": { "type": "string" },
+        "meta": { "type": ["object", "null"], "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "Edge": {
+      "type": "object",
+      "required": ["from", "to", "type"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "type": { "type": "string" },
+        "meta": { "type": ["object", "null"], "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "DiagramNode": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "layer": { "type": "string" },
+        "desc": { "type": "string" },
+        "friendly": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramNodes": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramNode" }
+    },
+    "DiagramConnection": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "type": { "type": "string" },
+        "label": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "DiagramConnections": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/DiagramConnection" }
+    },
+    "Facts": {
+      "type": "object",
+      "required": ["updated_at", "git_sha", "mode"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "git_sha": { "type": "string" },
+        "mode": { "type": "string", "enum": ["live", "repo"] },
+        "db": {
+          "type": ["object", "null"],
+          "properties": {
+            "applied_migrations": { "type": "integer" },
+            "tables": { "type": "integer" },
+            "views": { "type": "integer" },
+            "functions": { "type": "integer" },
+            "extensions": { "type": "integer" }
+          },
+          "additionalProperties": true
+        },
+        "edge_functions": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["enabled", "count"],
+              "properties": {
+                "enabled": { "type": "boolean", "const": true },
+                "count": {
+                  "oneOf": [
+                    { "type": "integer", "minimum": 0 },
+                    { "type": "null" }
+                  ]
+                }
+              },
+              "additionalProperties": true
+            }
+          ]
+        },
+        "edge_functions_error": { "type": ["string", "null"] },
+        "runtime_lineage": {
+          "type": ["object", "null"],
+          "properties": {
+            "count": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "Map": {
+      "type": "object",
+      "required": ["updated_at", "git_sha", "mode", "nodes", "edges"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "git_sha": { "type": "string" },
+        "mode": { "type": "string", "enum": ["live", "repo"] },
+        "nodes": { "type": "array", "items": { "$ref": "#/definitions/Node" } },
+        "edges": { "type": "array", "items": { "$ref": "#/definitions/Edge" } },
+        "groups": { "type": ["object", "null"], "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "Capability": {
+      "type": "object",
+      "required": ["id", "name", "health"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "owner": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "tech_node_count": { "type": "integer" },
+        "tech_nodes_in_graph": { "type": "integer" },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "expected": { "type": "integer" },
+            "observed": { "type": "integer" },
+            "pct": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "staleness": {
+          "type": "object",
+          "properties": {
+            "hours_since_last_activity": { "type": ["number", "null"] },
+            "status": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "health": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string" },
+            "row_count": { "type": ["integer", "null"] },
+            "last_activity_at": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
+        "depends_on": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "VP": {
+      "type": "object",
+      "required": ["updated_at", "capabilities", "summary"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "git_sha": { "type": "string" },
+        "capabilities": { "type": "array", "items": { "$ref": "#/definitions/Capability" } },
+        "capability_edges": { "type": "array", "items": { "$ref": "#/definitions/Edge" } },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "total": { "type": "integer" },
+            "healthy": { "type": "integer" },
+            "degraded": { "type": "integer" },
+            "stale": { "type": "integer" },
+            "unknown": { "type": "integer" },
+            "overall_coverage_pct": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "Changes": {
+      "type": "object",
+      "required": ["updated_at", "has_previous", "changes"],
+      "properties": {
+        "updated_at": { "$ref": "#/definitions/IsoDateTime" },
+        "has_previous": { "type": "boolean" },
+        "changes": {
+          "type": "array",
+          "items": { "type": "object", "additionalProperties": true }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/definitions/Facts" },
+    { "$ref": "#/definitions/Map" },
+    { "$ref": "#/definitions/VP" },
+    { "$ref": "#/definitions/Changes" },
+    { "$ref": "#/definitions/DiagramNodes" },
+    { "$ref": "#/definitions/DiagramConnections" }
+  ]
+}

@@ -1,0 +1,48 @@
+# Copy to: .github/workflows/mirror-public-artifacts.yml
+# No secrets. Pulls generated artifacts from a public URL and commits to repo.
+
+name: Mirror public camber-map artifacts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '27 * * * *' # hourly
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-public-artifacts
+  cancel-in-progress: true
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download latest artifacts
+        env:
+          MAP_BASE_URL: https://YOUR_PUBLIC_HOST_HERE
+        run: |
+          set -euo pipefail
+          mkdir -p public
+          curl -fsSL "$MAP_BASE_URL/facts.json" -o public/facts.json
+          curl -fsSL "$MAP_BASE_URL/map.json" -o public/map.json
+          curl -fsSL "$MAP_BASE_URL/map.md" -o public/map.md
+          curl -fsSL "$MAP_BASE_URL/map.graphml" -o public/map.graphml
+          # schema may be static; fetch if you publish it
+          curl -fsSL "$MAP_BASE_URL/map.schema.json" -o public/map.schema.json || true
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add public/facts.json public/map.json public/map.md public/map.graphml public/map.schema.json
+          git commit -m "chore: mirror live camber-map artifacts"
+          git push

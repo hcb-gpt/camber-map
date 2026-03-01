@@ -1,0 +1,355 @@
+{
+  "updated_at": "2026-02-27T20:02:20Z",
+  "git_sha": "ae04fc2d2d8b1316d05c14419de4a59193298609",
+  "capabilities": [
+    {
+      "id": "call-ingestion",
+      "name": "Call Ingestion",
+      "description": "Ingest calls from OpenPhone via Zapier webhooks into calls_raw",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 4,
+      "tech_nodes_in_graph": 3,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 1718,
+        "last_activity_at": "2026-02-27T20:00:24.827Z"
+      },
+      "depends_on": []
+    },
+    {
+      "id": "transcription",
+      "name": "Transcription",
+      "description": "Transcribe call audio via Deepgram Nova-2 ASR with dynamic vocabulary injection",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 3,
+      "tech_nodes_in_graph": 3,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 559,
+        "last_activity_at": "2026-02-27T20:00:24.827Z"
+      },
+      "depends_on": [
+        "call-ingestion"
+      ]
+    },
+    {
+      "id": "segmentation",
+      "name": "Segmentation",
+      "description": "Identify project-switch boundaries in call transcripts via GPT-4o-mini",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 1518,
+        "last_activity_at": "2026-02-27T20:00:59.882Z"
+      },
+      "depends_on": [
+        "transcription"
+      ]
+    },
+    {
+      "id": "context-assembly",
+      "name": "Context Assembly",
+      "description": "Assemble world-model context for attribution decisions",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 1,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 3085,
+        "last_activity_at": "2026-02-27T20:02:08.572Z"
+      },
+      "depends_on": [
+        "segmentation",
+        "embedding"
+      ]
+    },
+    {
+      "id": "attribution",
+      "name": "Project Attribution",
+      "description": "Attribute call spans to construction projects via Claude Haiku",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 3085,
+        "last_activity_at": "2026-02-27T20:02:08.572Z"
+      },
+      "depends_on": [
+        "context-assembly"
+      ]
+    },
+    {
+      "id": "journal",
+      "name": "Knowledge Extraction",
+      "description": "Extract structured knowledge claims from call transcripts into the journal",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 6380,
+        "last_activity_at": "2026-02-27T20:02:13.389Z"
+      },
+      "depends_on": [
+        "attribution"
+      ]
+    },
+    {
+      "id": "summarization",
+      "name": "Call Summarization",
+      "description": "Generate human-readable call summaries via Claude Haiku",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 2,
+      "tech_nodes_in_graph": 2,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 955,
+        "last_activity_at": "2026-02-27T20:01:27.493Z"
+      },
+      "depends_on": [
+        "segmentation"
+      ]
+    },
+    {
+      "id": "signal-detection",
+      "name": "Signal Detection",
+      "description": "Detect striking signals, temporal chains, and loop closures in call data",
+      "owner": "chad",
+      "tags": [
+        "perception",
+        "pipeline"
+      ],
+      "tech_node_count": 4,
+      "tech_nodes_in_graph": 4,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 2236,
+        "last_activity_at": "2026-02-27T20:01:23.679Z"
+      },
+      "depends_on": [
+        "journal"
+      ]
+    },
+    {
+      "id": "consolidation",
+      "name": "Journal Consolidation",
+      "description": "Classify and consolidate journal claim relationships via Claude Sonnet",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "pipeline"
+      ],
+      "tech_node_count": 3,
+      "tech_nodes_in_graph": 3,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 1155,
+        "last_activity_at": "2026-02-27T20:02:06.226Z"
+      },
+      "depends_on": [
+        "journal"
+      ]
+    },
+    {
+      "id": "embedding",
+      "name": "Embedding & Search",
+      "description": "Generate vector embeddings for project facts and journal claims for semantic search",
+      "owner": "chad",
+      "tags": [
+        "core",
+        "search"
+      ],
+      "tech_node_count": 4,
+      "tech_nodes_in_graph": 4,
+      "coverage": {
+        "expected": 1,
+        "observed": 1,
+        "pct": 1
+      },
+      "staleness": {
+        "hours_since_last_activity": 0,
+        "status": "fresh"
+      },
+      "health": {
+        "status": "healthy",
+        "row_count": 6306,
+        "last_activity_at": "2026-02-27T19:59:49.447Z"
+      },
+      "depends_on": [
+        "journal"
+      ]
+    }
+  ],
+  "capability_edges": [
+    {
+      "from": "call-ingestion",
+      "to": "transcription",
+      "type": "feeds"
+    },
+    {
+      "from": "transcription",
+      "to": "segmentation",
+      "type": "feeds"
+    },
+    {
+      "from": "segmentation",
+      "to": "context-assembly",
+      "type": "feeds"
+    },
+    {
+      "from": "segmentation",
+      "to": "summarization",
+      "type": "feeds"
+    },
+    {
+      "from": "context-assembly",
+      "to": "attribution",
+      "type": "feeds"
+    },
+    {
+      "from": "attribution",
+      "to": "journal",
+      "type": "feeds"
+    },
+    {
+      "from": "journal",
+      "to": "signal-detection",
+      "type": "feeds"
+    },
+    {
+      "from": "journal",
+      "to": "consolidation",
+      "type": "feeds"
+    },
+    {
+      "from": "journal",
+      "to": "embedding",
+      "type": "feeds"
+    },
+    {
+      "from": "embedding",
+      "to": "context-assembly",
+      "type": "feeds"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "healthy": 10,
+    "degraded": 0,
+    "stale": 0,
+    "unknown": 0,
+    "overall_coverage_pct": 1
+  }
+}

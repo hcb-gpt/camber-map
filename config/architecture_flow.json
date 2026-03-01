@@ -1,0 +1,100 @@
+{
+  "version": 2,
+  "updated_at": "2026-02-20",
+  "aliases": {
+    "ctx-assembly": "context-assembly",
+    "gen-summary": "generate-summary",
+    "journal-ext": "journal-extract",
+    "journal-cons": "journal-consolidate",
+    "striking": "striking-detect",
+    "db:call_chains": "db-pipeline-aux",
+    "db:journal": "db-journal"
+  },
+  "required_flow_edges": [
+    {
+      "from": "context-assembly",
+      "to": "ai-router",
+      "label": "context_package",
+      "semantics": "blocking",
+      "render": "flow"
+    },
+    {
+      "from": "ai-router",
+      "to": "review-triage",
+      "label": "queue_if_flagged",
+      "semantics": "queue",
+      "render": "flow"
+    },
+    {
+      "from": "ai-router",
+      "to": "journal-extract",
+      "label": "belt_and_suspenders",
+      "semantics": "route",
+      "render": "flow"
+    },
+    {
+      "from": "segment-call",
+      "to": "generate-summary",
+      "label": "after_spans",
+      "semantics": "blocking",
+      "render": "flow"
+    },
+    {
+      "from": "segment-call",
+      "to": "striking-detect",
+      "label": "per_span",
+      "semantics": "fire_forget",
+      "render": "flow"
+    },
+    {
+      "from": "segment-call",
+      "to": "journal-extract",
+      "label": "if_assigned",
+      "semantics": "fire_forget",
+      "render": "flow"
+    },
+    {
+      "from": "journal-extract",
+      "to": "journal-consolidate",
+      "label": "if_claims>0",
+      "semantics": "trigger",
+      "render": "flow"
+    },
+    {
+      "from": "chain-detect",
+      "to": "db:call_chains",
+      "label": "write",
+      "semantics": "write",
+      "render": "flow"
+    },
+    {
+      "from": "loop-closure",
+      "to": "db:journal",
+      "label": "write",
+      "semantics": "write",
+      "render": "flow"
+    }
+  ],
+  "exceptions": {
+    "must_be_disconnected": [
+      "review-resolve",
+      "morning-digest"
+    ]
+  },
+  "db_nodes": {
+    "db:call_chains": {
+      "table": "public.call_chains",
+      "kind": "table"
+    },
+    "db:journal": {
+      "tables": [
+        "public.journal_claims",
+        "public.journal_runs",
+        "public.journal_open_loops",
+        "public.journal_review_queue",
+        "public.journal_conflicts"
+      ],
+      "kind": "group"
+    }
+  }
+}

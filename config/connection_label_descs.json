@@ -1,0 +1,566 @@
+[
+  {
+    "from": "openphone",
+    "to": "zapier",
+    "label": "call events",
+    "desc": "OpenPhone sends call and voicemail events (caller/callee, timestamps, recording link, metadata) into Zapier so the pipeline starts automatically."
+  },
+  {
+    "from": "zapier",
+    "to": "zapier-ingest",
+    "label": "webhook POST",
+    "desc": "Zapier POSTs the normalized event payload into the ingestion endpoint, including call IDs and recording URL, so it can be validated and stored."
+  },
+  {
+    "from": "deepgram",
+    "to": "transcribe",
+    "label": "Nova-2 ASR",
+    "desc": "The transcribe step sends audio to Deepgram Nova-2 and receives the transcript (and timing metadata). This transcript becomes the primary text input for routing and extraction."
+  },
+  {
+    "from": "openai",
+    "to": "segment-llm",
+    "label": "GPT-4o-mini",
+    "desc": "segment-llm asks GPT‑4o‑mini to propose topic boundaries so multi-topic calls can be split into independent spans."
+  },
+  {
+    "from": "openai",
+    "to": "embed-facts",
+    "label": "embed-3-sm",
+    "desc": "embed-facts converts project facts into vector embeddings for similarity search. This powers retrieval in context-assembly and guardrails."
+  },
+  {
+    "from": "openai",
+    "to": "journal-embed",
+    "label": "embed-3-sm",
+    "desc": "journal-embed vectorizes journal claims so later queries can find relevant prior statements and support dedup/conflict detection."
+  },
+  {
+    "from": "anthropic",
+    "to": "ai-router",
+    "label": "Haiku",
+    "desc": "ai-router calls Haiku to assign each span to the correct project (or decide it needs review), using the assembled context and guardrails."
+  },
+  {
+    "from": "anthropic",
+    "to": "generate-summary",
+    "label": "Haiku",
+    "desc": "generate-summary calls Haiku to produce a human-readable call summary and structured follow-up items."
+  },
+  {
+    "from": "anthropic",
+    "to": "journal-extract",
+    "label": "Haiku",
+    "desc": "journal-extract calls Haiku to extract structured journal claims and open loops from an attributed span."
+  },
+  {
+    "from": "anthropic",
+    "to": "journal-consolidate",
+    "label": "Sonnet 4.5",
+    "desc": "journal-consolidate uses Sonnet to merge new claims into the project record, resolving duplicates and flagging contradictions."
+  },
+  {
+    "from": "anthropic",
+    "to": "striking-detect",
+    "label": "Haiku",
+    "desc": "striking-detect calls Haiku to score urgency/risks and write striking signals used for ops prioritization."
+  },
+  {
+    "from": "anthropic",
+    "to": "chain-detect",
+    "label": "Haiku",
+    "desc": "chain-detect uses Haiku to link related calls into threads so the system can reason over continuity across interactions."
+  },
+  {
+    "from": "anthropic",
+    "to": "loop-closure",
+    "label": "Haiku",
+    "desc": "loop-closure uses Haiku to mark open loops as closed when later evidence confirms completion."
+  },
+  {
+    "from": "gmail-api",
+    "to": "gmail-ctx",
+    "label": "OAuth search",
+    "desc": "gmail-ctx uses OAuth to search and summarize relevant Gmail threads, then returns/caches that context for the pipeline."
+  },
+  {
+    "from": "github",
+    "to": "gh-actions",
+    "label": "push trigger",
+    "desc": "A GitHub push triggers CI/CD workflows that test and deploy edge functions and schema changes."
+  },
+  {
+    "from": "sb-auth",
+    "to": "review-resolve",
+    "label": "JWT verify",
+    "desc": "review-resolve verifies the user’s Supabase JWT so only authorized reviewers can apply corrections."
+  },
+  {
+    "from": "zapier-ingest",
+    "to": "process-call",
+    "label": "forward (blocking)",
+    "desc": "Ingestion forwards the call payload to process-call and waits for a response. This is the synchronous entry that validates, deduplicates, and persists the call."
+  },
+  {
+    "from": "process-call",
+    "to": "segment-call",
+    "label": "fire & forget",
+    "desc": "After storing the call, process-call kicks off segmentation asynchronously so the webhook can return quickly; downstream failures are tracked separately."
+  },
+  {
+    "from": "segment-call",
+    "to": "segment-llm",
+    "label": "get boundaries",
+    "desc": "segment-call requests span boundaries from segment-llm so the transcript can be split into topic-focused chunks within size limits."
+  },
+  {
+    "from": "segment-call",
+    "to": "context-assembly",
+    "label": "per span (blocking)",
+    "desc": "For each span, segment-call blocks on context-assembly to build the context_package needed for accurate routing."
+  },
+  {
+    "from": "context-assembly",
+    "to": "ai-router",
+    "label": "context_package",
+    "desc": "context-assembly hands ai-router a complete context package (span text + candidates + retrieved facts/claims) so routing can be decided consistently."
+  },
+  {
+    "from": "context-assembly",
+    "to": "gmail-ctx",
+    "label": "email fetch (fail-open)",
+    "desc": "context-assembly optionally fetches cached email context; if Gmail is unavailable it proceeds without email so routing doesn’t stall."
+  },
+  {
+    "from": "segment-call",
+    "to": "striking-detect",
+    "label": "per span f&f",
+    "desc": "Each span triggers striking-detect asynchronously to compute urgency/risk signals without blocking the routing path."
+  },
+  {
+    "from": "segment-call",
+    "to": "journal-extract",
+    "label": "if assign, f&f",
+    "desc": "When a span is assigned to a project, segment-call fires journal-extract in the background to extract claims and follow-ups; failures don’t block attribution."
+  },
+  {
+    "from": "segment-call",
+    "to": "generate-summary",
+    "label": "after all spans",
+    "desc": "After all spans are processed, segment-call triggers generate-summary once to produce the call-level summary and task list (fire-and-forget)."
+  },
+  {
+    "from": "ai-router",
+    "to": "journal-extract",
+    "label": "belt & suspenders",
+    "desc": "As a backup, ai-router also triggers journal-extract when it assigns a project, ensuring claim extraction still happens even if an earlier hook was skipped."
+  },
+  {
+    "from": "journal-extract",
+    "to": "journal-consolidate",
+    "label": "if claims>0",
+    "desc": "If extraction produced claims, journal-consolidate runs to merge them into project state and detect conflicts."
+  },
+  {
+    "from": "ai-router",
+    "to": "review-triage",
+    "label": "queue if review",
+    "desc": "When routing is uncertain or blocked by guardrails, ai-router enqueues an item for human review rather than guessing."
+  },
+  {
+    "from": "shared",
+    "to": "process-call",
+    "label": "auth+id_guard",
+    "desc": "Shared utilities enforce authentication, input normalization, and idempotency rules so process-call can safely accept retried webhooks."
+  },
+  {
+    "from": "shared",
+    "to": "segment-llm",
+    "label": "llm_json",
+    "desc": "Shared helpers standardize prompt/response JSON handling and schema validation so segmentation outputs stay structured and reliable."
+  },
+  {
+    "from": "shared",
+    "to": "ai-router",
+    "label": "auth+junk",
+    "desc": "Shared code applies the same auth checks and low-signal/junk-call filtering so routing doesn’t waste compute or create review pressure."
+  },
+  {
+    "from": "shared",
+    "to": "context-assembly",
+    "label": "auth",
+    "desc": "Shared auth wrappers ensure only internal callers can assemble context packages."
+  },
+  {
+    "from": "shared",
+    "to": "journal-extract",
+    "label": "auth+llm_json",
+    "desc": "Shared auth + JSON schema helpers make claim extraction safer and easier to validate."
+  },
+  {
+    "from": "shared",
+    "to": "generate-summary",
+    "label": "auth+llm_json",
+    "desc": "Shared auth + schema helpers enforce consistent summary/task formats."
+  },
+  {
+    "from": "shared",
+    "to": "gt-apply",
+    "label": "auth",
+    "desc": "Shared auth ensures only privileged operators can apply ground-truth corrections."
+  },
+  {
+    "from": "guardrails",
+    "to": "ai-router",
+    "label": "8 guardrails",
+    "desc": "Guardrails provide hard constraints and sanity checks that ai-router must satisfy before assigning a project."
+  },
+  {
+    "from": "ctx-retrievers",
+    "to": "context-assembly",
+    "label": "6 retrievers",
+    "desc": "Retrievers supply ranked signals (aliases, affinity, facts, claims, geo, email) that context-assembly packages for routing."
+  },
+  {
+    "from": "pc-phone",
+    "to": "process-call",
+    "label": "phone modules",
+    "desc": "Phone normalization modules map raw from/to fields into consistent owner vs other-party roles for contact resolution and attribution."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "segment-llm",
+    "label": "reseg",
+    "desc": "Reseed tooling reruns segmentation to rebuild spans when logic changes, while respecting locks that protect human decisions."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "context-assembly",
+    "label": "reroute",
+    "desc": "Reseed reruns context assembly to refresh candidates and retrieved facts for existing spans."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "ai-router",
+    "label": "reroute",
+    "desc": "Reseed reruns routing on existing spans to test new router versions/config without silently overriding human locks."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "striking-detect",
+    "label": "redetect",
+    "desc": "Reseed re-scores striking signals for existing spans to keep urgency metrics consistent after model/prompt updates."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "journal-extract",
+    "label": "reextract",
+    "desc": "Reseed re-extracts journal claims for spans to backfill new claim types or improved prompts."
+  },
+  {
+    "from": "shadow-replay",
+    "to": "process-call",
+    "label": "shadow replay",
+    "desc": "Shadow replay re-ingests historical calls through process-call in an isolated mode to test changes without impacting production truth."
+  },
+  {
+    "from": "process-call",
+    "to": "db-core",
+    "label": "upsert interactions+calls_raw",
+    "desc": "process-call upserts the interactions row and stores the normalized call in calls_raw, including contact resolution and candidate projects for downstream steps."
+  },
+  {
+    "from": "process-call",
+    "to": "storage",
+    "label": "audio ref",
+    "desc": "Stores a reference to the call recording location (usually a URL) so transcription can fetch audio later; the pipeline depends on this link staying valid."
+  },
+  {
+    "from": "process-call",
+    "to": "db-pipeline-aux",
+    "label": "idempotency+event_audit",
+    "desc": "Writes idempotency keys and event_audit telemetry so duplicate webhooks are skipped and every run is traceable."
+  },
+  {
+    "from": "transcribe",
+    "to": "db-pipeline-aux",
+    "label": "transcripts_comparison",
+    "desc": "Persists transcript variants and quality metadata so you can compare ASR engines and track regressions over time."
+  },
+  {
+    "from": "segment-call",
+    "to": "db-spans",
+    "label": "upsert spans",
+    "desc": "Writes conversation_spans (char ranges + segment text) for the interaction. Spans are the stable unit-of-work for routing and extraction."
+  },
+  {
+    "from": "ai-router",
+    "to": "db-spans",
+    "label": "upsert attributions",
+    "desc": "Writes span_attributions as the system-of-record for which project each span belongs to, including lock state and confidence."
+  },
+  {
+    "from": "ai-router",
+    "to": "db-review",
+    "label": "review_queue+alias_suggestions",
+    "desc": "Creates review_queue items when attribution is uncertain and records potential alias suggestions discovered during routing."
+  },
+  {
+    "from": "review-resolve",
+    "to": "db-spans",
+    "label": "via resolve_review_item",
+    "desc": "When a human resolves a review item, review-resolve calls an atomic RPC that updates span_attributions (and related span records) in one transaction."
+  },
+  {
+    "from": "review-resolve",
+    "to": "db-review",
+    "label": "resolve+override_log",
+    "desc": "Records the human decision and audit trail (override_log) so corrections are explainable and durable."
+  },
+  {
+    "from": "generate-summary",
+    "to": "db-core",
+    "label": "human_summary+scheduler",
+    "desc": "Persists the call summary and materializes scheduler items/tasks for follow-up workflows."
+  },
+  {
+    "from": "generate-summary",
+    "to": "db-review",
+    "label": "event_audit",
+    "desc": "Logs summary generation outcomes to event_audit for ops visibility and replay/debug."
+  },
+  {
+    "from": "striking-detect",
+    "to": "db-pipeline-aux",
+    "label": "striking_signals",
+    "desc": "Stores per-span striking/urgency signals so dashboards and alerts can prioritize what needs attention."
+  },
+  {
+    "from": "journal-extract",
+    "to": "db-journal",
+    "label": "claims+runs+loops",
+    "desc": "Uses deduping RPCs to insert extracted claims, journal run metadata, and any open loops linked to the span/project."
+  },
+  {
+    "from": "journal-consolidate",
+    "to": "db-journal",
+    "label": "relationships+conflicts",
+    "desc": "Writes consolidated relationships and conflict records so contradictory claims can be triaged and resolved."
+  },
+  {
+    "from": "chain-detect",
+    "to": "db-pipeline-aux",
+    "label": "call_chains",
+    "desc": "Stores call-to-call linkage so the system can reason over ongoing threads with a contact."
+  },
+  {
+    "from": "loop-closure",
+    "to": "db-journal",
+    "label": "close loops",
+    "desc": "Marks open loops as closed and appends closure evidence so the morning digest stops surfacing resolved items."
+  },
+  {
+    "from": "gt-apply",
+    "to": "db-spans",
+    "label": "via apply_gt_correction",
+    "desc": "Applies ground-truth corrections via RPC to lock the correct attribution permanently at the span level."
+  },
+  {
+    "from": "gt-apply",
+    "to": "db-review",
+    "label": "override_log",
+    "desc": "Writes an audit entry for each GT change so evaluation and rollback analysis remain possible."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "db-spans",
+    "label": "supersede+insert spans",
+    "desc": "Supersedes old spans and inserts regenerated ones during reseed, preserving lineage and preventing mixed-span states."
+  },
+  {
+    "from": "admin-reseed",
+    "to": "db-review",
+    "label": "cleanup+override_log",
+    "desc": "Cleans up review state and records reseed actions so human workflows stay coherent."
+  },
+  {
+    "from": "alias-scout",
+    "to": "db-alias",
+    "label": "suggested_aliases",
+    "desc": "Writes candidate aliases discovered from text mining so humans can approve them and improve future routing."
+  },
+  {
+    "from": "alias-review",
+    "to": "db-alias",
+    "label": "approve/reject",
+    "desc": "Applies human decisions on alias suggestions, promoting good aliases and rejecting noisy ones."
+  },
+  {
+    "from": "alias-hygiene",
+    "to": "db-alias",
+    "label": "retire+expire",
+    "desc": "Retires aliases for closed/inactive projects to reduce drift and false matches."
+  },
+  {
+    "from": "embed-facts",
+    "to": "world-model",
+    "label": "embeddings",
+    "desc": "Stores embeddings for project facts in the world model, enabling semantic retrieval and time-aware context."
+  },
+  {
+    "from": "journal-embed",
+    "to": "db-journal",
+    "label": "claim embeddings",
+    "desc": "Stores vector embeddings for journal claims to support semantic search and better dedup/conflict detection."
+  },
+  {
+    "from": "gmail-ctx",
+    "to": "db-context",
+    "label": "gmail_context_cache",
+    "desc": "Caches email context summaries with a TTL so repeated context-assembly runs don’t hammer Gmail."
+  },
+  {
+    "from": "context-assembly",
+    "to": "db-context",
+    "label": "span_place_mentions",
+    "desc": "Persists detected place mentions from spans to support geo signals and later analysis."
+  },
+  {
+    "from": "world-model",
+    "to": "guardrails",
+    "label": "project facts",
+    "desc": "Guardrails reads authoritative project facts to block impossible assignments and validate extracted outputs."
+  },
+  {
+    "from": "world-model",
+    "to": "ctx-retrievers",
+    "label": "fact embeddings",
+    "desc": "Retrievers query fact embeddings to pull the most relevant project facts for the current span."
+  },
+  {
+    "from": "db-alias",
+    "to": "ctx-retrievers",
+    "label": "alias lookup",
+    "desc": "Retrievers load active project aliases so context-assembly can match spoken names to projects."
+  },
+  {
+    "from": "db-context",
+    "to": "ctx-retrievers",
+    "label": "fanout+affinity+geo",
+    "desc": "Retrievers use precomputed affinity, fanout classification, and geo proximity to rank candidate projects."
+  },
+  {
+    "from": "db-journal",
+    "to": "ctx-retrievers",
+    "label": "claims+open_loops",
+    "desc": "Retrievers pull recent claims and unresolved loops so routing and summaries reflect current project state."
+  },
+  {
+    "from": "db-core",
+    "to": "process-call",
+    "label": "contacts+projects",
+    "desc": "process-call reads core contacts/projects to resolve the caller identity and limit candidates to eligible projects."
+  },
+  {
+    "from": "db-core",
+    "to": "generate-summary",
+    "label": "interactions+calls_raw",
+    "desc": "generate-summary reads stored interactions, transcripts, and routing outputs to produce the final summary and tasks."
+  },
+  {
+    "from": "rpc-resolve",
+    "to": "db-spans",
+    "label": "atomic update",
+    "desc": "The resolve_review_item RPC updates span attribution atomically—either everything commits or nothing does."
+  },
+  {
+    "from": "rpc-resolve",
+    "to": "db-review",
+    "label": "atomic update",
+    "desc": "The same transaction updates review_queue status and writes override logs so the audit trail always matches the attribution."
+  },
+  {
+    "from": "review-resolve",
+    "to": "rpc-resolve",
+    "label": "call",
+    "desc": "review-resolve invokes resolve_review_item to apply a human decision safely and consistently."
+  },
+  {
+    "from": "gt-apply",
+    "to": "rpc-gt",
+    "label": "call",
+    "desc": "gt-apply calls apply_gt_correction for each labeled segment so corrections are applied under database-enforced invariants."
+  },
+  {
+    "from": "rpc-gt",
+    "to": "db-spans",
+    "label": "atomic update",
+    "desc": "apply_gt_correction performs an atomic attribution update and enforces monotonic locks so later pipeline runs can’t override GT."
+  },
+  {
+    "from": "journal-extract",
+    "to": "rpc-journal",
+    "label": "dedup insert",
+    "desc": "journal-extract calls insert_journal_claims_dedup so retries don’t create duplicate claims and reruns are safe."
+  },
+  {
+    "from": "process-call",
+    "to": "rpc-contact",
+    "label": "4 RPCs",
+    "desc": "process-call uses a small set of contact/alias RPCs for phone lookup, transcript scanning, and candidate expansion—keeping matching logic centralized and auditable."
+  },
+  {
+    "from": "trigger-lock",
+    "to": "db-spans",
+    "label": "enforces on UPDATE",
+    "desc": "A database trigger enforces monotonic attribution locks on updates, preventing any code path from downgrading a human correction."
+  },
+  {
+    "from": "migrations",
+    "to": "db-core",
+    "label": "schema",
+    "desc": "Migrations evolve schema and invariants; they must be applied before deploying code that depends on new tables/columns."
+  },
+  {
+    "from": "gh-actions",
+    "to": "db-core",
+    "label": "deploy EFs",
+    "desc": "CI deploys edge functions and related config to Supabase so production matches what’s in GitHub."
+  },
+  {
+    "from": "cc-scripts",
+    "to": "admin-reseed",
+    "label": "batch",
+    "desc": "Operational scripts launch batch reseeds to reprocess many interactions under controlled conditions."
+  },
+  {
+    "from": "cc-scripts",
+    "to": "gt-apply",
+    "label": "batch",
+    "desc": "Batch scripts apply ground-truth corrections at scale for evaluation and model iteration."
+  },
+  {
+    "from": "cc-scripts",
+    "to": "shadow-replay",
+    "label": "batch",
+    "desc": "Batch shadow replays run historical traffic through the pipeline in a non-impacting mode to measure changes."
+  },
+  {
+    "from": "smoke-test",
+    "to": "zapier-ingest",
+    "label": "test all 13",
+    "desc": "Smoke tests simulate inbound webhooks across pipeline endpoints to confirm auth and basic health after deploy."
+  },
+  {
+    "from": "claim-guard",
+    "to": "cc-scripts",
+    "label": "preflight",
+    "desc": "Claim guard enforces operator context and safety checks before any write-mode script can run."
+  },
+  {
+    "from": "tests",
+    "to": "guardrails",
+    "label": "unit tests",
+    "desc": "Unit/regression tests validate guardrail behavior so routing constraints don’t drift as prompts and data evolve."
+  }
+]

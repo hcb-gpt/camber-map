@@ -1,0 +1,116 @@
+/* ============================================================
+   Camber Map -- Design Tokens (Polaris v2 — Light)
+   Light theme: bg #FFFFFF | text #111318 / #5C5F6A / #8C8F99
+   Base unit: 4px
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     2.2  Spacing tokens
+     Polaris-aligned scale on a 4px base unit.
+     ---------------------------------------------------------- */
+  --space-0:    0px;
+  --space-025:  1px;
+  --space-050:  2px;
+  --space-100:  4px;
+  --space-150:  6px;
+  --space-200:  8px;
+  --space-300:  12px;
+  --space-400:  16px;
+  --space-500:  20px;
+  --space-600:  24px;
+  --space-800:  32px;
+  --space-1000: 40px;
+  --space-1200: 48px;
+
+  /* Semantic spacing aliases */
+  --space-card-padding: var(--space-400);
+  --space-card-gap:     var(--space-400);
+
+  /* ----------------------------------------------------------
+     2.3  Radius tokens
+     ---------------------------------------------------------- */
+  --radius-200: 8px;
+  --radius-300: 12px;
+  --radius-400: 16px;
+
+  /* ----------------------------------------------------------
+     2.4  Shadow tokens (depth)
+     Light-theme shadows: softer opacity on white backgrounds.
+
+     Level 100 -- subtle card
+     Level 200 -- raised interactive surface
+     Level 300 -- popover / menu
+     Level 600 -- modal / full-screen sheet
+     ---------------------------------------------------------- */
+  --shadow-100:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.10);
+
+  --shadow-200:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 1px 6px rgba(0, 0, 0, 0.06);
+
+  --shadow-300:
+    0 4px 8px rgba(0, 0, 0, 0.10),
+    0 2px 12px rgba(0, 0, 0, 0.08);
+
+  --shadow-600:
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 4px 40px rgba(0, 0, 0, 0.08);
+
+  /* ----------------------------------------------------------
+     2.5  Type tokens
+     Tight ramp; line heights snap to the 4px grid.
+     ---------------------------------------------------------- */
+
+  /* Font sizes */
+  --font-size-75:  12px;   /* captions, metadata          */
+  --font-size-100: 14px;   /* default body                */
+  --font-size-200: 16px;   /* dense headings, key labels  */
+  --font-size-300: 20px;   /* page / section titles       */
+
+  /* Line heights (4px-grid-aligned) */
+  --line-height-1: 16px;
+  --line-height-2: 20px;
+  --line-height-3: 24px;
+  --line-height-4: 28px;
+
+  /* ----------------------------------------------------------
+     2.6  Color tokens
+     Polaris v2 — light theme palette.
+     ---------------------------------------------------------- */
+
+  /* ── Surfaces ── */
+  --surface-base:    #FFFFFF;
+  --surface-raised:  #F6F7F9;
+  --surface-overlay: #EDEEF1;
+  --surface-hover:   #E2E4E8;
+
+  /* ── Text ── */
+  --text-primary:    #111318;
+  --text-secondary:  #5C5F6A;
+  --text-tertiary:   #8C8F99;
+  --text-disabled:   #B0B3BA;
+
+  /* ── Status ── */
+  --status-fresh:    #059669;
+  --status-stale:    #D97706;
+  --status-error:    #DC2626;
+  --status-unknown:  #9CA3AF;
+
+  /* ── Area classification ── */
+  --area-external:   #2563EB;
+  --area-pipeline:   #059669;
+  --area-submodule:  #7C3AED;
+  --area-data:       #D97706;
+  --area-devops:     #B45309;
+
+  /* ── Interactive ── */
+  --interactive-primary: #2563EB;
+  --interactive-hover:   #1D4ED8;
+  --interactive-muted:   #EFF3FF;
+  --border-default:      #D5D7DA;
+  --border-focus:        #2563EB;
+}

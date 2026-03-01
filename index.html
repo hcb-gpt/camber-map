@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camber Product Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="public/tokens.css">
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="mode-toggle" id="sidebar-mode-toggle">
+      <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+      <button data-mode="plain" onclick="applyViewMode('plain')">Plain</button>
+      <button data-mode="system" onclick="applyViewMode('system')">System</button>
+    </div>
+    <h2>Camber Product Map</h2>
+    <div class="stat-bar" id="stat-bar"></div>
+    <input class="search-box" id="search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodes(this.value)">
+
+<div id="sidebar-flow-nav" class="sidebar-flow-nav"></div>
+    <div id="presets-section"><div id="presets"></div></div>
+    <div id="layers-section"><h3>Areas</h3><div id="layer-toggles"></div></div>
+    <div id="conns-section"><h3>Links</h3><div id="conn-toggles"></div></div>
+    <div id="comments-section"><h3>Notes (<span id="comment-count">0</span>)</h3><div id="comments-list"></div></div>
+  </div>
+
+  <div class="canvas-area" id="canvas-area">
+    <div class="canvas-zoom-controls">
+      <button class="canvas-zoom-btn" onclick="zoomOut()" title="Zoom out">&minus;</button>
+      <button class="canvas-zoom-btn canvas-zoom-fit" onclick="fitToScreen()" title="Fit to screen">Fit</button>
+      <button class="canvas-zoom-btn" onclick="zoomIn()" title="Zoom in">&plus;</button>
+    </div>
+    <div class="diagram-status-banner" id="diagram-status-banner" role="status" aria-live="polite">
+      <div class="diagram-status-banner__text" id="diagram-status-banner-text"></div>
+      <button class="diagram-status-banner__btn" id="diagram-status-banner-retry" onclick="retryLoadDiagramData()">Retry</button>
+    </div>
+<div class="info-panel" id="info-panel">
+      <button class="info-close-btn" onclick="hideInfo()" aria-label="Close">&times;</button>
+      <h4 id="info-title"></h4>
+      <p id="info-desc"></p>
+    </div>
+    <svg id="diagram" xmlns="http://www.w3.org/2000/svg">
+      <defs></defs>
+    </svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- Mobile mode toggle (always visible on mobile, outside mobile-view) -->
+<div class="mode-toggle mobile-only" id="mobile-mode-toggle">
+  <button data-mode="flow" class="active" onclick="applyViewMode('flow')">Flow</button>
+  <button data-mode="plain" onclick="applyViewMode('plain')">Plain</button>
+  <button data-mode="system" onclick="applyViewMode('system')">System</button>
+</div>
+
+<!-- Mobile VP View -->
+<div id="mobile-view">
+  <div class="now-bar" id="now-bar" onclick="toggleChangesDrawer()" role="status" aria-label="Pipeline status">
+    <span class="now-badge"><span class="dot blue"></span> Loading...</span>
+    <div class="now-changes-badge" id="now-changes-badge"></div>
+  </div>
+  <div id="mobile-stages" role="list" aria-label="Pipeline stages"></div>
+  <div id="mobile-explorer" class="mobile-explorer" aria-label="Map explorer">
+    <div class="mobile-explorer-bar">
+      <input class="mobile-search" id="mobile-search" type="text" placeholder="Search steps, services, or data…" oninput="filterNodesMobile(this.value)">
+    </div>
+    <div id="mobile-explorer-list"></div>
+  </div>
+
+  <div class="mobile-sheet-scrim" id="mobile-sheet-scrim" onclick="closeMobileSheet()"></div>
+  <div class="mobile-sheet" id="mobile-node-sheet" aria-hidden="true">
+    <div class="mobile-sheet-handle" id="mobile-sheet-handle"></div>
+    <div class="mobile-sheet-header">
+      <div class="mobile-sheet-title" id="mobile-sheet-title"></div>
+      <button class="mobile-sheet-close" onclick="closeMobileSheet()" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="mobile-sheet-body" id="mobile-sheet-body"></div>
+  </div>
+
+</div>
+
+<!-- Changes Drawer -->
+<div class="changes-drawer" id="changes-drawer">
+  <h3>Recent Changes</h3>
+  <div id="changes-content"><div class="changes-empty"><div class="changes-empty-heading">No changes detected</div><div class="changes-empty-subtext">This panel tracks schema migrations, new edge functions, and config changes between map builds.</div><div class="changes-last-checked" style="font-size: 11px; color: var(--text-disabled, #3A4655); margin-top: 8px; font-family: monospace;">Last checked: just now</div></div></div>
+</div>
+
+<!-- Desktop Now Bar -->
+<div class="now-bar-desktop" id="now-bar-desktop"></div>
+
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3 id="modal-title"></h3>
+    <div class="path" id="modal-path"></div>
+    <textarea id="modal-text" placeholder="Add your comment about this component..."></textarea>
+    <div class="modal-btns">
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+      <button class="save" onclick="saveComment()">Save</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./public/ajv.min.js"></script>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

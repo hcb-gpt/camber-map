@@ -1,0 +1,26 @@
+{
+  "name": "camber-map",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "generate:live": "node scripts/generate_live_map.mjs",
+    "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs",
+    "audit:flow": "node scripts/audit_flow_edges.mjs",
+    "proof:flow-gap": "node scripts/proof_flow_gap_closure.mjs",
+    "proof:flow-gap:gate": "npm run -s proof:flow-gap && npm run -s audit:flow",
+    "proof:acceptance": "node scripts/acceptance_proof_after_patch.mjs --strict",
+    "proof:release:gate": "npm run -s proof:flow-gap:gate && npm run -s proof:acceptance",
+    "test:smoke": "playwright test"
+  },
+  "dependencies": {
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}

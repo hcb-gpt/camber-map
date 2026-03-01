@@ -1,0 +1,34 @@
+# ora/.github/workflows/camber-map-smoke.yml
+# Playwright smoke tests for camber-map within the ora monorepo.
+# Triggers on PRs and pushes that touch apps/camber-map/.
+
+name: Camber Map Smoke Test
+
+on:
+  pull_request:
+    paths:
+      - 'apps/camber-map/**'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/camber-map/**'
+
+jobs:
+  smoke:
+    name: Playwright Smoke
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/camber-map
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps
+
+      - run: npm run test:smoke
