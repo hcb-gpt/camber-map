@@ -6,7 +6,7 @@
   },
   {
     "from": "client:ios.camberredline",
-    "to": "edge:review-resolve",
+    "to": "edge:bootstrap-review",
     "type": "calls"
   },
   {
@@ -15,4 +15,3 @@
     "type": "reads"
   }
 ]
-

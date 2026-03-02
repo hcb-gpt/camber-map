@@ -21,6 +21,12 @@
     "title": "review-resolve"
   },
   {
+    "id": "edge:bootstrap-review",
+    "kind": "edge",
+    "group": "edge",
+    "title": "bootstrap-review"
+  },
+  {
     "id": "matview:public.redline_contacts_matview",
     "kind": "matview",
     "group": "db",
@@ -29,4 +35,3 @@
     "title": "public.redline_contacts_matview"
   }
 ]
-
