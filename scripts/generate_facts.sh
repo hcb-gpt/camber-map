@@ -10,10 +10,17 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 json_escape() {
-  python - <<'PY'
-import json,sys
-print(json.dumps(sys.stdin.read()))
-PY
+  local py_bin=""
+  if command -v python3 >/dev/null 2>&1; then
+    py_bin="python3"
+  elif command -v python >/dev/null 2>&1; then
+    py_bin="python"
+  else
+    echo "ERROR: json_escape requires python3 or python" >&2
+    return 127
+  fi
+
+  "$py_bin" -c 'import json,sys; print(json.dumps(sys.stdin.read()))'
 }
 
 now_utc() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
