@@ -1,8 +1,40 @@
 {
-  "updated_at": "2026-02-27T06:08:47Z",
-  "git_sha": "c44f0359999620bd6caf11a5d1c5da49229a2ac5",
+  "updated_at": "2026-03-02T04:17:49Z",
+  "git_sha": "e9d0d17ea6543382550579259aef907f33ec9c47",
   "mode": "live",
   "nodes": [
+    {
+      "id": "matview:public.mat_belief_context",
+      "kind": "matview",
+      "schema": "public",
+      "name": "mat_belief_context",
+      "title": "public.mat_belief_context",
+      "group": "db"
+    },
+    {
+      "id": "matview:public.mat_contact_context",
+      "kind": "matview",
+      "schema": "public",
+      "name": "mat_contact_context",
+      "title": "public.mat_contact_context",
+      "group": "db"
+    },
+    {
+      "id": "matview:public.mat_project_context",
+      "kind": "matview",
+      "schema": "public",
+      "name": "mat_project_context",
+      "title": "public.mat_project_context",
+      "group": "db"
+    },
+    {
+      "id": "matview:public.redline_contacts_unified_matview",
+      "kind": "matview",
+      "schema": "public",
+      "name": "redline_contacts_unified_matview",
+      "title": "public.redline_contacts_unified_matview",
+      "group": "db"
+    },
     {
       "id": "matview:public.vendor_cost_code_summary",
       "kind": "matview",
@@ -25,6 +57,14 @@
       "schema": "public",
       "name": "adapter_status",
       "title": "public.adapter_status",
+      "group": "db"
+    },
+    {
+      "id": "table:public.affinity_ledger",
+      "kind": "table",
+      "schema": "public",
+      "name": "affinity_ledger",
+      "title": "public.affinity_ledger",
       "group": "db"
     },
     {
@@ -100,11 +140,27 @@
       "group": "db"
     },
     {
+      "id": "table:public.attribution_verdict_audit",
+      "kind": "table",
+      "schema": "public",
+      "name": "attribution_verdict_audit",
+      "title": "public.attribution_verdict_audit",
+      "group": "db"
+    },
+    {
       "id": "table:public.audit_eval_manifest",
       "kind": "table",
       "schema": "public",
       "name": "audit_eval_manifest",
       "title": "public.audit_eval_manifest",
+      "group": "db"
+    },
+    {
+      "id": "table:public.backfill_runs",
+      "kind": "table",
+      "schema": "public",
+      "name": "backfill_runs",
+      "title": "public.backfill_runs",
       "group": "db"
     },
     {
@@ -137,6 +193,30 @@
       "schema": "public",
       "name": "belief_open_loops",
       "title": "public.belief_open_loops",
+      "group": "db"
+    },
+    {
+      "id": "table:public.beside_thread_events",
+      "kind": "table",
+      "schema": "public",
+      "name": "beside_thread_events",
+      "title": "public.beside_thread_events",
+      "group": "db"
+    },
+    {
+      "id": "table:public.beside_threads",
+      "kind": "table",
+      "schema": "public",
+      "name": "beside_threads",
+      "title": "public.beside_threads",
+      "group": "db"
+    },
+    {
+      "id": "table:public.beside_transcripts",
+      "kind": "table",
+      "schema": "public",
+      "name": "beside_transcripts",
+      "title": "public.beside_transcripts",
       "group": "db"
     },
     {
@@ -276,6 +356,22 @@
       "group": "db"
     },
     {
+      "id": "table:public.context_surface_refresh_metadata",
+      "kind": "table",
+      "schema": "public",
+      "name": "context_surface_refresh_metadata",
+      "title": "public.context_surface_refresh_metadata",
+      "group": "db"
+    },
+    {
+      "id": "table:public.context_surface_refresh_status",
+      "kind": "table",
+      "schema": "public",
+      "name": "context_surface_refresh_status",
+      "title": "public.context_surface_refresh_status",
+      "group": "db"
+    },
+    {
       "id": "table:public.conversation_spans",
       "kind": "table",
       "schema": "public",
@@ -321,6 +417,14 @@
       "schema": "public",
       "name": "disagreement_telemetry",
       "title": "public.disagreement_telemetry",
+      "group": "db"
+    },
+    {
+      "id": "table:public.edge_deploy_receipts",
+      "kind": "table",
+      "schema": "public",
+      "name": "edge_deploy_receipts",
+      "title": "public.edge_deploy_receipts",
       "group": "db"
     },
     {
@@ -476,11 +580,27 @@
       "group": "db"
     },
     {
+      "id": "table:public.hard_drop_dlq",
+      "kind": "table",
+      "schema": "public",
+      "name": "hard_drop_dlq",
+      "title": "public.hard_drop_dlq",
+      "group": "db"
+    },
+    {
       "id": "table:public.idempotency_keys",
       "kind": "table",
       "schema": "public",
       "name": "idempotency_keys",
       "title": "public.idempotency_keys",
+      "group": "db"
+    },
+    {
+      "id": "table:public.incident_ledger",
+      "kind": "table",
+      "schema": "public",
+      "name": "incident_ledger",
+      "title": "public.incident_ledger",
       "group": "db"
     },
     {
@@ -577,6 +697,22 @@
       "schema": "public",
       "name": "loop_pointers",
       "title": "public.loop_pointers",
+      "group": "db"
+    },
+    {
+      "id": "table:public.loop_run_details",
+      "kind": "table",
+      "schema": "public",
+      "name": "loop_run_details",
+      "title": "public.loop_run_details",
+      "group": "db"
+    },
+    {
+      "id": "table:public.loop_run_scores",
+      "kind": "table",
+      "schema": "public",
+      "name": "loop_run_scores",
+      "title": "public.loop_run_scores",
       "group": "db"
     },
     {
@@ -740,6 +876,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.pipeline_model_config",
+      "kind": "table",
+      "schema": "public",
+      "name": "pipeline_model_config",
+      "title": "public.pipeline_model_config",
+      "group": "db"
+    },
+    {
       "id": "table:public.pipeline_scoreboard_snapshots",
       "kind": "table",
       "schema": "public",
@@ -793,6 +937,14 @@
       "schema": "public",
       "name": "project_contacts_promotion_log",
       "title": "public.project_contacts_promotion_log",
+      "group": "db"
+    },
+    {
+      "id": "table:public.project_context_materialization_meta",
+      "kind": "table",
+      "schema": "public",
+      "name": "project_context_materialization_meta",
+      "title": "public.project_context_materialization_meta",
       "group": "db"
     },
     {
@@ -860,11 +1012,43 @@
       "group": "db"
     },
     {
+      "id": "table:public.redline_data_issue_reports",
+      "kind": "table",
+      "schema": "public",
+      "name": "redline_data_issue_reports",
+      "title": "public.redline_data_issue_reports",
+      "group": "db"
+    },
+    {
+      "id": "table:public.redline_defect_events",
+      "kind": "table",
+      "schema": "public",
+      "name": "redline_defect_events",
+      "title": "public.redline_defect_events",
+      "group": "db"
+    },
+    {
+      "id": "table:public.redline_repair_events",
+      "kind": "table",
+      "schema": "public",
+      "name": "redline_repair_events",
+      "title": "public.redline_repair_events",
+      "group": "db"
+    },
+    {
       "id": "table:public.redline_settings",
       "kind": "table",
       "schema": "public",
       "name": "redline_settings",
       "title": "public.redline_settings",
+      "group": "db"
+    },
+    {
+      "id": "table:public.reminders",
+      "kind": "table",
+      "schema": "public",
+      "name": "reminders",
+      "title": "public.reminders",
       "group": "db"
     },
     {
@@ -889,6 +1073,14 @@
       "schema": "public",
       "name": "review_queue",
       "title": "public.review_queue",
+      "group": "db"
+    },
+    {
+      "id": "table:public.review_queue_notes",
+      "kind": "table",
+      "schema": "public",
+      "name": "review_queue_notes",
+      "title": "public.review_queue_notes",
       "group": "db"
     },
     {
@@ -929,6 +1121,22 @@
       "schema": "public",
       "name": "scheduler_items",
       "title": "public.scheduler_items",
+      "group": "db"
+    },
+    {
+      "id": "table:public.session_aliases",
+      "kind": "table",
+      "schema": "public",
+      "name": "session_aliases",
+      "title": "public.session_aliases",
+      "group": "db"
+    },
+    {
+      "id": "table:public.sms_message_attachments",
+      "kind": "table",
+      "schema": "public",
+      "name": "sms_message_attachments",
+      "title": "public.sms_message_attachments",
       "group": "db"
     },
     {
@@ -988,6 +1196,14 @@
       "group": "db"
     },
     {
+      "id": "table:public.synthetic_ground_truth",
+      "kind": "table",
+      "schema": "public",
+      "name": "synthetic_ground_truth",
+      "title": "public.synthetic_ground_truth",
+      "group": "db"
+    },
+    {
       "id": "table:public.system_lineage_edges",
       "kind": "table",
       "schema": "public",
@@ -1001,6 +1217,14 @@
       "schema": "public",
       "name": "testimony_origin_crosswalk",
       "title": "public.testimony_origin_crosswalk",
+      "group": "db"
+    },
+    {
+      "id": "table:public.time_resolution_audit",
+      "kind": "table",
+      "schema": "public",
+      "name": "time_resolution_audit",
+      "title": "public.time_resolution_audit",
       "group": "db"
     },
     {
@@ -1372,6 +1596,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.pipeline_heartbeat",
+      "kind": "view",
+      "schema": "public",
+      "name": "pipeline_heartbeat",
+      "title": "public.pipeline_heartbeat",
+      "group": "db"
+    },
+    {
       "id": "view:public.redline_contact_thread",
       "kind": "view",
       "schema": "public",
@@ -1385,6 +1617,14 @@
       "schema": "public",
       "name": "redline_contacts",
       "title": "public.redline_contacts",
+      "group": "db"
+    },
+    {
+      "id": "view:public.redline_contacts_unified",
+      "kind": "view",
+      "schema": "public",
+      "name": "redline_contacts_unified",
+      "title": "public.redline_contacts_unified",
       "group": "db"
     },
     {
@@ -1460,6 +1700,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_affinity_current",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_affinity_current",
+      "title": "public.v_affinity_current",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_alias_discovery_candidates",
       "kind": "view",
       "schema": "public",
@@ -1473,6 +1721,14 @@
       "schema": "public",
       "name": "v_assigned_spans_missing_journal",
       "title": "public.v_assigned_spans_missing_journal",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_assistant_context_v1",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_assistant_context_v1",
+      "title": "public.v_assistant_context_v1",
       "group": "db"
     },
     {
@@ -1537,6 +1793,30 @@
       "schema": "public",
       "name": "v_belief_claims_canon",
       "title": "public.v_belief_claims_canon",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_beside_calls_missing_in_interactions_24h",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_beside_calls_missing_in_interactions_24h",
+      "title": "public.v_beside_calls_missing_in_interactions_24h",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_beside_direct_read_parity_72h",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_beside_direct_read_parity_72h",
+      "title": "public.v_beside_direct_read_parity_72h",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_beside_shadow_metrics_packet_v0",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_beside_shadow_metrics_packet_v0",
+      "title": "public.v_beside_shadow_metrics_packet_v0",
       "group": "db"
     },
     {
@@ -1612,6 +1892,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_channel_span_attribution_gap_daily",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_channel_span_attribution_gap_daily",
+      "title": "public.v_channel_span_attribution_gap_daily",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_chunk_quality_distribution",
       "kind": "view",
       "schema": "public",
@@ -1668,6 +1956,30 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_context_metadata_staleness",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_context_metadata_staleness",
+      "title": "public.v_context_metadata_staleness",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_context_surface_refresh_status",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_context_surface_refresh_status",
+      "title": "public.v_context_surface_refresh_status",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_context_surface_staleness_v1",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_context_surface_staleness_v1",
+      "title": "public.v_context_surface_staleness_v1",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_correction_patterns",
       "kind": "view",
       "schema": "public",
@@ -1705,6 +2017,22 @@
       "schema": "public",
       "name": "v_document_claims",
       "title": "public.v_document_claims",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_edge_deploy_guard_alerts",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_edge_deploy_guard_alerts",
+      "title": "public.v_edge_deploy_guard_alerts",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_edge_deploy_guard_summary",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_edge_deploy_guard_summary",
+      "title": "public.v_edge_deploy_guard_summary",
       "group": "db"
     },
     {
@@ -1844,6 +2172,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_hard_drop_dlq_open",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_hard_drop_dlq_open",
+      "title": "public.v_hard_drop_dlq_open",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_hard_drop_sla_monitor",
       "kind": "view",
       "schema": "public",
@@ -1873,6 +2209,14 @@
       "schema": "public",
       "name": "v_interaction_primary_project",
       "title": "public.v_interaction_primary_project",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_interactions_missing_in_redline_thread_24h",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_interactions_missing_in_redline_thread_24h",
+      "title": "public.v_interactions_missing_in_redline_thread_24h",
       "group": "db"
     },
     {
@@ -1921,6 +2265,14 @@
       "schema": "public",
       "name": "v_lineage_coverage",
       "title": "public.v_lineage_coverage",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_mat_project_context_with_meta_v1",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_mat_project_context_with_meta_v1",
+      "title": "public.v_mat_project_context_with_meta_v1",
       "group": "db"
     },
     {
@@ -2076,6 +2428,14 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_pipeline_model_readme",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_pipeline_model_readme",
+      "title": "public.v_pipeline_model_readme",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_prod_attrib_audit_dashboard_7d",
       "kind": "view",
       "schema": "public",
@@ -2121,6 +2481,14 @@
       "schema": "public",
       "name": "v_project_claims_for_review",
       "title": "public.v_project_claims_for_review",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_project_context_materialization_health_v1",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_project_context_materialization_health_v1",
+      "title": "public.v_project_context_materialization_health_v1",
       "group": "db"
     },
     {
@@ -2212,6 +2580,22 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_redline_defect_events_open",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_redline_defect_events_open",
+      "title": "public.v_redline_defect_events_open",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_redline_sms_thread_v2",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_redline_sms_thread_v2",
+      "title": "public.v_redline_sms_thread_v2",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_regression_detector_24h",
       "kind": "view",
       "schema": "public",
@@ -2241,6 +2625,14 @@
       "schema": "public",
       "name": "v_review_coverage_gaps",
       "title": "public.v_review_coverage_gaps",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_review_queue_project_summary",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_review_queue_project_summary",
+      "title": "public.v_review_queue_project_summary",
       "group": "db"
     },
     {
@@ -2308,11 +2700,43 @@
       "group": "db"
     },
     {
+      "id": "view:public.v_scheduling_baseline_metrics",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_scheduling_baseline_metrics",
+      "title": "public.v_scheduling_baseline_metrics",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_scheduling_queue",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_scheduling_queue",
+      "title": "public.v_scheduling_queue",
+      "group": "db"
+    },
+    {
       "id": "view:public.v_scoreboard_retention_stats",
       "kind": "view",
       "schema": "public",
       "name": "v_scoreboard_retention_stats",
       "title": "public.v_scoreboard_retention_stats",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_single_project_invariant_violations",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_single_project_invariant_violations",
+      "title": "public.v_single_project_invariant_violations",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_sms_messages_with_attachments",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_sms_messages_with_attachments",
+      "title": "public.v_sms_messages_with_attachments",
       "group": "db"
     },
     {
@@ -2361,6 +2785,46 @@
       "schema": "public",
       "name": "v_tram_presence_status",
       "title": "public.v_tram_presence_status",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_triage_attribution_cards",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_triage_attribution_cards",
+      "title": "public.v_triage_attribution_cards",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_triage_later_queue",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_triage_later_queue",
+      "title": "public.v_triage_later_queue",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_triage_span_position",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_triage_span_position",
+      "title": "public.v_triage_span_position",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_truth_graph_probe",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_truth_graph_probe",
+      "title": "public.v_truth_graph_probe",
+      "group": "db"
+    },
+    {
+      "id": "view:public.v_truth_graph_summary",
+      "kind": "view",
+      "schema": "public",
+      "name": "v_truth_graph_summary",
+      "title": "public.v_truth_graph_summary",
       "group": "db"
     },
     {
@@ -2444,6 +2908,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.apply_attribution_verdict(p_review_queue_id uuid, p_action text, p_chosen_project_id uuid, p_reviewer_id text, p_reason_code text, p_note text, p_time_spent_sec numeric)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "apply_attribution_verdict",
+      "title": "public.apply_attribution_verdict(p_review_queue_id uuid, p_action text, p_chosen_project_id uuid, p_reviewer_id text, p_reason_code text, p_note text, p_time_spent_sec numeric)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.apply_gt_correction(p_span_id uuid, p_project_id uuid, p_corrected_by text, p_notes text, p_batch_id text)",
       "kind": "fn",
       "schema": "public",
@@ -2473,6 +2945,54 @@
       "schema": "public",
       "name": "assert_migration_count",
       "title": "public.assert_migration_count(p_prefix text, p_expected integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.assistant_context_v1(p_window_hours integer, p_projects_limit integer, p_highlights_per_project integer, p_contacts_limit integer, p_candidates_per_contact integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "assistant_context_v1",
+      "title": "public.assistant_context_v1(p_window_hours integer, p_projects_limit integer, p_highlights_per_project integer, p_contacts_limit integer, p_candidates_per_contact integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.assistant_truth_graph_v1(p_contact_id uuid, p_interaction_id text, p_project_id uuid, p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "assistant_truth_graph_v1",
+      "title": "public.assistant_truth_graph_v1(p_contact_id uuid, p_interaction_id text, p_project_id uuid, p_limit integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.atomic_ack_message(p_receipt text, p_ack_by text, p_ack_type text, p_note text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "atomic_ack_message",
+      "title": "public.atomic_ack_message(p_receipt text, p_ack_by text, p_ack_type text, p_note text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.atomic_claim_work(p_receipt text, p_claimed_by text, p_claimed_by_role text, p_takeover_rationale text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "atomic_claim_work",
+      "title": "public.atomic_claim_work(p_receipt text, p_claimed_by text, p_claimed_by_role text, p_takeover_rationale text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.atomic_retire_session(p_session_id text, p_reason text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "atomic_retire_session",
+      "title": "public.atomic_retire_session(p_session_id text, p_reason text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.atomic_session_register(p_session_id text, p_role text, p_client text, p_ttl_minutes integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "atomic_session_register",
+      "title": "public.atomic_session_register(p_session_id text, p_role text, p_client text, p_ttl_minutes integer)",
       "group": "db"
     },
     {
@@ -2652,6 +3172,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.check_pipeline_staleness()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "check_pipeline_staleness",
+      "title": "public.check_pipeline_staleness()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.check_postable_cost_code()",
       "kind": "fn",
       "schema": "public",
@@ -2724,6 +3252,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.close_open_loop(p_loop_id uuid, p_proof jsonb, p_closed_by text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "close_open_loop",
+      "title": "public.close_open_loop(p_loop_id uuid, p_proof jsonb, p_closed_by text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.close_session(p_session_id uuid)",
       "kind": "fn",
       "schema": "public",
@@ -2753,6 +3289,14 @@
       "schema": "public",
       "name": "compute_pointer_v176",
       "title": "public.compute_pointer_v176(p_claim_id uuid)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.compute_project_context_staleness_status_v1(p_refreshed_at_utc timestamp with time zone, p_activity_anchor_at_utc timestamp with time zone, p_allowed_lag interval)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "compute_project_context_staleness_status_v1",
+      "title": "public.compute_project_context_staleness_status_v1(p_refreshed_at_utc timestamp with time zone, p_activity_anchor_at_utc timestamp with time zone, p_allowed_lag interval)",
       "group": "db"
     },
     {
@@ -2844,6 +3388,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.debug_why_missing(p_contact_id uuid, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "debug_why_missing",
+      "title": "public.debug_why_missing(p_contact_id uuid, p_interaction_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.decide_lane(claim journal_claims, context jsonb)",
       "kind": "fn",
       "schema": "public",
@@ -2881,6 +3433,22 @@
       "schema": "public",
       "name": "enforce_payload_ref_write_once",
       "title": "public.enforce_payload_ref_write_once()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.enforce_single_project_invariant(p_contact_id uuid)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "enforce_single_project_invariant",
+      "title": "public.enforce_single_project_invariant(p_contact_id uuid)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.enforce_single_project_invariant_bulk()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "enforce_single_project_invariant_bulk",
+      "title": "public.enforce_single_project_invariant_bulk()",
       "group": "db"
     },
     {
@@ -2996,6 +3564,30 @@
       "group": "db"
     },
     {
+      "id": "fn:public.fresh_review_queue(p_max_age_days integer, p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "fresh_review_queue",
+      "title": "public.fresh_review_queue(p_max_age_days integer, p_limit integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.fresh_review_queue_count(p_max_age_days integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "fresh_review_queue_count",
+      "title": "public.fresh_review_queue_count(p_max_age_days integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.fresh_review_queue_no_module(p_max_age_days integer, p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "fresh_review_queue_no_module",
+      "title": "public.fresh_review_queue_no_module(p_max_age_days integer, p_limit integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.generate_client_aliases()",
       "kind": "fn",
       "schema": "public",
@@ -3028,6 +3620,22 @@
       "group": "db"
     },
     {
+      "id": "fn:public.get_contact_anchored_project_id(p_contact_id uuid)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_contact_anchored_project_id",
+      "title": "public.get_contact_anchored_project_id(p_contact_id uuid)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.get_context_packet_v1(p_contact_id uuid, p_project_id uuid, p_recent_interactions_limit integer, p_recent_sms_spans_limit integer, p_open_items_limit integer, p_window_hours integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_context_packet_v1",
+      "title": "public.get_context_packet_v1(p_contact_id uuid, p_project_id uuid, p_recent_interactions_limit integer, p_recent_sms_spans_limit integer, p_open_items_limit integer, p_window_hours integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.get_cori_summary()",
       "kind": "fn",
       "schema": "public",
@@ -3044,11 +3652,35 @@
       "group": "db"
     },
     {
+      "id": "fn:public.get_latest_pipeline_activity_success_v1()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_latest_pipeline_activity_success_v1",
+      "title": "public.get_latest_pipeline_activity_success_v1()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.get_migration_summary()",
       "kind": "fn",
       "schema": "public",
       "name": "get_migration_summary",
       "title": "public.get_migration_summary()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.get_model_config(p_function_name text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_model_config",
+      "title": "public.get_model_config(p_function_name text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.get_pipeline_config(p_key text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_pipeline_config",
+      "title": "public.get_pipeline_config(p_key text)",
       "group": "db"
     },
     {
@@ -3100,6 +3732,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.get_review_candidates(p_pool text, p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_review_candidates",
+      "title": "public.get_review_candidates(p_pool text, p_limit integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.get_review_coverage(p_interaction_id text)",
       "kind": "fn",
       "schema": "public",
@@ -3116,6 +3756,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.get_session_aliases(p_session_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "get_session_aliases",
+      "title": "public.get_session_aliases(p_session_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.get_supabase_functions_base_url()",
       "kind": "fn",
       "schema": "public",
@@ -3129,6 +3777,22 @@
       "schema": "public",
       "name": "get_supabase_ref_from_service_role",
       "title": "public.get_supabase_ref_from_service_role()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.guardrail_review_queue_anchored_contact()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "guardrail_review_queue_anchored_contact",
+      "title": "public.guardrail_review_queue_anchored_contact()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.guardrail_review_queue_null_span_pending()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "guardrail_review_queue_null_span_pending",
+      "title": "public.guardrail_review_queue_null_span_pending()",
       "group": "db"
     },
     {
@@ -3177,6 +3841,22 @@
       "schema": "public",
       "name": "is_shadow_interaction",
       "title": "public.is_shadow_interaction(p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.jsonb_deep_merge(a jsonb, b jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "jsonb_deep_merge",
+      "title": "public.jsonb_deep_merge(a jsonb, b jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.latest_pipeline_success_anchor_utc_v1(p_project_id uuid)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "latest_pipeline_success_anchor_utc_v1",
+      "title": "public.latest_pipeline_success_anchor_utc_v1(p_project_id uuid)",
       "group": "db"
     },
     {
@@ -3236,6 +3916,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.normalize_phone(p text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "normalize_phone",
+      "title": "public.normalize_phone(p text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.normalize_scheduler_item_financial(p_item jsonb, p_interaction_financial jsonb, p_existing_financial jsonb)",
       "kind": "fn",
       "schema": "public",
@@ -3257,6 +3945,14 @@
       "schema": "public",
       "name": "persist_call_event",
       "title": "public.persist_call_event(payload jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.prevent_affinity_ledger_mutation()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "prevent_affinity_ledger_mutation",
+      "title": "public.prevent_affinity_ledger_mutation()",
       "group": "db"
     },
     {
@@ -3372,11 +4068,59 @@
       "group": "db"
     },
     {
+      "id": "fn:public.reconcile_calls_raw_to_interactions(p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "reconcile_calls_raw_to_interactions",
+      "title": "public.reconcile_calls_raw_to_interactions(p_limit integer)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.record_edge_deploy_receipt(p_function_slug text, p_git_sha text, p_deployer_session text, p_version_tag text, p_deployed_at timestamp with time zone, p_git_commit_ts timestamp with time zone, p_allow_older_sha boolean, p_metadata jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "record_edge_deploy_receipt",
+      "title": "public.record_edge_deploy_receipt(p_function_slug text, p_git_sha text, p_deployer_session text, p_version_tag text, p_deployed_at timestamp with time zone, p_git_commit_ts timestamp with time zone, p_allow_older_sha boolean, p_metadata jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.record_project_context_materialization_refresh_v1(p_pipeline_run_id text, p_context_version text, p_source_views text[], p_refresh_status text, p_notes text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "record_project_context_materialization_refresh_v1",
+      "title": "public.record_project_context_materialization_refresh_v1(p_pipeline_run_id text, p_context_version text, p_source_views text[], p_refresh_status text, p_notes text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.record_redline_defect_event_v1(p_defect_type text, p_owner_lane text, p_interaction_id text, p_thread_id text, p_span_id uuid, p_evidence_event_id uuid, p_project_id uuid, p_details jsonb, p_closure_proof jsonb, p_current_status text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "record_redline_defect_event_v1",
+      "title": "public.record_redline_defect_event_v1(p_defect_type text, p_owner_lane text, p_interaction_id text, p_thread_id text, p_span_id uuid, p_evidence_event_id uuid, p_project_id uuid, p_details jsonb, p_closure_proof jsonb, p_current_status text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.rectify_vendor_projects(p_contact_id uuid, p_project_ids uuid[], p_role text, p_dry_run boolean, p_triggered_by text, p_reason text)",
       "kind": "fn",
       "schema": "public",
       "name": "rectify_vendor_projects",
       "title": "public.rectify_vendor_projects(p_contact_id uuid, p_project_ids uuid[], p_role text, p_dry_run boolean, p_triggered_by text, p_reason text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.redline_latest_thread_event_by_phone_v1(phone_list text[])",
+      "kind": "fn",
+      "schema": "public",
+      "name": "redline_latest_thread_event_by_phone_v1",
+      "title": "public.redline_latest_thread_event_by_phone_v1(phone_list text[])",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.redline_truth_graph_v1(p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "redline_truth_graph_v1",
+      "title": "public.redline_truth_graph_v1(p_interaction_id text)",
       "group": "db"
     },
     {
@@ -3388,11 +4132,35 @@
       "group": "db"
     },
     {
+      "id": "fn:public.refresh_materialized_context_views()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "refresh_materialized_context_views",
+      "title": "public.refresh_materialized_context_views()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.refresh_redline_context_matviews()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "refresh_redline_context_matviews",
+      "title": "public.refresh_redline_context_matviews()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.register_orbit_error_v1(p_subsystem text, p_operation text, p_error_code text, p_http_status integer, p_request_id text, p_origin_platform text, p_origin_client text, p_origin_session text, p_role text, p_message text, p_extra_metadata jsonb)",
       "kind": "fn",
       "schema": "public",
       "name": "register_orbit_error_v1",
       "title": "public.register_orbit_error_v1(p_subsystem text, p_operation text, p_error_code text, p_http_status integer, p_request_id text, p_origin_platform text, p_origin_client text, p_origin_session text, p_role text, p_message text, p_extra_metadata jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.requeue_hard_drop_span(p_span_id uuid, p_actor text, p_reason_codes text[])",
+      "kind": "fn",
+      "schema": "public",
+      "name": "requeue_hard_drop_span",
+      "title": "public.requeue_hard_drop_span(p_span_id uuid, p_actor text, p_reason_codes text[])",
       "group": "db"
     },
     {
@@ -3452,6 +4220,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.run_beside_parity_monitor_v1(p_missing_threshold integer, p_actor text, p_emit_tram boolean)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_beside_parity_monitor_v1",
+      "title": "public.run_beside_parity_monitor_v1(p_missing_threshold integer, p_actor text, p_emit_tram boolean)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.run_daily_audit_sample_v1()",
       "kind": "fn",
       "schema": "public",
@@ -3460,11 +4236,43 @@
       "group": "db"
     },
     {
+      "id": "fn:public.run_edge_deploy_guard_monitor(p_actor text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_edge_deploy_guard_monitor",
+      "title": "public.run_edge_deploy_guard_monitor(p_actor text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.run_hard_drop_dlq_sweep(p_retry_threshold integer, p_age_hours numeric, p_actor text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_hard_drop_dlq_sweep",
+      "title": "public.run_hard_drop_dlq_sweep(p_retry_threshold integer, p_age_hours numeric, p_actor text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.run_hard_drop_sla_monitor(p_sla_window_hours integer, p_hard_drop_deadline_hours integer, p_top_n_clusters integer, p_force_breach boolean, p_emit_tram boolean, p_actor text)",
       "kind": "fn",
       "schema": "public",
       "name": "run_hard_drop_sla_monitor",
       "title": "public.run_hard_drop_sla_monitor(p_sla_window_hours integer, p_hard_drop_deadline_hours integer, p_top_n_clusters integer, p_force_breach boolean, p_emit_tram boolean, p_actor text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.run_hard_drop_sla_monitor_tuned(p_growth_threshold integer, p_oldest_age_hours numeric, p_actor text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_hard_drop_sla_monitor_tuned",
+      "title": "public.run_hard_drop_sla_monitor_tuned(p_growth_threshold integer, p_oldest_age_hours numeric, p_actor text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.run_redline_refresh_monitor(p_emit_tram boolean, p_actor text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "run_redline_refresh_monitor",
+      "title": "public.run_redline_refresh_monitor(p_emit_tram boolean, p_actor text)",
       "group": "db"
     },
     {
@@ -3516,6 +4324,22 @@
       "group": "db"
     },
     {
+      "id": "fn:public.score_proposal(source_type text, evidence_json jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "score_proposal",
+      "title": "public.score_proposal(source_type text, evidence_json jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.seed_calls_raw_from_beside_calls_24h(p_limit integer, p_hours integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "seed_calls_raw_from_beside_calls_24h",
+      "title": "public.seed_calls_raw_from_beside_calls_24h(p_limit integer, p_hours integer)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.seed_source_reliability_from_journal_claims(p_assessment_method text)",
       "kind": "fn",
       "schema": "public",
@@ -3524,11 +4348,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.set_context_surface_refreshed(p_surface_name text, p_refreshed_at timestamp with time zone)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "set_context_surface_refreshed",
+      "title": "public.set_context_surface_refreshed(p_surface_name text, p_refreshed_at timestamp with time zone)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.since_last_session(p_operator text)",
       "kind": "fn",
       "schema": "public",
       "name": "since_last_session",
       "title": "public.since_last_session(p_operator text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.sms_messages_projection_v1(p_thread_id text, p_contact_phone text, p_limit integer)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "sms_messages_projection_v1",
+      "title": "public.sms_messages_projection_v1(p_thread_id text, p_contact_phone text, p_limit integer)",
       "group": "db"
     },
     {
@@ -3708,11 +4548,27 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_auto_assign_interaction_project_fn()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_auto_assign_interaction_project_fn",
+      "title": "public.trg_auto_assign_interaction_project_fn()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_auto_assign_project_fn()",
       "kind": "fn",
       "schema": "public",
       "name": "trg_auto_assign_project_fn",
       "title": "public.trg_auto_assign_project_fn()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_auto_assign_span_project_fn()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_auto_assign_span_project_fn",
+      "title": "public.trg_auto_assign_span_project_fn()",
       "group": "db"
     },
     {
@@ -3764,11 +4620,35 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_enforce_single_project_on_pc_change_fn()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_enforce_single_project_on_pc_change_fn",
+      "title": "public.trg_enforce_single_project_on_pc_change_fn()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_evidence_events_to_lineage_edges()",
       "kind": "fn",
       "schema": "public",
       "name": "trg_evidence_events_to_lineage_edges",
       "title": "public.trg_evidence_events_to_lineage_edges()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_fn_resolve_scheduler_item_time()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_fn_resolve_scheduler_item_time",
+      "title": "public.trg_fn_resolve_scheduler_item_time()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_redline_defect_events_touch_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_redline_defect_events_touch_updated_at",
+      "title": "public.trg_redline_defect_events_touch_updated_at()",
       "group": "db"
     },
     {
@@ -3780,11 +4660,51 @@
       "group": "db"
     },
     {
+      "id": "fn:public.trg_review_queue_single_project_guard()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_review_queue_single_project_guard",
+      "title": "public.trg_review_queue_single_project_guard()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_set_context_surface_refresh_metadata_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_set_context_surface_refresh_metadata_updated_at",
+      "title": "public.trg_set_context_surface_refresh_metadata_updated_at()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_set_redline_defect_events_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_set_redline_defect_events_updated_at",
+      "title": "public.trg_set_redline_defect_events_updated_at()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_set_sms_message_attachments_updated_at()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_set_sms_message_attachments_updated_at",
+      "title": "public.trg_set_sms_message_attachments_updated_at()",
+      "group": "db"
+    },
+    {
       "id": "fn:public.trg_source_reliability_touch_updated_at()",
       "kind": "fn",
       "schema": "public",
       "name": "trg_source_reliability_touch_updated_at",
       "title": "public.trg_source_reliability_touch_updated_at()",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trg_span_attribution_resolve_orphans()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trg_span_attribution_resolve_orphans",
+      "title": "public.trg_span_attribution_resolve_orphans()",
       "group": "db"
     },
     {
@@ -3804,11 +4724,27 @@
       "group": "db"
     },
     {
-      "id": "fn:public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text)",
+      "id": "fn:public.triage_interaction_summary(p_interaction_id text)",
       "kind": "fn",
       "schema": "public",
-      "name": "update_affinity_on_attribution",
-      "title": "public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text)",
+      "name": "triage_interaction_summary",
+      "title": "public.triage_interaction_summary(p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.triage_progress_context(p_date date, p_module text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "triage_progress_context",
+      "title": "public.triage_progress_context(p_date date, p_module text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.trigger_resolve_scheduler_time()",
+      "kind": "fn",
+      "schema": "public",
+      "name": "trigger_resolve_scheduler_time",
+      "title": "public.trigger_resolve_scheduler_time()",
       "group": "db"
     },
     {
@@ -3817,6 +4753,14 @@
       "schema": "public",
       "name": "update_affinity_on_attribution",
       "title": "public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text, p_interaction_id text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "update_affinity_on_attribution",
+      "title": "public.update_affinity_on_attribution(p_contact_id uuid, p_project_id uuid, p_confidence numeric, p_source text)",
       "group": "db"
     },
     {
@@ -3876,6 +4820,14 @@
       "group": "db"
     },
     {
+      "id": "fn:public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_affinity_feedback",
+      "title": "public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "group": "db"
+    },
+    {
       "id": "fn:public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text)",
       "kind": "fn",
       "schema": "public",
@@ -3884,11 +4836,11 @@
       "group": "db"
     },
     {
-      "id": "fn:public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "id": "fn:public.upsert_context_surface_refresh_metadata_v1(p_surface_name text, p_project_id uuid, p_context_version text, p_source_views text[], p_pipeline_run_id text, p_refreshed_at_utc timestamp with time zone, p_metadata jsonb)",
       "kind": "fn",
       "schema": "public",
-      "name": "upsert_affinity_feedback",
-      "title": "public.upsert_affinity_feedback(p_contact_id uuid, p_project_id uuid, p_action text, p_source text, p_interaction_id text)",
+      "name": "upsert_context_surface_refresh_metadata_v1",
+      "title": "public.upsert_context_surface_refresh_metadata_v1(p_surface_name text, p_project_id uuid, p_context_version text, p_source_views text[], p_pipeline_run_id text, p_refreshed_at_utc timestamp with time zone, p_metadata jsonb)",
       "group": "db"
     },
     {
@@ -3913,6 +4865,22 @@
       "schema": "public",
       "name": "upsert_idempotency_key",
       "title": "public.upsert_idempotency_key(p_key text, p_interaction_id text, p_source text, p_payload_hash text, p_first_payload jsonb)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_redline_defect_event_v1(p_defect_type text, p_owner_lane text, p_interaction_id text, p_thread_id text, p_span_id uuid, p_evidence_event_id uuid, p_project_id uuid, p_closure_proof jsonb, p_current_status text, p_closure_receipt text, p_created_by text)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_redline_defect_event_v1",
+      "title": "public.upsert_redline_defect_event_v1(p_defect_type text, p_owner_lane text, p_interaction_id text, p_thread_id text, p_span_id uuid, p_evidence_event_id uuid, p_project_id uuid, p_closure_proof jsonb, p_current_status text, p_closure_receipt text, p_created_by text)",
+      "group": "db"
+    },
+    {
+      "id": "fn:public.upsert_sms_message_attachment_v1(p_message_id text, p_attachment_index integer, p_content_type text, p_size_bytes bigint, p_sha256 text, p_storage_path text, p_width integer, p_height integer, p_filename text, p_interaction_id text, p_provider text, p_source_payload jsonb)",
+      "kind": "fn",
+      "schema": "public",
+      "name": "upsert_sms_message_attachment_v1",
+      "title": "public.upsert_sms_message_attachment_v1(p_message_id text, p_attachment_index integer, p_content_type text, p_size_bytes bigint, p_sha256 text, p_storage_path text, p_width integer, p_height integer, p_filename text, p_interaction_id text, p_provider text, p_source_payload jsonb)",
       "group": "db"
     },
     {
@@ -4060,774 +5028,33 @@
       "group": "db"
     },
     {
-      "id": "edge:review-resolve",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-resolve",
-      "title": "review-resolve",
+      "id": "client:ios.camberredline",
+      "kind": "client",
+      "group": "client",
+      "title": "iOS: CamberRedline",
       "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 36,
-        "updated_at": 1772033681458
-      }
-    },
-    {
-      "id": "edge:sync-google-contacts",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sync-google-contacts",
-      "title": "sync-google-contacts",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1768880323144
-      }
-    },
-    {
-      "id": "edge:test-tma-fetch",
-      "kind": "edge",
-      "group": "edge",
-      "name": "test-tma-fetch",
-      "title": "test-tma-fetch",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1769203551168
-      }
-    },
-    {
-      "id": "edge:transcribe-audio",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-audio",
-      "title": "transcribe-audio",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 35,
-        "updated_at": 1769204461909
-      }
-    },
-    {
-      "id": "edge:transcribe-whisper",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-whisper",
-      "title": "transcribe-whisper",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 30,
-        "updated_at": 1769205468082
-      }
-    },
-    {
-      "id": "edge:transcribe-claude",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-claude",
-      "title": "transcribe-claude",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 31,
-        "updated_at": 1769205580692
-      }
-    },
-    {
-      "id": "edge:transcribe-assemblyai",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-assemblyai",
-      "title": "transcribe-assemblyai",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769206316340
-      }
-    },
-    {
-      "id": "edge:transcribe-deepgram",
-      "kind": "edge",
-      "group": "edge",
-      "name": "transcribe-deepgram",
-      "title": "transcribe-deepgram",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 43,
-        "updated_at": 1772065829360
-      }
-    },
-    {
-      "id": "edge:process-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "process-call",
-      "title": "process-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 83,
-        "updated_at": 1772167950883
-      }
-    },
-    {
-      "id": "edge:segment-call",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-call",
-      "title": "segment-call",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 79,
-        "updated_at": 1771881536923
-      }
-    },
-    {
-      "id": "edge:dlq-enqueue",
-      "kind": "edge",
-      "group": "edge",
-      "name": "dlq-enqueue",
-      "title": "dlq-enqueue",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769753728479
-      }
-    },
-    {
-      "id": "edge:context-assembly",
-      "kind": "edge",
-      "group": "edge",
-      "name": "context-assembly",
-      "title": "context-assembly",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 80,
-        "updated_at": 1772151007201
-      }
-    },
-    {
-      "id": "edge:ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "ai-router",
-      "title": "ai-router",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 127,
-        "updated_at": 1772151009571
-      }
-    },
-    {
-      "id": "edge:eval-ai-router",
-      "kind": "edge",
-      "group": "edge",
-      "name": "eval-ai-router",
-      "title": "eval-ai-router",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1769784329255
-      }
-    },
-    {
-      "id": "edge:segment-llm",
-      "kind": "edge",
-      "group": "edge",
-      "name": "segment-llm",
-      "title": "segment-llm",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 42,
-        "updated_at": 1772022655502
-      }
-    },
-    {
-      "id": "edge:admin-reseed",
-      "kind": "edge",
-      "group": "edge",
-      "name": "admin-reseed",
-      "title": "admin-reseed",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 50,
-        "updated_at": 1772022643106
-      }
-    },
-    {
-      "id": "edge:zapier-call-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "zapier-call-ingest",
-      "title": "zapier-call-ingest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 29,
-        "updated_at": 1772065808236
-      }
-    },
-    {
-      "id": "edge:striking-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "striking-detect",
-      "title": "striking-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 22,
-        "updated_at": 1771968306949
-      }
-    },
-    {
-      "id": "edge:journal-extract",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-extract",
-      "title": "journal-extract",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 41,
-        "updated_at": 1772033682590
-      }
-    },
-    {
-      "id": "edge:journal-consolidate",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-consolidate",
-      "title": "journal-consolidate",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 35,
-        "updated_at": 1772033678167
-      }
-    },
-    {
-      "id": "edge:chain-detect",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chain-detect",
-      "title": "chain-detect",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 23,
-        "updated_at": 1772065813472
-      }
-    },
-    {
-      "id": "edge:generate-summary",
-      "kind": "edge",
-      "group": "edge",
-      "name": "generate-summary",
-      "title": "generate-summary",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 22,
-        "updated_at": 1772022642864
-      }
-    },
-    {
-      "id": "edge:gmail-context-lookup",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gmail-context-lookup",
-      "title": "gmail-context-lookup",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1772033695910
-      }
-    },
-    {
-      "id": "edge:shadow-replay",
-      "kind": "edge",
-      "group": "edge",
-      "name": "shadow-replay",
-      "title": "shadow-replay",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1771968387649
-      }
-    },
-    {
-      "id": "edge:morning-digest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-digest",
-      "title": "morning-digest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 30,
-        "updated_at": 1772022643629
-      }
-    },
-    {
-      "id": "edge:loop-closure",
-      "kind": "edge",
-      "group": "edge",
-      "name": "loop-closure",
-      "title": "loop-closure",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 19,
-        "updated_at": 1772022656356
-      }
-    },
-    {
-      "id": "edge:review-triage",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-triage",
-      "title": "review-triage",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1771111081237
-      }
-    },
-    {
-      "id": "edge:journal-embed-backfill",
-      "kind": "edge",
-      "group": "edge",
-      "name": "journal-embed-backfill",
-      "title": "journal-embed-backfill",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 21,
-        "updated_at": 1772022659288
-      }
-    },
-    {
-      "id": "edge:gt-apply",
-      "kind": "edge",
-      "group": "edge",
-      "name": "gt-apply",
-      "title": "gt-apply",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 14,
-        "updated_at": 1772022657782
-      }
-    },
-    {
-      "id": "edge:alias-review",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-review",
-      "title": "alias-review",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 11,
-        "updated_at": 1771816548209
-      }
-    },
-    {
-      "id": "edge:alias-hygiene",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-hygiene",
-      "title": "alias-hygiene",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771816534404
-      }
-    },
-    {
-      "id": "edge:alias-scout",
-      "kind": "edge",
-      "group": "edge",
-      "name": "alias-scout",
-      "title": "alias-scout",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1771816537028
-      }
-    },
-    {
-      "id": "edge:chat-proxy",
-      "kind": "edge",
-      "group": "edge",
-      "name": "chat-proxy",
-      "title": "chat-proxy",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1772022658666
-      }
-    },
-    {
-      "id": "edge:project-query",
-      "kind": "edge",
-      "group": "edge",
-      "name": "project-query",
-      "title": "project-query",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 4,
-        "updated_at": 1771968402154
-      }
-    },
-    {
-      "id": "edge:brief-serve",
-      "kind": "edge",
-      "group": "edge",
-      "name": "brief-serve",
-      "title": "brief-serve",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 15,
-        "updated_at": 1772022640502
-      }
-    },
-    {
-      "id": "edge:auto-review-resolver",
-      "kind": "edge",
-      "group": "edge",
-      "name": "auto-review-resolver",
-      "title": "auto-review-resolver",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1771816537949
-      }
-    },
-    {
-      "id": "edge:sms-openphone-sync",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sms-openphone-sync",
-      "title": "sms-openphone-sync",
-      "meta": {
-        "verify_jwt": false,
-        "status": "DEPRECATED_410",
-        "version": 2,
-        "updated_at": 1771780062497,
-        "deprecated": true,
-        "replacement": "edge:zapier-sms-ingest",
-        "deprecation_note": "Legacy OpenPhone sync retired; use zapier-sms-ingest."
-      }
-    },
-    {
-      "id": "edge:zapier-sms-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "zapier-sms-ingest",
-      "title": "zapier-sms-ingest",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771782497030
-      }
-    },
-    {
-      "id": "edge:financial-receipt-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "financial-receipt-ingest",
-      "title": "financial-receipt-ingest",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 2,
-        "updated_at": 1771789402546
-      }
-    },
-    {
-      "id": "edge:audit-attribution",
-      "kind": "edge",
-      "group": "edge",
-      "name": "audit-attribution",
-      "title": "audit-attribution",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 43,
-        "updated_at": 1772033704917
-      }
-    },
-    {
-      "id": "edge:audit-attribution-reviewer",
-      "kind": "edge",
-      "group": "edge",
-      "name": "audit-attribution-reviewer",
-      "title": "audit-attribution-reviewer",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 24,
-        "updated_at": 1772065826998
-      }
-    },
-    {
-      "id": "edge:decision-auditor",
-      "kind": "edge",
-      "group": "edge",
-      "name": "decision-auditor",
-      "title": "decision-auditor",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1772033702044
-      }
-    },
-    {
-      "id": "edge:evidence-assembler",
-      "kind": "edge",
-      "group": "edge",
-      "name": "evidence-assembler",
-      "title": "evidence-assembler",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1772033700062
-      }
-    },
-    {
-      "id": "edge:embed-facts",
-      "kind": "edge",
-      "group": "edge",
-      "name": "embed-facts",
-      "title": "embed-facts",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 9,
-        "updated_at": 1772033699698
-      }
-    },
-    {
-      "id": "edge:morning-manifest-ui",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-manifest-ui",
-      "title": "morning-manifest-ui",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 40,
-        "updated_at": 1772022641287
-      }
-    },
-    {
-      "id": "edge:morning-manifest-site",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-manifest-site",
-      "title": "morning-manifest-site",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 28,
-        "updated_at": 1772065824247
-      }
-    },
-    {
-      "id": "edge:operator-validation",
-      "kind": "edge",
-      "group": "edge",
-      "name": "operator-validation",
-      "title": "operator-validation",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 16,
-        "updated_at": 1772022660150
-      }
-    },
-    {
-      "id": "edge:audit-regress-runner",
-      "kind": "edge",
-      "group": "edge",
-      "name": "audit-regress-runner",
-      "title": "audit-regress-runner",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 8,
-        "updated_at": 1772022641746
-      }
-    },
-    {
-      "id": "edge:operator-validation-ui",
-      "kind": "edge",
-      "group": "edge",
-      "name": "operator-validation-ui",
-      "title": "operator-validation-ui",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 8,
-        "updated_at": 1772022640273
-      }
-    },
-    {
-      "id": "edge:review-swarm-runner",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-swarm-runner",
-      "title": "review-swarm-runner",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 13,
-        "updated_at": 1772033697509
-      }
-    },
-    {
-      "id": "edge:morning-manifest-d3",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-manifest-d3",
-      "title": "morning-manifest-d3",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 5,
-        "updated_at": 1772033696207
-      }
-    },
-    {
-      "id": "edge:morning-brief",
-      "kind": "edge",
-      "group": "edge",
-      "name": "morning-brief",
-      "title": "morning-brief",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 30,
-        "updated_at": 1772033679228
-      }
-    },
-    {
-      "id": "edge:review-swarm-scheduler",
-      "kind": "edge",
-      "group": "edge",
-      "name": "review-swarm-scheduler",
-      "title": "review-swarm-scheduler",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 17,
-        "updated_at": 1772033682813
-      }
-    },
-    {
-      "id": "edge:sms-beside-batch-ingest",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sms-beside-batch-ingest",
-      "title": "sms-beside-batch-ingest",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 10,
-        "updated_at": 1772167202121
-      }
-    },
-    {
-      "id": "edge:reattribute-spans",
-      "kind": "edge",
-      "group": "edge",
-      "name": "reattribute-spans",
-      "title": "reattribute-spans",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 6,
-        "updated_at": 1772022660461
-      }
-    },
-    {
-      "id": "edge:sms-thread-assembler",
-      "kind": "edge",
-      "group": "edge",
-      "name": "sms-thread-assembler",
-      "title": "sms-thread-assembler",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 3,
-        "updated_at": 1771896315160
+        "repo_path": "camber/ios/CamberRedline"
       }
     },
     {
       "id": "edge:redline-thread",
       "kind": "edge",
       "group": "edge",
-      "name": "redline-thread",
-      "title": "redline-thread",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 27,
-        "updated_at": 1772165226760
-      }
+      "title": "redline-thread"
     },
     {
-      "id": "edge:bootstrap-review",
+      "id": "edge:review-resolve",
       "kind": "edge",
       "group": "edge",
-      "name": "bootstrap-review",
-      "title": "bootstrap-review",
-      "meta": {
-        "verify_jwt": false,
-        "status": "ACTIVE",
-        "version": 9,
-        "updated_at": 1772165779462
-      }
+      "title": "review-resolve"
     },
     {
-      "id": "edge:training-data-export",
-      "kind": "edge",
-      "group": "edge",
-      "name": "training-data-export",
-      "title": "training-data-export",
-      "meta": {
-        "verify_jwt": true,
-        "status": "ACTIVE",
-        "version": 1,
-        "updated_at": 1772160968462
-      }
+      "id": "matview:public.redline_contacts_matview",
+      "kind": "matview",
+      "group": "db",
+      "schema": "public",
+      "name": "redline_contacts_matview",
+      "title": "public.redline_contacts_matview"
     }
   ],
   "edges": [
@@ -5544,6 +5771,11 @@
     {
       "from": "view:public.v_project_feed",
       "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_feed",
+      "to": "table:public.review_queue",
       "type": "depends_on"
     },
     {
@@ -6582,36 +6814,6 @@
       "type": "depends_on"
     },
     {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.conversation_spans",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contact_thread",
-      "to": "table:public.claim_grades",
-      "type": "depends_on"
-    },
-    {
       "from": "view:public.redline_sms_thread",
       "to": "table:public.contacts",
       "type": "depends_on"
@@ -6624,66 +6826,11 @@
     {
       "from": "view:public.redline_sms_thread",
       "to": "table:public.sms_messages",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_thread",
-      "to": "view:public.redline_contact_thread",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_thread",
-      "to": "view:public.redline_sms_thread",
       "type": "depends_on"
     },
     {
       "from": "view:public.orbit_mcp_error_leaderboard_7d",
       "to": "table:public.diagnostic_logs",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.interactions",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.contacts",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.calls_raw",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.review_queue",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.journal_claims",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.sms_messages",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.claim_grades",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.redline_settings",
-      "type": "depends_on"
-    },
-    {
-      "from": "view:public.redline_contacts",
-      "to": "table:public.owner_phones",
       "type": "depends_on"
     },
     {
@@ -6802,6 +6949,565 @@
       "type": "depends_on"
     },
     {
+      "from": "view:public.pipeline_heartbeat",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_heartbeat",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_heartbeat",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_heartbeat",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.pipeline_heartbeat",
+      "to": "table:public.diagnostic_logs",
+      "type": "depends_on"
+    },
+    {
+      "from": "matview:public.mat_project_context",
+      "to": "view:public.v_project_feed",
+      "type": "depends_on"
+    },
+    {
+      "from": "matview:public.mat_contact_context",
+      "to": "view:public.v_contact_activity_summary",
+      "type": "depends_on"
+    },
+    {
+      "from": "matview:public.mat_belief_context",
+      "to": "view:public.v_project_belief_snapshot",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_refresh_status",
+      "to": "table:public.context_surface_refresh_status",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_pipeline_model_readme",
+      "to": "table:public.pipeline_model_config",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_direct_read_parity_72h",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_direct_read_parity_72h",
+      "to": "table:public.beside_thread_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "view:public.v_interaction_primary_project",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "table:public.beside_thread_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_shadow_metrics_packet_v0",
+      "to": "view:public.v_beside_direct_read_parity_72h",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts",
+      "to": "table:public.claim_grades",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts_unified",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts_unified",
+      "to": "table:public.beside_threads",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contacts_unified",
+      "to": "view:public.redline_contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "matview:public.redline_contacts_unified_matview",
+      "to": "view:public.redline_contacts_unified",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_queue_project_summary",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_queue_project_summary",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_review_queue_project_summary",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_edge_deploy_guard_alerts",
+      "to": "table:public.edge_deploy_receipts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_edge_deploy_guard_summary",
+      "to": "table:public.edge_deploy_receipts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_hard_drop_dlq_open",
+      "to": "table:public.hard_drop_dlq",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.pipeline_logs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_surface_staleness_v1",
+      "to": "table:public.context_surface_refresh_metadata",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_defect_events_open",
+      "to": "table:public.redline_defect_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_project_context_materialization_health_v1",
+      "to": "table:public.project_context_materialization_meta",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_mat_project_context_with_meta_v1",
+      "to": "matview:public.mat_project_context",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_mat_project_context_with_meta_v1",
+      "to": "view:public.v_project_context_materialization_health_v1",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_channel_span_attribution_gap_daily",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_channel_span_attribution_gap_daily",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_channel_span_attribution_gap_daily",
+      "to": "view:public.v_interaction_primary_project",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_sms_thread_v2",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_sms_thread_v2",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_sms_thread_v2",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_sms_thread_v2",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_redline_sms_thread_v2",
+      "to": "view:public.v_interaction_primary_project",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_sms_messages_with_attachments",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_sms_messages_with_attachments",
+      "to": "table:public.sms_message_attachments",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_summary",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_summary",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_summary",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_summary",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_summary",
+      "to": "table:public.redline_defect_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_single_project_invariant_violations",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_single_project_invariant_violations",
+      "to": "table:public.project_contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_single_project_invariant_violations",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_single_project_invariant_violations",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_single_project_invariant_violations",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_calls_missing_in_interactions_24h",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_beside_calls_missing_in_interactions_24h",
+      "to": "table:public.beside_thread_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_probe",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_probe",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_probe",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_truth_graph_probe",
+      "to": "table:public.redline_defect_events",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "table:public.pipeline_logs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "table:public.correspondent_project_affinity",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "table:public.journal_runs",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "table:public.project_facts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "matview:public.mat_contact_context",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_context_metadata_staleness",
+      "to": "matview:public.redline_contacts_unified_matview",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_affinity_current",
+      "to": "table:public.affinity_ledger",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_baseline_metrics",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_baseline_metrics",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_baseline_metrics",
+      "to": "table:public.journal_open_loops",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_baseline_metrics",
+      "to": "table:public.sms_messages",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_baseline_metrics",
+      "to": "table:public.striking_signals",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_queue",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_queue",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_queue",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_scheduling_queue",
+      "to": "table:public.scheduler_items",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.contacts",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.calls_raw",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.journal_claims",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_contact_thread",
+      "to": "table:public.claim_grades",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_thread",
+      "to": "view:public.redline_sms_thread",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.redline_thread",
+      "to": "view:public.redline_contact_thread",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_interactions_missing_in_redline_thread_24h",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_interactions_missing_in_redline_thread_24h",
+      "to": "view:public.redline_contacts_unified",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_attribution_cards",
+      "to": "table:public.interactions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_attribution_cards",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_attribution_cards",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_attribution_cards",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_attribution_cards",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_later_queue",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_span_position",
+      "to": "table:public.projects",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_span_position",
+      "to": "table:public.review_queue",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_span_position",
+      "to": "table:public.conversation_spans",
+      "type": "depends_on"
+    },
+    {
+      "from": "view:public.v_triage_span_position",
+      "to": "table:public.span_attributions",
+      "type": "depends_on"
+    },
+    {
+      "from": "edge:process-call",
+      "to": "table:public.review_queue",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "75"
+      }
+    },
+    {
       "from": "edge:zapier-call-ingest",
       "to": "table:public.calls_raw",
       "type": "writes",
@@ -6817,6 +7523,15 @@
       "meta": {
         "last_seen_at_utc": "2026-02-19T18:32:33.994Z",
         "seen_count": "1"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.override_log",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
       }
     },
     {
@@ -6838,12 +7553,30 @@
       }
     },
     {
-      "from": "edge:process-call",
-      "to": "edge:chain-detect",
-      "type": "calls",
+      "from": "edge:admin-reseed",
+      "to": "table:public.interactions",
+      "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "41"
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.calls_raw",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "364"
+      }
+    },
+    {
+      "from": "edge:training-data-export",
+      "to": "view:public.v_human_truth_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-01T07:00:08.519Z",
+        "seen_count": "3"
       }
     },
     {
@@ -6857,29 +7590,38 @@
     },
     {
       "from": "edge:training-data-export",
-      "to": "view:public.v_human_truth_attributions",
-      "type": "reads",
+      "to": "table:public.training_data_snapshots",
+      "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T02:56:20.711Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-03-01T07:00:08.519Z",
+        "seen_count": "3"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.conversation_spans",
+      "type": "writes",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
       }
     },
     {
       "from": "edge:process-call",
-      "to": "table:public.review_queue",
-      "type": "writes",
+      "to": "edge:chain-detect",
+      "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-23T02:41:12.539Z",
-        "seen_count": "6"
+        "last_seen_at_utc": "2026-03-01T16:20:39.203Z",
+        "seen_count": "177"
       }
     },
     {
-      "from": "edge:training-data-export",
-      "to": "table:public.training_data_snapshots",
-      "type": "writes",
+      "from": "edge:admin-reseed",
+      "to": "edge:segment-llm",
+      "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T02:56:20.711Z",
-        "seen_count": "1"
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "364"
       }
     },
     {
@@ -7279,15 +8021,6 @@
       }
     },
     {
-      "from": "edge:admin-reseed",
-      "to": "edge:striking-detect",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
       "from": "edge:transcribe-deepgram",
       "to": "table:public.api_keys",
       "type": "reads",
@@ -7459,15 +8192,6 @@
       }
     },
     {
-      "from": "edge:admin-reseed",
-      "to": "edge:journal-extract",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
       "from": "edge:zapier-sms-ingest",
       "to": "table:public.diagnostic_logs",
       "type": "writes",
@@ -7483,15 +8207,6 @@
       "meta": {
         "last_seen_at_utc": "2026-02-22T19:22:14.698Z",
         "seen_count": "1"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.transcripts_comparison",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "4"
       }
     },
     {
@@ -7820,20 +8535,20 @@
     },
     {
       "from": "edge:admin-reseed",
-      "to": "table:public.override_log",
-      "type": "reads",
+      "to": "table:public.span_attributions",
+      "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
       }
     },
     {
       "from": "edge:admin-reseed",
-      "to": "table:public.interactions",
-      "type": "reads",
+      "to": "table:public.override_log",
+      "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
       }
     },
     {
@@ -7901,29 +8616,11 @@
     },
     {
       "from": "edge:admin-reseed",
-      "to": "table:public.conversation_spans",
-      "type": "reads",
+      "to": "table:public.review_queue",
+      "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:context-assembly",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:ai-router",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
       }
     },
     {
@@ -7999,6 +8696,15 @@
       }
     },
     {
+      "from": "edge:audit-attribution-reviewer",
+      "to": "edge:audit-attribution",
+      "type": "called_by",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T04:00:24.961Z",
+        "seen_count": "529"
+      }
+    },
+    {
       "from": "edge:audit-attribution",
       "to": "table:public.conversation_spans",
       "type": "reads",
@@ -8062,24 +8768,6 @@
       }
     },
     {
-      "from": "edge:admin-reseed",
-      "to": "table:public.span_attributions",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.calls_raw",
-      "type": "reads",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "4"
-      }
-    },
-    {
       "from": "edge:auto-review-resolver",
       "to": "table:public.review_queue",
       "type": "reads",
@@ -8116,66 +8804,12 @@
       }
     },
     {
-      "from": "edge:admin-reseed",
-      "to": "table:public.conversation_spans",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.span_attributions",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.override_log",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "table:public.review_queue",
-      "type": "writes",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "5"
-      }
-    },
-    {
-      "from": "edge:admin-reseed",
-      "to": "edge:segment-llm",
-      "type": "calls",
-      "meta": {
-        "last_seen_at_utc": "2026-02-25T23:19:26.331Z",
-        "seen_count": "4"
-      }
-    },
-    {
-      "from": "edge:audit-attribution-reviewer",
-      "to": "edge:audit-attribution",
-      "type": "called_by",
-      "meta": {
-        "last_seen_at_utc": "2026-02-27T04:35:16.965Z",
-        "seen_count": "368"
-      }
-    },
-    {
       "from": "edge:review-resolve",
       "to": "table:public.review_queue",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-27T15:44:19.008Z",
+        "seen_count": "12"
       }
     },
     {
@@ -8183,8 +8817,8 @@
       "to": "table:public.span_attributions",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-27T15:44:19.008Z",
+        "seen_count": "12"
       }
     },
     {
@@ -8192,8 +8826,8 @@
       "to": "table:public.review_queue",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-27T15:44:19.008Z",
+        "seen_count": "12"
       }
     },
     {
@@ -8201,8 +8835,8 @@
       "to": "table:public.override_log",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-27T15:44:19.008Z",
+        "seen_count": "12"
       }
     },
     {
@@ -8210,8 +8844,8 @@
       "to": "table:public.journal_claims",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-27T05:11:13.802Z",
-        "seen_count": "11"
+        "last_seen_at_utc": "2026-02-27T15:44:19.008Z",
+        "seen_count": "12"
       }
     },
     {
@@ -8233,12 +8867,66 @@
       }
     },
     {
+      "from": "edge:admin-reseed",
+      "to": "table:public.conversation_spans",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.span_attributions",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "365"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "table:public.transcripts_comparison",
+      "type": "reads",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "364"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:context-assembly",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "355"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:striking-detect",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "355"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:journal-extract",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "355"
+      }
+    },
+    {
       "from": "edge:process-call",
       "to": "table:public.calls_raw",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8246,8 +8934,8 @@
       "to": "table:public.interactions",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8255,8 +8943,8 @@
       "to": "table:public.event_audit",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8264,8 +8952,8 @@
       "to": "table:public.idempotency_keys",
       "type": "writes",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8273,8 +8961,8 @@
       "to": "table:public.project_contacts",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8282,8 +8970,8 @@
       "to": "table:public.projects",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
       }
     },
     {
@@ -8291,8 +8979,17 @@
       "to": "table:public.correspondent_project_affinity",
       "type": "reads",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "50"
+        "last_seen_at_utc": "2026-03-01T21:12:43.142Z",
+        "seen_count": "307"
+      }
+    },
+    {
+      "from": "edge:admin-reseed",
+      "to": "edge:ai-router",
+      "type": "calls",
+      "meta": {
+        "last_seen_at_utc": "2026-03-02T00:43:05.372Z",
+        "seen_count": "355"
       }
     },
     {
@@ -8300,9 +8997,24 @@
       "to": "edge:segment-call",
       "type": "calls",
       "meta": {
-        "last_seen_at_utc": "2026-02-26T20:12:49.744Z",
-        "seen_count": "43"
+        "last_seen_at_utc": "2026-03-01T16:20:39.203Z",
+        "seen_count": "179"
       }
+    },
+    {
+      "from": "client:ios.camberredline",
+      "to": "edge:redline-thread",
+      "type": "calls"
+    },
+    {
+      "from": "client:ios.camberredline",
+      "to": "edge:review-resolve",
+      "type": "calls"
+    },
+    {
+      "from": "client:ios.camberredline",
+      "to": "matview:public.redline_contacts_matview",
+      "type": "reads"
     }
   ],
   "groups": {
@@ -8314,6 +9026,9 @@
     },
     "runtime": {
       "label": "Runtime Lineage"
+    },
+    "client": {
+      "label": "Clients"
     }
   }
 }

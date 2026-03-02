@@ -9,7 +9,7 @@
       "required": ["id", "kind", "title"],
       "properties": {
         "id": { "type": "string" },
-        "kind": { "type": "string", "enum": ["table", "view", "matview", "fn", "ext", "edge"] },
+        "kind": { "type": "string", "enum": ["table", "view", "matview", "fn", "ext", "edge", "client"] },
         "group": { "type": ["string", "null"] },
         "schema": { "type": ["string", "null"] },
         "name": { "type": ["string", "null"] },

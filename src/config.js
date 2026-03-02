@@ -142,6 +142,8 @@ export const CONNECTION_LABEL_DESC_MAP = {
 };
 
 export const MAP_PARITY_ALIAS_POLICY = {
+  'edge:redline-thread': 'redline-thread',
+  'edge:review-resolve': 'review-resolve',
   'edge:zapier-sms-ingest': 'zapier-sms-ingest',
   'table:public.openphone_threads': 'sms-openphone-sync',
   'view:public.v_calls_raw_zapier_lineage': 'zapier-ingest',

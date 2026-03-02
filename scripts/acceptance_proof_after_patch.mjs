@@ -3,6 +3,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -109,24 +110,14 @@ function parseQuotedStringList(src) {
   return Array.from(src.matchAll(/'([^']+)'/g)).map((m) => m[1]);
 }
 
-function parseFlowViewConfig(indexHtmlPath) {
-  const src = fs.readFileSync(indexHtmlPath, 'utf8');
-  const flowBlockMatch = src.match(/flow:\s*\{([\s\S]*?)\n\s*\},\s*\n\s*system:/m);
-  if (!flowBlockMatch) {
-    throw new Error('Unable to parse flow mode block from index.html');
-  }
-  const flowBlock = flowBlockMatch[1];
+async function parseFlowViewConfig(configJsPath) {
+  const mod = await import(pathToFileURL(configJsPath).href);
+  const flow = mod && mod.VIEW_MODES && mod.VIEW_MODES.flow ? mod.VIEW_MODES.flow : null;
+  if (!flow) throw new Error('Unable to load VIEW_MODES.flow from src/config.js');
 
-  const hideNodesMatch = flowBlock.match(/hideNodes:\s*\[([\s\S]*?)\]/m);
-  if (!hideNodesMatch) {
-    throw new Error('Unable to parse flow hideNodes from index.html');
-  }
-  const layersMatch = flowBlock.match(/layers:\s*\[([\s\S]*?)\]/m);
-  const parityNodesMatch = src.match(/FLOW_PARITY_NODE_ALLOWLIST\s*=\s*\[([\s\S]*?)\]/m);
-
-  const hideNodes = new Set(parseQuotedStringList(hideNodesMatch[1]));
-  const layers = new Set(layersMatch ? parseQuotedStringList(layersMatch[1]) : ['pipeline', 'data']);
-  const forceVisibleNodes = new Set(parityNodesMatch ? parseQuotedStringList(parityNodesMatch[1]) : []);
+  const hideNodes = new Set(Array.isArray(flow.hideNodes) ? flow.hideNodes : []);
+  const layers = new Set(Array.isArray(flow.layers) ? flow.layers : ['pipeline', 'data']);
+  const forceVisibleNodes = new Set(Array.isArray(mod.FLOW_PARITY_NODE_ALLOWLIST) ? mod.FLOW_PARITY_NODE_ALLOWLIST : []);
 
   return { hideNodes, layers, forceVisibleNodes };
 }
@@ -554,20 +545,20 @@ function buildDecisionSignals({ overallPass, failedLaneIds, comparison, strict }
   ];
 }
 
-function main() {
+async function main() {
   fs.mkdirSync(outDir, { recursive: true });
 
   const mapJsonPath = path.join(PUBLIC_DIR, 'map.json');
   const diagramNodesPath = path.join(PUBLIC_DIR, 'diagram.nodes.json');
   const diagramConnectionsPath = path.join(PUBLIC_DIR, 'diagram.connections.json');
   const flowSpecPath = path.join(CONFIG_DIR, 'architecture_flow.json');
-  const indexHtmlPath = path.join(ROOT, 'index.html');
+  const configJsPath = path.join(ROOT, 'src', 'config.js');
 
   const mapJson = readJson(mapJsonPath);
   const nodes = readJson(diagramNodesPath);
   const connections = readJson(diagramConnectionsPath);
   const flowSpec = readJson(flowSpecPath);
-  const flowView = parseFlowViewConfig(indexHtmlPath);
+  const flowView = await parseFlowViewConfig(configJsPath);
 
   const nodeIdsAll = new Set(nodes.map((n) => n.id));
   const flowVisibleNodeIds = nodes
@@ -672,14 +663,14 @@ function main() {
     execution: {
       mode: 'static_render_audit',
       strict: opts.strict,
-      note: 'Chromium launch is blocked in this sandbox, so view checks are computed from index.html visibility rules + diagram/config JSON.',
+      note: 'Chromium launch is blocked in this sandbox, so view checks are computed from src/config.js visibility rules + diagram/config JSON.',
     },
     rerun: {
       cwd: ROOT,
       command: 'node scripts/acceptance_proof_after_patch.mjs --strict',
     },
     input_fingerprints: [
-      { path: indexHtmlPath, sha256: sha256ForFile(indexHtmlPath) },
+      { path: configJsPath, sha256: sha256ForFile(configJsPath) },
       { path: flowSpecPath, sha256: sha256ForFile(flowSpecPath) },
       { path: diagramNodesPath, sha256: sha256ForFile(diagramNodesPath) },
       { path: diagramConnectionsPath, sha256: sha256ForFile(diagramConnectionsPath) },
@@ -758,9 +749,7 @@ function main() {
   }
 }
 
-try {
-  main();
-} catch (err) {
+main().catch((err) => {
   console.error('ACCEPTANCE_PROOF_ERROR', err && err.stack ? err.stack : String(err));
   process.exitCode = 1;
-}
+});

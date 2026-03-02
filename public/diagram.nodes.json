@@ -88,6 +88,17 @@
     "desc": "Supabase Auth provides JWT-based user authentication for human-facing endpoints. The review-resolve function is the only endpoint using verify_jwt=true, verifying tokens via auth.getUser() and checking against an ALLOWED_EMAILS allowlist. All other pipeline functions bypass JWT verification entirely (verify_jwt=false in config.toml) and rely solely on X-Edge-Secret for machine-to-machine auth. The shared _shared/auth.ts module implements constant-time comparison to prevent timing attacks on the shared secret."
   },
   {
+    "id": "client:ios.camberredline",
+    "label": "Redline iOS",
+    "subtitle": "CamberRedline client",
+    "x": 1320,
+    "y": 25,
+    "w": 150,
+    "h": 40,
+    "layer": "external",
+    "desc": "CamberRedline is the internal iOS client used to browse the Inbox, open threads, and run truth-forcing triage/repair workflows. It calls redline-thread for thread hydration and truth graph status and can invoke review-resolve when a human correction is applied."
+  },
+  {
     "id": "zapier-ingest",
     "label": "zapier-call-ingest",
     "subtitle": "226 lines",
@@ -240,6 +251,17 @@
     "h": 48,
     "layer": "pipeline",
     "desc": "Review queue management endpoint providing list, stats, and dismiss operations for pending review items. Used by morning-digest for queue pressure metrics and by the human review UI to browse pending items. Reads from review_queue, span_attributions, and conversation_spans to build contextual review cards. Auth: X-Edge-Secret."
+  },
+  {
+    "id": "redline-thread",
+    "label": "redline-thread",
+    "subtitle": "iOS inbox/thread API",
+    "x": 890,
+    "y": 385,
+    "w": 170,
+    "h": 48,
+    "layer": "pipeline",
+    "desc": "Internal API for Redline iOS. Hydrates Inbox + thread views and exposes truth graph state (which pipeline artifacts exist for an interaction) so missing evidence is visible and repair actions can be routed deterministically. Auth: X-Edge-Secret."
   },
   {
     "id": "generate-summary",
@@ -515,6 +537,17 @@
     "h": 48,
     "layer": "data",
     "desc": "Canonical inbound/outbound SMS ledger written by zapier-sms-ingest. This table is the durable source for text-message provenance used by reporting and timeline views."
+  },
+  {
+    "id": "matview:public.redline_contacts_matview",
+    "label": "Redline Contacts MV",
+    "subtitle": "redline_contacts_matview",
+    "x": 1260,
+    "y": 760,
+    "w": 190,
+    "h": 48,
+    "layer": "data",
+    "desc": "Materialized view powering Redline iOS Inbox performance (contacts + last activity + triage counts)."
   },
   {
     "id": "table:public.openphone_threads",

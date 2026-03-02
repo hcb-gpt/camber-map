@@ -1,0 +1,18 @@
+[
+  {
+    "from": "client:ios.camberredline",
+    "to": "edge:redline-thread",
+    "type": "calls"
+  },
+  {
+    "from": "client:ios.camberredline",
+    "to": "edge:review-resolve",
+    "type": "calls"
+  },
+  {
+    "from": "client:ios.camberredline",
+    "to": "matview:public.redline_contacts_matview",
+    "type": "reads"
+  }
+]
+

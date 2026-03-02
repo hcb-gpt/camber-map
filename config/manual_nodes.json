@@ -1,0 +1,32 @@
+[
+  {
+    "id": "client:ios.camberredline",
+    "kind": "client",
+    "group": "client",
+    "title": "iOS: CamberRedline",
+    "meta": {
+      "repo_path": "camber/ios/CamberRedline"
+    }
+  },
+  {
+    "id": "edge:redline-thread",
+    "kind": "edge",
+    "group": "edge",
+    "title": "redline-thread"
+  },
+  {
+    "id": "edge:review-resolve",
+    "kind": "edge",
+    "group": "edge",
+    "title": "review-resolve"
+  },
+  {
+    "id": "matview:public.redline_contacts_matview",
+    "kind": "matview",
+    "group": "db",
+    "schema": "public",
+    "name": "redline_contacts_matview",
+    "title": "public.redline_contacts_matview"
+  }
+]
+

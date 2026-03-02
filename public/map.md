@@ -1,36 +1,34 @@
 # Camber Map (generated)
 
-Updated: 2026-02-27T06:08:47Z
+Updated: 2026-03-02T04:17:49Z
 Mode: live
-Git: c44f0359999620bd6caf11a5d1c5da49229a2ac5
+Git: e9d0d17ea6543382550579259aef907f33ec9c47
 
 ## Live DB facts
-- Applied migrations: 625
-- Tables: 141
-- Views: 161
-- Functions: 192
+- Applied migrations: 673
+- Tables: 165
+- Views: 191
+- Functions: 255
 - Extensions: 12
 
-## Edge Functions
-- Deployed: 59
-
 ## Graph summary
-- Nodes: 566
-- Edges: 561
+- Nodes: 632
+- Edges: 658
 
 ### Node kinds
-- fn: 192
-- view: 161
-- table: 141
-- edge: 59
+- fn: 255
+- view: 191
+- table: 165
 - ext: 12
-- matview: 1
+- matview: 6
+- edge: 2
+- client: 1
 
 ### Edge types
-- depends_on: 394
-- reads: 84
+- depends_on: 488
+- reads: 85
 - writes: 65
-- calls: 17
+- calls: 19
 - called_by: 1
 
 ## Notes

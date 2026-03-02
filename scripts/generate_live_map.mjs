@@ -27,6 +27,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 import pg from 'pg';
 const { Client } = pg;
@@ -41,6 +42,8 @@ const DATABASE_URL = process.env.DATABASE_URL || '';
 const SUPABASE_PROJECT_REF = process.env.SUPABASE_PROJECT_REF || '';
 const SUPABASE_ACCESS_TOKEN = process.env.SUPABASE_ACCESS_TOKEN || '';
 const EDGE_NODE_OVERRIDES_PATH = path.join(ROOT, 'config', 'edge_node_overrides.json');
+const MANUAL_NODES_PATH = path.join(ROOT, 'config', 'manual_nodes.json');
+const MANUAL_EDGES_PATH = path.join(ROOT, 'config', 'manual_edges.json');
 
 function nowUtcIso() {
   return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
@@ -52,16 +55,15 @@ async function ensureDir(p) {
 
 async function readGitSha() {
   try {
-    const head = (await fs.readFile(path.join(ROOT, '.git/HEAD'), 'utf8')).trim();
-    if (head.startsWith('ref:')) {
-      const refPath = head.split(' ')[1];
-      const sha = (await fs.readFile(path.join(ROOT, '.git', refPath), 'utf8')).trim();
-      return sha;
+    const r = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' });
+    if (r.status === 0) {
+      const sha = String(r.stdout || '').trim();
+      if (sha) return sha;
     }
-    return head;
   } catch {
-    return 'unknown';
+    // fall through
   }
+  return 'unknown';
 }
 
 async function loadEdgeNodeOverrides() {
@@ -74,6 +76,16 @@ async function loadEdgeNodeOverrides() {
     return parsed;
   } catch {
     return {};
+  }
+}
+
+async function loadJsonArray(filePath) {
+  try {
+    const raw = await fs.readFile(filePath, 'utf8');
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
   }
 }
 
@@ -273,7 +285,8 @@ async function build() {
     groups: {
       db: { label: 'Database' },
       edge: { label: 'Edge Functions' },
-      runtime: { label: 'Runtime Lineage' }
+      runtime: { label: 'Runtime Lineage' },
+      client: { label: 'Clients' }
     },
   };
 
@@ -345,6 +358,36 @@ async function build() {
           title: f.name || f.slug,
           meta: overrideMeta ? { ...baseMeta, ...overrideMeta } : baseMeta,
         });
+      }
+    }
+
+    const manualNodes = await loadJsonArray(MANUAL_NODES_PATH);
+    const manualEdges = await loadJsonArray(MANUAL_EDGES_PATH);
+
+    if (manualNodes.length || manualEdges.length) {
+      const existingNodeIds = new Set(map.nodes.map((n) => n.id));
+      for (const n of manualNodes) {
+        if (!n || typeof n !== 'object' || Array.isArray(n)) continue;
+        if (typeof n.id !== 'string' || !n.id.trim()) continue;
+        if (typeof n.kind !== 'string' || !n.kind.trim()) continue;
+        if (typeof n.title !== 'string' || !n.title.trim()) continue;
+        if (existingNodeIds.has(n.id)) continue;
+        map.nodes.push(n);
+        existingNodeIds.add(n.id);
+      }
+
+      const edgeKey = (e) => `${e.from}\0${e.to}\0${e.type}`;
+      const existingEdges = new Set(map.edges.map(edgeKey));
+      for (const e of manualEdges) {
+        if (!e || typeof e !== 'object' || Array.isArray(e)) continue;
+        if (typeof e.from !== 'string' || !e.from.trim()) continue;
+        if (typeof e.to !== 'string' || !e.to.trim()) continue;
+        if (typeof e.type !== 'string' || !e.type.trim()) continue;
+        if (e.from === e.to) continue;
+        const k = edgeKey(e);
+        if (existingEdges.has(k)) continue;
+        map.edges.push(e);
+        existingEdges.add(k);
       }
     }
 
