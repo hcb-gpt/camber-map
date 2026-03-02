@@ -1,16 +1,8 @@
 {
-  "updated_at": "2026-03-02T11:55:13Z",
-  "git_sha": "517a7a6d6d898f136da1d05c2970eb40005c9093",
+  "updated_at": "2026-03-02T11:56:19Z",
+  "git_sha": "3aec49ed6ff4007ae69544605bc5f7cebc679869",
   "mode": "repo",
-  "db": {
-    "applied_migrations": 673,
-    "tables": 165,
-    "views": 191,
-    "functions": 255,
-    "extensions": 12
-  },
+  "db": null,
   "edge_functions": null,
-  "runtime_lineage": {
-    "count": 167
-  }
+  "runtime_lineage": null
 }

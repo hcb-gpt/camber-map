@@ -1,15 +1,15 @@
 # Camber Map (generated)
 
-Updated: 2026-03-02T09:07:56Z
+Updated: 2026-03-02T11:56:19Z
 Mode: repo
-Git: c5b5b3af59eb650c69877a4257e6e3ac0fa9cd5a
+Git: 3aec49ed6ff4007ae69544605bc5f7cebc679869
 
 ## Graph summary
-- Nodes: 4
+- Nodes: 5
 - Edges: 3
 
 ### Node kinds
-- edge: 2
+- edge: 3
 - client: 1
 - matview: 1
 

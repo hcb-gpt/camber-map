@@ -18,6 +18,10 @@
       <data key="d0">review-resolve</data>
       <data key="d1">edge</data>
     </node>
+    <node id="edge:bootstrap-review">
+      <data key="d0">bootstrap-review</data>
+      <data key="d1">edge</data>
+    </node>
     <node id="matview:public.redline_contacts_matview">
       <data key="d0">public.redline_contacts_matview</data>
       <data key="d1">matview</data>
@@ -25,7 +29,7 @@
     <edge id="e0" source="client:ios.camberredline" target="edge:redline-thread">
       <data key="d2">calls</data>
     </edge>
-    <edge id="e1" source="client:ios.camberredline" target="edge:review-resolve">
+    <edge id="e1" source="client:ios.camberredline" target="edge:bootstrap-review">
       <data key="d2">calls</data>
     </edge>
     <edge id="e2" source="client:ios.camberredline" target="matview:public.redline_contacts_matview">
