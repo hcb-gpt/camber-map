@@ -701,7 +701,7 @@
     "w": 195,
     "h": 42,
     "layer": "devops",
-    "desc": "claim_guard.sh is the shared preflight library for all write-mode scripts. require_claim_context enforces that ORIGIN_SESSION (e.g., dev-3) and CLAIM_RECEIPT (must start with claim__) are set before any DB writes — missing either prints example export commands and exits with code 2. write_claim_artifact saves a timestamped claim_context.txt capturing session owner, receipt, ETA, lease, and claimed resource. This implements Charter section 11 collision-prevention at the script level."
+    "desc": "claim_guard.sh is the shared preflight library for all write-mode scripts. require_claim_context enforces that ORIGIN_SESSION (e.g., eng-llm-3) and CLAIM_RECEIPT (must start with claim__) are set before any DB writes — missing either prints example export commands and exits with code 2. write_claim_artifact saves a timestamped claim_context.txt capturing session owner, receipt, ETA, lease, and claimed resource. This implements Charter section 11 collision-prevention at the script level."
   },
   {
     "id": "cc-scripts",
