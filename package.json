@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/postbuild_public_assets.mjs",
     "preview": "vite preview --port 4173",
     "generate:live": "node scripts/generate_live_map.mjs",
     "generate:live:repo": "LIVE_MODE=repo node scripts/generate_live_map.mjs",
